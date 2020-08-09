@@ -37,8 +37,7 @@ Set-Cookie:
 ### Body
 
 ```json
-{   
-
+{
     "msg": "Success"
 }
 
