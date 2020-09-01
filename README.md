@@ -3,4 +3,4 @@
 ## APIs
 
 - [Login](/login)
-- [User](/user)
+- [User](/users)
