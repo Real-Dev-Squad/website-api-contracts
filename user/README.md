@@ -4,16 +4,16 @@
 
 ```
 {
-	'id': string,
-	'first_name': string,
-	'last_name': string,
-	'yoe': number,
-	'company': string,,
-	'designation': string,
-	'img': string,
-	'github_id': string,
-	'linkedin_id': string,
-	'twitter_id': string,
+  'id': string,
+  'first_name': string,
+  'last_name': string,
+  'yoe': number,
+  'company': string,,
+  'designation': string,
+  'img': string,
+  'github_id': string,
+  'linkedin_id': string,
+  'twitter_id': string,
   'instagram_id': string,
   'site': string,
   'github_display_name': string,
@@ -21,7 +21,7 @@
 }
 ```
 
-## **GET /user**
+## **GET /users**
 
 Returns all users in the system.
 
@@ -57,7 +57,7 @@ Returns all users in the system.
   - **Code:** 401  
     **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **GET /user/:id**
+## **GET /users/:id**
 
 Returns the specified user.
 
@@ -79,7 +79,7 @@ Returns the specified user.
   - **Code:** 401  
     **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **POST /user**
+## **POST /users**
 
 Creates a new User.
 
@@ -102,7 +102,7 @@ Creates a new User.
   - **Code:** 401  
     **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **PATCH /user**
+## **PATCH /users**
 
 Updates data of a User.
 
