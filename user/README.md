@@ -1,6 +1,6 @@
-#Users
+# Users
 
-- User object
+## User object
 
 ```
 {
@@ -21,6 +21,15 @@
 }
 ```
 
+## **Requests**
+
+|               Route                |           Description           |
+| :--------------------------------: | :-----------------------------: |
+|      [GET /users](#get-users)      | Returns all users in the system |
+|   [GET /users/:id](#get-usersid)   |   Returns user with given id    |
+|     [POST /users](#post-users)     |       Creates a new User        |
+| [PATCH /users/:id](#patch-usersid) |     Updates data of a User      |
+
 ## **GET /users**
 
 Returns all users in the system.
@@ -36,26 +45,23 @@ Returns all users in the system.
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-- **Code:** 200  
-  **Content:**
+- **Code:** 200
+  - **Content:**
 
 ```
 {
   message: 'Users returned successfully!'
   users: [
-           {<user_object>},
-           {<user_object>},
            {<user_object>}
          ]
 }
 ```
 
 - **Error Response:**
-  - **Code:** 404  
-     **Content:** `{ error: 'Not Found', message: 'No users available' }`  
-     OR
-  - **Code:** 401  
-    **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ error: 'Not Found', message: 'No users available' }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
 ## **GET /users/:id**
 
@@ -70,14 +76,13 @@ Returns the specified user.
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-- **Code:** 200  
-  **Content:** `{ 'message': 'User returned successfully!', 'user': <user_object> }`
+- **Code:** 200
+  - **Content:** `{ 'message': 'User returned successfully!', 'user': <user_object> }`
 - **Error Response:**
-  - **Code:** 404  
-     **Content:** `{ error: 'Not Found', message: 'User doesn't exist' }`  
-     OR
-  - **Code:** 401  
-    **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ error: 'Not Found', message: 'User doesn't exist' }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
 ## **POST /users**
 
@@ -93,16 +98,16 @@ Creates a new User.
   rds-session: `<JWT>`
 - **Body** `{ <user_object> }`
 - **Success Response:**
-- **Code:** 200  
-  **Content:** `{ <user_object> }`
+  - **Code:** 200
+    - **Content:** `{ <user_object> }`
 - **Error Response:**
-  - **Code:** 400  
-     **Content:** `{ error: 'Bad Request', message: 'User already exists' }`
-    OR
-  - **Code:** 401  
-    **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 400
+    - **Content:** `{ error: 'Bad Request', message: 'User already exists' }`
+      OR
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **PATCH /users**
+## **PATCH /users/:id**
 
 Updates data of a User.
 
@@ -116,11 +121,10 @@ Updates data of a User.
   rds-session: `<JWT>`
 - **Body** `{ <user_object> }`
 - **Success Response:**
-- **Code:** 200  
-   **Content:** `{ 'message': 'User updated successfully!' }`
+  - **Code:** 200
+    - **Content:** `{ 'message': 'User updated successfully!' }`
 - **Error Response:**
-  - **Code:** 400  
-     **Content:** `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'User not found' }`
-    OR
-  - **Code:** 401  
-    **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
