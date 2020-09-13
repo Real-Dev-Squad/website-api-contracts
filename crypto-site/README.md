@@ -17,7 +17,8 @@
         "manufacturer" : "some name",
         "price" : 200
     }
- }```
+ }
+ ```
 
 ## Request
 ```POST/user/bank-details```
@@ -30,7 +31,8 @@
       "currency-details" : [],
       "shopped-items" :[]
       
-    }```
+    }
+ ```
     
 
 
