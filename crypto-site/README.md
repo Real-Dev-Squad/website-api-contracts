@@ -6,7 +6,8 @@
 ## Response
 
 ### Body
-```{
+```
+{
     "Prouct Name" :{
         "id" : "Shoe",
         "name" : "Shoe",
@@ -26,7 +27,8 @@
 ## Response
 
 ### Body
-```{
+```
+{
       "user-name": "name",
       "currency-details" : [],
       "shopped-items" :[]
