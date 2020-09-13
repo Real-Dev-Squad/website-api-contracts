@@ -5,8 +5,8 @@
 
 ## Response
 
-###Body
-``` {
+### Body
+```{
     "Prouct Name" :{
         "id" : "Shoe",
         "name" : "Shoe",
@@ -17,15 +17,15 @@
         "manufacturer" : "some name",
         "price" : 200
     }
-} ```
+ }```
 
 ## Request
-``` POST/user/bank-details ```
+```POST/user/bank-details```
 
 ## Response
 
 ### Body
-``` {
+```{
       "user-name": "name",
       "currency-details" : [],
       "shopped-items" :[]
