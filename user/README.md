@@ -17,8 +17,8 @@
   'instagram_id': string,
   'site': string,
   'github_display_name': string,
-  'isMember': boolean
-}
+  'isMember': boolean,
+  'tokens': {}
 ```
 
 ## **Requests**
@@ -58,8 +58,6 @@ Returns all users in the system.
 ```
 
 - **Error Response:**
-  - **Code:** 404
-    - **Content:** `{ error: 'Not Found', message: 'No users available' }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
@@ -101,9 +99,8 @@ Creates a new User.
   - **Code:** 200
     - **Content:** `{ <user_object> }`
 - **Error Response:**
-  - **Code:** 400
-    - **Content:** `{ error: 'Bad Request', message: 'User already exists' }`
-      OR
+  - **Code:** 409
+    - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "User already exists" }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
