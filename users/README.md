@@ -26,7 +26,7 @@
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
 |      [GET /users](#get-users)      | Returns all users in the system |
-|   [GET /users/self](#get-usersSelf)|   Returns user self details     |
+|   [GET /users/self](#get-usersSelf)|Returns the logged in user's details    |
 |   [GET /users/:id](#get-usersid)   |   Returns user with given id    |
 |     [POST /users](#post-users)     |       Creates a new User        |
 | [PATCH /users/:id](#patch-usersid) |     Updates data of a User      |
@@ -64,7 +64,7 @@ Returns all users in the system.
 
 ## **GET /users/self**
 
-Returns the details of user.
+Returns the details of logged in user.
 
 - **Params**  
   None
