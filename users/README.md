@@ -68,8 +68,6 @@ Returns the details of user.
 
 - **Params**  
   None
-- **Query**  
-  size=[integer], page=[integer]
 - **Body**  
   None
 - **Headers**  
