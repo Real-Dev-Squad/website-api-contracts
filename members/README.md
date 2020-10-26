@@ -57,5 +57,5 @@ Returns all members in the system.
 ```
 
 - **Error Response:**
-  - **Code:** 503
+  - **Code:** 500
     - **Content:** `{'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong. Please contact admin'}`
