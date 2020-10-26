@@ -58,4 +58,4 @@ Returns all members in the system.
 
 - **Error Response:**
   - **Code:** 500
-    - **Content:** `{'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong. Please contact admin'}`
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
