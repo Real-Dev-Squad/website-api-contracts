@@ -1,12 +1,30 @@
 # Challenges
 
-## Request
+## User Object
 
-`GET`
+{
+"user_id":<memberid>,
+"first_name":string,
+"last_name":string,
+"yoe": number,
+"company": string,,
+"designation": string,
+"img": string,
+"github_id": string,
+"linkedin_id": string,
+"twitter_id": string,
+"instagram_id": string,
+}
 
-## URL
+## **Requests**
 
-baseURL/challenges
+|               Route                |           Description           |
+| :--------------------------------: | :-----------------------------: |
+|  [GET /challenges](#get-challenges)| Returns all challenges          |
+|[POST /challenges](#post-challenges)|       Creates new challenge     |
+|[POST /challenge/subscribe](#post-subscribe) | subscribes users to challenge|
+
+## **GET /challenges**
 
 > returns all the active and completed challenges
 
@@ -21,32 +39,8 @@ baseURL/challenges
         "start_date": "10/05/2020",
         "end_date": "10/25/2020",
         "participants": [
-            {
-                "user_id":<memberid>,
-                "first_name":string,
-                "last_name":string,
-                "yoe": number,
-                "company": string,,
-                "designation": string,
-                "img": string,
-                "github_id": string,
-                "linkedin_id": string,
-                "twitter_id": string,
-                "instagram_id": string,
-            },
-            {
-                "user_id":<memberid>,
-                "first_name":string,
-                "last_name":string,
-                "yoe": number,
-                "company": string,,
-                "designation": string,
-                "img": string,
-                "github_id": string,
-                "linkedin_id": string,
-                "twitter_id": string,
-                "instagram_id": string,
-            }
+            <user_object>,
+            <user_object>
         ],
         "is_active": 1,
         "is_user_subscribed":1
@@ -58,32 +52,8 @@ baseURL/challenges
         "start_date": "10/05/2020",
         "end_date": "10/25/2020",
         "participants": [
-            {
-                "user_id":<memberid>,
-                "first_name":string,
-                "last_name":string,
-                "yoe": number,
-                "company": string,,
-                "designation": string,
-                "img": string,
-                "github_id": string,
-                "linkedin_id": string,
-                "twitter_id": string,
-                "instagram_id": string,
-            },
-            {
-                "user_id":<memberid>,
-                "first_name":string,
-                "last_name":string,
-                "yoe": number,
-                "company": string,,
-                "designation": string,
-                "img": string,
-                "github_id": string,
-                "linkedin_id": string,
-                "twitter_id": string,
-                "instagram_id": string,
-            }
+            <user_object>,
+            <user_object>
         ],
         "is_active": 0,
         "is_user_subscribed":0
@@ -92,15 +62,7 @@ baseURL/challenges
 
 ```
 
-## Request
-
-`POST`
-
-> This request should create new challenges
-
-## URL
-
-baseUrl/challenges
+## **POST /challenges**
 
 ## Body
 
@@ -123,13 +85,7 @@ baseUrl/challenges
 }
 ```
 
-## Request
-
-`POST`
-
-## URL
-
-baseURL/challenge/subscribe
+## **POST /challenge/subscribe**
 
 > This request allows users to subscribe to active challenges
 
