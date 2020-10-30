@@ -19,6 +19,7 @@
   'github_display_name': string,
   'isMember': boolean,
   'tokens': {}
+}
 ```
 
 ## **Requests**
