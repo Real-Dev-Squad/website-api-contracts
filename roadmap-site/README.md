@@ -1,6 +1,7 @@
 # Challenges
 
 ## User Object
+```
 
 {
 "user_id":<memberid>,
@@ -14,7 +15,9 @@
 "linkedin_id": string,
 "twitter_id": string,
 "instagram_id": string,
+"is_member":1
 }
+```
 
 ## **Requests**
 
@@ -22,7 +25,7 @@
 | :--------------------------------: | :-----------------------------: |
 |  [GET /challenges](#get-challenges)| Returns all challenges          |
 |[POST /challenges](#post-challenges)|       Creates new challenge     |
-|[POST /challenge/subscribe](#post-subscribe) | subscribes users to challenge|
+|[POST /challenge/subscribe](#post-challengesubscribe) | subscribes users to challenge|
 
 ## **GET /challenges**
 
