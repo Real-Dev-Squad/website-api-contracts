@@ -1,23 +1,11 @@
 # Challenges
 
 ## User Object
-```
 
-{
-"user_id":<memberid>,
-"first_name":string,
-"last_name":string,
-"yoe": number,
-"company": string,,
-"designation": string,
-"img": string,
-"github_id": string,
-"linkedin_id": string,
-"twitter_id": string,
-"instagram_id": string,
-"is_member":1
-}
-```
+
+same as the users object on Users Api
+- [Users](/users)
+
 
 ## **Requests**
 
@@ -78,15 +66,9 @@
 }
 ```
 
-> body will be in JSON format
-
 ## Response
 
-```
-{
-    id:<challenge_id>
-}
-```
+Return the same response from [GET /challenges](#get-challenges)
 
 ## **POST /challenge/subscribe**
 
@@ -107,6 +89,7 @@ Response
 
 ```
 {
-    is_user_subscribed:1
+    "challenge_id":<unique challenge id>
+    "is_user_subscribed":1
 }
 ```
