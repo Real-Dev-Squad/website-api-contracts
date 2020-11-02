@@ -4,7 +4,7 @@
 
 
 same as the users object on Users Api
-- [Users](/users)
+- [User object](/users#user-object)
 
 
 ## **Requests**
