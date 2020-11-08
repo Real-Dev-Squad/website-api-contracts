@@ -7,6 +7,8 @@
   'id': string,
   'first_name': string,
   'last_name': string,
+  'email': string,
+  'phone': number,
   'yoe': number,
   'company': string,,
   'designation': string,
@@ -24,13 +26,13 @@
 
 ## **Requests**
 
-|               Route                |           Description           |
-| :--------------------------------: | :-----------------------------: |
-|      [GET /users](#get-users)      | Returns all users in the system |
-|   [GET /users/self](#get-usersSelf)|Returns the logged in user's details    |
-|   [GET /users/:id](#get-usersid)   |   Returns user with given id    |
-|     [POST /users](#post-users)     |       Creates a new User        |
-| [PATCH /users/self](#patch-usersself) |     Updates data of the User      |
+|                 Route                 |             Description              |
+|:-------------------------------------:|:------------------------------------:|
+|       [GET /users](#get-users)        |   Returns all users in the system    |
+|   [GET /users/self](#get-usersSelf)   | Returns the logged in user's details |
+|    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
+|      [POST /users](#post-users)       |          Creates a new User          |
+| [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
 
 
 ## **GET /users**
