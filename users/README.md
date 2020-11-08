@@ -30,7 +30,8 @@
 |   [GET /users/self](#get-usersSelf)|Returns the logged in user's details    |
 |   [GET /users/:id](#get-usersid)   |   Returns user with given id    |
 |     [POST /users](#post-users)     |       Creates a new User        |
-| [PATCH /users/:id](#patch-usersid) |     Updates data of a User      |
+| [PATCH /users/self](#patch-usersself) |     Updates data of the User      |
+
 
 ## **GET /users**
 
@@ -129,12 +130,12 @@ Creates a new User.
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **PATCH /users/:id**
+## **PATCH /users/self**
 
-Updates data of a User.
+Updates data of the User.
 
 - **Params**  
-  _Required:_ `id=[string]`
+  None
 - **Query**  
   None
 - **Headers**  
@@ -143,10 +144,15 @@ Updates data of a User.
   rds-session: `<JWT>`
 - **Body** `{ <user_object> }`
 - **Success Response:**
-  - **Code:** 200
-    - **Content:** `{ 'message': 'User updated successfully!' }`
+  - **Code:** 204
+    - **Content:** `{ 'message': 'User updated successfully!'}`
 - **Error Response:**
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 403
+    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
+  - **Code:** 503
+    - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
