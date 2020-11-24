@@ -1,6 +1,6 @@
 # Pull Requests
 
-## Pull Request Info Object
+## Pull Request Object
 
 ```
 {
@@ -19,15 +19,15 @@
 
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
-|      [GET /pulls/:id](#get-pullsid)      | Returns latest 5 PRs by the user in RDS |
+|      [GET /pullrequests/:id](#get-pullrequestsid)      | Returns latest 5 PRs by the user in RDS |
 
 
-## **GET /pulls/:id**
+## **GET /pullrequests/:id**
 
 Returns latest 5 pull requests by an user in Real-Dev-Squad organisation
 
 - **Params**  
-  `:id`
+  `id`
 
 - **Success Response:**
 - **Code:** 200
@@ -36,8 +36,12 @@ Returns latest 5 pull requests by an user in Real-Dev-Squad organisation
 ```
 {
   message: 'Pull requests returned successfully!'
-  pulls: [
-           {<Pull Request Info Object>}
+  pullrequests: [
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>}
          ]
 }
 ```
