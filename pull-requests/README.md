@@ -9,7 +9,7 @@
     'state': <open or closed>,
     'created_at': <time of PR created>,
     'updated_at': <last event: commit or review or closing of PR>,
-    'draft': <ready for review or changes requested>,
+    'ready_for_review': <ready for review or changes requested>,
     'labels': <labels array>,
     'assignee': <username of the assignee>
 }
