@@ -7,11 +7,11 @@
     'title': <title of PR>,
     'url': <url of PR>,
     'state': <open or closed>,
-    'created_at': <time of PR created>,
-    'updated_at': <last event: commit or review or closing of PR>,
-    'ready_for_review': <ready for review or changes requested>,
+    'createdAt': <time of PR created>,
+    'updatedAt': <last event: commit or review or closing of PR>,
+    'readyForReview': <true or false>,
     'labels': <labels array>,
-    'assignee': <username of the assignee>
+    'assignees': <username of the assignee>
 }
 ```
 
@@ -19,12 +19,12 @@
 
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
-|      [GET /pullrequests/:id](#get-pullrequestsid)      | Returns latest 5 PRs by the user in RDS |
+|      [GET /pullrequests/:id](#get-pullrequestsid)      | Returns latest PRs by the user in RDS |
 
 
 ## **GET /pullrequests/:id**
 
-Returns latest 5 pull requests by an user in Real-Dev-Squad organisation
+Returns latest pull requests by an user in Real-Dev-Squad organisation
 
 - **Params**  
   `id`
@@ -34,16 +34,13 @@ Returns latest 5 pull requests by an user in Real-Dev-Squad organisation
   - **Content:**
 
 ```
-{
-  message: 'Pull requests returned successfully!'
-  pullrequests: [
-           {<Pull Request Object>},
-           {<Pull Request Object>},
-           {<Pull Request Object>},
-           {<Pull Request Object>},
-           {<Pull Request Object>}
-         ]
-}
+[
+    {<Pull Request Object>},
+    {<Pull Request Object>},
+    {<Pull Request Object>},
+    {<Pull Request Object>},
+    {<Pull Request Object>}
+]
 ```
 
 - **Error Response:**
