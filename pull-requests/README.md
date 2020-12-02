@@ -34,13 +34,16 @@ Returns latest pull requests by an user in Real-Dev-Squad organisation
   - **Content:**
 
 ```
-[
-    {<Pull Request Object>},
-    {<Pull Request Object>},
-    {<Pull Request Object>},
-    {<Pull Request Object>},
-    {<Pull Request Object>}
-]
+{
+  message: 'Pull requests returned successfully!'
+  pullRequests: [
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>}
+         ]
+}
 ```
 
 - **Error Response:**
