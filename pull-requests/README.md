@@ -20,10 +20,10 @@
 
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
-|      [GET /pullrequests/:id](#get-pullrequestsid)      | Returns latest PRs by the user in RDS |
+|      [GET /pullrequests/user/:id](#get-pullrequestsusserid)      | Returns latest PRs by the user in RDS |
 
 
-## **GET /pullrequests/:id**
+## **GET /pullrequests/user/:id**
 
 Returns latest pull requests by an user in Real-Dev-Squad organisation
 
