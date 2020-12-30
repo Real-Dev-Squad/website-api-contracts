@@ -21,6 +21,8 @@
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
 |      [GET /pullrequests/user/:id](#get-pullrequestsusserid)      | Returns latest PRs by the user in RDS |
+|      [GET /pullrequests/open](#get-pullrequestsopen)      | Returns 10 latest open PRs in RDS |
+|      [GET /pullrequests/stale](#get-pullrequestsstale)       | Returns stale PRs in RDS |
 
 
 ## **GET /pullrequests/user/:id**
@@ -50,3 +52,78 @@ Returns latest pull requests by an user in Real-Dev-Squad organisation
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
+
+## **GET /pullrequests/open**
+
+Returns 10 latest open PRs in Real-Dev-Squad organisation
+
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'Open PRs'
+  pullRequests: [
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>}
+         ]
+}
+```
+
+- **Success Response:**
+- **No Open PRs found**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'No pull requests found!'
+  pullRequests: []
+}
+```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
+
+## **GET /pullrequests/stale**
+
+Returns stale pull requests in Real-Dev-Squad organisation
+
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'Stale PRs'
+  pullRequests: [
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>},
+           {<Pull Request Object>}
+         ]
+}
+```
+
+- **Success Response:**
+- **No Stale PRs found:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'No pull requests found!'
+  pullRequests: []
+}
+```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
+
