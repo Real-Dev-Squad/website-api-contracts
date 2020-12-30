@@ -30,7 +30,7 @@
 Returns latest pull requests by an user in Real-Dev-Squad organisation
 
 - **Params**  
-  `id`
+  `username`
 
 - **Success Response:**
 - **Code:** 200
