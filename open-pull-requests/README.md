@@ -1,6 +1,6 @@
-# Pull Requests
+# Open Pull Requests
 
-## Pull Request Object
+## Open Pull Request Object
 
 ```
 {
@@ -9,8 +9,7 @@
     'state': <open or closed>,
     'createdAt': <time of PR created>,
     'updatedAt': <last event: commit or review or closing of PR>,
-    'repository': <name of the repository in which PR is requested>
-    'readyForReview': <true or false>,
+    'username': <username who requested PR>
     'labels': <labels array>,
     'assignees': <username of the assignee>
 }
@@ -20,15 +19,12 @@
 
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
-|      [GET /pullrequests/:id](#get-pullrequestsid)      | Returns latest PRs by the user in RDS |
+|      [GET /pullrequests/open](#get-pullrequestsopen)      | Returns 10 latest open PRs in RDS |
 
 
-## **GET /pullrequests/:id**
+## **GET /pullrequests/open**
 
-Returns latest pull requests by an user in Real-Dev-Squad organisation
-
-- **Params**  
-  `id`
+Returns 10 latest open PRs in Real-Dev-Squad organisation
 
 - **Success Response:**
 - **Code:** 200
@@ -36,7 +32,7 @@ Returns latest pull requests by an user in Real-Dev-Squad organisation
 
 ```
 {
-  message: 'Pull requests returned successfully!'
+  message: 'Open PRs'
   pullRequests: [
            {<Pull Request Object>},
            {<Pull Request Object>},
@@ -44,6 +40,18 @@ Returns latest pull requests by an user in Real-Dev-Squad organisation
            {<Pull Request Object>},
            {<Pull Request Object>}
          ]
+}
+```
+
+- **Success Response:**
+- **No Open PRs found**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'No pull requests found!'
+  pullRequests: []
 }
 ```
 
