@@ -60,7 +60,17 @@
 - **Body** `{ <task_object> }`
 - **Success Response:**
 - **Code:** 200
-  - **Content:** `{ 'message': 'Task created successfully!', 'tasks': [{<task_object>},{<task_object>},] }`
+  - **Content:**
+
+```
+{
+  message: 'Tasks created successfully!'
+  tasks: [
+           {<task_object>},
+           {<task_object>}
+         ]
+}
+```
 
 Return the same response from [GET /tasks](#get-tasks)
 
