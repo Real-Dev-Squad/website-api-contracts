@@ -64,7 +64,7 @@
 
 ```
 {
-  message: 'Tasks created successfully!'
+  message: 'Task created successfully!'
   tasks: [
            {<task_object>},
            {<task_object>}
