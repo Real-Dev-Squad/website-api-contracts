@@ -43,6 +43,7 @@
 {
   message: 'Tasks returned successfully!'
   tasks: [
+           {<task_object>},
            {<task_object>}
          ]
 }
