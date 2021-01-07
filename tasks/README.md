@@ -42,8 +42,8 @@
 ```
 {
   message: 'Tasks returned successfully!'
-  users: [
-           {<user_object>}
+  tasks: [
+           {<task_object>}
          ]
 }
 ```
