@@ -37,14 +37,15 @@
 
 - **Success Response:**
 - **Code:** 200
-  - **Content:** `{ 'message': 'Tasks returned successfully!', 'tasks': [{<task_object>},{<task_object>},] }`
+  - **Content:**
 
 ```
-[
-  {<task_object>},
-  {<task_object>}
-]
-
+{
+  message: 'Tasks returned successfully!'
+  users: [
+           {<user_object>}
+         ]
+}
 ```
 
 - **Error Response:**
@@ -53,12 +54,9 @@
 
 ## **POST /tasks**
 
-## Body
-
-```
-{<task_object>}
-```
-
+- **Headers**  
+  Content-Type: application/json
+- **Body** `{ <task_object> }`
 - **Success Response:**
 - **Code:** 200
   - **Content:** `{ 'message': 'Task created successfully!', 'tasks': [{<task_object>},{<task_object>},] }`
@@ -74,12 +72,9 @@ Return the same response from [GET /tasks](#get-tasks)
 - **Params**  
   _Required:_ `id=[string]`
 
-## Body
-
-```
-{<task_object>}
-```
-
+- **Headers**  
+  Content-Type: application/json
+- **Body** `{ <task_object> }`
 - **Success Response:**
 - **Code:** 200
 
