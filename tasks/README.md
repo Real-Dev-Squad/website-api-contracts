@@ -35,7 +35,9 @@
 
 > returns all the tasks
 
-## Response
+- **Success Response:**
+- **Code:** 200
+  - **Content:** `{ 'message': 'Tasks returned successfully!', 'tasks': [{<task_object>},{<task_object>},] }`
 
 ```
 [
@@ -57,7 +59,9 @@
 {<task_object>}
 ```
 
-## Response
+- **Success Response:**
+- **Code:** 200
+  - **Content:** `{ 'message': 'Task created successfully!', 'tasks': [{<task_object>},{<task_object>},] }`
 
 Return the same response from [GET /tasks](#get-tasks)
 
@@ -75,6 +79,11 @@ Return the same response from [GET /tasks](#get-tasks)
 ```
 {<task_object>}
 ```
+
+- **Success Response:**
+- **Code:** 200
+
+  - **Content:** `{ 'message': 'Task updated successfully!' }`
 
 - **Error Response:**
   - **Code:** 503
