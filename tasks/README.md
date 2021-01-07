@@ -45,6 +45,10 @@
 
 ```
 
+- **Error Response:**
+  - **Code:** 503
+    - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
 ## **POST /tasks**
 
 ## Body
@@ -57,10 +61,21 @@
 
 Return the same response from [GET /tasks](#get-tasks)
 
+- **Error Response:**
+  - **Code:** 503
+    - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
 ## **PATCH /tasks/:id**
+
+- **Params**  
+  _Required:_ `id=[string]`
 
 ## Body
 
 ```
 {<task_object>}
 ```
+
+- **Error Response:**
+  - **Code:** 503
+    - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
