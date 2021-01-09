@@ -5,6 +5,7 @@
 ```
 {
     'title': <title of PR>,
+    'username': <author of the pull request>,
     'url': <url of PR>,
     'state': <open or closed>,
     'createdAt': <time of PR created>,
