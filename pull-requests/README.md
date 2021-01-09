@@ -9,8 +9,7 @@
     'state': <open or closed>,
     'createdAt': <time of PR created>,
     'updatedAt': <last event: commit or review or closing of PR>,
-    'repository': <name of the repository in which PR is requested>
-    'readyForReview': <true or false>,
+    'repository': <name of the repository in which PR is requested>,
     'labels': <labels array>,
     'assignees': <username of the assignee>
 }
@@ -21,8 +20,8 @@
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
 |      [GET /pullrequests/user/:username](#get-pullrequestsuserusername)      | Returns latest PRs by the user in RDS |
-|      [GET /pullrequests/open](#get-pullrequestsopen)      | Returns 10 latest open PRs in RDS |
-|      [GET /pullrequests/stale](#get-pullrequestsstale)       | Returns stale PRs in RDS |
+|      [GET /pullrequests/open](#get-pullrequestsopen)      | Returns n latest open PRs in RDS |
+|      [GET /pullrequests/stale](#get-pullrequestsstale)       | Returns n stale PRs in RDS |
 
 
 ## **GET /pullrequests/user/:username**
@@ -55,8 +54,12 @@ Returns latest pull requests by an user in Real-Dev-Squad organisation
 
 ## **GET /pullrequests/open**
 
-Returns 10 latest open PRs in Real-Dev-Squad organisation
+Returns n latest open PRs in Real-Dev-Squad organisation
 
+- **Params**  
+  None
+- **Query**  
+  page=[integer], n=[integer]
 - **Success Response:**
 - **Code:** 200
   - **Content:**
@@ -92,8 +95,12 @@ Returns 10 latest open PRs in Real-Dev-Squad organisation
 
 ## **GET /pullrequests/stale**
 
-Returns stale pull requests in Real-Dev-Squad organisation
+Returns n stale pull requests in Real-Dev-Squad organisation
 
+- **Params**  
+  None
+- **Query**  
+  page=[integer], n=[integer]
 - **Success Response:**
 - **Code:** 200
   - **Content:**
