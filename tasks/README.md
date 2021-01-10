@@ -9,13 +9,14 @@
     <link1>,
     <link2>
   ],
-  "endsOn":"<end date>",
-  "startedOn":"<start date>",
+  "endsOn":"<unix timestamp>",
+  "startedOn":"<unix timestamp>",
   "status": "Active",
   "ownerId":"<app owner user id>",
-  "percentCompleted":10%,
+  "percentCompleted":10,
   "dependsOn": [
-    <tasksList>
+    <task_id>,
+    <task_id>
   ],
   "participants": [list of users participating in this tasks. For 'group' type only],
   "completionAward": { gold: 3, bronze: 300 },
@@ -37,7 +38,7 @@
 
 - **Success Response:**
 - **Code:** 200
-  - **Content:**
+- **Content:**
 
 ```
 {
@@ -52,6 +53,8 @@
 - **Error Response:**
   - **Code:** 503
     - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+  - **Code** 404
+    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No tasks found' }`
 
 ## **POST /tasks**
 
@@ -65,14 +68,10 @@
 ```
 {
   message: 'Task created successfully!'
-  tasks: [
-           {<task_object>},
-           {<task_object>}
-         ]
+  task: {<task_object>}
+  id: <newly created task id>
 }
 ```
-
-Return the same response from [GET /tasks](#get-tasks)
 
 - **Error Response:**
   - **Code:** 503
