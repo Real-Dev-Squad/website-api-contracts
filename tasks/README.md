@@ -91,5 +91,5 @@
   - **Content:** `{ 'message': 'Task updated successfully!' }`
 
 - **Error Response:**
-  - **Code:** 503
-    - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
