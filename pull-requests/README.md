@@ -4,13 +4,13 @@
 
 ```
 {
-    'title': <title of PR>,
-    'username': <author of the pull request>,
+    'title': <title of the PR>,
+    'username': <author of the PR>,
     'url': <url of PR>,
     'state': <open or closed>,
     'createdAt': <time of PR created>,
     'updatedAt': <last event: commit or review or closing of PR>,
-    'repository': <name of the repository in which PR is requested>,
+    'repository': <name of the repository corresponding to the PR>,
     'labels': <labels array>,
     'assignees': <username of the assignee>
 }
