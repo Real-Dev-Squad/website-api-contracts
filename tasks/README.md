@@ -53,8 +53,6 @@
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-  - **Code** 404
-    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No tasks found' }`
 
 ## **POST /tasks**
 
@@ -86,10 +84,12 @@
   Content-Type: application/json
 - **Body** `{ <task_object> }`
 - **Success Response:**
-- **Code:** 200
+- **Code:** 204
 
-  - **Content:** `{ 'message': 'Task updated successfully!' }`
+  - **Content:** `<No Content>`
 
 - **Error Response:**
+  - **Code** 404
+    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No tasks found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
