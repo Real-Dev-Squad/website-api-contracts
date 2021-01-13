@@ -18,7 +18,10 @@
     <task_id>,
     <task_id>
   ],
-  "participants": [list of users participating in this tasks. For 'group' type only],
+  "participants": [
+    <user_id>,
+    <user_id>
+  ],
   "completionAward": { gold: 3, bronze: 300 },
   "lossRate": { gold: 1 }  // Loss per day of overshoot after deadline
 }
