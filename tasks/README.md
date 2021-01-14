@@ -4,6 +4,9 @@
 
 ```
 {
+  "title": "Title of the task",
+  "purpose": "<why is this task needed>",
+  "featureUrl": "<live url of the feature>",
   "type":"Dev | Group",
   "links": [
     <link1>,
@@ -19,11 +22,12 @@
     <task_id>
   ],
   "participants": [
-    <user_id>,
+    <user_id>
     <user_id>
   ],
   "completionAward": { gold: 3, bronze: 300 },
-  "lossRate": { gold: 1 }  // Loss per day of overshoot after deadline
+  "lossRate": { gold: 1 }  // Loss per day of overshoot after deadline,
+  'isNoteworthy': true
 }
 ```
 
