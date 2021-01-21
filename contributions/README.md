@@ -1,4 +1,4 @@
-# Users
+# Contributions
 
 ## Contributions Object
 
@@ -20,14 +20,14 @@
     'deployedOn': <unix_timestamp>,
     'participants': [
       {
-        'first_name': <first name of user>,
-        'last_name': <last name of user>,
+        'firstName': <first name of user>,
+        'lastName': <last name of user>,
         'img': <image url of user>,
         'username': <username of the user>
       },
       {
-        'first_name': <first name of user>,
-        'last_name': <last name of user>,
+        'firstName': <first name of user>,
+        'lastName': <last name of user>,
         'img': <image url of user>,
         'username': <username of the user>
       }
@@ -60,7 +60,7 @@ Returns the specified user.
 
 ```
 {
-  message: 'Contributions returned successfully!'
+  message: 'Contributions returned successfully!',
   contributions: {
     noteWorthy: [
       <contribution_object>,
