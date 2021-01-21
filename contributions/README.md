@@ -5,14 +5,14 @@
 ```
 {
   prList: [{
-    'prTitle': <title of pull request>,
-    'prUrl': <url of pull request>,
+    'title': <title of pull request>,
+    'url': <url of pull request>,
     'state': <open or closed>,
-    'prCreatedAt': <unix_timestamp>,
-    'prUpdatedAt': <unix_timestamp>,
-    'prRaisedBy': <username of the assignee>
+    'createdAt': <unix_timestamp>,
+    'updatedAt': <unix_timestamp>,
+    'raisedBy': <username of the assignee>
   }],
-  taskDetails: {
+  task: {
     'title': <task tile>,
     'purpose': <why this task is needed>,
     'endsOn': <unix_timestamp>,
@@ -22,12 +22,14 @@
       {
         'first_name': <first name of user>,
         'last_name': <last name of user>,
-        'img': <image url of user>
+        'img': <image url of user>,
+        'username': <username of the user>
       },
       {
         'first_name': <first name of user>,
         'last_name': <last name of user>,
-        'img': <image url of user>
+        'img': <image url of user>,
+        'username': <username of the user>
       }
     ],
     'featureUrl': <url of the feature task>,
