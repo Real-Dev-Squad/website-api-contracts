@@ -111,6 +111,25 @@ Returns the specified user.
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
+## **GET /users/userAvailable/:id**
+
+Returns the availability of user name.
+
+- **Params**  
+  _Required:_ `id=[string]`
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+- **Code:** 200
+  - **Content:** `{ 'message': 'User name Available' }`
+- **Error Response:**
+  - **Code:** 404
+    - **Content:** `{ error: 'Not Found', message: 'User name not Available' }`
+
 ## **POST /users**
 
 Creates a new User.
