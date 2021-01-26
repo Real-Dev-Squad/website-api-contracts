@@ -46,7 +46,7 @@
 
 ## **GET /contributions/:username**
 
-Returns the specified user.
+Returns the contributions of the user.
 
 - **Params**  
   _Required:_ `username=[string]`
@@ -76,6 +76,6 @@ Returns the specified user.
 
 - **Error Response:**
   - **Code:** 404
-    - **Content:** `{ error: 'Not Found', message: 'User doesn't exist' }`
+    - **Content:** `{ "error": "Not Found", "message": "User doesn't exist" }`
   - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
