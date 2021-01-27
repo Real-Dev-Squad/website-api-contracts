@@ -7,3 +7,4 @@
 - [Members](/members)
 - [Pull Requests](/pull-requests)
 - [Tasks](/tasks)
+- [Contributions](/contributions)
