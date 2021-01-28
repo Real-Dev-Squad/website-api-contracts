@@ -124,8 +124,11 @@ Returns the availability of user name.
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 200
-    - **Content:** `{ 'userAvailable': <Availability stauts> }`
+- **Code:** 200
+  - **Content:** `{ 'message': 'User name Available' }`
+- **Error Response:**
+  - **Code:** 404
+    - **Content:** `{ error: 'Not Found', message: 'User name not Available' }`
 
 ## **POST /users**
 
