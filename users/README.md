@@ -125,7 +125,7 @@ Returns the availability of user name.
   rds-session: `<JWT>`
 - **Success Response:**
   - **Code:** 200
-    - **Content:** `{ 'userAvailable': <Availability stauts> }`
+    - **Content:** `{ 'userAvailable': <Availability Stauts> }`
 
 ## **POST /users**
 
