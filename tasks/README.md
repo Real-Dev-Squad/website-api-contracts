@@ -36,7 +36,7 @@
 |               Route                |    Description    |
 | :--------------------------------: | :---------------: |
 |      [GET /tasks](#get-tasks)      | Returns all tasks |
-|      [GET /tasks/:username](#get-tasksusername)      | Returns all tasks of a user |
+|      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
 
@@ -63,12 +63,12 @@
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
 
-## **GET /tasks/:username**
+## **GET /tasks/self**
 
-Returns all the tasks of the user
+Returns all the tasks of the user.
 
 - **Params**  
-  _Required:_ `username=[string]`
+  None
 - **Body**  
   None
 - **Headers**  
@@ -76,9 +76,9 @@ Returns all the tasks of the user
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-- **Code:** 200
-  - **Content:** 
-  ```
+  - **Code:** 200
+    - **Content:**
+    ```
   {
     message: 'Tasks returned successfully!'
     tasks: [
@@ -88,10 +88,10 @@ Returns all the tasks of the user
   }
   ```
 - **Error Response:**
-  - **Code:** 404
-    - **Content:** `{ error: 'Not Found', message: 'User doesn't exist' }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
