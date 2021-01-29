@@ -18,6 +18,7 @@
     'endsOn': <unix_timestamp>,
     'startedOn': <unix_timestamp>,
     'deployedOn': <unix_timestamp>,
+    'status': <status of the task>,
     'participants': [
       {
         'firstName': <first name of user>,
