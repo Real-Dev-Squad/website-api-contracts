@@ -111,12 +111,12 @@ Returns the specified user.
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **GET /users/userAvailable/:id**
+## **GET /users/isUsernameAvailable/:username**
 
-Returns the availability of user name.
+Returns the availability of username.
 
 - **Params**  
-  _Required:_ `id=[string]`
+  _Required:_ `username=[string]`
 - **Body**  
   None
 - **Headers**  
@@ -125,7 +125,7 @@ Returns the availability of user name.
   rds-session: `<JWT>`
 - **Success Response:**
   - **Code:** 200
-    - **Content:** `{ 'userAvailable': <Availability Stauts> }`
+    - **Content:** `{ 'isUsernameAvailable': <boolean> }`
 
 ## **POST /users**
 
