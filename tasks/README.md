@@ -36,6 +36,7 @@
 |               Route                |    Description    |
 | :--------------------------------: | :---------------: |
 |      [GET /tasks](#get-tasks)      | Returns all tasks |
+|      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
 
@@ -58,6 +59,39 @@
 ```
 
 - **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+
+## **GET /tasks/self**
+
+Returns all the tasks of the user.
+
+- **Params**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+    ```
+  {
+    message: 'Tasks returned successfully!'
+    tasks: [
+            {<task_object>},
+            {<task_object>}
+          ]
+  }
+  ```
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
