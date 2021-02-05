@@ -65,12 +65,12 @@
 
 ## **GET /tasks/self**
 
-Returns all the completed tasks of user if query `Completed=true` is passed, else returns all the active and blocked tasks of the user.
+Returns all the completed tasks of user if query `completed=true` is passed, else returns all the active and blocked tasks of the user.
 
 - **Params**  
   None
 - **Query**  
-  Completed=[boolean]
+  completed=[boolean]
 - **Body**  
   None
 - **Headers**  
