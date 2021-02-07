@@ -80,15 +80,16 @@ Returns all the completed tasks of user if query `completed=true` is passed, els
 - **Success Response:**
   - **Code:** 200
     - **Content:**
-    ```
-  [
-    {<task_object>},
-    {<task_object>},
-    {<task_object>},
-    {<task_object>},
-    {<task_object>}
-  ]
-  ```
+```
+[
+  {<task_object>},
+  {<task_object>},
+  {<task_object>},
+  {<task_object>},
+  {<task_object>}
+]
+```
+
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
