@@ -83,7 +83,7 @@ Returns all inactive/idle members in the system.
 {
   message: 'Idle members returned successfully!'
   members: [
-           <id>
+           <username>
          ]
 }
 ```
