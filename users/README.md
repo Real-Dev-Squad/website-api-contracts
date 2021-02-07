@@ -34,7 +34,6 @@
 |    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
 |      [POST /users](#post-users)       |          Creates a new User          |
 | [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
-|       [GET /users/idle](#get-idle-members)        |   Returns all users who are inactive/idle members in the system    |
 
 ## **GET /users**
 
@@ -159,35 +158,3 @@ Updates data of the User.
   - **Code:** 503
     - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
 
-## **GET /users/idle**
-
-Returns all users who are inactive/idle members in the system.
-
-- **Params**  
-  None
-- **Query**  
-  None
-- **Body**  
-  None
-- **Headers**  
-  None
-- **Cookie**  
-  rds-session: `<JWT>`
-- **Success Response:**
-- **Code:** 200
-  - **Content:** 
-
-```
-{
-  message: 'Idle members returned successfully!'
-  idleMembers: [
-           <username>
-         ]
-}
-```
-
-- **Error Response:**
-  - **Code:** 401
-    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
-  - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
