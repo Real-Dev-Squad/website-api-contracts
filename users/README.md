@@ -35,6 +35,7 @@
 |      [POST /users](#post-users)       |          Creates a new User          |
 | [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
 
+
 ## **GET /users**
 
 Returns all users in the system.
