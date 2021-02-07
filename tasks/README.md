@@ -81,13 +81,13 @@ Returns all the completed tasks of user if query `completed=true` is passed, els
   - **Code:** 200
     - **Content:**
     ```
-  {
-    message: 'Tasks returned successfully!'
-    tasks: [
-            {<task_object>},
-            {<task_object>}
-          ]
-  }
+  [
+    {<task_object>},
+    {<task_object>},
+    {<task_object>},
+    {<task_object>},
+    {<task_object>}
+  ]
   ```
 - **Error Response:**
   - **Code:** 401
