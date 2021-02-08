@@ -11,7 +11,7 @@
   'email': string,
   'phone': number,
   'yoe': number,
-  'company': string,,
+  'company': string,
   'designation': string,
   'img': string,
   'github_id': string,
@@ -21,7 +21,8 @@
   'site': string,
   'github_display_name': string,
   'isMember': boolean,
-  'tokens': {}
+  'tokens': {},
+  'badges': []
 }
 ```
 
@@ -158,4 +159,3 @@ Updates data of the User.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
   - **Code:** 503
     - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
-
