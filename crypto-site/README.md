@@ -1,174 +1,185 @@
 
-
-## Request
-``` GET/shop ```
-
-## Response
-
-### Body
-```
-[
-    "Prouct Name" :{
-        "id" : "Shoe",
-        "name" : "Shoe",
-        "usage" : [
-            "Some usage"
+GET/shop
+- Body
+  - ```json
+    {
+       "Coffee": {
+        "id": "Coffee",
+        "image": "coffee.jpeg",
+        "name": "Coffee",
+        "usage": [
+          "Can serve as ice-breaker",
+          "Can be used as token of appreciation"
         ],
-        "category" : "some category",
-        "manufacturer" : "some name",
-        "price" : 200
+        "category": "Drink",
+        "manufacturer": "Ankush",
+        "price": 500
+      }
     }
-]
- ```
+    ```
+- Success Response
 
-## Request
-```POST/cryptodetails/?username=""```
+  - Code
+    - 200
+    - Content - Send the above body as response
 
-## Response
+- Error Response
 
-### Body
-```
-{
-      "user-name": "name",
-      "currency-details" : [
-          "brass":"",
-          "gold": "",
-          "silver": ""
-      ],
-      "shopped-items" :[]
-      
-     }
- ```
-## Request
-```POST/Purchase```
+  - Code
+    - 404
+  - Code
+    - 500
+POST/save
+------
+- Params
+  - product id = [string] required
+  - user id =[string] required
+- Body
+  - Success or Failure code / Whole list for save later item [TBD]
+- Success Response
+  - Code
+    - 200
+    - Content - Save successful
+- Error Response
+  - Code
+    - 404
+  - Code
+    - 500
 
-### Body 
-``` 
-{
-    "product-purchased": [],
-    "total-amount": "",
-    "coins-spent": {
-        "brass":,
-        "gold":,
-        "silver":
+POST/purchase
+------
+- Params
+  - user id =[string] required
+
+- Body
+
+  - ```json
+    {
+      amountToBeDeducted : some amount,
+      items : []
+    }
+    ```
+- Success Response
+
+  - Code
+    - 200
+    - Content - Purchase successful
+
+- Error Response
+
+  - Code
+    - 404 - Not enough money/quantity
+  - Code
+    - 500
+POST/send
+
+------
+
+- Params
+  - to =[string] required
+  - from=[string] required
+  - type=[string] required
+  - amount = [number] required
+- Body
+  - Success or Failure code
+- Success Response
+  - Code
+    - 200
+    - Content - Transaction successful
+- Error Response
+  - Code
+    - 404
+  - Code
+    - 500
+
+
+
+POST/request
+
+------
+
+- Params
+  - to = [string] required
+  - from = [string] required
+  - type = [string] required
+  - amount = [number] required
+- Body
+  - Success/ Failure code
+- Success Response
+  - Code
+    - 200
+- Error Response
+  - Code
+    - 404
+    - 500
+
+
+GET/transactions
+
+------
+- Params
+
+  - user id =[string] required
+  - limit = [number] optional
+
+- Body
+
+  - ```json
+    {
+        "type": "Credit",
+        "amount": 2000,
+        "sender": "John Doe",
+        "receiver": "Foo Bar",
+        "date": "August 15 2020"
+    }
+    ```
+- Success Response
+  - Code
+    - 200
+    - Content - Save successful
+
+- Error Response
+
+  - Code
+    - 404
+  - Code
+    - 500
+
+GET/userinfo
+
+------
+- Params
+
+  - user id = [string] required
+
+- Body
+
+  ```json
+  {
+    "name": "John Doe",
+    "photo": "url" ,
+    "coins": {
+      "brass": 200,
+      "gold": 100,
+      "silver": 300
     },
+  	"notification":[],
+      "orders": [],
+      "transaction":[] //len 5
+  }
+  ```
+  - Success/ Failure code
 
-}
+- Success Response
 
-```
-## Request
-```GET/Transaction/?name=""```
-## Response
+  - Code
+    - 200
 
-### Body
-```
-{
-    
-    transaction:[
-        {
-            send:"",
-            amount:"",
-            date:"",
-            coins-type:[
-                "brass":,
-                "silver":,
-                "gold":
-            ],
-            time:""
+- Error Response
 
-        }
-    ]
-      
-    }
- ```
-
-## Request
-```GET/SaveLater/?name=""```
-
-## Response
-
-### Body
-```
-{
-    
-    saveLater : [
-        "totalItems":,
-        "item" : {
-            "name":
-        }
-    ]
-    
-      
-    }
- ```
-## Request
-```POST/Receive```
-
-### Body
-```
-{
-    
-    {
-        "amount":,
-        "requestedTo":
-    }
-      
-    }
- ```
-## Response
-
-``` {
-    status:''
-}
-```
-
-## Request
-```POST/Send```
-
-### Body
-```
-{
-    
-    {
-        "amountSend":,
-        "sendTo":,
-        "amountLeft": {
-            "gold":,
-            "brass":,
-            "silver":
-        }
-    }
-      
-    }
- ```
-## Response
-
-``` {
-    status:''
-}
-```
-
-## Request
-```POST/```
-
-### Body
-```
-{
-    totalAmountLeft:"",
-    coins-left:{
-        brass:,
-        gold:,
-        silver:
-    }      
-}
- ```
-## Response
-
-``` 
-{
-    status:''
-}
-```
+  - Code
+    - 404
+    - 500
 
 
 
@@ -176,7 +187,7 @@
 
 
 
-    
+
 
 
 
