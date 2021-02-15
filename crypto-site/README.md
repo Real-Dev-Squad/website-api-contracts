@@ -1,3 +1,12 @@
+| Endpoints                            | Description                  |
+| ------------------------------------ | ---------------------------- |
+| GET/shop                             | get all the products         |
+| POST/save                            | save for later list for user |
+| POST/purchase                        | enable user to make purchase |
+| POST/send                            | allow user to send money     |
+| POST/request                         | allow user to request money  |
+| GET/transactions?user_id='',limit='' | get all transaction for user |
+| GET/userinfo?user_id=''              | get all info related to user |
 
 GET/shop
 - Body
@@ -18,17 +27,16 @@ GET/shop
     }
     ```
 - Success Response
-
   - Code
     - 200
     - Content - Send the above body as response
-
 - Error Response
 
   - Code
     - 404
   - Code
     - 500
+
 POST/save
 ------
 - Params
@@ -71,10 +79,9 @@ POST/purchase
     - 404 - Not enough money/quantity
   - Code
     - 500
+
 POST/send
-
 ------
-
 - Params
   - to =[string] required
   - from=[string] required
@@ -92,12 +99,8 @@ POST/send
   - Code
     - 500
 
-
-
 POST/request
-
 ------
-
 - Params
   - to = [string] required
   - from = [string] required
@@ -113,11 +116,9 @@ POST/request
     - 404
     - 500
 
-
-GET/transactions
-
+GET/transactions?user_id,limit
 ------
-- Params
+- Query Params
 
   - user id =[string] required
   - limit = [number] optional
@@ -145,15 +146,12 @@ GET/transactions
   - Code
     - 500
 
-GET/userinfo
-
+GET/userinfo?user_id
 ------
-- Params
+- Query Params
 
   - user id = [string] required
-
 - Body
-
   ```json
   {
     "name": "John Doe",
@@ -165,18 +163,16 @@ GET/userinfo
     },
   	"notification":[],
       "orders": [],
-      "transaction":[] //len 5
+      "transaction":['latest 7']
   }
   ```
   - Success/ Failure code
-
 - Success Response
 
   - Code
     - 200
 
 - Error Response
-
   - Code
     - 404
     - 500
