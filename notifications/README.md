@@ -4,12 +4,12 @@
 
 ```
 {
-  id: string,
-  username: string,
+  userId: string,
   message: string,
-  createOn: unix-timestamp,
+  createdOn: unix-timestamp,
   url: string,
-  type: string
+  type: string,
+  currentPage: number
 }
 ```
 
@@ -27,7 +27,7 @@ Returns all notifications for a logged in user
 - **Params**  
   None
 - **Query**  
-  page=[integer], n=[integer]
+  page=[integer], n=[integer] (`n` is the number of items per `page`)
 - **Body**  
   None
 - **Headers**  
@@ -41,7 +41,7 @@ Returns all notifications for a logged in user
 ```
 {
   message: 'Notifications returned successfully!',
-  notifications: [
+  data: [
     <notification-object>,
     <notification-object>,
     <notification-object>,
