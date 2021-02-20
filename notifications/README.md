@@ -4,10 +4,10 @@
 
 ```
 {
+  id: string,
   userId: string,
   message: string,
   createdOn: unix-timestamp,
-  url: string,
   type: string,
   currentPage: number
 }
