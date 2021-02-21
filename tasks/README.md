@@ -42,11 +42,21 @@
 
 ## **GET /tasks**
 
-> returns all the tasks
+Returns all the tasks
 
+- **Params**  
+  None
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  None
+- **Cookie**  
+  None
 - **Success Response:**
 - **Code:** 200
-- **Content:**
+  - **Content:**
 
 ```
 {
@@ -65,10 +75,12 @@
 
 ## **GET /tasks/self**
 
-Returns all the tasks of the user.
+Returns all the completed tasks of user if query `completed=true` is passed, else returns all the active and blocked tasks of the user.
 
 - **Params**  
   None
+- **Query**  
+  completed=[boolean]
 - **Body**  
   None
 - **Headers**  
@@ -78,15 +90,16 @@ Returns all the tasks of the user.
 - **Success Response:**
   - **Code:** 200
     - **Content:**
-    ```
-  {
-    message: 'Tasks returned successfully!'
-    tasks: [
-            {<task_object>},
-            {<task_object>}
-          ]
-  }
-  ```
+```
+[
+  {<task_object>},
+  {<task_object>},
+  {<task_object>},
+  {<task_object>},
+  {<task_object>}
+]
+```
+
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -97,6 +110,10 @@ Returns all the tasks of the user.
 
 ## **POST /tasks**
 
+- **Params**  
+  None
+- **Query**  
+  None
 - **Headers**  
   Content-Type: application/json
 - **Body** `{ <task_object> }`
