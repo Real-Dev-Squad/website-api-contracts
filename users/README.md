@@ -126,6 +126,12 @@ Returns the availability of username.
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ 'isUsernameAvailable': <boolean> }`
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
 
 ## **POST /users**
 
