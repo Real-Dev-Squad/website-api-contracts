@@ -91,3 +91,67 @@ Returns all inactive/idle members in the system.
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
+
+
+
+------
+# Getting Started with Recruiter Introductory Forms
+
+## **Recruiter Object**
+
+```
+{
+    'company': string,
+    'fname': string,
+    'lname': string,
+    'designation': string,
+    'reason': string,
+    'email': string,
+    'currency': string
+    'package': number
+}
+```
+## **Requests**
+
+|Route|Description|
+|:---:|:---------:|
+|POST /members/intro|Post request for members profile introduction|
+
+## POST /members/intro
+Creates new request for member introduction 
+
+- **Params**\
+    None
+- **Query**\
+    None
+- **Body**\
+    `{recruiter_object}`
+- **Headers**\
+    None
+- **Cookie**\
+    None
+- **Success Response:**
+    - **Code:** 200
+        - **Content:** 
+        ```
+        {
+            message: 'Request Submission Successful!!'
+            id: <new unique submission id>
+            recruiter: {recruiter_object}
+            
+        }
+        ```
+
+- **Error Response:**
+    - **Code:** 500
+        - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+
+
+
+
+
+
+
+
+
