@@ -21,6 +21,20 @@
   'tokens': {}
 }
 ```
+## Recruiter Object
+
+```
+{
+    'company': string,
+    'first_name': string,
+    'last_name': string,
+    'designation': string,
+    'reason': string,
+    'email': string,
+    'currency': string,
+    'package': number
+}
+```
 
 ## **Requests**
 
@@ -28,8 +42,8 @@
 | :--------------------------------: | :-----------------------------: |
 |      [GET /members](#get-members)      | Returns all members in the system |
 |      [GET /members/idle](#get-inactive/idle-members)      | Returns all inactive/idle members in the system |
-
-
+|[POST /members/intro](#post-members/intro)|Post request for members profile introduction|
+----
 ## **GET /members**
 
 Returns all members in the system.
@@ -92,31 +106,6 @@ Returns all inactive/idle members in the system.
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
 
-
-
-------
-# Getting Started with Recruiter Introductory Forms
-
-## **Recruiter Object**
-
-```
-{
-    'company': string,
-    'fname': string,
-    'lname': string,
-    'designation': string,
-    'reason': string,
-    'email': string,
-    'currency': string
-    'package': number
-}
-```
-## **Requests**
-
-|Route|Description|
-|:---:|:---------:|
-|POST /members/intro|Post request for members profile introduction|
-
 ## POST /members/intro
 Creates new request for member introduction 
 
@@ -137,21 +126,9 @@ Creates new request for member introduction
         {
             message: 'Request Submission Successful!!'
             id: <new unique submission id>
-            recruiter: {recruiter_object}
-            
         }
         ```
 
 - **Error Response:**
     - **Code:** 500
         - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
-
-
-
-
-
-
-
-
-
