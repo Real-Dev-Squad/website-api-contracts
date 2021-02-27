@@ -24,7 +24,7 @@
 ## Recruiter Object
 
 ```
-{
+{   
     'company': string,
     'first_name': string,
     'last_name': string,
@@ -42,7 +42,7 @@
 | :--------------------------------: | :-----------------------------: |
 |      [GET /members](#get-members)      | Returns all members in the system |
 |      [GET /members/idle](#get-inactive/idle-members)      | Returns all inactive/idle members in the system |
-|[POST /members/intro](#post-members/intro)|Post request for members profile introduction|
+|[POST /members/intro/:username](#post-members/intro/:username)|Post request for members profile introduction|
 ----
 ## **GET /members**
 
@@ -106,15 +106,15 @@ Returns all inactive/idle members in the system.
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
 
-## POST /members/intro
+## POST /members/intro/:username
 Creates new request for member introduction 
 
 - **Params**\
-    None
+    _Required_: `username=[string]`
 - **Query**\
     None
 - **Body**\
-    `{recruiter_object}`
+    `{<recruiter_object>}`
 - **Headers**\
     None
 - **Cookie**\
