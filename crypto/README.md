@@ -1,3 +1,5 @@
+# [Auctions APIs](/crypto/auction)
+
 # Shop 
 
 ## Request
