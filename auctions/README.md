@@ -13,6 +13,8 @@
     last_bid: <number>,
     timestamp: <unix-timestamp>
   }],
+  'highest_bidder': <userId>,
+  'highest_bid': <example: 200 dinero>,
   'start_time': <unix-timestamp>,
   'duration': <unix-timestamp>,
   'status': <active or expired>
