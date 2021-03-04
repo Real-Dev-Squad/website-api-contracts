@@ -1,20 +1,20 @@
-# Auction
+# Auctions
 
 ## Auction object
 
 ```
 {
   'id': <auction-id>,
-  'seller': <username>,
-  'object_for_auction': <example: neelam>,
-  'initial_price': <example: dinero>,
+  'seller': <userId>,
+  'item_type': <example: neelam>,
+  'initial_price': <example: 100 dinero>,
   'bidders_and_bids': [{
-    bidder: <username>
+    bidder: <userId>,
+    last_bid: <number>,
+    timestamp: <unix-timestamp>
   }],
-  'highest_bidder': <username>,
-  'current_bid': <highest bidder's bid>,
   'start_time': <unix-timestamp>,
-  'auction_duration': <unix-timestamp>,
+  'duration': <unix-timestamp>,
   'status': <active or expired>
 }
 ```
@@ -30,12 +30,12 @@
 
 ## **GET /auctions**
 
-Returns all available auctions data
+Returns only **active** auctions data by default, unless the query `include=expired` is set.
 
 - **Params**  
   None
 - **Query**  
-  None
+  `include=expired`
 - **Body**  
   None
 - **Headers**  
