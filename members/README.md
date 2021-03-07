@@ -2,7 +2,7 @@
 
 ## Member object
 
-same as the [user's](../users) object
+Same as the [user](https://github.com/Real-Dev-Squad/website-api-contracts/tree/main/users#user-object) object
 
 ## **Requests**
 
