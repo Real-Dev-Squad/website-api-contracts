@@ -32,7 +32,7 @@
 |     [PATCH /trade/:username](#patch-trade)     | New trading request  |
 
 
-## **PATCH /trade/:id**
+## **PATCH /trade/:username**
 
 - **Params**  
   _Required:_ `username=[string]`
