@@ -29,7 +29,7 @@
 
 |               Route                |    Description    |
 | :--------------------------------: | :---------------: |
-|     [PATCH /trade/:username](#patch-trade)     | New trading request  |
+|     [PATCH /trade/:username](#patch-tradeusername)     | New trading request  |
 
 
 ## **PATCH /trade/:username**
