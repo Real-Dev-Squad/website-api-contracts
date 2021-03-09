@@ -19,11 +19,11 @@
 
 ```
 {
-  "trade_type": "buy/sell",
-  "stock_name": <name_of_the_stock>,
+  "tradeType": "buy/sell",
+  "stockName": <name_of_the_stock>,
   "quantity": <number_of_quantities>,
-  "listed_price": <listed_stock_price>,
-  "total_price": <total_purchase_price>
+  "listedPrice": <listed_stock_price>,
+  "totalPrice": <total_purchase_price>
 }
 ```
 
@@ -31,7 +31,7 @@
 
 ```
 {
-  "user_balance": <balance left with user after successful trade>
+  "userBalance": <balance left with user after successful trade>
 }
 ```
 
