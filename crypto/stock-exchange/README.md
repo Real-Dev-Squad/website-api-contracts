@@ -107,6 +107,8 @@ Returns all the stocks to be listed
 
 - **Headers**  
   Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
 - **Body** `{ <trading_request_object> }`
 - **Success Response:**
 - **Code:** 200
