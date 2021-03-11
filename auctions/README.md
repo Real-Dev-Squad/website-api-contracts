@@ -1,5 +1,9 @@
 # Auctions
 
+## Firestore collections:
+- `auctions`
+- `biddingLog`
+
 ## Auctions Metadata object
 
 ```
@@ -45,9 +49,10 @@
 
 |                 Route                    |             Description              |
 |:----------------------------------------:|:------------------------------------ |
-|       [GET /auctions](#get-auctions)     | Returns all available auctions data  |
+|       [GET /auctions](#get-auctions)     | Returns all available auctions metadata  |
+|       [GET /auctions/:id](#get-auctionsid)     | Returns detailed auction data for one auction  |
 |      [POST /auctions](#post-auctions)    | Creates a new auction                |
-| [PATCH /auctions/:id](#patch-auctionsid) | Update the bid by user               |
+| [POST /auctions/:id](#post-auctionsid) | Place new bid               |
 
 
 ## **GET /auctions**
@@ -72,9 +77,43 @@ Returns only **active** auctions data by default, unless the query `include=expi
 {
   message: 'Auctions data returned successfully!'
   auctions: [
-              {<auction_object>},
-              {<auction_object>},
-              {<auction_object>}
+              {Auctions Metadata object},
+              {Auctions Metadata object},
+              {Auctions Metadata object}              
+            ]
+}
+```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+
+## **GET /auctions/:id**
+
+Get detailed information for an auction
+
+- **Params**  
+    _Required:_ `id=[string]`
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  None
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'Auctions data returned successfully!'
+  auctions: [
+              {Auction Details Object},
+              {Auction Details Object},
+              {Auction Details Object},            
             ]
 }
 ```
@@ -92,7 +131,14 @@ Creates a new auction
 - **Query**  
   None
 - **Body** 
-  `{ <auction_object> }`
+  ```
+  {
+    'item_type': <example: neelam>,
+    'quantity': <example: 10>,
+    'initial_price': <example: 100>,
+    'end_time': <unix_timestamp>
+  }
+  ```
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
@@ -107,9 +153,9 @@ Creates a new auction
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **PATCH /auctions/:id**
+## **POST /auctions/:id**
 
-Update user's previous bid.
+Place a new bid when auctionId is given
 
 - **Params**  
   _Required:_ `id=[string]`
@@ -121,7 +167,7 @@ Update user's previous bid.
   rds-session: `<JWT>`
 - **Body** 
   `{
-    my_latest_bid: number
+    my_latest_bid: <number>
   }`
 - **Success Response:**
   - **Code:** 204
