@@ -1,25 +1,45 @@
 # Auctions
 
-## Auction object
+## Auctions Metadata object
 
 ```
 {
   'id': <auction-id>,
   'seller': <userId>,
   'item_type': <example: neelam>,
-  'initial_price': <example: 100 dinero>,
-  'bidders_and_bids': [{
-    bidder: <userId>,
-    last_bid: <number>,
-    timestamp: <unix-timestamp>
-  }],
+  'quantity': <example: 10>,
+  'number_of_bidders': <example: 100>,
   'highest_bidder': <userId>,
-  'highest_bid': <example: 200 dinero>,
+  'highest_bid': <example: 200 dinero | default: initial_price>,
   'start_time': <unix-timestamp>,
-  'duration': <unix-timestamp>,
-  'status': <active or expired>
+  'end_time': <unix-timestamp>
 }
 ```
+
+## Auction Details Object
+
+```
+{
+  'id': <auction-id>,
+  'seller': <userId>,
+  'item_type': <example: neelam>,
+  'quantity': <example: 10>,
+  'initial_price': <example: 100 dinero>,
+  'number_of_bidders': <example: 100>,
+  'highest_bidder': <userId>,
+  'highest_bid': <example: 200 dinero | default: initial_price>,
+  'start_time': <unix-timestamp>,
+  'end_time': <unix-timestamp>,
+  'bidders_and_bids': [
+    {
+      'bidder': <userId>,
+      'bid': <number>,
+      'timestamp': <unix-timestamp>
+    }
+  ],
+}
+```
+
 
 ## **Requests**
 
