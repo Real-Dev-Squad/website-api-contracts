@@ -12,11 +12,11 @@
   'seller': <userId>,
   'item_type': <example: neelam>,
   'quantity': <example: 10>,
-  'number_of_bidders': <example: 100>,
   'highest_bidder': <userId>,
   'highest_bid': <example: 200 dinero | default: initial_price>,
   'start_time': <unix-timestamp>,
-  'end_time': <unix-timestamp>
+  'end_time': <unix-timestamp>,
+  'bidders': [<userId>, <userId>]
 }
 ```
 
@@ -29,7 +29,6 @@
   'item_type': <example: neelam>,
   'quantity': <example: 10>,
   'initial_price': <example: 100 dinero>,
-  'number_of_bidders': <example: 100>,
   'highest_bidder': <userId>,
   'highest_bid': <example: 200 dinero | default: initial_price>,
   'start_time': <unix-timestamp>,
@@ -57,12 +56,12 @@
 
 ## **GET /auctions**
 
-Returns only **active** auctions data by default, unless the query `include=expired` is set.
+Returns active (ongoing) auctions
 
 - **Params**  
   None
 - **Query**  
-  `include=expired`
+  None
 - **Body**  
   None
 - **Headers**  
@@ -75,7 +74,7 @@ Returns only **active** auctions data by default, unless the query `include=expi
 
 ```
 {
-  message: 'Auctions data returned successfully!'
+  message: 'Auctions returned successfully!'
   auctions: [
               {Auctions Metadata object},
               {Auctions Metadata object},
@@ -105,18 +104,7 @@ Get detailed information for an auction
   None
 - **Success Response:**
 - **Code:** 200
-  - **Content:**
-
-```
-{
-  message: 'Auctions data returned successfully!'
-  auctions: [
-              {Auction Details Object},
-              {Auction Details Object},
-              {Auction Details Object},            
-            ]
-}
-```
+  - **Content:** `{Auction Details Object}`
 
 - **Error Response:**
   - **Code:** 500
@@ -144,9 +132,9 @@ Creates a new auction
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 201
+  - **Code:** 204
     - **Content:** `{
-  message: 'New auction created successfully!'}`
+  message: 'Auction created successfully!'}`
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -167,17 +155,17 @@ Place a new bid when auctionId is given
   rds-session: `<JWT>`
 - **Body** 
   `{
-    my_latest_bid: <number>
+    bid: <number>
   }`
 - **Success Response:**
   - **Code:** 204
-    - **Content:** `{ 'message': 'Auction data updated successfully!'}`
+    - **Content:** `{ 'message': 'Successfully placed bid!'}`
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 403
-    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update expired auction data'}`
+    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Your bid was not higher than current one!'}`
   - **Code:** 404
-    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Auction not found' }`
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Auction doesn\'t exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
