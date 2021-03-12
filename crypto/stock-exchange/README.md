@@ -19,6 +19,7 @@
 
 ```
 {
+  "stockID": <id_of_the_stock>
   "tradeType": "buy/sell",
   "stockName": <name_of_the_stock>,
   "quantity": <number_of_quantities>,
@@ -99,6 +100,8 @@ Returns all the stocks to be listed
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
 ## **PATCH /trade/:username**
 
@@ -114,6 +117,8 @@ Returns all the stocks to be listed
 - **Code:** 200
   - **Content:** `{<trading_response_object>}`
 - **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 403
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Trading failed due to insufficient funds'}`
   - **Code:** 500
