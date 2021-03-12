@@ -19,11 +19,11 @@
 
 ```
 {
-    from: {
+    src: {
         "id": <currency_id>,
         "name": <currency_name>
     },
-    to: {
+    target: {
         "id": <currency_id>,
         "name": <currency_name>
     },
@@ -35,21 +35,21 @@
 
 ```
 {
-  from: <src_currency_id>,
-  to: <trgt_currency_id>,
+  src: <src_currency_id>,
+  target: <trgt_currency_id>,
   quantity: <selected_quantity>
 }
 ```
 
 ## **Requests**
 
-|                         Route                         |                                Description                                 |
-| :---------------------------------------------------: | :------------------------------------------------------------------------: |
-|      [GET /currency-list](#get-currency-listing)      |     Returns all accepted currency with their availability in the bank      |
-| [GET /currency-exchange-rate](#get-currency-exchange) | Returns currency with their current exchange value with the other currency |
-|           [PATCH /convert/](#patch-convert)           |           Update the user wallet and bank currency availability            |
+|                    Route                    |                                Description                                 |
+| :-----------------------------------------: | :------------------------------------------------------------------------: |
+| [GET /currency-list](#get-currency-listing) |     Returns all accepted currency with their availability in the bank      |
+|  [GET /exchange-rate](#get-exchange-rates)  | Returns currency with their current exchange value with the other currency |
+|     [PATCH /convert/](#patch-exchange)      |           Update the user wallet and bank currency availability            |
 
-## **GET /currenct-list**
+## **GET /currency-list**
 
 Returns all accepted currency with their availability in the bank
 
@@ -81,7 +81,7 @@ Returns all accepted currency with their availability in the bank
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **GET /currency-exchange**
+## **GET /exchange-rate**
 
 - **Params**  
   None
@@ -110,7 +110,7 @@ Returns all accepted currency with their availability in the bank
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **PATCH /convert/:uid**
+## **PATCH /exchange/:uid**
 
 - **Params**  
   _Required:_ `uid=[string]`
@@ -125,9 +125,9 @@ Returns all accepted currency with their availability in the bank
   - **Content:**
 
 ```
-        {
+    {
         status: 'success'
-        }
+    }
 ```
 
 - **Error Response:**
