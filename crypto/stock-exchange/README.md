@@ -42,7 +42,7 @@
 | :--------------------------------: | :---------------: |
 |      [GET /stocks](#get-stocks)      | Returns all stocks to be listed |
 |     [POST /stocks](#post-stocks)     | Creates new stock  |
-|     [PATCH /trade/:username](#patch-tradeusername)     | New trading request  |
+|     [POST /trade/stock/new/self](#post-tradestocknewself)     | New trading request  |
 
 ## **GET /stocks**
 
@@ -103,11 +103,10 @@ Returns all the stocks to be listed
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **PATCH /trade/:username**
+## **POST /trade/stock/new/self**
 
 - **Params**  
-  _Required:_ `username=[string]`
-
+  None
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
