@@ -2,54 +2,43 @@
 
 ## Firestore Collections
 
-- Currency
+- Users
   > this will contain details about the accepted currencies at crypto-website
-
-## Currency Object
-
-```
-{
-    "id": <currency_id>,
-    "name": <currency_name>,
-    "quantity": <available_quantity>
-}
-```
+- Transactions
+  > this will contain details about the accepted currencies at crypto-website
+- Banks
+  > this will contain details about the accepted currencies at crypto-website
+- Wallets
+  > this will contain details about the accepted currencies at crypto-website
 
 ## Currency Exchange Object
 
 ```
-{
-    src: {
-        "id": <currency_id>,
-        "name": <currency_name>
-    },
-    target: {
-        "id": <currency_id>,
-        "name": <currency_name>
-    },
-    value: <exchange_value>
-}
+  <currency_name>: {
+    <currency_name>: <exchange_value>
+    <currency_name>: <exchange_value>
+  }
 ```
 
-## Exchange Request Object
-
+## Bank Object
 ```
 {
-  src: <src_currency_id>,
-  target: <trgt_currency_id>,
-  quantity: <selected_quantity>
-}
+    "bankId": <bank_id>,
+    "bankName": <bank_name>
+},
 ```
 
 ## **Requests**
 
-|                    Route                    |                                Description                                 |
-| :-----------------------------------------: | :------------------------------------------------------------------------: |
-| [GET /currency-list](#get-currency-listing) |     Returns all accepted currency with their availability in the bank      |
-|  [GET /exchange-rate](#get-exchange-rates)  | Returns currency with their current exchange value with the other currency |
-|     [PATCH /convert/](#patch-exchange)      |           Update the user wallet and bank currency availability            |
+|               Route                    |                      Description                        |
+| :------------------------------------: | :-----------------------------------------------------: |
+| [GET /rates](#get-rates)               | Get exchange rates                                      |
+| [POST /rates](#post-rates)             | Post exhcange rate                                      |
+| [GET /banks](#get-banks)               | Get all bank names                                      |
+| [GET /bank/:bankId](#get-bank-details) | Get bank details for bankId                             |
+| [PATCH /](#patch-currency-exchange)    | Update the user's wallet and bank currency availability |
 
-## **GET /currency-list**
+## **GET /rates**
 
 Returns all accepted currency with their availability in the bank
 
@@ -70,10 +59,11 @@ Returns all accepted currency with their availability in the bank
 ```
 {
   status: 'success'
-  currency: [
-           <currency_object>,
-           <currency_object>
-         ]
+  currency: {
+    <currency_exchange_object>,
+    <currency_exchange_object>,
+    ...
+  }
 }
 ```
 
@@ -81,7 +71,9 @@ Returns all accepted currency with their availability in the bank
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **GET /exchange-rate**
+## **POST /rate**
+
+Adds the currency exchange value. Only Ankush is authorised to make use this request.
 
 - **Params**  
   None
@@ -89,20 +81,20 @@ Returns all accepted currency with their availability in the bank
   None
 - **Headers**
 - **Body**
+```
+{
+    src: <currency_name> (string),
+    target: <currency_name> (string),
+    quantity: <currency_quantity> (quantity),
+}
+```
 - **Success Response:**
 - **Code:** 200
-  - **Content:**
+- **Content:**
 
 ```
 {
   message: 'success'
-  currency: [
-        {
-          <currency_exchange_object>,
-          <currency_exchange_object>,
-          <currency_exchange_object>
-        }
-    ]
 }
 ```
 
@@ -110,26 +102,89 @@ Returns all accepted currency with their availability in the bank
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **PATCH /exchange/:uid**
+## **GET /banks**
+
+Returns all accepted currency with their availability in the bank
 
 - **Params**  
-  _Required:_ `uid=[string]`
-
+  None
+- **Query**  
+  None
+- **Body**  
+  None
 - **Headers**  
-  Content-Type: application/json
+  None
 - **Cookie**  
-  rds-session: `<JWT>`
-- **Body** `{ <trading_request_object> }`
+  None
 - **Success Response:**
 - **Code:** 200
   - **Content:**
 
 ```
-    {
-        status: 'success'
-    }
+{
+  
+  message: 'Bank returned successfully!',
+  banks: [<Bank_Object>, <Bank_Object>, ...]
+    
+}
 ```
 
+## **GET /:bankId**
+
+Returns available currency for a particular `bankId`
+
+- **Params**  
+  _Required:_ `bankId=[string]`
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  None
+- **Cookie**  
+  None
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  "message": "currency returned successfully!",
+  "currency": {
+      <currency_name>: <available_quantity>,
+      <currency_name>: <available_quantity>,
+      ...
+  }
+}
+```
+
+
+
+## **PATCH /**
+
+- **Params**
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Body**
+```
+{
+    src: <currency_name> (string),
+    target: <currency_name> (string),
+    quantity: <currency_quantity> (quantity),
+    bankId: <bank_id> (string),
+}
+```
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+```
+{
+  "status": "success",
+  "message": "Transaction Successful"
+}
+```
 - **Error Response:**
   - **Code:** 403
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Trading failed due to insufficient funds'}`
