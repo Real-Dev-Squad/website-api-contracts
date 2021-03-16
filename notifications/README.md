@@ -1,11 +1,25 @@
 # Notifications
 
+## Firestore collection and data-model:
+Collection: `notifications`
+
+Data-model:
+```
+{
+  id: string,
+  userId: string,
+  message: string,
+  createdOn: unix-timestamp,
+  type: string
+}
+```
+
 ## Notification Object
 
 ```
 {
   id: string,
-  userId: string,
+  username: string,
   message: string,
   createdOn: unix-timestamp,
   type: string,
