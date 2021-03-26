@@ -33,7 +33,7 @@ Returns all members in the system.
 - **Params**  
   None
 - **Query**  
-  None
+  type=[ all | new | blocked ]
 - **Body**  
   None
 - **Headers**  
