@@ -2,9 +2,14 @@
 
 ## APIs
 
+- [Auctions](/auctions)
+- [Challenges](/challenges)
+- [Contributions](/contributions)
+- [Crypto](/crypto)
 - [Login](/login)
-- [Users](/users)
 - [Members](/members)
+- [Notifications](/notifications)
 - [Pull Requests](/pull-requests)
 - [Tasks](/tasks)
-- [Contributions](/contributions)
+- [Users](/users)
+- [Badges](/badges)

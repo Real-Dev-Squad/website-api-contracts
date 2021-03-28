@@ -18,13 +18,16 @@
   'linkedin_id': string,
   'twitter_id': string,
   'instagram_id': string,
-  'site': string,
+  'website': string,
   'github_display_name': string,
   'isMember': boolean,
+  'userType': string,
   'tokens': {},
   'badges': []
 }
 ```
+**Note:**: Only the GET `users/self` route will return `phone` and `email` if `private` query is passed as true. This way we are not exposing users' phone numbers and email addresses to everyone. Users can only see their own phone number and email address.
+
 
 ## **Requests**
 
@@ -74,6 +77,8 @@ Returns the details of logged in user.
 
 - **Params**  
   None
+- **Query**
+  private=[boolean]    
 - **Body**  
   None
 - **Headers**  
@@ -83,6 +88,7 @@ Returns the details of logged in user.
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ <user_object> }`
+    > **Note**: The user object will include `phone` and `email` only when the query `private` is passed as `true` for this route. No other route will return `phone` and `email`.
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -111,6 +117,28 @@ Returns the specified user.
     - **Content:** `{ error: 'Not Found', message: 'User doesn't exist' }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+
+## **GET /users/isUsernameAvailable/:username**
+
+Returns the availability of username.
+
+- **Params**  
+  _Required:_ `username=[string]`
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+  - **Code:** 200
+    - **Content:** `{ 'isUsernameAvailable': <boolean> }`
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
 
 ## **POST /users**
 

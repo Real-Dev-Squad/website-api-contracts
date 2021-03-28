@@ -42,8 +42,8 @@ Returns all badges in the system.
 {
   message: 'Badges returned successfully!'
   badges: [
-          {<badge_object>}
-        ]
+    {<badge_object>}
+  ]
 }
 ```
 
