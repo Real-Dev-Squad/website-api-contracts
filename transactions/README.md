@@ -16,17 +16,18 @@
 
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
-|      [GET /fetchLatest/:userId/:noOfRecords](#fetch-latestTransactions)      | Returns noOfRecords latest Transactions in the system  for userId provided|
+|      [GET /fetchLatest/:username/:noOfRecords](#fetch-latestTransactions)      | Returns noOfRecords latest Transactions in the system  for username provided|
 ----
 ## **GET /latestTransactions**
 
-Returns N number of transactions for userId provided.
+Returns N number of transactions for username provided. First fetch the userid from users collection and get userId of loggedin user.
+Fetch transactions using userId.
 
 - **Params**  
-  userId: userUId of loggedin user.
+  username: username of loggedin user.
   noOfRecords: No of transactions want to fetch.
 - **Query**  
-  userId=[string] noOfRecords=[integer]
+  username=[string] noOfRecords=[integer]
 - **Body**  
   None
 - **Headers**  
