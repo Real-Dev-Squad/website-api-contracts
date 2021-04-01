@@ -26,7 +26,7 @@ Returns N number of transactions for userId provided.
   userId: userUId of loggedin user.
   noOfRecords: No of transactions want to fetch.
 - **Query**  
-  uiser=[string] noOfRecords=[integer]
+  userId=[string] noOfRecords=[integer]
 - **Body**  
   None
 - **Headers**  
