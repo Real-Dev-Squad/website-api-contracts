@@ -41,7 +41,6 @@ Fetch transactions using userId.
 ```
 {
    "message": "Transactions returned successfully!",
-   "responseCode": 200,
    "data": [
            {transactions-object}
          ]
