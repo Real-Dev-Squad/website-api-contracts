@@ -16,7 +16,7 @@
 
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
-|      [GET /fetchLatest/:username/:noOfRecords](#fetch-latestTransactions)      | Returns noOfRecords latest Transactions in the system  for username provided|
+|      [GET /fetchLatest/:username?noOfRecords](#fetch-latestTransactions)      | Returns noOfRecords latest Transactions in the system  for username provided|
 ----
 ## **GET /latestTransactions**
 
@@ -25,7 +25,7 @@ Fetch transactions using userId.
 
 - **Params**  
   username: username of loggedin user.
-  noOfRecords: No of transactions want to fetch.
+  noOfRecords: No of transactions want to fetch. Default value is 10 if not provided in request URL
 - **Query**  
   username=[string] noOfRecords=[integer]
 - **Body**  
