@@ -23,13 +23,16 @@
 Returns N number of transactions for username provided. 
 First fetch the userid from users collection using username, fetch all the transactions for userId and then sorts in ASC or DESC and return N transactions.
 For fetching 5 latest transaction for username kratika, URL will be
-/transactions/fetch/kratika?noOfOrders=5&orderBy=DESC
+/transactions/fetch/kratika?size=5&orderBy=DESC
+For fetching next 5 latest transaction for username kratika, URL will be
+/transactions/fetch/kratika?size=5&orderBy=DESC&startAt=2
 
 - **Params**
   username: username of loggedin user.
 - **Query**
-  noOfOrders: No of transactions to fetch. Default value is 10 if not provided in request URL
+  size: No of transactions to fetch. Default value is 10 if not provided in request URL
   orderBy: Order of records according to date of transaction, default is DESC
+  startAT: starting index of next batch of transactions, default value is 0
 - **Body**
   None
 - **Headers** 
@@ -53,7 +56,7 @@ For fetching 5 latest transaction for username kratika, URL will be
 ```
 
 - **Error Response:**
-  - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User does not exist!' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
