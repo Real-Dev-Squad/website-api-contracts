@@ -16,16 +16,16 @@
 
 |               Route                |           Description           |
 | :--------------------------------: | :-----------------------------: |
-|      [GET /transactions/fetch/:username](#fetch)      | Returns N Transactions in order specified for username provided|
+|      [GET /transactions/:username](#fetch)      | Returns N Transactions in order specified for username provided|
 ----
-## **GET /transactions/fetch/:username**
+## **GET /transactions/:username**
 
 Returns N number of transactions for username provided. 
 First fetch the userid from users collection using username, fetch all the transactions for userId and then sorts in ASC or DESC and return N transactions.
 For fetching 5 latest transaction for username kratika, URL will be
-/transactions/fetch/kratika?silimitze=5&orderBy=DESC
+/transactions/kratika?limit=5&orderBy=DESC
 For fetching next 5 latest transaction for username kratika, URL will be
-/transactions/fetch/kratika?limit=5&orderBy=DESC&startAt=2
+/transactions/kratika?limit=5&orderBy=DESC&startAt=2
 
 - **Params**
   username: username of loggedin user.
