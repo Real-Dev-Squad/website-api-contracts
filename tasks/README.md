@@ -15,7 +15,8 @@
   "endsOn":"<unix timestamp>",
   "startedOn":"<unix timestamp>",
   "status": "Active",
-  "ownerId":"<app owner user id>",
+  "createdBy":"<userId>",
+  "assignedTo":<userId>",
   "percentCompleted":10,
   "dependsOn": [
     <task_id>,
