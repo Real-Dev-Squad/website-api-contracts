@@ -51,7 +51,7 @@
 |       [GET /auctions](#get-auctions)     | Returns all available auctions metadata  |
 |       [GET /auctions/:id](#get-auctionsid)     | Returns detailed auction data for one auction  |
 |      [POST /auctions](#post-auctions)    | Creates a new auction                |
-| [POST /auctions/:id](#post-auctionsid) | Place new bid               |
+| [POST /bid/:id](#post-bidid) | Place new bid               |
 
 
 ## **GET /auctions**
@@ -132,7 +132,7 @@ Creates a new auction
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 204
+  - **Code:** 201
     - **Content:** `{
   message: 'Auction created successfully!'}`
 - **Error Response:**
@@ -141,7 +141,7 @@ Creates a new auction
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **POST /auctions/:id**
+## **POST /bid/:id**
 
 Place a new bid when auctionId is given
 
@@ -158,14 +158,24 @@ Place a new bid when auctionId is given
     bid: <number>
   }`
 - **Success Response:**
-  - **Code:** 204
+  - **Code:** 201
     - **Content:** `{ 'message': 'Successfully placed bid!'}`
 - **Error Response:**
   - **Code:** 401
-    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'User cannot be authenticated' }`
   - **Code:** 403
-    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Your bid was not higher than current one!'}`
+    - **Content:** 
+    ```
+    {
+      'statusCode': 403,
+      'error': 'Forbidden',
+      'message': 
+        'Your bid was not higher than current one!' /
+        'You do not have sufficient money' /
+        'You do not have a wallet!'
+    }
+    ```
   - **Code:** 404
-    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Auction doesn\'t exist' }`
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Auction doesn't exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
