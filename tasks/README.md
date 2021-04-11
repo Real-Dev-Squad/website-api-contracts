@@ -5,29 +5,33 @@
 ```
 {
   "title": "Title of the task",
-  "purpose": "<why is this task needed>",
-  "featureUrl": "<live url of the feature>",
-  "type":"Dev | Group",
+  "purpose": "<why is this task needed>, optional",
+  "featureURL": "<live url of the feature>, optional",
+  "type":"feature | group",
   "links": [
+    // optional
     <link1>,
     <link2>
   ],
-  "endsOn":"<unix timestamp>",
-  "startedOn":"<unix timestamp>",
-  "status": "Active",
+  "endsOn":"<epoch>",
+  "startedOn":"<epoch>",
+  "status": "active | assigned | blocked | completed",
   "createdBy":"<userId>",
-  "assignedTo":<userId>",
-  "percentCompleted":10,
+  "assignee":<userId> (in case of individual tasks)",
+  "percentCompleted": 0,
   "dependsOn": [
+    // optional
     <task_id>,
     <task_id>
   ],
   "participants": [
+    // for group tasks
+    // optional
     <user_id>
     <user_id>
   ],
-  "completionAward": { gold: 3, bronze: 300 },
-  "lossRate": { gold: 1 }  // Loss per day of overshoot after deadline,
+  "completionAward": { dinero: 1500, neelam: 1 },
+  "lossRate": { dinero: 100 }  // Loss per day of overshoot after deadline,
   'isNoteworthy': true
 }
 ```
