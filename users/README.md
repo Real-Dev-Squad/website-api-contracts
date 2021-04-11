@@ -11,7 +11,7 @@
   'email': string,
   'phone': number,
   'yoe': number,
-  'company': string,,
+  'company': string,
   'designation': string,
   'img': string,
   'github_id': string,
@@ -22,7 +22,8 @@
   'github_display_name': string,
   'isMember': boolean,
   'userType': string,
-  'tokens': {}
+  'tokens': {},
+  'badges': []
 }
 ```
 **Note:**: Only the GET `users/self` route will return `phone` and `email` if `private` query is passed as true. This way we are not exposing users' phone numbers and email addresses to everyone. Users can only see their own phone number and email address.
@@ -186,4 +187,3 @@ Updates data of the User.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
   - **Code:** 503
     - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
-
