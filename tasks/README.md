@@ -44,7 +44,7 @@
 |      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
-| [PATCH /tasks/:username](#get-task-username) |  Returns all tasks of the user |
+| [GET /tasks/:username](#get-task-username) |  Returns all tasks of the user |
 
 ## **GET /tasks**
 
@@ -126,8 +126,6 @@ Returns all tasks of the requested user.
   None
 - **Headers**  
   Content-Type: application/json
-- **Cookie**  
-  rds-session: `<JWT>`
 - **Success Response:**
   - **Code:** 200
     - **Content:**
