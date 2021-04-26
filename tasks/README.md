@@ -44,7 +44,7 @@
 |      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
-| [GET /tasks/:username](#get-task-username) |  Returns all tasks of the user |
+| [GET /tasks/:username](#get-tasks-username) |  Returns all tasks of the user |
 
 ## **GET /tasks**
 
