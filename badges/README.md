@@ -19,6 +19,8 @@
 |              Route               |           Description            |
 |:--------------------------------:|:--------------------------------:|
 |    [GET /badges](#get-badges)    | Returns all badges in the system |
+|    [GET /badges/:username](#get-badgesusername)    | Returns the badges of the individual member |
+
 
 ## **GET /badges**
 
