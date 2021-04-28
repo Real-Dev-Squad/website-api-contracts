@@ -17,7 +17,7 @@
 ## **Requests**
 
 |             Route              |           Description            |
-| :----------------------------: | :------------------------------: |
+|:------------------------------:|:--------------------------------:|
 |   [GET /badges](#get-badges)   | Returns all badges in the system |
 |   [PUT /badges](#put-badges)   |       Creates a new badge        |
 | [PATCH /badges](#patch-badges) |    Updates data of the Badge     |
