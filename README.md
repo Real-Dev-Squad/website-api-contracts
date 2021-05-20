@@ -13,3 +13,4 @@
 - [Tasks](/tasks)
 - [Users](/users)
 - [Badges](/badges)
+- [FeatureFlags](/featureFlags)
