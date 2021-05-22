@@ -5,6 +5,7 @@
 ```
 {
     'name': string,
+    'title':string,
     'id': string,
     'created_at': timestamp,
     'updated_at': timestamp,
@@ -24,7 +25,6 @@
 |  [DELETE /featureFlags/:id](#delete-featureFlagsId) |   Deletes the feature flag       |
 
 
-
 ## **GET /featureFlags**
 
  Returns all feature flags in the system 
@@ -41,7 +41,7 @@
    None    
 - **Success Response:**
 - **Code:** 200
-  -**Content:**
+  - **Content:**
 
 ```
 {
@@ -57,8 +57,6 @@
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-
-
 ## **POST /featureFlags** 
 
 Creates a feature flag 
@@ -71,10 +69,9 @@ Creates a feature flag
   Content-Type: application/json
 - **Body** `
 { 
-  'feature_name': <feature name>,
-  'feature_owner':<feature owner name>,
-  'is_enabled':<feature is enabled or disabled>,
-              
+   _Required:_ 'feature_name'= <feature name>,
+   _Required:_ 'feature_owner'= <feature owner name>,
+   _Required:_ 'is_enabled'= <feature is enabled or disabled>,             
  }`
 - **Success Response:**
 - **Code:** 200
@@ -91,7 +88,8 @@ Creates a feature flag
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
+    - **Code:** 400
+    - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request ', 'message': 'Missing required fields' }`
 
 # **PATCH /featureFlags/:id**
 
@@ -99,22 +97,22 @@ Updates data of the feature flag
 
 - **Params**  
   _Required:_ `id=[string]`
-
 - **Headers**  
   Content-Type: application/json
 - **Body** `{ <featureFlag_object> }`
 - **Success Response:**
 - **Code:** 204
-
-  - **Content:** `<No Content>`
-
+  - **Content:** 
+ ```
+{
+  message: 'FeatureFlag updated successfully!'
+}
+```
 - **Error Response:**
   - **Code** 404
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlags found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
-
 
 # **DELETE /featureFlag/:id**
 
@@ -122,20 +120,16 @@ Updates data of the feature flag
 
  **Params**  
   _Required:_ `id=[string]`
-
 - **Headers**  
   Content-Type: application/json
 - **Success Response:**
 - **Code:** 200
-
   - **Content:**
-
 ```
 {
   message: 'FeatureFlag deleted successfully!'
 }
 ```
-
 - **Error Response:**
   - **Code** 404
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlags found' }`
