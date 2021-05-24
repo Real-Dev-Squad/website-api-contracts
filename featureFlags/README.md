@@ -48,7 +48,7 @@
   message: 'FeatureFlags returned successfully!'
   featureFlags: [
            {<featureFlag_object>},
-           {<featureFlag_object}
+           {<featureFlag_object>}
          ]
 }
 ```
@@ -67,6 +67,8 @@ Creates a feature flag
   None
 - **Headers**  
   Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
 - **Body** `
 { 
    _Required:_ 'feature_name'= <feature name>,
@@ -86,10 +88,13 @@ Creates a feature flag
 ```
 
 - **Error Response:**
+  - **Code:** 400
+    - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request ', 'message': 'Missing required fields' }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-    - **Code:** 400
-    - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request ', 'message': 'Missing required fields' }`
+    
 
 # **PATCH /featureFlags/:id**
 
@@ -99,6 +104,8 @@ Updates data of the feature flag
   _Required:_ `id=[string]`
 - **Headers**  
   Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
 - **Body** `{ <featureFlag_object> }`
 - **Success Response:**
 - **Code:** 204
@@ -109,7 +116,9 @@ Updates data of the feature flag
 }
 ```
 - **Error Response:**
-  - **Code** 404
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlags found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
@@ -118,10 +127,12 @@ Updates data of the feature flag
 
  Deletes the feature flag 
 
- **Params**  
+- **Params**  
   _Required:_ `id=[string]`
 - **Headers**  
   Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
 - **Success Response:**
 - **Code:** 200
   - **Content:**
@@ -131,13 +142,9 @@ Updates data of the feature flag
 }
 ```
 - **Error Response:**
-  - **Code** 404
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlags found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
-
-
-
-
-
