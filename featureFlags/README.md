@@ -6,11 +6,13 @@
 {
     'name': string,
     'title':string,
-    'id': string,
     'created_at': timestamp,
     'updated_at': timestamp,
     'config': {'enabled': boolean},
-    'owner': string,
+    'owner': {
+      'username': string,
+      'img': string
+    },
     'launched_at': timestamp
 }
 ```
@@ -21,8 +23,8 @@
 |:-------------------------------------:|:----------------------------------------------:|
 |  [GET /featureFlags](#get-featureFlags)        |   Returns all feature flags in system |
 |  [POST /featureFlags](#post-featureFlags)      |   Creates a feature flag              |
-|  [PATCH /featureFlags/:id](#patch-featureFlagsId)   | Updates data of the feature flag |
-|  [DELETE /featureFlags/:id](#delete-featureFlagsId) |   Deletes the feature flag       |
+|  [PATCH /featureFlags/:name](#patch-featureFlagsId)  | Updates data of the featureflag |
+|  [DELETE /featureFlags/:name](#delete-featureFlagsId) |  Deletes the feature flag      |
 
 
 ## **GET /featureFlags**
@@ -47,8 +49,18 @@
 {
   message: 'FeatureFlags returned successfully!'
   featureFlags: [
-           {<featureFlag_object>},
-           {<featureFlag_object>}
+    {
+      'name': string,
+      'title':string,
+      'created_at': timestamp,
+      'updated_at': timestamp,
+      'config': {'enabled': boolean},
+      'owner': {
+        'username':string,
+        'img':string
+      },
+      'launched_at': timestamp
+    }
          ]
 }
 ```
@@ -71,8 +83,8 @@ Creates a feature flag
   rds-session: `<JWT>`
 - **Body** `
 { 
-   _Required:_ 'feature_name'= <feature name>,
-   _Required:_ 'feature_owner'= <feature owner name>,
+   _Required:_ 'feature_name'= <unique feature name>,
+   _Required:_ 'feature_owner'= <username of feature owner>,
    _Required:_ 'is_enabled'= <feature is enabled or disabled>,             
  }`
 - **Success Response:**
@@ -81,9 +93,8 @@ Creates a feature flag
 
 ```
 {
-  message: 'FeatureFlag created successfully!'
+  message: 'FeatureFlag added successfully!'
   featureFlag: {<featureFlag_object>}
-  id: <newly created featureFlag id>
 }
 ```
 
@@ -92,16 +103,18 @@ Creates a feature flag
     - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request ', 'message': 'Missing required fields' }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 409  
+    - **Content:** `{ 'statusCode': 409, 'error': 'Conflict', 'message': 'FeatureFlag already exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
     
 
-# **PATCH /featureFlags/:id**
+# **PATCH /featureFlags/:name**
 
 Updates data of the feature flag 
 
 - **Params**  
-  _Required:_ `id=[string]`
+  _Required:_ `name=[string]`
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
@@ -123,12 +136,12 @@ Updates data of the feature flag
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-# **DELETE /featureFlag/:id**
+# **DELETE /featureFlag/:name**
 
  Deletes the feature flag 
 
 - **Params**  
-  _Required:_ `id=[string]`
+  _Required:_ `name=[string]`
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
