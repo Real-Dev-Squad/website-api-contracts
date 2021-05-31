@@ -15,7 +15,7 @@
   ],
   "endsOn":"<epoch>",
   "startedOn":"<epoch>",
-  "status": "active | assigned | blocked | completed",
+  "status": "active | assigned | blocked | completed | unAssigned",
   "createdBy":"<userId>",
   "assignee":<userId> (in case of individual tasks)",
   "percentCompleted": 0,
