@@ -5,27 +5,24 @@
 ```
 {
     'name': string,
+    'id': string
     'title':string,
     'created_at': timestamp,
     'updated_at': timestamp,
     'config': {'enabled': boolean},
-    'owner': {
-      'username': string,
-      'img': string
-    },
+    'owner': string
     'launched_at': timestamp
 }
 ```
 
 ## **Requests**
 
-|                 Route                 |             Description                        |
-|:-------------------------------------:|:----------------------------------------------:|
-|  [GET /featureFlags](#get-featureFlags)        |   Returns all feature flags in system |
-|  [POST /featureFlags](#post-featureFlags)      |   Creates a feature flag              |
-|  [PATCH /featureFlags/:name](#patch-featureFlagsId)  | Updates data of the featureflag |
-|  [DELETE /featureFlags/:name](#delete-featureFlagsId) |  Deletes the feature flag      |
-
+|                 Route                 |             Description                  |
+|:-------------------------------------:|:----------------------------------------:|
+| [GET /featureFlags](#get-featureFlags)  |   Returns all feature flags in system  |
+| [POST /featureFlags](#post-featureFlags)   |   Creates a feature flag            |
+| [PATCH /featureFlags/:id](#patch-featureFlagsId)   | Updates data of featureflag |
+| [DELETE /featureFlags/:id](#delete-featureFlagsId) |  Deletes the feature flag   |
 
 ## **GET /featureFlags**
 
@@ -55,13 +52,14 @@
       'created_at': timestamp,
       'updated_at': timestamp,
       'config': {'enabled': boolean},
-      'owner': {
-        'username':string,
-        'img':string
+      'owner': 
+      {
+        'username': string,
+        'img': string
       },
       'launched_at': timestamp
     }
-         ]
+  ]
 }
 ```
 
@@ -83,9 +81,10 @@ Creates a feature flag
   rds-session: `<JWT>`
 - **Body** `
 { 
-   _Required:_ 'feature_name'= <unique feature name>,
+   _Required:_ 'feature_name'= <feature name>,
+   _Required:_ 'feature_title'= <feature title>,
    _Required:_ 'feature_owner'= <username of feature owner>,
-   _Required:_ 'is_enabled'= <feature is enabled or disabled>,             
+   _Required:_ 'config'= <Object with one boolean value which specify feature is enabled or disabled>,             
  }`
 - **Success Response:**
 - **Code:** 200
@@ -103,18 +102,16 @@ Creates a feature flag
     - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request ', 'message': 'Missing required fields' }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
-  - **Code:** 409  
-    - **Content:** `{ 'statusCode': 409, 'error': 'Conflict', 'message': 'FeatureFlag already exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
     
 
-# **PATCH /featureFlags/:name**
+# **PATCH /featureFlags/:id**
 
 Updates data of the feature flag 
 
 - **Params**  
-  _Required:_ `name=[string]`
+  _Required:_ `id=[string]`
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
@@ -136,12 +133,12 @@ Updates data of the feature flag
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-# **DELETE /featureFlag/:name**
+# **DELETE /featureFlag/:id**
 
  Deletes the feature flag 
 
 - **Params**  
-  _Required:_ `name=[string]`
+  _Required:_ `id=[string]`
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
