@@ -81,9 +81,8 @@ Creates a feature flag
   rds-session: `<JWT>`
 - **Body** `
 { 
-   _Required:_ 'feature_name'= <feature name>,
+   _Required:_ 'feature_name'= <unique feature name>,
    _Required:_ 'feature_title'= <feature title>,
-   _Required:_ 'feature_owner'= <username of feature owner>,
    _Required:_ 'config'= <Object with one boolean value which specify feature is enabled or disabled>,             
  }`
 - **Success Response:**
@@ -93,7 +92,14 @@ Creates a feature flag
 ```
 {
   message: 'FeatureFlag added successfully!'
-  featureFlag: {<featureFlag_object>}
+  featureFlag: {
+      'name': string,
+      'title':string,
+      'created_at': timestamp,
+      'updated_at': timestamp,
+      'config': {'enabled': boolean},
+      'owner': string,
+    }
 }
 ```
 
