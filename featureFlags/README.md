@@ -92,8 +92,9 @@ Creates a feature flag
 ```
 {
   message: 'FeatureFlag added successfully!'
-  featureFlag: {
+  data: {
       'name': string,
+      'id': string
       'title':string,
       'created_at': timestamp,
       'updated_at': timestamp,
@@ -112,7 +113,7 @@ Creates a feature flag
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
     
 
-# **PATCH /featureFlags/:id**
+## **PATCH /featureFlags/:id**
 
 Updates data of the feature flag 
 
@@ -125,21 +126,18 @@ Updates data of the feature flag
 - **Body** `{ <featureFlag_object> }`
 - **Success Response:**
 - **Code:** 204
-  - **Content:** 
- ```
-{
-  message: 'FeatureFlag updated successfully!'
-}
-```
+
+  - **Content:** `<No Content>`
+
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 404
-    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlags found' }`
+    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlag found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-# **DELETE /featureFlag/:id**
+## **DELETE /featureFlag/:id**
 
  Deletes the feature flag 
 
@@ -161,6 +159,6 @@ Updates data of the feature flag
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 404
-    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlags found' }`
+    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No featureFlag found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
