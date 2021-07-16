@@ -45,6 +45,7 @@
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
 | [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
+| [PATCH /tasks/self/:id](#patch-taskselfid) |  Changes in own task  |
 
 ## **GET /tasks**
 
@@ -189,3 +190,21 @@ Returns all tasks of the requested user.
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No tasks found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **PATCH /tasks/self/:id**
+
+- **Params**
+  _Required_: `id=[number]`
+
+- **Headers**
+  Content-Type: application/json
+
+- **Body**
+  { <task_object> }
+
+- **Success Response:**
+  - **Code**: 204
+    - **Content:** `{'message': 'Changes in task updated successfully'}`
+
+- **Error Response:**
+  - None
