@@ -45,7 +45,7 @@
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
 | [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
-| [PATCH /tasks/self/:id](#patch-taskselfid) |  Changes in own task  |
+| [PATCH /tasks/self/:id](#patch-tasksselfid) |  Changes in own task  |
 
 ## **GET /tasks**
 
@@ -193,18 +193,36 @@ Returns all tasks of the requested user.
 
 ## **PATCH /tasks/self/:id**
 
-- **Params**
-  _Required_: `id=[number]`
+- **Params**  
+  _Required:_ `id=[string]`
 
-- **Headers**
+- **Headers**  
   Content-Type: application/json
 
-- **Body**
+- **Body**  
   { <task_object> }
+
+- **Cookie**  
+  rds-session: `<JWT>`
 
 - **Success Response:**
   - **Code**: 204
     - **Content:** `{'message': 'Changes in task updated successfully'}`
 
 - **Error Response:**
-  - None
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'User can not be authenticated' }`
+  - **Code:** 403
+    - **Content:** 
+    ```
+    {'statusCode': 403,
+      'error': 'Forbidden',
+      'message':'You are not allowed to make changes in tasks',
+                'You can not make changes to others tasks',
+                'This task is not assigned to you'
+    }
+    ```
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Task doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
