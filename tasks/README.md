@@ -207,19 +207,13 @@ Returns all tasks of the requested user.
 
 - **Success Response:**
   - **Code**: 204
-    - **Content:** `{'message': 'Changes in task updated successfully'}`
+    - **Content:** `{'message': 'Task updated successfully!'}`
 
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'User can not be authenticated' }`
   - **Code:** 403
-    - **Content:** 
-    ```
-    {'statusCode': 403,
-      'error': 'Forbidden',
-      'message':'This task is not assigned to you'
-    }
-    ```
+    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message':'This task is not assigned to you' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Task doesn't exist' }`
   - **Code:** 500
