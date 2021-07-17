@@ -200,7 +200,7 @@ Returns all tasks of the requested user.
   Content-Type: application/json
 
 - **Body**  
-  { <task_object> }
+  `{ status: <new-status> }`
 
 - **Cookie**  
   rds-session: `<JWT>`
@@ -217,9 +217,7 @@ Returns all tasks of the requested user.
     ```
     {'statusCode': 403,
       'error': 'Forbidden',
-      'message':'You are not allowed to make changes in tasks',
-                'You can not make changes to others tasks',
-                'This task is not assigned to you'
+      'message':'This task is not assigned to you'
     }
     ```
   - **Code:** 404
