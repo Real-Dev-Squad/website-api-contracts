@@ -200,13 +200,18 @@ Returns all tasks of the requested user.
   Content-Type: application/json
 
 - **Body**  
-  `{ status: <new-status> }`
+  ```
+  { 
+    status: <new-status> 
+    percentCompleted: <number>
+  }
+  ```
 
 - **Cookie**  
   rds-session: `<JWT>`
 
 - **Success Response:**
-  - **Code**: 204
+  - **Code**: 200
     - **Content:** `{'message': 'Task updated successfully!'}`
 
 - **Error Response:**
