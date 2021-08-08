@@ -26,19 +26,18 @@
   'badges': []
 }
 ```
-**Note:**: Only the GET `users/self` route will return `phone` and `email` if `private` query is passed as true. This way we are not exposing users' phone numbers and email addresses to everyone. Users can only see their own phone number and email address.
 
+**Note:**: Only the GET `users/self` route will return `phone` and `email` if `private` query is passed as true. This way we are not exposing users' phone numbers and email addresses to everyone. Users can only see their own phone number and email address.
 
 ## **Requests**
 
 |                 Route                 |             Description              |
-|:-------------------------------------:|:------------------------------------:|
+| :-----------------------------------: | :----------------------------------: |
 |       [GET /users](#get-users)        |   Returns all users in the system    |
 |   [GET /users/self](#get-usersSelf)   | Returns the logged in user's details |
 |    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
 |      [POST /users](#post-users)       |          Creates a new User          |
 | [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
-
 
 ## **GET /users**
 
@@ -78,7 +77,7 @@ Returns the details of logged in user.
 - **Params**  
   None
 - **Query**
-  private=[boolean]    
+  private=[boolean]
 - **Body**  
   None
 - **Headers**  
@@ -88,7 +87,7 @@ Returns the details of logged in user.
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ <user_object> }`
-    > **Note**: The user object will include `phone` and `email` only when the query `private` is passed as `true` for this route. No other route will return `phone` and `email`.
+      > **Note**: The user object will include `phone` and `email` only when the query `private` is passed as `true` for this route. No other route will return `phone` and `email`.
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -138,7 +137,6 @@ Returns the availability of username.
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
 
 ## **POST /users**
 
