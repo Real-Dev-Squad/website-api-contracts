@@ -70,7 +70,7 @@ same as the users object on Users Api
 
 Return the same response from [GET /challenges](#get-challenges)
 
-## **POST /challenge/subscribe**
+## **POST /challenges/subscribe**
 
 > This request allows users to subscribe to active challenges
 
