@@ -6,6 +6,8 @@
 {
   "title": "Title of the goal",
   "status": "active | assigned | unAssigned | inProgress | completed",
+  "startedOn":"<epoch>",
+  "endsOn":"<epoch>",
   "createdBy":"<userId>",
   "participants": [
     <user_id>
