@@ -13,7 +13,7 @@ same as the users object on Users Api
 | :--------------------------------: | :-----------------------------: |
 |  [GET /challenges](#get-challenges)| Returns all challenges          |
 |[POST /challenges](#post-challenges)|       Creates new challenge     |
-|[POST /challenge/subscribe](#post-challengesubscribe) | subscribes users to challenge|
+|[POST /challenge/subscribe](#post-challengessubscribe) | subscribes users to challenge|
 
 ## **GET /challenges**
 
