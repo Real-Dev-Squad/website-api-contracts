@@ -55,7 +55,14 @@ same as the users object on Users Api
 ```
 - **Error Response:**
   - **Code:** 503
-    - **Content:** `{"statusCode":503,"error":"Service Unavailable","message":"Something went wrong. Please try again or contact admin"}`
+    - **Content:** 
+    ```
+    {
+        "statusCode": 503,
+        "error": "Service Unavailable",
+        "message": "Something went wrong. Please try again or contact admin"
+    }
+    ```
 
 ## **POST /challenges**
 
@@ -77,9 +84,23 @@ Return the same response from [GET /challenges](#get-challenges)
 
 - **Error Response:**
   - **Code:** 404
-    - **Content:** `{"statusCode":404,"error":"Not Found","message":"Unable to add challenge"}`
+    - **Content:** 
+    ```
+    {
+        "statusCode":404,
+        "error":"Not Found",
+        "message":"Unable to add challenge"
+    }
+    ```
   - **Code:** 503
-    - **Content:** `{"statusCode":503,"error":"Service Unavailable","message":"Something went wrong. Please try again or contact admin"}`
+    - **Content:**
+    ```
+    {
+        "statusCode": 503,
+        "error": "Service Unavailable",
+        "message": "Something went wrong. Please try again or contact admin"
+    }
+    ```
 
 ## **POST /challenges/subscribe**
 
@@ -106,6 +127,20 @@ Response
 ```
 - **Error Response:**
   - **Code:** 404
-    - **Content:** `{"statusCode":404,"error":"Not Found","message":"User cannot be subscribed to challenge"}`
+    - **Content:** 
+    ```
+    {
+        "statusCode":404,
+        "error":"Not Found",
+        "message":"User cannot be subscribed to challenge"
+    }
+    ```
   - **Code:** 503
-    - **Content:** `{"statusCode":503,"error":"Service Unavailable","message":"Something went wrong. Please try again or contact admin"}`
+    - **Content:**
+    ```
+    {
+        "statusCode": 503,
+        "error": "Service Unavailable",
+        "message": "Something went wrong. Please try again or contact admin"
+    }
+    ```
