@@ -24,30 +24,30 @@ same as the users object on Users Api
 ```json
 [
     {
-        "id":"<challenge_id>",
+        "id": "<challenge_id>",
         "title": "Sherlock and Anagrams",
         "level": "Easy",
         "start_date": "10/05/2020",
         "end_date": "10/25/2020",
         "participants": [
-            <user_object>,
-            <user_object>
+            "<user_object>",
+            "<user_object>"
         ],
         "is_active": 1,
-        "is_user_subscribed":1
+        "is_user_subscribed": 1
     },
     {
-        "id":"<challenge_id>",
+        "id": "<challenge_id>",
         "title": "Sherlock and Anagrams",
         "level": "Easy",
         "start_date": "10/05/2020",
         "end_date": "10/25/2020",
         "participants": [
-            <user_object>,
-            <user_object>
+            "<user_object>",
+            "<user_object>"
         ],
         "is_active": 0,
-        "is_user_subscribed":0
+        "is_user_subscribed": 0
     }
 ]
 
@@ -70,10 +70,10 @@ same as the users object on Users Api
 
 ```json
 {
-    "title":"Sherlock and Anagrams",
-    "level":"Easy",
-    "start_date":"10/05/2020",
-    "end_date":"10/22/2020"
+    "title": "Sherlock and Anagrams",
+    "level": "Easy",
+    "start_date": "10/05/2020",
+    "end_date": "10/22/2020"
 }
 ```
 
@@ -112,8 +112,8 @@ Request
 
 ```json
     {
-        "challenge_id":<unique challenge id>,
-        "user_id":<userid>
+        "challenge_id": "<unique challenge id>",
+        "user_id": "<userid>"
     }
 ```
 
@@ -121,8 +121,8 @@ Response
 
 ```json
 {
-    "challenge_id":<unique challenge id>
-    "is_user_subscribed":1
+    "challenge_id": "<unique challenge id>",
+    "is_user_subscribed": 1
 }
 ```
 - **Error Response:**
