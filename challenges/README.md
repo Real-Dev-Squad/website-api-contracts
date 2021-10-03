@@ -21,7 +21,7 @@ same as the users object on Users Api
 
 ## Response
 
-```
+```json
 [
     {
         "id":"<challenge_id>",
@@ -56,11 +56,11 @@ same as the users object on Users Api
 - **Error Response:**
   - **Code:** 503
     - **Content:** 
-    ```
+    ```json
     {
-        "statusCode": 503,
-        "error": "Service Unavailable",
-        "message": "Something went wrong. Please try again or contact admin"
+      "statusCode": 503,
+      "error": "Service Unavailable",
+      "message": "Something went wrong. Please try again or contact admin"
     }
     ```
 
@@ -68,7 +68,7 @@ same as the users object on Users Api
 
 ## Body
 
-```
+```json
 {
     "title":"Sherlock and Anagrams",
     "level":"Easy",
@@ -85,20 +85,20 @@ Return the same response from [GET /challenges](#get-challenges)
 - **Error Response:**
   - **Code:** 404
     - **Content:** 
-    ```
+    ```json
     {
-        "statusCode":404,
-        "error":"Not Found",
-        "message":"Unable to add challenge"
+      "statusCode": 404,
+      "error": "Not Found",
+      "message": "Unable to add challenge"
     }
     ```
   - **Code:** 503
     - **Content:**
-    ```
+    ```json
     {
-        "statusCode": 503,
-        "error": "Service Unavailable",
-        "message": "Something went wrong. Please try again or contact admin"
+      "statusCode": 503,
+      "error": "Service Unavailable",
+      "message": "Something went wrong. Please try again or contact admin"
     }
     ```
 
@@ -110,7 +110,7 @@ Return the same response from [GET /challenges](#get-challenges)
 
 Request
 
-```
+```json
     {
         "challenge_id":<unique challenge id>,
         "user_id":<userid>
@@ -119,7 +119,7 @@ Request
 
 Response
 
-```
+```json
 {
     "challenge_id":<unique challenge id>
     "is_user_subscribed":1
@@ -128,19 +128,19 @@ Response
 - **Error Response:**
   - **Code:** 404
     - **Content:** 
-    ```
+    ```json
     {
-        "statusCode":404,
-        "error":"Not Found",
-        "message":"User cannot be subscribed to challenge"
+      "statusCode": 404,
+      "error": "Not Found",
+      "message": "User cannot be subscribed to challenge"
     }
     ```
   - **Code:** 503
     - **Content:**
-    ```
+    ```json
     {
-        "statusCode": 503,
-        "error": "Service Unavailable",
-        "message": "Something went wrong. Please try again or contact admin"
+      "statusCode": 503,
+      "error": "Service Unavailable",
+      "message": "Something went wrong. Please try again or contact admin"
     }
     ```
