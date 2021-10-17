@@ -15,6 +15,7 @@
 }
 
 ```
+
 ## Feeds object
 
 ```
@@ -111,6 +112,73 @@ Returns all the feeds of a logged in user
 
 ## **POST /bookmark**
 
+- **Params**  
+  None
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Body** `{ <feed_object> }`
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'Bookmark created successfully!'
+  task: {<feed_object>}
+  id: <newly created feed id>
+}
+```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
 ## **GET /bookmark/:id**
 
+Returns feed of the requested id.
+
+- **Params**  
+  _Required:_ `id=<ID>`
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+```
+{
+  message: 'Feed returned successfully!'
+  {<feed_object>}
+}
+```
+
+- **Error Response:**
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Bookmark doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+
 ## **PATCH /bookmark/:id**
+
+- **Params**  
+  _Required:_ `id=<ID>`
+
+- **Headers**  
+  Content-Type: application/json
+- **Body** `{ <feed_object> }`
+- **Success Response:**
+- **Code:** 204
+
+  - **Content:** `<No Content>`
+
+- **Error Response:**
+  - **Code** 404
+    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No bookmark found' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
