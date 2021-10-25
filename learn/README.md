@@ -48,7 +48,7 @@ Returns all the feeds
 - **Params**  
   None
 - **Query**  
-  None
+  size=[integer], page=[integer]
 - **Body**  
   None
 - **Headers**  
@@ -80,7 +80,7 @@ Returns all the feeds of a logged in user
 - **Params**  
   None
 - **Query**  
-  None
+  size=[integer], page=[integer]
 - **Body**  
   None
 - **Headers**  
@@ -118,6 +118,8 @@ Returns all the feeds of a logged in user
   None
 - **Headers**  
   Content-Type: application/json
+- **Cookie**
+  rds-session: `<JWT>`
 - **Body** `{ <feed_object> }`
 - **Success Response:**
 - **Code:** 200
@@ -134,6 +136,10 @@ Returns all the feeds of a logged in user
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+  - **Code:** 409
+    - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "User already exists" }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
 ## **GET /bookmark/:id**
 
@@ -168,17 +174,24 @@ Returns feed of the requested id.
 
 - **Params**  
   _Required:_ `id=<ID>`
-
+- **Query**  
+  None
 - **Headers**  
   Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
 - **Body** `{ <feed_object> }`
 - **Success Response:**
 - **Code:** 204
-
-  - **Content:** `<No Content>`
-
+  - **Content:** `{ 'message': 'User updated successfully!'}`
 - **Error Response:**
   - **Code** 404
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No bookmark found' }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 403
+    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+  - **Code:** 503
+    - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
