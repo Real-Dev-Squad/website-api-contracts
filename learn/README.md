@@ -134,12 +134,12 @@ Returns all the feeds of a logged in user
 ```
 
 - **Error Response:**
-  - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-  - **Code:** 409
-    - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "User already exists" }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 409
+    - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "User already exists" }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
 ## **GET /bookmark/:id**
 
