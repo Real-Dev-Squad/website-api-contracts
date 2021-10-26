@@ -185,12 +185,12 @@ Returns feed of the requested id.
 - **Code:** 204
   - **Content:** `{ 'message': 'User updated successfully!'}`
 - **Error Response:**
-  - **Code** 404
-    - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No bookmark found' }`
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 403
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
+  - **Code** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No bookmark found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
   - **Code:** 503
