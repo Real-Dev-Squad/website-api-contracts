@@ -11,7 +11,7 @@ POST /login
 | Param      |  Description  |
 |:----------:| :------------ |
 | login_type | "github"      |
-| token      |  The token we receive fron Github. No fancy salting/hashing required. HTTPS will take care of security |
+| token      |  The token we receive from Github. No fancy salting/hashing required. HTTPS will take care of security |
 
 
 ## Response
