@@ -5,17 +5,14 @@
 ```
 {
   "title": "Title of the goal",
-  "status": "active | assigned | unAssigned | inProgress | completed",
-  "startedOn":"<epoch>",
-  "endsOn":"<epoch>",
-  "createdBy":"<userId>",
-  "participants": [
-    <user_id>
-    <user_id>
-    <user_id>
+  "status": "active | pending | completed",
+  "assignedTo": [
+    <member_id>,
+    <member_id>,
   ],
-  "completionAward": { dinero: 1500, neelam: 1 },
-  "lossRate": { dinero: 100 }  // if member fails to complete goal within time
+  "assignedBy": "<admin>",
+  "assignedOn": "<epoch>",
+  "completionAward": "100 dineros",
 }
 ```
 
@@ -24,9 +21,10 @@
 |               Route                |    Description    |
 | :--------------------------------: | :---------------: |
 |      [GET /goals](#get-goals)      | Returns all goals |
-| [GET /goals/:username](#get-goalsusername) |  Returns all goals of the user |
+|      [GET /goals/:id](#get-goalsid)      | Returns goal with given id |
 |     [POST /goals](#post-goals)     | Creates new goal  |
 | [PATCH /goals/:id](#patch-goalsid) |   Updates goals   |
+| [GET /goals/username/:username](#get-goalsusernameusername) |  Returns all goals of the user |
 
 ## **GET /goals**
 
@@ -61,37 +59,27 @@ Returns all the goals
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
 
-## **GET /goals/:username**
+## **GET /goals/:id**
 
-Returns all goals of the requested user.
+Returns the specified goal.
 
 - **Params**  
-  _Required:_ `username=[string]`
-- **Query**  
-  None
+  _Required:_ `id=[string]`
 - **Body**  
   None
 - **Headers**  
   Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 200
-    - **Content:**
-```
-{
-  message: 'Goals returned successfully!'
-  goals: [
-           {<goal_object>},
-           {<goal_object>}
-         ]
-}
-```
-
+- **Code:** 200
+  - **Content:** `{ 'message': 'Goal with <id> returned successfully!', 'user': <user_object> }`
 - **Error Response:**
   - **Code:** 404
-    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
-  - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
+    - **Content:** `{ error: 'Not Found', message: 'Goal with <id> not found' }`
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+    
 
 ## **POST /goals**
 
@@ -111,9 +99,8 @@ Creates new goals
 
 ```
 {
+  goal: {<goal_object>},
   message: 'Goal created successfully!'
-  goal: {<goal_object>}
-  id: <newly created goal id>
 }
 ```
 
@@ -139,5 +126,36 @@ Updates an existing goal
 - **Error Response:**
   - **Code** 404
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No goals found' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **GET /goals/username/:username**
+
+Returns all goals of the requested user.
+
+- **Params**  
+  _Required:_ `username=[string]`
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+```
+{
+  goals: [
+           {<goal_object_containing_username>},
+           {<goal_object_containing_username>}
+         ],
+  message: 'Goals returned successfully!'
+}
+```
+
+- **Error Response:**
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
