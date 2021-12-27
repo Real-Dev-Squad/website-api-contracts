@@ -21,11 +21,11 @@
 
 ## **Requests**
 
-|                    Route                    |          Description          |
-| :-----------------------------------------: | :---------------------------: |
-|          [GET /story](#get-story)           |       Returns all stories     |
-|         [POST /story](#post-story)          |       Creates new story       |
-|     [PATCH /story/:id](#patch-storyid)      |         Updates story         |
+|               Route                |     Description     |
+|:----------------------------------:|:-------------------:|
+|      [GET /story](#get-story)      | Returns all stories |
+|     [POST /story](#post-story)     |  Creates new story  |
+| [PATCH /story/:id](#patch-storyid) |    Updates story    |
 ## **GET /story**
 
 Returns all stories
