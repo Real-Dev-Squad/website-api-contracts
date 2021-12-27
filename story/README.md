@@ -6,7 +6,7 @@
 {
     "title": "String",
     "description": "String",
-    "status": "Enum",
+    "status": "active | assigned | unAssigned | blocked | completed",
     "tasks": [
         "<TaskId>",
         "<TaskId>"
@@ -14,8 +14,8 @@
     "featureOwner": "<UserId>",
     "backendEngineer": "<UserId>",
     "frontendEngineer": "<UserId>",
-    "StartedOn": "Epoch",
-    "EndsOn": "Epoch"
+    "startedOn": "Epoch",
+    "endsOn": "Epoch"
 }
 ```
 
@@ -45,11 +45,11 @@ Returns all stories
   - **Content:**
     ```json
     {
-    "message": "Stories returned successfully!",
-    "stories": [
+        "message": "Stories returned successfully!",
+        "stories": [
             "<story_object>",
             "<story_object>"
-            ]
+        ]
     }
     ```
 
@@ -58,9 +58,9 @@ Returns all stories
     - **Content:**
         ```json
         {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "An internal server error occurred"
+            "statusCode": 500,
+            "error": "Internal Server Error",
+            "message": "An internal server error occurred"
         }
         ```
 
@@ -79,9 +79,9 @@ Returns all stories
   - **Content:**
     ```json
     {
-    "message": "Story created successfully!",
-    "story": "<story_object>",
-    "id": "<newly created story id>"
+        "message": "Story created successfully!",
+        "story": "<story_object>",
+        "id": "<newly created story id>"
     }
     ```
 
@@ -90,9 +90,9 @@ Returns all stories
     - **Content:**
         ```json
         {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "An internal server error occurred"
+            "statusCode": 500,
+            "error": "Internal Server Error",
+            "message": "An internal server error occurred"
         }
         ```
 
@@ -113,17 +113,17 @@ Returns all stories
     - **Content:**
         ```json
         {
-        "statusCode": 404,
-        "error": "Not found",
-        "message": "No stories found"
+            "statusCode": 404,
+            "error": "Not found",
+            "message": "No stories found"
         }
         ```
   - **Code:** 500
     - **Content:**
         ```json
         {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "An internal server error occurred"
+            "statusCode": 500,
+            "error": "Internal Server Error",
+            "message": "An internal server error occurred"
         }
         ```
