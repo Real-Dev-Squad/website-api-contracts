@@ -23,7 +23,8 @@
   'isMember': boolean,
   'userType': string,
   'tokens': {},
-  'badges': []
+  'badges': [],
+  'skills': []
 }
 ```
 **Note:**: Only the GET `users/self` route will return `phone` and `email` if `private` query is passed as true. This way we are not exposing users' phone numbers and email addresses to everyone. Users can only see their own phone number and email address.
