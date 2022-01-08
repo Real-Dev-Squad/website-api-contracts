@@ -133,3 +133,41 @@ Creates new request for member introduction
               "message": "An internal server error occurred"
           }
           ```
+
+## **GET /members/intro/**
+
+Returns all requests for member introduction by recruiter in the system.
+
+- **Params**  
+  None
+- **Query**  
+  type=[ all | new | blocked ]
+- **Body**  
+  None
+- **Headers**  
+  None
+- **Cookie**  
+  None
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+    ```json
+    {
+        "message": "Recruiters returned successfully!",
+        "recruiters": [
+            "<recruiter_object>",
+            "<recruiter_object>"
+        ]
+    }
+    ```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** 
+      ```json
+      {
+          "statusCode": 500,
+          "error": "Internal Server Error",
+          "message": "Something went wrong. Please contact admin"
+      }
+      ```
