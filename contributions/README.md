@@ -34,7 +34,9 @@
       }
     ],
     'featureUrl': <url of the feature task>,
-    'isNoteworthy': true
+    'isNoteworthy': true,
+    'isOther' : false,
+    'id' : <id of the task>
   }
 }
 ```
