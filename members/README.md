@@ -141,7 +141,7 @@ Returns all requests for member introduction by recruiter in the system.
 - **Params**  
   None
 - **Query**  
-  type=[ all | new | blocked ]
+  None
 - **Body**  
   None
 - **Headers**  
