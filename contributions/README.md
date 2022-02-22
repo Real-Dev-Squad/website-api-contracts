@@ -13,6 +13,7 @@
     'raisedBy': <username of the assignee>
   }],
   task: {
+    'id' : <id of the task>,
     'title': <task tile>,
     'purpose': <why this task is needed>,
     'endsOn': <unix_timestamp>,
@@ -35,8 +36,7 @@
     ],
     'featureUrl': <url of the feature task>,
     'isNoteworthy': true,
-    'isOther' : false,
-    'id' : <id of the task>
+    'isOther' : false
   }
 }
 ```
