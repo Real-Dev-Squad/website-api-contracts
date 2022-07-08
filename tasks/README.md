@@ -32,7 +32,8 @@
   ],
   "completionAward": { dinero: 1500, neelam: 1 },
   "lossRate": { dinero: 100 }  // Loss per day of overshoot after deadline,
-  'isNoteworthy': true
+  "isNoteworthy": true,
+  "isOther" : false
 }
 ```
 
