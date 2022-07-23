@@ -42,6 +42,7 @@
 | :--------------------------------: | :---------------: |
 |      [GET /tasks](#get-tasks)      | Returns all tasks |
 |      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
+|      [GET /tasks/paginated](#get-taskspaginated)      | Returns all tasks based on the query (paginated) |
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
 | [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
@@ -112,6 +113,40 @@ Returns all the completed tasks of user if query `completed=true` is passed, els
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+    
+    
+## **GET /tasks/paginated**
+
+Returns all the tasks which are created after the ```<task_object>``` whose "id" would be passed in the query ```after```. The no. of returned documents is controlled by ```limit```again from the query which will also have a default.
+
+- **Params**  
+  None
+- **Query**  
+  _Required:_ limit=[number], after=[string(task id)]
+- **Body**  
+  None
+- **Headers**  
+  None
+- **Cookie**  
+  None
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+```
+{
+  tasks : {<task_object>}[],
+  total : {<task_object>}[] length,
+  till : <task_object_id>
+}
+```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'limit or after undefined' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
