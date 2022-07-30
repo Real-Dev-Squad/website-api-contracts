@@ -2,7 +2,7 @@
 
 ## Log object
 
-```
+```json
 {
     type: string,
     meta: object,
@@ -39,7 +39,7 @@ Returns the cache logs and its count of last 24 hours.
 
   - **Code:** 200
     - **Content:**
-    ```
+    ```json
     {
         message: "Cache Logs returned successfully!",
         count: <LOGS_COUNT>,
@@ -50,20 +50,20 @@ Returns the cache logs and its count of last 24 hours.
 - **Error Responses:**
   - **Code:** 401
     - **Content:**
-    ```
+    ```json
     {
-        "statusCode": 401,
-        "error": "Unauthorized",
-        "message": "Unauthenticated User"
+      "statusCode": 401,
+      "error": "Unauthorized",
+      "message": "Unauthenticated User"
     }
     ```
   - **Code:** 500
     - **Content:**
-    ```
+    ```json
     {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "Something went wrong. Please contact admin"
+      "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "Something went wrong. Please contact admin"
     }
     ```
 
@@ -90,7 +90,7 @@ Returns all logs according to the provided **type** of log.
 
   - **Code:** 200
     - **Content:**
-    ```
+    ```json
     {
         message: "Logs returned successfully!",
         logs: [[Log Object 1](#log-object), [Log Object 2](#log-object)....],
@@ -100,19 +100,19 @@ Returns all logs according to the provided **type** of log.
 - **Error Responses:**
   - **Code:** 401
     - **Content:**
-    ```
+    ```json
     {
-        "statusCode": 401,
-        "error": "Unauthorized",
-        "message": "Unauthenticated User"
+      "statusCode": 401,
+      "error": "Unauthorized",
+      "message": "Unauthenticated User"
     }
     ```
   - **Code:** 500
     - **Content:**
-    ```
+    ```json
     {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "Something went wrong. Please contact admin"
+      "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "Something went wrong. Please contact admin"
     }
     ```
