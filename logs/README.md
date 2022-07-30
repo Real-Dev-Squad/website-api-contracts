@@ -4,10 +4,10 @@
 
 ```json
 {
-    type: string,
-    meta: object,
-    body: object
-    timestamp: object
+    "type": string,
+    "meta": object,
+    "body": object,
+    "timestamp": object
 }
 ```
 
@@ -41,9 +41,9 @@ Returns the cache logs and its count of last 24 hours.
     - **Content:**
     ```json
     {
-        message: "Cache Logs returned successfully!",
-        count: <LOGS_COUNT>,
-        logs: [[Log Object 1](#log-object), [Log Object 2](#log-object)....],
+        "message": "Cache Logs returned successfully!",
+        "count": <LOGS_COUNT>,
+        "logs": [[Log Object 1](#log-object), [Log Object 2](#log-object)....],
     }
     ```
 
@@ -92,8 +92,8 @@ Returns all logs according to the provided **type** of log.
     - **Content:**
     ```json
     {
-        message: "Logs returned successfully!",
-        logs: [[Log Object 1](#log-object), [Log Object 2](#log-object)....],
+        "message": "Logs returned successfully!",
+        "logs": [[Log Object 1](#log-object), [Log Object 2](#log-object)....],
     }
     ```
 
