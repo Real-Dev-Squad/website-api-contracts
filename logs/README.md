@@ -73,12 +73,12 @@ Returns the cache logs and its count of last 24 hours.
 
 - This API can only be accessed by super user
 
-Returns all logs according to the provided **type** of log.
+Returns all logs according to the provided queries and params.
 
 - **Params**  
-  None
+  /:type
 - **Query**  
-  None
+  key=value
 - **Body**  
   None
 - **Headers**  
