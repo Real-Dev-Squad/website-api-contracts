@@ -4,10 +4,10 @@
 
 ```json
 {
-    "type": string,
-    "meta": object,
-    "body": object,
-    "timestamp": object
+  "type": "string",
+  "meta": "object",
+  "body": "object",
+  "timestamp": "object"
 }
 ```
 
@@ -38,12 +38,16 @@ Returns the cache logs and its count of last 24 hours.
 - **Success Response:**
 
   - **Code:** 200
+
     - **Content:**
+
+    **Note: **LOGS_COUNT is a number
+
     ```json
     {
-        "message": "Cache Logs returned successfully!",
-        "count": <LOGS_COUNT>,
-        "logs": [[Log Object 1](#log-object), [Log Object 2](#log-object)....],
+      "message": "Cache Logs returned successfully!",
+      "count": "<LOGS_COUNT>",
+      "logs": ["<LOG_OBJECT>", "<LOG_OBJECT>...."]
     }
     ```
 
@@ -92,8 +96,8 @@ Returns all logs according to the provided queries and params.
     - **Content:**
     ```json
     {
-        "message": "Logs returned successfully!",
-        "logs": [[Log Object 1](#log-object), [Log Object 2](#log-object)....],
+      "message": "Logs returned successfully!",
+      "logs": ["<LOG_OBJECT>", "<LOG_OBJECT>...."]
     }
     ```
 
