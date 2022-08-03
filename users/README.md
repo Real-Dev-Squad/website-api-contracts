@@ -18,6 +18,7 @@
   'linkedin_id': string,
   'twitter_id': string,
   'instagram_id': string,
+  'skills': [],
   'website': string,
   'github_display_name': string,
   'isMember': boolean,
@@ -32,7 +33,7 @@
 ## **Requests**
 
 |                 Route                 |             Description              |
-|:-------------------------------------:|:------------------------------------:|
+| :-----------------------------------: | :----------------------------------: |
 |       [GET /users](#get-users)        |   Returns all users in the system    |
 |   [GET /users/self](#get-usersSelf)   | Returns the logged in user's details |
 |    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
