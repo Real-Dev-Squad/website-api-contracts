@@ -1,36 +1,30 @@
-# Logs
+# Cache
 
-## Log object
+## Cache object
 
 ```json
 {
   "type": "string",
-  "meta": "object",
-  "body": "object",
   "timestamp": "object"
 }
 ```
 
 ## **Requests**
 
-|              Route               |                      Description                       |
-| :------------------------------: | :----------------------------------------------------: |
-| [GET /logs/:type](#get-logstype) | Returns all logs according to the provided type of log |
+|          Route           |                       Description                       |
+| :----------------------: | :-----------------------------------------------------: |
+| [GET /cache](#get-cache) | Returns the cloudflare cache meta data of last 24 hours |
 
 ---
 
-## **GET /logs/:type**
+## **GET /cache**
 
-**Note :**
-
-- This API can only be accessed by super user
-
-Returns all logs according to the provided queries and params.
+Returns the cache logs and its count of last 24 hours.
 
 - **Params**  
-  /:type
+  None
 - **Query**  
-  key=value
+  None
 - **Body**  
   None
 - **Headers**  
@@ -41,11 +35,14 @@ Returns all logs according to the provided queries and params.
 - **Success Response:**
 
   - **Code:** 200
+
     - **Content:**
+
     ```json
     {
-      "message": "Logs returned successfully!",
-      "logs": ["<LOG_OBJECT>", "<LOG_OBJECT>...."]
+      "message": "Cache Purged Details returned successfully!",
+      "count": "number",
+      "data": ["<CACHE_OBJECT>", "<CACHE_OBJECT>...."]
     }
     ```
 
