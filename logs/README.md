@@ -25,9 +25,9 @@
 
 - This API can only be accessed by super user
 
-Returns all logs according to the provided queries and params.
+Returns all logs according to the provided queries and path/named-route param.
 
-- **Params**  
+- **Path Param**  
   /:type
 - **Query**  
   key=value

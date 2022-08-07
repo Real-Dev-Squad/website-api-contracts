@@ -1,14 +1,5 @@
 # Cache
 
-## Cache object
-
-```json
-{
-  "type": "string",
-  "timestamp": "object"
-}
-```
-
 ## **Requests**
 
 |          Route           |                       Description                       |
@@ -40,9 +31,10 @@ Returns the cache logs and its count of last 24 hours.
 
     ```json
     {
-      "message": "Cache Purged Details returned successfully!",
+      "id": "string",
+      "message": "Purged cache metadata returned successfully!",
       "count": "number",
-      "data": ["<CACHE_OBJECT>", "<CACHE_OBJECT>...."]
+      "timestamp": "number"
     }
     ```
 
