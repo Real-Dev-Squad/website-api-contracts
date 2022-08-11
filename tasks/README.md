@@ -49,12 +49,13 @@
 
 ## **GET /tasks**
 
-Returns all the tasks or Returns all the tasks which are created after the `<task_object>` whose "id" would be passed in the query `after`. The no. of returned documents is controlled by `limit`again from the query which will also have a default.
+Returns all the tasks or Returns all the tasks which are created after the `<task_object>` whose "id" would be passed in the query `offset`. The no. of returned documents is controlled by `limit`again from the query which will also have a default.
+Extending to that we can also filter them based on the status via passing a query param `status`.
 
 - **Params**  
   None
 - **Query**  
-  _Required:_ limit=[number], after=[string(task id)] `(Only required for pagination)`
+  _Required:_ limit=[number], offset=[string(task id)] `(Only required for pagination)`, status=[active | assigned | unAssigned | blocked | completed] `(for filtering based on the status of the tasks)`
 - **Body**  
   None
 - **Headers**  
@@ -73,8 +74,9 @@ Returns all the tasks or Returns all the tasks which are created after the `<tas
            {<task_object>}
          ],
   meta: {
-    total : {<task_object>}[] length,
-    till : <task_object_id>
+    limit : {<task_object>}[] length (returned tasks length),
+    offset : <task_object_id> (the id of the task which is the last task in the returned array of tasks),
+    total : {<task_object>}[] length (all present at the server)
   },
 }
 ```
