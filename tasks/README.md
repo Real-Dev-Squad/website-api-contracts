@@ -50,11 +50,12 @@
 ## **GET /tasks**
 
 Returns all the tasks or Returns all the tasks which are created after the ```<task_object>``` whose "id" would be passed in the query ```offset```. The no. of returned documents is controlled by ```limit```again from the query which will also have a default.
+Extending to that we can also filter them based on the status via passing a query param `status`.
 
 - **Params**  
   None
 - **Query**  
-  _Required:_ limit=[number], offset=[string(task id)] `(Only required for pagination)`
+  _Required:_ limit=[number], offset=[string(task id)] `(Only required for pagination)`, status=[active | assigned | unAssigned | blocked | completed] `(for filtering based on the status of the tasks)`
 - **Body**  
   None
 - **Headers**  
@@ -65,16 +66,6 @@ Returns all the tasks or Returns all the tasks which are created after the ```<t
 - **Code:** 200
   - **Content:**
 
-```
-{
-  message: 'Tasks returned successfully!'
-  tasks: [
-           {<task_object>},
-           {<task_object>}
-         ]
-}
-```
-  - **Content:** (if queried)
 ```
 {
   message: 'Queried Tasks returned successfully!',
