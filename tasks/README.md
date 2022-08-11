@@ -38,24 +38,23 @@
 
 ## **Requests**
 
-|               Route                |    Description    |
-| :--------------------------------: | :---------------: |
-|      [GET /tasks](#get-tasks)      | Returns all tasks |
-|      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
-|     [POST /tasks](#post-tasks)     | Creates new task  |
-| [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
-| [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
-| [PATCH /tasks/self/:id](#patch-tasksselfid) |  Changes in own task  |
+|                    Route                    |          Description          |
+| :-----------------------------------------: | :---------------------------: |
+|          [GET /tasks](#get-tasks)           |       Returns all tasks       |
+|      [GET /tasks/self](#get-tasksself)      |  Returns all tasks of a user  |
+|         [POST /tasks](#post-tasks)          |       Creates new task        |
+|     [PATCH /tasks/:id](#patch-tasksid)      |         Updates tasks         |
+| [GET /tasks/:username](#get-tasksusername)  | Returns all tasks of the user |
+| [PATCH /tasks/self/:id](#patch-tasksselfid) |      Changes in own task      |
 
 ## **GET /tasks**
 
-Returns all the tasks or Returns all the tasks which are created after the ```<task_object>``` whose "id" would be passed in the query ```offset```. The no. of returned documents is controlled by ```limit```again from the query which will also have a default.
-Extending to that we can also filter them based on the status via passing a query param `status`.
+Returns all the tasks or Returns all the tasks which are created after the `<task_object>` whose "id" would be passed in the query `after`. The no. of returned documents is controlled by `limit`again from the query which will also have a default.
 
 - **Params**  
   None
 - **Query**  
-  _Required:_ limit=[number], offset=[string(task id)] `(Only required for pagination)`, status=[active | assigned | unAssigned | blocked | completed] `(for filtering based on the status of the tasks)`
+  _Required:_ limit=[number], after=[string(task id)] `(Only required for pagination)`
 - **Body**  
   None
 - **Headers**  
@@ -74,18 +73,15 @@ Extending to that we can also filter them based on the status via passing a quer
            {<task_object>}
          ],
   meta: {
-    limit : {<task_object>}[] length (returned tasks length),
-    offset : <task_object_id> (the id of the task which is the last task in the returned array of tasks),
-    total : {<task_object>}[] length (all present at the server)
+    total : {<task_object>}[] length,
+    till : <task_object_id>
   },
 }
 ```
 
-
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
 
 ## **GET /tasks/self**
 
@@ -104,6 +100,7 @@ Returns all the completed tasks of user if query `completed=true` is passed, els
 - **Success Response:**
   - **Code:** 200
     - **Content:**
+
 ```
 [
   {<task_object>},
@@ -121,7 +118,6 @@ Returns all the completed tasks of user if query `completed=true` is passed, els
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-    
 
 ## **GET /tasks/:username**
 
@@ -138,6 +134,7 @@ Returns all tasks of the requested user.
 - **Success Response:**
   - **Code:** 200
     - **Content:**
+
 ```
 {
   message: 'Tasks returned successfully!'
@@ -153,7 +150,6 @@ Returns all tasks of the requested user.
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
 
 ## **POST /tasks**
 
@@ -207,10 +203,11 @@ Returns all tasks of the requested user.
 - **Headers**  
   Content-Type: application/json
 
-- **Body**  
+- **Body**
+
   ```
-  { 
-    status: <new-status> 
+  {
+    status: <new-status>
     percentCompleted: <number>
   }
   ```
@@ -219,6 +216,7 @@ Returns all tasks of the requested user.
   rds-session: `<JWT>`
 
 - **Success Response:**
+
   - **Code**: 200
     - **Content:** `{'message': 'Task updated successfully!'}`
 
