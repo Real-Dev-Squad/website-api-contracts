@@ -47,6 +47,14 @@
   },
   "transparency": string,
   "visibility": string,
+  "tags" : [
+    {
+        "id": string,
+        "displayName": string,
+        "colorId": string,
+        "displayType": string
+    }
+  ]
   "attendees": [
     {
       "id": string,
