@@ -32,13 +32,14 @@
 
 ## **Requests**
 
-|                 Route                 |             Description              |
-| :-----------------------------------: | :----------------------------------: |
-|       [GET /users](#get-users)        |   Returns all users in the system    |
-|   [GET /users/self](#get-usersSelf)   | Returns the logged in user's details |
-|    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
-|      [POST /users](#post-users)       |          Creates a new User          |
-| [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
+|                          Route                          |             Description              |
+| :-----------------------------------------------------: | :----------------------------------: |
+|                [GET /users](#get-users)                 |   Returns all users in the system    |
+|            [GET /users/self](#get-usersSelf)            | Returns the logged in user's details |
+|             [GET /users/:id](#get-usersid)              |      Returns user with given id      |
+|               [POST /users](#post-users)                |          Creates a new User          |
+|          [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
+| [GET /users/skill/:skillName](#get-usersskillskillname) |      Get users with given skill      |
 
 
 ## **GET /users**
@@ -188,3 +189,34 @@ Updates data of the User.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
   - **Code:** 503
     - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
+## **GET /users/skill/:skillName**
+
+Get users with given skill
+- **Params**  
+  _Required:_ `skill=[string]`
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  None
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+```
+{
+  message: 'Users returned successfully!'
+  data: [
+        { <user_object> },
+        { <user_object> },
+    ]
+}
+```
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** ` { "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" } `
+  - **Code:** 404
+    - **Content:** ` { "statusCode": 404, "error": "Not Found", "message": "Invalid Skill. Please re-check input" } `

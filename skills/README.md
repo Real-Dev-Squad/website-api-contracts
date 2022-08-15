@@ -13,12 +13,11 @@
 
 ## **Requests**
 
-|                       Route                       |         Description          |
-| :-----------------------------------------------: | :--------------------------: |
-|            [GET /skills](#get-skills)             | Returns skills in collection |
-|  [POST /skills/:username](#post-skillsusername)   |  Adds skills to collection   |
-|   [GET /skills/:username](#get-skillsusername)    |   Get skills of given user   |
-| [GET /skills/users/:skill](#get-skillsusersskill) |  Get users with given skill  |
+|                     Route                      |         Description          |
+| :--------------------------------------------: | :--------------------------: |
+|           [GET /skills](#get-skills)           | Returns skills in collection |
+| [POST /skills/:username](#post-skillsusername) |  Adds skills to collection   |
+|  [GET /skills/:username](#get-skillsusername)  |   Get skills of given user   |
 
 ## **GET /skills**
 
@@ -37,10 +36,10 @@ Returns all skills
 ```
 {
   message: 'Skills returned successfully!'
-  tasks: [
-           {<skill_object>},
-           {<skill_object>}
-         ]
+  skills: [
+        { <skill_object> },
+        { <skill_object> },
+    ]
 }
 ```
 
@@ -94,39 +93,8 @@ Get skills of given user
 {
     message: "Skills returned successfully!"
     data: [
-       "<skill_string>",
-       "<skill_string>",
-      ] 
+        "<skill_string>",
+        "<skill_string>",
+    ]
 }
 ```
-
-## **GET /skills/users/:skill**
-
-Get users with given skill
-- **Params**  
-  _Required:_ `skill=[string]`
-- **Query**  
-  None
-- **Body**  
-  None
-- **Headers**  
-  None
-- **Cookie**  
-  rds-session: `<JWT>`
-- **Success Response:**
-  - **Code:** 200
-    - **Content:**
-```
-{
-  message: 'Users returned successfully!'
-  data: [
-           { <user_object> },
-           { <user_object> },
-         ]
-}
-```
-- **Error Response:**
-  - **Code:** 401
-    - **Content:** ` { "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" } `
-  - **Code:** 404
-    - **Content:** ` { "statusCode": 404, "error": "Not Found", "message": "Invalid Skill. Please re-check input" } `
