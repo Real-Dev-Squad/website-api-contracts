@@ -15,7 +15,7 @@
   ],
   "endsOn":"<epoch>",
   "startedOn":"<epoch>",
-  "status": "active | assigned | unAssigned | blocked | completed",
+  "status": "AVAILABLE | ASSIGNED | IN_PROGRESS | BLOCKED | SMOKE_TESTING | COMPLETED | NEEDS_REVIEW | IN_REVIEW | APPROVED | MERGED | SANITY_CHECK | REGRESSION_CHECK | RELEASED | VERIFIED",
   "createdBy":"<userId>",
   "assignee":<userId> (in case of individual tasks)",
   "percentCompleted": 0,
