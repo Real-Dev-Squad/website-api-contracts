@@ -194,7 +194,7 @@ Updates data of the User.
 
 Get users with given skill
 - **Params**  
-  _Required:_ `skill=[string]`
+  _Required:_ `skillName=[string]`
 - **Query**  
   None
 - **Body**  
@@ -218,5 +218,5 @@ Get users with given skill
 - **Error Response:**
   - **Code:** 401
     - **Content:** ` { "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" } `
-  - **Code:** 404
-    - **Content:** ` { "statusCode": 404, "error": "Not Found", "message": "Invalid Skill. Please re-check input" } `
+  - **Code:** 400
+    - **Content:** ` { "statusCode": 400, "error": "Bad Request", "message": "Invalid Skill. Please re-check input" } `

@@ -61,15 +61,19 @@ Adds skill to user object
     - **Content:**
 ```
 {
-    message: "Added data successfully!"
-    content: { <skill_object> }
+    message: "Added skill for user successfully!"
+    skill: { <skill_object> }
 }
 ```
 - **Error Response:**
   - **Code:** 401
     - **Content:** ` { "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" } `
-  - **Code:** 404
-    - **Content:** ` { "statusCode": 404, "error": "Not Found", "message": "User doesn't exist" } `
+  - **Code:** 400
+    - **Content:** ` { "statusCode": 400, "error": "Bad Request", "message": "User doesn't exist" } `
+  - **Code:** 400
+    - **Content:** ` { "statusCode": 400, "error": "Bad Request", "message": "\"name\" is required" } `
+  - **Code:** 400
+    - **Content:** ` { "statusCode": 400, "error": "Bad Request", "message": "\"by\" is required" } `
   - **Code:** 500
     - **Content:** ` { "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" } `
 
@@ -92,9 +96,14 @@ Get skills of given user
 ```
 {
     message: "Skills returned successfully!"
-    data: [
+    skills: [
         "<skill_string>",
         "<skill_string>",
     ]
 }
 ```
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** ` { "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" } `
+  - **Code:** 404
+    - **Content:** ` { "statusCode": 404, "error": "Not Found", "message": "User doesn't exist" } `
