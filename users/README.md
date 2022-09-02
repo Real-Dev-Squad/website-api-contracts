@@ -31,13 +31,14 @@
 
 ## **Requests**
 
-|                 Route                 |             Description              |
-|:-------------------------------------:|:------------------------------------:|
-|       [GET /users](#get-users)        |   Returns all users in the system    |
-|   [GET /users/self](#get-usersSelf)   | Returns the logged in user's details |
-|    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
-|      [POST /users](#post-users)       |          Creates a new User          |
-| [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
+|                   Route                   |             Description              |
+| :---------------------------------------: | :----------------------------------: |
+|         [GET /users](#get-users)          |   Returns all users in the system    |
+|     [GET /users/self](#get-usersSelf)     | Returns the logged in user's details |
+|      [GET /users/:id](#get-usersid)       |      Returns user with given id      |
+|        [POST /users](#post-users)         |          Creates a new User          |
+|   [PATCH /users/self](#patch-usersself)   |       Updates data of the User       |
+| [POST /users/picture](#post-userspicture) |     Uploads user profile picture     |
 
 
 ## **GET /users**
@@ -187,3 +188,41 @@ Updates data of the User.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
   - **Code:** 503
     - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+  
+
+## **POST /users/picture**
+
+Upload user proflie picture.
+
+- **Params**  
+  - **in**: formData
+  - **name**: profile
+  - **type**: file
+  - **description**: Profile picture to upload
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: multipart/form-data
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Body** `{ 'image':{'publicId':'image publicId','url':'imageURl'} }`
+- **Success Response:**
+  - **Code:** 200
+    - **Content:** `{ 'message': 'Profile picture uploaded successfully', 'image':{'publicId':'image publicId','url':'imageURl'} }`
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
+  - **Code:** 413
+    - **Content:** `{ 'statusCode': 413, 'error': 'File too large', 'message': 'File too large' }`
+  - **Code:** 415
+    - **Content:** `{ 'statusCode': 415, 'error': 'Unsupported media type', 'message': 'Invalid content-type header: ${contentType}, expected: application/json or multipart/form-data' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+  **Note**
+  - Consumes only [multipart/form-data](https://developer.mozilla.org/en-US/docs/Web/API/FormData)
+  - Accepts only image/png, image/jpeg
+  - Image should be attached to Formfiled with name *'profile'*
+  - Max image size allowed is **2MB**
