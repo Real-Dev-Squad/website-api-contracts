@@ -2,20 +2,20 @@
 
 ## **Requests**
 
-|          Route           |                       Description                       |
-| :----------------------: | :-----------------------------------------------------: |
-| [GET /cache](#get-cache) | Returns the cloudflare cache meta data of last 24 hours |
+|              Route              |                       Description                       |
+| :-----------------------------: | :-----------------------------------------------------: |
+| [GET /cache/member](#get-cache) | Returns the cloudflare cache meta data of last 24 hours |
 
 ---
 
-## **GET /cache**
+## **GET /cache/member**
 
 Returns the cache logs and its count of last 24 hours.
 
 - **Params**  
   None
 - **Query**  
-  None
+  pastHour=24
 - **Body**  
   None
 - **Headers**  
