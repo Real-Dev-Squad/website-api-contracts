@@ -22,6 +22,7 @@
   'github_display_name': string,
   'isMember': boolean,
   'userType': string,
+  'status': string,
   'tokens': {},
   'badges': []
 }
@@ -38,7 +39,7 @@
 |    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
 |      [POST /users](#post-users)       |          Creates a new User          |
 | [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
-
+| [GET /users/idle](#get-usersidle)     |     Return idle users/members        |
 
 ## **GET /users**
 
@@ -187,3 +188,40 @@ Updates data of the User.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
   - **Code:** 503
     - **Content:** `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
+
+## **GET /users/idle**
+
+Get idle user/members
+
+- **Params**  
+  None
+- **Query**
+  members=[boolean]  
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+
+- **Success Response:**
+  - **Code:** 200
+    - **Content:** 
+      ```json
+      {
+        "message": "Idle users returned successfully!",
+        "idleUserUsernames": [
+          <usernames>
+        ]
+      }
+      ```
+    > **Note**: The `idleUserUsernames` will include idle **members** only when the query `members` is passed as `true`. Otherwise the `idleUserUsernames` will include idle **users**.
+- **Error Response:**
+  - **Code:** 503
+    - **Content:** 
+      ```json
+      {
+        "statusCode": 503,
+        "error": "Service Unavailable",
+        "message": "Something went wrong please contact admin"
+      }
+      ```
