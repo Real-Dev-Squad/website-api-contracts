@@ -24,6 +24,8 @@
     <task_id>,
     <task_id>
   ],
+  "level": 1 | 2 | 3 | 4 | 5,
+  "category": "FRONTEND | BACKEND | SYSTEM DESIGN",
   "participants": [
     // for group tasks
     // optional
