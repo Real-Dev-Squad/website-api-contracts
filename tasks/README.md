@@ -44,6 +44,7 @@
 |      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
 |     [POST /tasks](#post-tasks)     | Creates new task  |
 | [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
+| [GET /tasks/:id/details](#get-tasksiddetails)         | Get details of a particular task|
 | [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
 | [PATCH /tasks/self/:id](#patch-tasksselfid) |  Changes in own task  |
 
@@ -112,6 +113,36 @@ Returns all the completed tasks of user if query `completed=true` is passed, els
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **GET /tasks/:id/details**
+
+Returns details of a particular task
+
+- **Params**  
+  _Required:_ `id=[string]`
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+```
+{
+  "message":"task returned successfully",
+  "taskData": [
+    {<task_object>}
+  ]
+}
+```
+
+- **Error Response:**
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Task not found' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
