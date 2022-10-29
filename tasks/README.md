@@ -24,6 +24,8 @@
     <task_id>,
     <task_id>
   ],
+  "level": 1 | 2 | 3 | 4 | 5 // optional - can be added only if category exists, 
+  "category": <string> // optional (example: "FRONTEND" | "BACKEND"),
   "participants": [
     // for group tasks
     // optional
