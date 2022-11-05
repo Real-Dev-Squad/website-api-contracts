@@ -2,20 +2,20 @@
 
 ## **Requests**
 
-|              Route              |                       Description                       |
-| :-----------------------------: | :-----------------------------------------------------: |
-| [GET /cache/member](#get-cache) | Returns the cloudflare cache meta data of last 24 hours |
+|          Route           |                       Description                       |
+| :----------------------: | :-----------------------------------------------------: |
+| [GET /cache](#get-cache) | Returns the cloudflare cache meta data of last 24 hours |
 
 ---
 
-## **GET /cache/member**
+## **GET /cache**
 
-Returns the cache logs and its count of last 24 hours.
+Returns the cache meta data and its count of last 24 hours.
 
 - **Params**  
   None
 - **Query**  
-  pastHour=24
+  None
 - **Body**  
   None
 - **Headers**  
@@ -31,10 +31,10 @@ Returns the cache logs and its count of last 24 hours.
 
     ```json
     {
-      "id": "string",
-      "message": "Purged cache metadata returned successfully!",
-      "count": "number",
-      "timestamp": "number"
+      "clearedCount": "number",
+      "lastCleared": "<ISO 8601 timestamp>",
+      "timeFrom": "<ISO 8601 timestamp>",
+      "timeTo": "<ISO 8601 timestamp of 'NOW'>"
     }
     ```
 
