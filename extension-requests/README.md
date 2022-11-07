@@ -53,3 +53,27 @@ Returns all the extension-requests
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
+## **POST /extension-requests**
+
+- **Params**  
+  None
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Body** `{ <extension_request_object> }`
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'Extension Request created successfully!'
+  task: {<extension_request_object>}
+  id: <newly created extension request id>
+}
+```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
