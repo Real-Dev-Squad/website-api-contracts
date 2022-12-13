@@ -97,12 +97,12 @@ Returns the details of logged in user.
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **GET /users/:id**
+## **GET /users/:username**
 
 Returns the specified user.
 
 - **Params**  
-  _Required:_ `id=[string]`
+  _Required:_ `username=[string]`
 - **Body**  
   None
 - **Headers**  
