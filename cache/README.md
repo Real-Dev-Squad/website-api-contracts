@@ -31,10 +31,9 @@ Returns the cache meta data and its count of last 24 hours.
 
     ```json
     {
-      "clearedCount": "number",
-      "lastCleared": "<ISO 8601 timestamp>",
-      "timeFrom": "<ISO 8601 timestamp>",
-      "timeTo": "<ISO 8601 timestamp of 'NOW'>"
+      "message": "Cache data fetched successfully",
+      "count": "number",
+      "timeLastCleared": "<ISO 8601 timestamp>"
     }
     ```
 
