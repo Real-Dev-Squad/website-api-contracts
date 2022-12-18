@@ -57,9 +57,6 @@ Returns all users in the system.
 - **Success Response:**
 - **Code:** 200
   - **Content:**
-- **Error Response:**  
-  - **Code:** 404
-    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
 
 ```
 {
@@ -73,6 +70,8 @@ Returns all users in the system.
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
 
 ## **GET /users/self**
 
