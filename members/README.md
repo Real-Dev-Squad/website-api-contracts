@@ -1,5 +1,5 @@
-# Members
-
+# Members [will be deprecated]
+> **Note**: `members` api will be deprecated soon, [action item](https://github.com/Real-Dev-Squad/todo-action-items/issues/110)
 ## Member object
 
 Same as the [user](https://github.com/Real-Dev-Squad/website-api-contracts/tree/main/users#user-object) object
