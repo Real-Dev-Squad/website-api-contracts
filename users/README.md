@@ -47,7 +47,7 @@ Returns all users in the system.
 - **Params**  
   None
 - **Query**  
-  size=[integer], page=[integer]
+  size=[integer], page=[integer], search=[string]
 - **Body**  
   None
 - **Headers**  
@@ -57,6 +57,9 @@ Returns all users in the system.
 - **Success Response:**
 - **Code:** 200
   - **Content:**
+- **Error Response:**  
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
 
 ```
 {
