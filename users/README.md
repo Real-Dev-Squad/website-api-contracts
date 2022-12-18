@@ -72,7 +72,7 @@ Returns all users in the system.
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
-    > **Note**: This will be returned based upon the `search` param value.
+    > **Note**: This will be returned based upon the `search` query parameter value.
 ## **GET /users/self**
 
 Returns the details of logged in user.
