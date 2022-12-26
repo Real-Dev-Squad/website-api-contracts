@@ -155,6 +155,8 @@ Returns all the extension requests of a user for a task if query `taskId=<taskId
 - **Body** `{ <extension_request_object> }`
 - **Success Response:**
 - **Code:** 204
+- **Cookie**  
+  rds-session: `<JWT SUPERUSER | APPOWNER >`
 
   - **Content:** `<No Content>`
 
@@ -174,6 +176,8 @@ Returns all the extension requests of a user for a task if query `taskId=<taskId
 - **Body** `{ status:APPROVED | DENIED | PENDING }`
 - **Success Response:**
 - **Code:** 204
+- **Cookie**  
+  rds-session: `<JWT SUPERUSER | APPOWNER >`
 
   - **Content:**
 ```
