@@ -70,7 +70,6 @@ Returns all users in the system.
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
-    > **Note**: This will be returned based upon the `search` query parameter value.
 ## **GET /users/self**
 
 Returns the details of logged in user.
