@@ -13,13 +13,13 @@
 
 ## **Requests**
 
-|              Route               |                      Description                       |
-| :------------------------------: | :----------------------------------------------------: |
-| [GET /logs/:type](#get-logstype) | Returns all logs according to the provided type of log |
+|         Route          |        Description        |
+| :--------------------: | :-----------------------: |
+| [GET /logs](#get-logs) | Returns logs of all types |
 
 ---
 
-## **GET /logs/:type**
+## **GET /logs**
 
 **Note :**
 
@@ -27,10 +27,10 @@
 
 Returns all logs according to the provided queries and path/named-route param.
 
-- **Path Param**  
-  /:type
+- **Param**  
+  None
 - **Query**  
-  key=value
+  type=<LOG_TYPE>
 - **Body**  
   None
 - **Headers**  
