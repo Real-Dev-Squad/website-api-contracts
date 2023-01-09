@@ -47,7 +47,9 @@ Returns all users in the system.
 - **Params**  
   None
 - **Query**  
-  size=[integer], page=[integer]
+  Optional: `size=[integer]` (`size` is number of users requested per page, value ranges in between 1-100, and default value is 100) 
+  <br>
+  Optional: `page=[integer]` (`page` can either be 0 or positive-number, and default value is 0)
 - **Body**  
   None
 - **Headers**  
