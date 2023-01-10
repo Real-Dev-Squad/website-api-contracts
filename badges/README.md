@@ -98,6 +98,8 @@ Creates a new badge
   Content-Type: multipart/form-data
 - **Cookie**  
   rds-session: `JWT`
+- **Authorize Roles:**
+  SUPERUSER
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ 'message': 'Badge created succesfully', 'badge': {<badge_object>} }` 
@@ -124,6 +126,8 @@ Assigns a badge to the user
   Content-Type: application/json
 - **Cookie**  
   rds-session: `JWT`
+- **Authorize Roles:**
+  SUPERUSER
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ 'message': 'Badges assigned succesfully' }` 
@@ -146,6 +150,8 @@ Unassigns a badge from user badges
   Content-Type: application/json
 - **Cookie**  
   rds-session: `JWT`
+- **Authorize Roles:**
+  SUPERUSER
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ 'message': 'Badges unassigned succesfully' }` 
