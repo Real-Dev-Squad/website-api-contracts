@@ -9,6 +9,12 @@
 
 ---
 
+**NOTE**
+
+- There is a limitation in the **POST** API, that Superuser cannot clear their
+  cache, if they have already cleared the other users cache for more than 3
+  times in last 24 hours.
+
 ## **GET /cache**
 
 Returns the cache meta data and its count of last 24 hours.
@@ -67,7 +73,8 @@ Purges the cloudflare cache of a page
 - **Query**  
   None
 - **Body**  
-  None
+  user: "<USERNAME>" // optional - only super user has authority to pass this
+  JSON
 - **Headers**  
   X-Auth-Key: `<CLOUDFLARE_X_AUTH_KEY>` 
   X-Auth-Email: `<CLOUDFLARE_X_AUTH_EMAIL>`
@@ -76,10 +83,10 @@ Purges the cloudflare cache of a page
 
 - **Data** 
   files: `<FILES>`
-- **API Used**
+- **API Used** 
   CLOUDFLARE_PURGE_CACHE_API: `https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache`
 
-- **Success Response:**
+- **Success Responses:**
 
   - **Code:** 200
     - **Content:**
@@ -94,9 +101,24 @@ Purges the cloudflare cache of a page
       "messages": []
     }
     ```
+  - **Code:** 200
+    - **Content:**
+    ```json
+    {
+      "message": "Maximum Limit Reached for Purging Cache. Please try again after some time"
+    }
+    ```
 
 - **Error Responses:**
-
+  - **Code:** 400
+    - **Content:**
+    ```json
+    {
+      "statusCode": 400,
+      "error": "Bad Request",
+      "message": "Bad Request"
+    }
+    ```
   - **Code:** 401
     - **Content:**
     ```json
