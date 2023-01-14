@@ -13,3 +13,5 @@
 - [Pull Requests](/pull-requests)
 - [Tasks](/tasks)
 - [Users](/users)
+- [Badges](/badges)
+- [CloudflareCache](/cloudflare-cache)
