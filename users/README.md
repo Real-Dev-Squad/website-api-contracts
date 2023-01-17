@@ -26,19 +26,19 @@
   'badges': []
 }
 ```
-**Note:**: Only the GET `users/self` route will return `phone` and `email` if `private` query is passed as true. This way we are not exposing users' phone numbers and email addresses to everyone. Users can only see their own phone number and email address.
 
+**Note:**: Only the GET `users/self` route will return `phone` and `email` if `private` query is passed as true. This way we are not exposing users' phone numbers and email addresses to everyone. Users can only see their own phone number and email address.
 
 ## **Requests**
 
-|                 Route                 |             Description              |
-|:-------------------------------------:|:------------------------------------:|
-|       [GET /users](#get-users)        |   Returns all users in the system    |
-|   [GET /users/self](#get-usersSelf)   | Returns the logged in user's details |
-|    [GET /users/:id](#get-usersid)     |      Returns user with given id      |
-|      [POST /users](#post-users)       |          Creates a new User          |
-| [PATCH /users/self](#patch-usersself) |       Updates data of the User       |
-
+|                    Route                    |             Description              |
+| :-----------------------------------------: | :----------------------------------: |
+|          [GET /users](#get-users)           |   Returns all users in the system    |
+|      [GET /users/self](#get-usersSelf)      | Returns the logged in user's details |
+|       [GET /users/:id](#get-usersid)        |      Returns user with given id      |
+| [GET /users/:id/badges](#get-usersidbadges) | Returns badges assigned to the user  |
+|         [POST /users](#post-users)          |          Creates a new User          |
+|    [PATCH /users/self](#patch-usersself)    |       Updates data of the User       |
 
 ## **GET /users**
 
@@ -47,7 +47,7 @@ Returns all users in the system.
 - **Params**  
   None
 - **Query**  
-  Optional: `size=[integer]` (`size` is number of users requested per page, value ranges in between 1-100, and default value is 100) 
+  Optional: `size=[integer]` (`size` is number of users requested per page, value ranges in between 1-100, and default value is 100)
   <br>
   Optional: `page=[integer]` (`page` can either be 0 or positive-number, and default value is 0)
 - **Body**  
@@ -80,7 +80,7 @@ Returns the details of logged in user.
 - **Params**  
   None
 - **Query**
-  private=[boolean]    
+  private=[boolean]
 - **Body**  
   None
 - **Headers**  
@@ -90,7 +90,7 @@ Returns the details of logged in user.
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ <user_object> }`
-    > **Note**: The user object will include `phone` and `email` only when the query `private` is passed as `true` for this route. No other route will return `phone` and `email`.
+      > **Note**: The user object will include `phone` and `email` only when the query `private` is passed as `true` for this route. No other route will return `phone` and `email`.
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -141,6 +141,26 @@ Returns the availability of username.
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
+## **GET /users/:id/badges**
+
+Returns badges assigned to the user
+
+- **Params**  
+  Required: `id=[string]`
+- **Query**  
+  None
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  None
+- **Success Response:**
+- **Code:** 200
+  - **Content:** `{ 'message': 'Badges returned succesfully', 'badges': Array<badge_object> }`
+- **Error Response:**
+  - **Code:** 400
+    - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Failed to get user badges.' }`
 
 ## **POST /users**
 
