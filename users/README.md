@@ -35,7 +35,8 @@
 | :-------------------------------------------------: | :----------------------------------: |
 |              [GET /users](#get-users)               |   Returns all users in the system    |
 |          [GET /users/self](#get-usersSelf)          | Returns the logged in user's details |
-| [GET /users/userId/:userId](#get-usersuseriduserid) |      Returns user with given id      |
+| [GET /users/userId/:userId](#get-usersuseriduserid) |    Returns user with given userId    |
+|     [GET /users/:username](#get-usersusername)      |   Returns user with given username   |
 |             [POST /users](#post-users)              |          Creates a new User          |
 |        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       |
 
@@ -132,15 +133,15 @@ Returns the specified user.
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
-  rds-session: `<JWT>`
+  None
 - **Success Response:**
 - **Code:** 200
   - **Content:** `{ 'message': 'User returned successfully!', 'user': <user_object> }`
 - **Error Response:**
   - **Code:** 404
     - **Content:** `{ error: 'Not Found', message: 'User doesn't exist' }`
-  - **Code:** 401
-    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 503
+    - **Content:** `{  'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin"' }`
 
 ## **GET /users/isUsernameAvailable/:username**
 
