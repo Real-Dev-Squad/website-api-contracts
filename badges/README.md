@@ -15,12 +15,12 @@
 
 ## **Requests**
 
-|                       Route                       |            Description             |
-| :-----------------------------------------------: | :--------------------------------: |
-|            [GET /badges](#get-badges)             |  Returns all badges in the system  |
-|           [POST /badges](#post-badges)            |        Creates a new badge         |
-|     [POST /badges/assign](#post-badgesassign)     |    Assigns a badge to the user     |
-| [DELETE /badges/unassign](#delete-badgesunassign) | Unassigns a badge from user badges |
+|                     Route                     |            Description             |
+| :-------------------------------------------: | :--------------------------------: |
+|          [GET /badges](#get-badges)           |  Returns all badges in the system  |
+|         [POST /badges](#post-badges)          |        Creates a new badge         |
+|   [POST /badges/assign](#post-badgesassign)   |     Assigns badges to the user     |
+| [DELETE /badges/remove](#delete-badgesremove) | Remove assigned badges from a user |
 
 ## **GET /badges**
 
@@ -51,7 +51,8 @@ Returns all badges in the system.
 
 - **Error Response:**
   - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
+    - **Content:**
+      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
 
 ## **POST /badges**
 
@@ -62,29 +63,28 @@ Creates a new badge
 - **Query**  
   None
 - **Body**  
-  Required: `file=[File Object]`
-  <br>
-  Required: `name=[string]`
-  <br>
-  Required: `createdBy=[string]`
-  <br>
-  Optional: `description=[string]` (`description` default value is empty string(''))
+  Required: `file=[File Object]` <br> Required: `name=[string]` <br> Required:
+  `createdBy=[string]` <br> Optional: `description=[string]` (`description`
+  default value is empty string(''))
 - **Headers**  
   Content-Type: multipart/form-data
 - **Cookie**  
   rds-session: `JWT`
-- **Authorize Roles:**
-  SUPERUSER
+- **Authorize Roles:** SUPERUSER
 - **Success Response:**
   - **Code:** 200
-    - **Content:** `{ 'message': 'Badge created succesfully', 'badge': {<badge_object>} }`
+    - **Content:**
+      `{ 'message': 'Badge created succesfully', 'badge': {<badge_object>} }`
 - **Error Response:**
   - **Code:** 400
-    - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'API payload failed validation, <validation_fail_message>' }`
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'API payload failed validation, <validation_fail_message>' }`
   - **Code:** 401
-    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated user' }`
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated user' }`
   - **Code:** 422
-    - **Content:** `{ 'statusCode': 422, 'error': 'Unprocessable Entry', 'message': 'Only one file allowed' }`
+    - **Content:**
+      `{ 'statusCode': 422, 'error': 'Unprocessable Entry', 'message': 'Only one file allowed' }`
 
 ## **POST /badges/assign**
 
@@ -95,43 +95,40 @@ Assigns a badge to the user
 - **Query**  
   None
 - **Body**  
-  Required: `badgeIds=Array<string>` (`badgeIds` allows unique and non-empty ids)
-  <br>
-  Required: `userId=[string]`
+  Required: `badgeIds=Array<string>` (`badgeIds` allows unique and non-empty
+  ids) <br> Required: `userId=[string]`
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
   rds-session: `JWT`
-- **Authorize Roles:**
-  SUPERUSER
+- **Authorize Roles:** SUPERUSER
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ 'message': 'Badges assigned succesfully' }`
 - **Error Response:**
   - **Code:** 400
-    - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'API payload failed validation, <validation_fail_message>' }`
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'API payload failed validation, <validation_fail_message>' }`
 
-## **DELETE /badges/unassign**
+## **DELETE /badges/remove**
 
-Unassigns a badge from user badges
+Remove assigned badges from a user
 
-- **Params**
-  None
+- **Params** None
 - **Query**  
   None
 - **Body**  
-  Required: `badgeIds=Array<string>` (`badgeIds` allows unique and non-empty ids)
-  <br>
-  Required: `userId=[string]`
+  Required: `badgeIds=Array<string>` (`badgeIds` allows unique and non-empty
+  ids) <br> Required: `userId=[string]`
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
   rds-session: `JWT`
-- **Authorize Roles:**
-  SUPERUSER
+- **Authorize Roles:** SUPERUSER
 - **Success Response:**
   - **Code:** 200
-    - **Content:** `{ 'message': 'Badges unassigned succesfully' }`
+    - **Content:** `{ 'message': 'Badges removed succesfully' }`
 - **Error Response:**
   - **Code:** 400
-    - **Content:** `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'API payload failed validation, <validation_fail_message>' }`
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'API payload failed validation, <validation_fail_message>' }`
