@@ -3,6 +3,7 @@
 ## APIs
 
 - [Auctions](/auctions)
+- [Badges](/badges)
 - [Challenges](/challenges)
 - [Contributions](/contributions)
 - [Crypto](/crypto)
