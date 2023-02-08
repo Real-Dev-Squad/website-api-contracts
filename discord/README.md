@@ -22,7 +22,7 @@ Creates the data of discord bot and user data linking
   {
     "token": "<ENCRYPTED_TOKEN> (String)",
     "discordId": "<DISCORD_USER_ID> (String)",
-    "generationTime": "<CURRENT_TIME_TIMESTAMP> (Number)",
+    "timestamp": "<CURRENT_TIME_TIMESTAMP> (Number)",
     "expiry": "<EXPIRY_TIME_TIMESTAMP> (Number)",
     "linkStatus": "<LINK_STATUS> (Boolean)"
   }
