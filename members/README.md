@@ -1,3 +1,4 @@
+# Members
 ## Member object
 
 Same as the [user](https://github.com/Real-Dev-Squad/website-api-contracts/tree/main/users#user-object) object
