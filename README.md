@@ -3,6 +3,7 @@
 ## APIs
 
 - [Auctions](/auctions)
+- [Badges](/badges)
 - [Challenges](/challenges)
 - [Contributions](/contributions)
 - [Crypto](/crypto)
@@ -13,3 +14,4 @@
 - [Tasks](/tasks)
 - [Users](/users)
 - [Badges](/badges)
+- [CloudflareCache](/cloudflare-cache)
