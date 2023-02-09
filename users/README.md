@@ -71,8 +71,8 @@ Returns all users in the system.
            {<user_object>}
          ]
   links: {
-    "next": "/users?next={<DB document id>}&size={number}",
-    "prev": "/users?prev={<DB document id>}&size={number}"
+    next: '/users?next={<DB document id>}&size={number}&search={string}',
+    prev: '/users?prev={<DB document id>}&size={number}&search={string}'
   }
 }
 ```
