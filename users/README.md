@@ -53,7 +53,7 @@ Returns all users in the system.
 - **Query**  
   Optional: `size=[integer]` (`size` is number of users requested per page,
   value ranges in between 1-100, and default value is 100) <br> Optional: `page=[integer]`
-  (`page` can either be 0 or positive-number, and default value is 0) <br> Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.) <br> Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
+  (`page` can either be 0 or positive-number, and default value is 0) <br> `search=[string]` (`search` is a string value for username prefix) <br> Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.) <br> Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
 - **Body**  
   None
 - **Headers**  
