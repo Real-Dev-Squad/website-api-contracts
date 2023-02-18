@@ -2,16 +2,16 @@
 
 ## **Requests**
 
-|                       Route                        |                         Description                         |
-| :------------------------------------------------: | :---------------------------------------------------------: |
-| [POST /external-accounts](#post-external-accounts) | Creates the data of external accounts and user data linking |
-|  [GET /external-accounts](#get-external-accounts)  |         Fetches the accountId of a external account         |
+|                       Route                        |                                 Description                                  |
+| :------------------------------------------------: | :--------------------------------------------------------------------------: |
+| [POST /external-accounts](#post-external-accounts) | Creates the data of external accounts for linking to Real Dev Squad accounts |
+|  [GET /external-accounts](#get-external-accounts)  |                 Fetches the accountId of a external account                  |
 
 ---
 
 ## **POST /external-accounts**
 
-Creates the data of external accounts and user data linking
+Creates the data of external accounts for linking to Real Dev Squad accounts
 
 - **Params**  
   None
