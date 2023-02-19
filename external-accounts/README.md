@@ -5,7 +5,7 @@
 |                       Route                        |                                 Description                                  |
 | :------------------------------------------------: | :--------------------------------------------------------------------------: |
 | [POST /external-accounts](#post-external-accounts) | Creates the data of external accounts for linking to Real Dev Squad accounts |
-|  [GET /external-accounts](#get-external-accounts)  |                 Fetches the data (attributes) of a external account                  |
+|  [GET /external-accounts](#get-external-accounts)  |                 Fetches the data (attributes) of a external account          |
 
 ---
 
