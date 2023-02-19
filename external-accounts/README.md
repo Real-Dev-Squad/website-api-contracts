@@ -22,6 +22,7 @@ Creates the data of external accounts for linking to Real Dev Squad accounts
   ```json
   {
     "type": "<ACCOUNT_TYPE> (String)",
+    "token": "<ENCRYPTED_TOKEN> (String)",
     "attributes": "<ACCOUNT_ATTRIBUTES> (Object)",
   }
   ```
