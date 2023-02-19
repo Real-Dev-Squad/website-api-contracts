@@ -22,10 +22,7 @@ Creates the data of external accounts for linking to Real Dev Squad accounts
   ```json
   {
     "type": "<ACCOUNT_TYPE> (String)",
-    "token": "<ENCRYPTED_TOKEN> (String)",
-    "accountId": "<ACCOUNT_ID> (String)",
-    "timestamp": "<CURRENT_TIME_TIMESTAMP> (Timestamp)",
-    "expiry": "<EXPIRY_TIME_TIMESTAMP> (Timestamp)"
+    "attributes": "<ACCOUNT_ATTRIBUTES> (Object)",
   }
   ```
 
@@ -38,7 +35,7 @@ Creates the data of external accounts for linking to Real Dev Squad accounts
     - **Content:**
     ```json
     {
-      "accountId": "Added account data successfully"
+      "message": "Added account data successfully"
     }
     ```
 
@@ -73,7 +70,7 @@ Creates the data of external accounts for linking to Real Dev Squad accounts
 
 ## **GET /external-accounts**
 
-Fetches the accountId of a external account
+Fetches the data of a external account
 
 - **Params**  
   :token : `<EXTERNAL_ACCOUNT_TOKEN> (String)`
@@ -90,7 +87,7 @@ Fetches the accountId of a external account
     - **Content:**
     ```json
     {
-      "accountId": "<ACCOUNT_ID> (String)"
+      "attributes": "<ACCOUNT_ATTRIBUTES> (Object)"
     }
     ```
 
