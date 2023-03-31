@@ -106,7 +106,7 @@ Create a new room, either randomly or with the requested configuration.
 
 ## GET /rooms
 
-Get all the rooms created
+Get all the created rooms.
 
 - Params:
   - enabled: true/false
@@ -339,7 +339,7 @@ To retrieve all the sessions.
 
 ## GET - /session/:status
 
-To get currently running session.
+To get currently running sessions.
 
 - Params:
   - active: true/false
