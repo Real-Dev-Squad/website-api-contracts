@@ -305,4 +305,5 @@ Returns users in the system based on the specified filters.
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong please contact admin.' }`
+    - **Content:** 
+      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong please contact admin.' }`
