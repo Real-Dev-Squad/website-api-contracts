@@ -43,6 +43,7 @@ number and email address.
 |   [GET /users/:userId/badges](#get-usersidbadges)   | Returns badges assigned to the user  |
 |             [POST /users](#post-users)              |          Creates a new User          |
 |        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       |
+|        [GET /users/filter](#get-usersfilter)        |  Returns user data based on a filter |
 
 ## **GET /users**
 
@@ -260,3 +261,48 @@ Updates data of the User.
   - **Code:** 503
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
+## **GET /users/filter**
+
+Returns users in the system based on the specified filters.
+
+- **Params**  
+  None
+- **Query**
+  Required: filterParams=[object] (filterParams is an object containing the filter criteria) <br>
+  Optional: 
+    `levelId=[string]` (an array of level IDs to filter users by) <br> 
+  Optional: 
+    `levelNumber=[number]` (an array of level names to filter users by.) <br> 
+  Optional: 
+    `levelName=[string]` (an array of level names to filter users by.) <br> 
+  Optional: 
+    `tagId=[string]` (an array of tag IDs / Skill Ids to filter users by.) <br> 
+  Optional: 
+    `state=[string]` (an array of user states to filter users by i.e OOO, IDLE, ACTIVE ) <br> 
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+- **Code:** 200
+  - **Content:**
+
+```
+{
+  message: 'Users returned successfully!'
+  users: [
+           {<user_object>}
+         ]
+  count: 'number'
+}
+```
+
+- **Error Response:**
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong please contact admin.' }`
