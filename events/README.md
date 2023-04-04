@@ -12,44 +12,44 @@
   'lock': boolean,
   'region': <'in' | 'us' | 'eu' | 'auto'>,
   'peers': [
-    "peer_id": string,
-    "peer_id": string,
-    "peer_id": string
+    "<peer_id>",
+    "<peer_id>",
+    "<peer_id>"
    ]
-  'createdBy': {
+  'created_by': {
     ref: 'User',
   },
   questions: [
-     "question_id": string,
-     "question_id": string,
-     "question_id": string
+    "<question_id>",
+    "<question_id>",
+    "<question_id>"
   ],
   comments: [
-    "comment_id": string,
-    "comment_id": string,
-    "comment_id": string
+    "<comment_id>",
+    "<comment_id>",
+    "<comment_id>",
   ],
   status: <'active' | 'inactive'>,
   'timestamp': {
-    'createdAt': new Date(),
-    'updatedAt': new Date(),
+    'created_at': timestamp,
+    'updated_at': timestamp,
   }
 }
 ```
 
 ## Requests
 
-| Route                                                       | Description                                                            |
-| ----------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [POST /rooms](#post---rooms)                                | Create a new room, either randomly or with the requested configuration |
-| [GET /rooms](#get-rooms)                                    | Get all the rooms                                                      |
-| [POST /join](#post---join)                                  | Generate an auth token for a peer to join a room                       |
-| [GET /rooms/:id=<ROOM_ID>](#get---roomsidroom_id)           | Retrieves the details of a specific active room.                       |
-| [PUT /rooms](#put---rooms)                                  | Update the room, make room enabled/disabled,                           |
-| [DELETE /rooms](#delete---rooms)                            | Trigger this request to end an active room.                            |
-| [GET /session](#get---session)                              | To retrieve all the sessions.                                          |
-| [GET /session/:status](#get---sessionstatus)                | To get currently running session.                                      |
-| [GET /session/:id=<SESSION_ID>](#get---sessionidsession_id) | Retrieves the details of a specific active session.                    |
+| Route                                                        | Description                                                            |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| [POST /rooms](#post---rooms)                                 | Create a new room, either randomly or with the requested configuration |
+| [GET /rooms](#get-rooms)                                     | Get all the rooms                                                      |
+| [POST /join](#post---join)                                   | Generate an auth token for a peer to join a room                       |
+| [GET /rooms/:id=<ROOM_ID>](#get---roomsidroom_id)            | Retrieves the details of a specific active room.                       |
+| [PUT /rooms](#put---rooms)                                   | Update the room, make room enabled/disabled,                           |
+| [DELETE /rooms](#delete---rooms)                             | Trigger this request to end an active room.                            |
+| [GET /sessions](#get---session)                              | To retrieve all the sessions.                                          |
+| [GET /sessions/:status](#get---sessionstatus)                | To get currently running session.                                      |
+| [GET /sessions/:id=<SESSION_ID>](#get---sessionidsession_id) | Retrieves the details of a specific active session.                    |
 
 ## POST - /rooms
 
@@ -92,8 +92,8 @@ Create a new room, either randomly or with the requested configuration.
         },
         "template_id": "<template_id>",
         "region": "in",
-        "created_at": "",
-        "updated_at": ""
+        "created_at": "YYYY-MM-DDTHH:MM:SS.sssZ",
+        "updated_at": "YYYY-MM-DDTHH:MM:SS.sssZ"
       }
       ```
 - **Error Response:**
@@ -129,8 +129,8 @@ Get all the created rooms.
       {
       	"limit": 10,
       	"data": [
-      		<ROOM_OBJECT>,
-      		<ROOM_OBJECT>,
+      		<room_object>,
+      		<room_object>,
       	]
       }
       ```
@@ -206,8 +206,12 @@ Retrieves the details of a specific active room.
         "customer_id": "<customer_id>",
         "session": {
           "id": "<session_id>",
-          "created_at": "",
-          "peers": ["peer_id", "peer_id", "peer_id"]
+          "created_at": "YYYY-MM-DDTHH:MM:SS.sssZ",
+          "peers": [
+            <peer_object>,
+            <peer_object>,
+            <peer_object>
+          ]
         }
       }
       ```
@@ -274,9 +278,9 @@ Trigger this request to end an active room.
   - Optional: **`lock=[boolean]`** (if true, no new peers will be allowed to join the room after it is ended.)
   ```json
   {
-  		"id": "<room_id>"
-      "reason": "Class has ended",
-      "lock": false
+    "id": "<room_id>",
+    "reason": "Class has ended",
+    "lock": false
   }
   ```
 - **Headers**
@@ -289,7 +293,7 @@ Trigger this request to end an active room.
     - **Content:**
       ```json
       {
-        "message": "session is ending"
+        "message": "Session is ending."
       }
       ```
 - **Error Response:**
@@ -300,7 +304,7 @@ Trigger this request to end an active room.
     - **Content**
       **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't end the room. Please try again later'}`**
 
-## GET - /session
+## GET - /sessions
 
 To retrieve all the sessions.
 
@@ -324,8 +328,8 @@ To retrieve all the sessions.
       {
       	"limit": 10,
       	"data": [
-      		<SESSION_OBJECT>,
-      		<SESSION_OBJECT>,
+      		<session_object>,
+      		<session_object>,
       	]
       }
       ```
@@ -337,7 +341,7 @@ To retrieve all the sessions.
     - **Content**
       `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't get sessions. Please try again later'`
 
-## GET - /session/:status
+## GET - /sessions/:status
 
 To get currently running sessions.
 
@@ -362,8 +366,8 @@ To get currently running sessions.
       {
       	"limit": 10,
       	"data": [
-      		<SESSION_OBJECT>,
-      		<SESSION_OBJECT>,
+      		<session_object>,
+      		<session_object>,
       	]
       }
       ```
@@ -375,7 +379,7 @@ To get currently running sessions.
     - **Content**
       `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't get sessions. Please try again later'`
 
-## GET - /session/:id=<SESSION_ID>
+## GET - /sessions/:id=<SESSION_ID>
 
 Retrieves the details of a specific active session.
 
@@ -398,10 +402,10 @@ Retrieves the details of a specific active session.
         "room_id": "<room_id>",
         "customer_id": "<customer_id>",
         "active": false,
-        "peers": {
-          "peer_id": {},
-          "peer_id": {}
-        }
+        "peers": [
+      		<peer_object>,
+      		<peer_object>
+      	]
       }
       ```
 - **Error Response:**
