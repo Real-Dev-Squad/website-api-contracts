@@ -19,22 +19,72 @@
   'created_by': {
     ref: 'User',
   },
-  questions: [
+  'questions': [
     "<question_id>",
     "<question_id>",
     "<question_id>"
   ],
-  comments: [
+  'comments;: [
     "<comment_id>",
     "<comment_id>",
     "<comment_id>",
   ],
-  status: <'active' | 'inactive'>,
+  'status': <'active' | 'inactive'>,
   'timestamp': {
     'created_at': timestamp,
     'updated_at': timestamp,
   }
 }
+```
+
+## Peers object
+
+```
+{
+  'id': string,
+  'session_id': string,
+  'name': string,
+  'role': <'host' | 'moderator' | 'guest' | 'maven'>,
+  'user_id': string,
+  'joined_at': timestamp,
+  'left_at': timestamp,
+  'isRdsUser': boolean,
+  // extends user model
+}
+```
+
+## Questions object
+
+```
+{
+	'question_id': string,
+	'user_id': string,
+	'question': string,
+	'isNew': boolean, //default to true,
+	'session_id': string,
+	'timestamps': {
+      'created_at': timestamp,
+      'updated_at': timestamp,
+	}
+}
+```
+
+## Comments object
+
+```
+{
+	'comment_id': string,
+	'comment': string,
+	'comment_by': string, //user id of the user who commented
+	'isBlocked': boolean,
+	'isPinned': boolean,
+	'session_id': string,
+	'timestamps': {
+      'created_at': timestamp,
+      'updated_at': timestamp,
+	}
+}
+
 ```
 
 ## Requests
