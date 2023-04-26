@@ -87,6 +87,8 @@
 
 ```
 
+> Note: The <management_token> for the Authorization is form a connection between RDS backend and 100ms backend.
+
 ## Requests
 
 | Route                                                        | Description                                                            |
