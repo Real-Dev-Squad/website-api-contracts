@@ -223,7 +223,6 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
     - **Content:** 
       ```json
       {
-        "statusCode": 401,
         "error": "Unauthorized",
         "message": "Authentication credentials are missing or invalid."
       }
@@ -232,7 +231,6 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
     - **Content:** 
       ```json
       {
-        "statusCode": 403,
         "error": "Forbidden",
         "message": "You do not have permission to access this resource."
       }
@@ -241,7 +239,6 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
     - **Content:** 
       ```json
       {
-        "statusCode": 404,
         "error": "Not Found",
         "message": "Task or user not found"
       }
@@ -250,7 +247,6 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
     - **Content:** 
       ```json
       {
-        "statusCode": 500,
         "error": "Internal Server Error",
         "message": "An internal server error occurred."
       }
