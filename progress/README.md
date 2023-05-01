@@ -136,13 +136,13 @@ Retrieves progress entries based on the provided parameters.
 - **Error Response:**
   - **Code:** 401
     - **Content:** 
-		```json
-		{
-			"statusCode": 401,
-			"error": "Unauthorized",
-			"message": "Authentication credentials are missing or invalid."
-		}
-		```
+	```json
+	{
+		"statusCode": 401,
+		"error": "Unauthorized",
+		"message": "Authentication credentials are missing or invalid."
+	}
+	```
   - **Code:** 400
     - **Content:** 
   	```json
