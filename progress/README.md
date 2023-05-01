@@ -258,13 +258,12 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
 
 - **Example:**
 	Request:
-	DELETE /progress/5d4c3f6079a8b775451db867
-	Content-Type: application/json
+	DELETE /progress/user/5d4c3f6079a8b775451db867
 	Response:
-	status 200 OK
+	status 204
 	Content-Type: application/json
 	```json
 	{
-		"message": "Progress entry with ID '5d4c3f6079a8b775451db867' deleted successfully."
+		"message": "Progress entry with ID 5d4c3f6079a8b775451db867 deleted successfully."
 	}
 	```
