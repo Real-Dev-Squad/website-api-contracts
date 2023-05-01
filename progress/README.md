@@ -128,10 +128,10 @@ Retrieves progress entries based on the provided parameters.
   - **Code:** 201
     - **Content:** 
     ```json
-		{
-			"message": "Progress entry created successfully.",
-			"progress": { "<progress_object>" }
-		}
+	{
+		"message": "Progress entry created successfully.",
+		"progress": { "<progress_object>" }
+	}
     ```
 - **Error Response:**
   - **Code:** 401
