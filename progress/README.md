@@ -25,8 +25,10 @@ Retrieves progress entries based on the provided parameters.
   None
 - **Success Response:**
   - **Code:** 200
-    - **Content:** ```json{
-      message: 'User progress retrieved successfully.',
+    - **Content:** 
+    ```json
+		{
+      "message": "User progress retrieved successfully.",
       "progress": [
         { "<user_progress_object_1>" },
         { "<user_progress_object_2>" },
@@ -113,20 +115,20 @@ Retrieves progress entries based on the provided parameters.
   - **Code:** 200
     - **Content:** 
     ```json
-      {
-        "message": "Progress entry created successfully.",
-        "progress": { "<progress_object>" }
-      }
+		{
+			"message": "Progress entry created successfully.",
+			"progress": { "<progress_object>" }
+		}
     ```
 - **Error Response:**
   - **Code:** 401
     - **Content:** 
 		```json
-			{
-				"statusCode": 401,
-				"error": "Unauthorized",
-				"message": "Authentication credentials are missing or invalid."
-			}
+		{
+			"statusCode": 401,
+			"error": "Unauthorized",
+			"message": "Authentication credentials are missing or invalid."
+		}
 		```
   - **Code:** 404
     - **Content:** 
@@ -141,11 +143,11 @@ Retrieves progress entries based on the provided parameters.
   - **Code:** 500
     - **Content:** 
     ```json
-			{
-				"statusCode": 500,
-		 		"error": "Internal Server Error",
-		  	"message": "The User Status could not be found as an internal server error occurred."
-			}
+		{
+			"statusCode": 500,
+			"error": "Internal Server Error",
+			"message": "The User Status could not be found as an internal server error occurred."
+		}
     ```
 - **Example:**
 	POST /progress
@@ -165,19 +167,19 @@ Retrieves progress entries based on the provided parameters.
 	Status 201 Created
 	Content-Type: application/json
 	```json
-		{
-			"message": "Progress entry created successfully.",
-			"progress": {
-				"id": "5d4c3f6079a8b775451db867",
-				"type": "task",
-				"userId": "d8d7014sd69f535637c47ab7",
-				"taskId": "167cfb7dd45ad967s3380547",
-				"completed": "50%",
-				"planned": "80%",
-				"blockers": "Waiting for approval",
-				"createdAt": 1654101900000
-  		}
+	{
+		"message": "Progress entry created successfully.",
+		"progress": {
+			"id": "5d4c3f6079a8b775451db867",
+			"type": "task",
+			"userId": "d8d7014sd69f535637c47ab7",
+			"taskId": "167cfb7dd45ad967s3380547",
+			"completed": "50%",
+			"planned": "80%",
+			"blockers": "Waiting for approval",
+			"createdAt": 1654101900000
 		}
+	}
 	```
 
 ## **DELETE /progress/:id**
@@ -197,29 +199,29 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
 - **Success Response:**
   - **Code:** 200
     - **Content:** 
-		```json
+			```json
 			{
-  			"message": "Progress entry with ID '<id>' deleted successfully."
+				"message": "Progress entry with ID '<id>' deleted successfully."
 			}
-		```
+			```
 - **Error Response:**
   - **Code:** 401
     - **Content:** 
     ```json
-			{
-				"statusCode": 401,
-				"error": "Unauthorized",
-				"message": "Authentication credentials are missing or invalid."
-			}
+		{
+			"statusCode": 401,
+			"error": "Unauthorized",
+			"message": "Authentication credentials are missing or invalid."
+		}
 		```
   - **Code:** 403
     - **Content:** 
     ```json
-			{
-				"statusCode": 403,
-				"error": "Forbidden",
-				"message": "You do not have permission to access this resource."
-			}
+		{
+			"statusCode": 403,
+			"error": "Forbidden",
+			"message": "You do not have permission to access this resource."
+		}
 		```
   - **Code:** 404
     - **Content:** 
@@ -233,11 +235,11 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
   - **Code:** 500
     - **Content:** 
     ```json
-			{
-				"statusCode": 500,
-		 		"error": "Internal Server Error",
-		  	"message": "An internal server error occurred."
-			}
+		{
+			"statusCode": 500,
+			"error": "Internal Server Error",
+			"message": "An internal server error occurred."
+		}
     ```
 
 - **Example:**
@@ -248,7 +250,7 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
 	status 200 OK
 	Content-Type: application/json
 	```json
-		{
-			"message": "Progress entry with ID '5d4c3f6079a8b775451db867' deleted successfully."
-		}
+	{
+		"message": "Progress entry with ID '5d4c3f6079a8b775451db867' deleted successfully."
+	}
 	```
