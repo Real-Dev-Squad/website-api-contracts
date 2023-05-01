@@ -32,7 +32,7 @@ Retrieves progress entries based on the provided parameters.
       "progress": [
         { "<user_progress_object_1>" },
         { "<user_progress_object_2>" },
-        ..
+        
       ]
     }
     ```
@@ -47,46 +47,52 @@ Retrieves progress entries based on the provided parameters.
 			"message": "All User Progress found successfully.",
 			"progress": [
 				{
-				"id": "progress1",
-				"type": "task",
-				"userId": "b0ad77cf461633s7745d59d8",
-				"taskId": "d576s3cd4450df7698731b7a",
-				"completed": "added modal progress",
-				"planned": "write test for modal progress",
-				"blockers": "None",
-				"createdAt": 1654101900000
+					"id": "progress1",
+					"type": "task",
+					"userId": "b0ad77cf461633s7745d59d8",
+					"taskId": "d576s3cd4450df7698731b7a",
+					"completed": "added modal progress",
+					"planned": "write test for modal progress",
+					"blockers": "None",
+					"createdAt": 1654101900000
 				},
 				{
-				"id": "progress2",
-				"type": "user",
-				"userId": "4d973377d1ad504b8cs6f576",
-				"completed": "added controllers",
-				"planned": "add model functions",
-				"blockers": "Pending review",
-				"date": "2023-04-30",
-				"createdAt": 1654101900400
+					"id": "progress2",
+					"type": "task",
+					"userId": "4d973377d1ad504b8cs6f576",
+					"completed": "added controllers",
+					"planned": "add model functions",
+					"blockers": "Pending review",
+					"date": "2023-04-30",
+					"createdAt": 1654101900400
 				}
 			]
     }
     ```
-	GET /progress?type=user&id=user123
+	GET /progress?type=user&id=ab39f75s4341d870cd67d576
 	```json
 	{
 		"message": "User progress retrieved successfully.",
 		"progress": [
 			{
-				"id": "user123",
+				"id": "z5346177sd5f7476d8dac093",
 				"type": "user",
-				"userId": "user123",
+				"userId": "ab39f75s4341d870cd67d576",
 				"completed": "made backend changes for the feature a23",
 				"planned": "make frontend changes for the feature a23",
 				"blockers": "Pending review",
 				"date": "2023-04-30",
-				"createdAt": "2023-04-30T12:00:00Z"
+				"createdAt": "1654101900400"
 			}
 		]
 	}
-
+	```
+	GET /progress?type=user&id=d757s743d3c54bdf61a68079
+	```json
+	{
+		"message": "No User progress found.",
+		"progress": []
+	}
 	```
 
 
@@ -112,7 +118,7 @@ Retrieves progress entries based on the provided parameters.
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 200
+  - **Code:** 201
     - **Content:** 
     ```json
 		{
@@ -130,15 +136,15 @@ Retrieves progress entries based on the provided parameters.
 			"message": "Authentication credentials are missing or invalid."
 		}
 		```
-  - **Code:** 404
+  - **Code:** 400
     - **Content:** 
   	```json
 		{
-			"statusCode": 404,
-			"error": "Not Found",
+			"statusCode": 400,
+			"error": "Bad Request",
 			"message": "Task or user not found"
 		}
-		```
+	```
 
   - **Code:** 500
     - **Content:** 
@@ -182,12 +188,13 @@ Retrieves progress entries based on the provided parameters.
 	}
 	```
 
-## **DELETE /progress/:id**
+## **DELETE /progress/:type/:id**
 
 Deletes a progress entry with the specified ID. This route is restricted to super users only.
 
 - **Params**  
-  _Required:_ `id=[string]`
+  type (query parameter): Specifies the type of progress to delete (e.g., "task", "user").
+  id (query parameter): Specifies the ID of the progress entry to retrieve (optional).
 - **Query**  
   None
 - **Headers**  
@@ -197,13 +204,13 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
 - **Body**
   None
 - **Success Response:**
-  - **Code:** 200
+  - **Code:** 204
     - **Content:** 
-			```json
-			{
-				"message": "Progress entry with ID '<id>' deleted successfully."
-			}
-			```
+	```json
+		{
+			"message": "Progress entry with ID '<id>' deleted successfully."
+		}
+	```
 - **Error Response:**
   - **Code:** 401
     - **Content:** 
@@ -222,7 +229,7 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
 			"error": "Forbidden",
 			"message": "You do not have permission to access this resource."
 		}
-		```
+	```
   - **Code:** 404
     - **Content:** 
   	```json
@@ -231,7 +238,7 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
 			"error": "Not Found",
 			"message": "Task or user not found"
 		}
-		```
+	```
   - **Code:** 500
     - **Content:** 
     ```json
