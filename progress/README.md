@@ -20,7 +20,7 @@ Retrieves progress entries based on the provided parameters.
 - **Body**  
   None
 - **Headers**  
-  Content-Type: application/json
+  None
 - **Cookie**  
   None
 - **Success Response:**
@@ -38,7 +38,14 @@ Retrieves progress entries based on the provided parameters.
     ```
 - **Error Response:**
   - **Code:** 500
-    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+    - **Content:** 
+    	```json
+		{
+			"statusCode": 500,
+			"error": "Internal Server Error",
+			"message": "An internal server error occurred"
+		}
+		```
 
 - **Example:**
   GET /progress?type=task
