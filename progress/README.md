@@ -25,27 +25,27 @@ Retrieves progress entries based on the provided parameters.
   None
 - **Success Response:**
   - **Code:** 200
-    - **Content:** 
-    ```json
-		{
-      "message": "User progress retrieved successfully.",
-      "progress": [
-        { "<user_progress_object_1>" },
-        { "<user_progress_object_2>" },
-        
-      ]
-    }
-    ```
+      - **Content:** 
+      ```json
+  		{
+        "message": "User progress retrieved successfully.",
+        "progress": [
+          { "<user_progress_object_1>" },
+          { "<user_progress_object_2>" },
+          
+        ]
+      }
+      ```
 - **Error Response:**
   - **Code:** 500
     - **Content:** 
     	```json
-		{
-			"statusCode": 500,
-			"error": "Internal Server Error",
-			"message": "An internal server error occurred"
-		}
-		```
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "An internal server error occurred"
+      }
+		  ```
 
 - **Example:**
   GET /progress?type=task
@@ -127,41 +127,41 @@ Retrieves progress entries based on the provided parameters.
 - **Success Response:**
   - **Code:** 201
     - **Content:** 
-    ```json
-	{
-		"message": "Progress entry created successfully.",
-		"progress": { "<progress_object>" }
-	}
-    ```
+      ```json
+      {
+        "message": "Progress entry created successfully.",
+        "progress": { "<progress_object>" }
+      }
+      ```
 - **Error Response:**
   - **Code:** 401
     - **Content:** 
-	```json
-	{
-		"statusCode": 401,
-		"error": "Unauthorized",
-		"message": "Authentication credentials are missing or invalid."
-	}
-	```
+      ```json
+      {
+        "statusCode": 401,
+        "error": "Unauthorized",
+        "message": "Authentication credentials are missing or invalid."
+      }
+      ```
   - **Code:** 400
     - **Content:** 
-  	```json
-	{
-		"statusCode": 400,
-		"error": "Bad Request",
-		"message": "Task or user not found"
-	}
-	```
+      ```json
+      {
+        "statusCode": 400,
+        "error": "Bad Request",
+        "message": "Task or user not found"
+      }
+      ```
 
   - **Code:** 500
     - **Content:** 
-    ```json
-	{
-		"statusCode": 500,
-		"error": "Internal Server Error",
-		"message": "The User Status could not be found as an internal server error occurred."
-	}
-    ```
+      ```json
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "The User Status could not be found as an internal server error occurred."
+      }
+      ```
 - **Example:**
 	POST /progress
 	Content-Type: application/json
@@ -221,40 +221,40 @@ Deletes a progress entry with the specified ID. This route is restricted to supe
 - **Error Response:**
   - **Code:** 401
     - **Content:** 
-    ```json
-		{
-			"statusCode": 401,
-			"error": "Unauthorized",
-			"message": "Authentication credentials are missing or invalid."
-		}
-		```
+      ```json
+      {
+        "statusCode": 401,
+        "error": "Unauthorized",
+        "message": "Authentication credentials are missing or invalid."
+      }
+      ```
   - **Code:** 403
     - **Content:** 
-    ```json
-		{
-			"statusCode": 403,
-			"error": "Forbidden",
-			"message": "You do not have permission to access this resource."
-		}
-	```
+      ```json
+      {
+        "statusCode": 403,
+        "error": "Forbidden",
+        "message": "You do not have permission to access this resource."
+      }
+      ```
   - **Code:** 404
     - **Content:** 
-  	```json
-		{
-			"statusCode": 404,
-			"error": "Not Found",
-			"message": "Task or user not found"
-		}
-	```
+      ```json
+      {
+        "statusCode": 404,
+        "error": "Not Found",
+        "message": "Task or user not found"
+      }
+      ```
   - **Code:** 500
     - **Content:** 
-    ```json
-		{
-			"statusCode": 500,
-			"error": "Internal Server Error",
-			"message": "An internal server error occurred."
-		}
-    ```
+      ```json
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "An internal server error occurred."
+      }
+      ```
 
 - **Example:**
 	Request:
