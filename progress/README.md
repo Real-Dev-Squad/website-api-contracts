@@ -146,21 +146,21 @@ Retrieves progress entries based on the provided parameters.
   - **Code:** 400
     - **Content:** 
   	```json
-		{
-			"statusCode": 400,
-			"error": "Bad Request",
-			"message": "Task or user not found"
-		}
+	{
+		"statusCode": 400,
+		"error": "Bad Request",
+		"message": "Task or user not found"
+	}
 	```
 
   - **Code:** 500
     - **Content:** 
     ```json
-		{
-			"statusCode": 500,
-			"error": "Internal Server Error",
-			"message": "The User Status could not be found as an internal server error occurred."
-		}
+	{
+		"statusCode": 500,
+		"error": "Internal Server Error",
+		"message": "The User Status could not be found as an internal server error occurred."
+	}
     ```
 - **Example:**
 	POST /progress
