@@ -24,7 +24,7 @@
     "<question_id>",
     "<question_id>"
   ],
-  'comments;: [
+  'comments: [
     "<comment_id>",
     "<comment_id>",
     "<comment_id>",
@@ -48,7 +48,7 @@
   'user_id': string,
   'joined_at': timestamp,
   'left_at': timestamp,
-  'isRdsUser': boolean,
+  'is_rds_user': boolean,
   // extends user model
 }
 ```
@@ -57,10 +57,10 @@
 
 ```
 {
-	'question_id': string,
+	'id': string,
 	'user_id': string,
 	'question': string,
-	'isNew': boolean, //default to true,
+	'is_new': boolean, //default to true,
 	'session_id': string,
 	'timestamps': {
       'created_at': timestamp,
@@ -73,11 +73,11 @@
 
 ```
 {
-	'comment_id': string,
+	'id': string,
 	'comment': string,
 	'comment_by': string, //user id of the user who commented
-	'isBlocked': boolean,
-	'isPinned': boolean,
+	'is_blocked': boolean,
+	'is_pinned': boolean,
 	'session_id': string,
 	'timestamps': {
       'created_at': timestamp,
