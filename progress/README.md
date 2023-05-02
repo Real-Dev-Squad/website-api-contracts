@@ -103,7 +103,7 @@ Retrieves progress entries based on the provided parameters.
   }
   ```
 
-## **POST /progress**
+## POST /progress
 
     Creates a new progress entry.
 
@@ -198,7 +198,7 @@ Retrieves progress entries based on the provided parameters.
   }
   ```
 
-## **DELETE /progress/:type/:id**
+## DELETE /progress/:type/:id
 
 Deletes a progress entry with the specified ID. This route is restricted to super users only.
 
