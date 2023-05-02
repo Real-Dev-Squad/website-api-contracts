@@ -2,11 +2,10 @@
 
 ## Requests
 
-|                        Route                         |                         Description                          |
-| :--------------------------------------------------: | :----------------------------------------------------------: |
-|            [GET /progress](#get-progress)            | Retrieves progress entries based on the provided parameters. |
-|           [POST /progress](#post-progress)           |                Creates a new progress entry.                 |
-| [DELETE /progress/:type/:id](#delete-progresstypeid) |       Deletes a progress entry with the specified ID.        |
+|              Route               |                         Description                          |
+| :------------------------------: | :----------------------------------------------------------: |
+|  [GET /progress](#get-progress)  | Retrieves progress entries based on the provided parameters. |
+| [POST /progress](#post-progress) |                Creates a new progress entry.                 |
 
 ## GET /progress
 
@@ -24,8 +23,11 @@ Retrieves progress entries based on the provided parameters.
 - **Cookie**  
   None
 - **Success Response:**
+
   - **Code:** 200
+
     - **Content:**
+
     ```json
     	{
       "message": "User progress retrieved successfully.",
@@ -36,6 +38,7 @@ Retrieves progress entries based on the provided parameters.
       ]
     }
     ```
+
 - **Error Response:**
 
   - **Code:** 500
@@ -195,75 +198,5 @@ Retrieves progress entries based on the provided parameters.
       "blockers": "Waiting for approval",
       "createdAt": 1654101900000
     }
-  }
-  ```
-
-## DELETE /progress/:type/:id
-
-Deletes a progress entry with the specified ID. This route is restricted to super users only.
-
-- **Params**  
-  type (query parameter): Specifies the type of progress to delete (e.g., "task", "user").
-  id (query parameter): Specifies the ID of the progress entry to retrieve (optional).
-- **Query**  
-  None
-- **Headers**  
-  Content-Type: application/json
-- **Cookie**  
-  rds-session: `<JWT>`
-- **Body**
-  None
-- **Success Response:**
-  - **Code:** 204
-    - **Content:**
-  ```json
-  {
-    "message": "Progress entry with ID '<id>' deleted successfully."
-  }
-  ```
-- **Error Response:**
-
-  - **Code:** 401
-    - **Content:**
-      ```json
-      {
-        "error": "Unauthorized",
-        "message": "Authentication credentials are missing or invalid."
-      }
-      ```
-  - **Code:** 403
-    - **Content:**
-      ```json
-      {
-        "error": "Forbidden",
-        "message": "You do not have permission to access this resource."
-      }
-      ```
-  - **Code:** 404
-    - **Content:**
-      ```json
-      {
-        "error": "Not Found",
-        "message": "Task or user not found"
-      }
-      ```
-  - **Code:** 500
-    - **Content:**
-      ```json
-      {
-        "error": "Internal Server Error",
-        "message": "An internal server error occurred."
-      }
-      ```
-
-- **Example:**
-  Request:
-  DELETE /progress/user/5d4c3f6079a8b775451db867
-  Response:
-  status 204
-  Content-Type: application/json
-  ```json
-  {
-    "message": "Progress entry with ID 5d4c3f6079a8b775451db867 deleted successfully."
   }
   ```
