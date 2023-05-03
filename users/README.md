@@ -15,6 +15,7 @@
   'designation': string,
   'img': string,
   'github_id': string,
+  'github_user_id': string,
   'linkedin_id': string,
   'twitter_id': string,
   'instagram_id': string,
@@ -42,7 +43,8 @@ number and email address.
 |     [GET /users/:username](#get-usersusername)      |   Returns user with given username   |
 |   [GET /users/:userId/badges](#get-usersidbadges)   | Returns badges assigned to the user  |
 |             [POST /users](#post-users)              |          Creates a new User          |
-|        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       |
+|        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       | 
+|        [POST /users/migrate](#post-users)           | Adds github_user_id field  
 
 ## **GET /users**
 
@@ -265,3 +267,34 @@ Updates data of the User.
   - **Code:** 503
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
+## **PATCH /users/migrate**
+
+Migrate existing users document with new github_user_id field.
+
+- **Params**  
+  None
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Body** `{ <user_object> }`
+- **Success Response:**
+  - **Code:** 204
+    - **Content:** `{ 'message': 'User updated successfully!'}`
+- **Error Response:**
+  - **Code:** 404
+    - **Content:**
+      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 403
+    - **Content:**
+      `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
+  - **Code:** 503
+    - **Content:**
+      `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+ 
