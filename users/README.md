@@ -44,7 +44,7 @@ number and email address.
 |   [GET /users/:userId/badges](#get-usersidbadges)   | Returns badges assigned to the user  |
 |             [POST /users](#post-users)              |          Creates a new User          |
 |        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       | 
-|        [POST /users/migrate](#post-users)           | Adds github_user_id field  
+|        [POST /users/migrate](#post-users)           |       Adds github_user_id field      |
 
 ## **GET /users**
 
@@ -268,7 +268,7 @@ Updates data of the User.
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
 
-## **PATCH /users/migrate**
+## **POST /users/migrate**
 
 Migrate existing users document with new github_user_id field.
 
@@ -294,7 +294,7 @@ Migrate existing users document with new github_user_id field.
   - **Code:** 403
     - **Content:**
       `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
-  - **Code:** 503
+  - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+      `{ 'statusCode': 500, 'error': 'Server Error', 'message': 'Internal Server Error' }`
  
