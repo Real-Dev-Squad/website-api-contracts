@@ -23,6 +23,7 @@
   -completed (required, string): Completed portion of the task or progress.
   -planned (required, string): Planned portion of the task or progress.
   -blockers (required, string): Blockers for the progress entry.
+  Note : Since this is a authenticated route we don't need to pass userId in the request body.
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
@@ -48,6 +49,14 @@
       ```
 - **Error Response:**
 
+  - **Code:** 400
+
+    - **Content:**
+      ```json
+      {
+        "message": "Bad Request"
+      }
+      ```
   - **Code:** 401
     - **Content:**
       ```json
@@ -57,15 +66,13 @@
         "message": "Unauthenticated User."
       }
       ```
-  - **Code:** 400
-
+  - **Code:** 409
     - **Content:**
       ```json
       {
-        "message": "Bad Request"
+        "message": "User Progress for the day has already been created"
       }
       ```
-
   - **Code:** 500
     - **Content:**
       ```json
@@ -252,7 +259,7 @@ Retrieves the progress records for a particular user or task within the specifie
   - taskId : Specifies the ID of the Task whose progress we are interested in
   - startDate : Specifies the start date of the date range in ISO 8601 format (e.g. "2023-05-15"). Only progress data on or after this date will be included in the results.
   - endDate : Specifies the end date of the date range in ISO 8601 format (e.g. "2023-05-24"). Only progress data on or before this date will be included in the results.
-
+    Note: The date should be in the ISO 8601 format i.e YYYY-MM-DD
 - **Body**  
   None
 - **Headers**  
@@ -272,9 +279,9 @@ Retrieves the progress records for a particular user or task within the specifie
         "startDate": "YYYY-MM-DD",
         "endDate": "YYYY-MM-DD",
         "progressRecords": {
-          "date": "boolean",
-          "date": "boolean",
-          "date": "boolean"
+          "YYYY-MM-DD": "boolean",
+          "YYYY-MM-DD": "boolean",
+          "YYYY-MM-DD": "boolean"
         }
       }
     }
@@ -282,6 +289,7 @@ Retrieves the progress records for a particular user or task within the specifie
 
 - **Example:**
   GET /progresses/range?userId=SooJK37gzjIZfFNH0tlL&startDate=2023-05-01&endDate=2023-05-10
+    Note: The date passe in the query params is of ISO 8601 format i.e YYYY-MM-DD
   ```json
   {
     "message": "Progress document retrieved successfully.",
