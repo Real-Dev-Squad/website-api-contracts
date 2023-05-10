@@ -4,8 +4,117 @@
 
 |              Route               |                         Description                          |
 | :------------------------------: | :----------------------------------------------------------: |
-|  [GET /progress](#get-progress)  | Retrieves progress entries based on the provided parameters. |
 | [POST /progress](#post-progress) |                Creates a new progress entry.                 |
+|  [GET /progress](#get-progress)  | Retrieves progress entries based on the provided parameters. |
+
+## POST /progress
+
+    Creates a new progress entry.
+
+- **Params**  
+  None
+- **Query**
+  None
+- **Body**  
+  Attributes:
+  -type (required, string): Specifies the type of the progress entry (e.g., "task", "user").
+  -taskId (optional, string): Task ID associated with the progress entry (applicable for task progress only).
+  -completed (required, string): Completed portion of the task or progress.
+  -planned (required, string): Planned portion of the task or progress.
+  -blockers (required, string): Blockers for the progress entry.
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+  - **Code:** 201
+    - **Content:**
+      ```json
+      {
+        "message": "String",
+        "data": {
+          "type": "String",
+          "completed": "String",
+          "planned": "String",
+          "blockers": "String",
+          "userId": "String",
+          "taskId": "String (for task type)",
+          "createdAt": "Timestamp",
+          "date": "Timestamp",
+          "id": "String"
+        }
+      }
+      ```
+- **Error Response:**
+
+  - **Code:** 401
+    - **Content:**
+      ```json
+      {
+        "statusCode": 401,
+        "error": "Unauthorized",
+        "message": "Unauthenticated User."
+      }
+      ```
+  - **Code:** 400
+
+    - **Content:**
+      ```json
+      {
+        "message": "Bad Request"
+      }
+      ```
+
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "message": "Internal Server Error"
+      }
+      ```
+
+- **Example for user progress creation request:**
+  POST /progress
+  Content-Type: application/json
+  Request-Body:
+
+  ```json
+  {
+    "type": "user",
+    "completed": "Monitoring for issues and performance",
+    "planned": "Plan for future enhancements",
+    "blockers": "None"
+  }
+  ```
+
+  Response :
+  Status 201
+  Content-Type: application/json
+
+  ```json
+  {
+    "data": {
+      "type": "user",
+      "completed": "Monitoring for issues and performance",
+      "planned": "Plan for future enhancements",
+      "blockers": "None",
+      "userId": "SooJK37gzjIZfFNH0tlL",
+      "createdAt": 1683688367555,
+      "date": 1683676800000,
+      "id": "t5k77PHnuDSrgEzvMJAj"
+    },
+    "message": "User Progress document created successfully."
+  }
+  ```
+
+  for progress document already created
+  Status 400
+
+  ```json
+  {
+    "message": "User Progress for the day has already been created"
+  }
+  ```
 
 ## GET /progress
 
@@ -13,9 +122,13 @@ Retrieves progress entries based on the provided parameters.
 
 - **Params**
   None
-- **Query**  
-  type (query parameter): Specifies the type of progress to filter (e.g., "task", "user").
-  id (query parameter): Specifies the ID of the progress entry to retrieve (optional).
+- **Query**
+  Note : Only one query parameter is allowed per request
+
+  - type : Specifies the type of progress to filter (e.g., "task", "user").
+  - userId : Specifies the ID of the User whose progress we are interested in
+  - taskId : Specifies the ID of the Task whose progress we are interested in
+
 - **Body**  
   None
 - **Headers**  
@@ -29,174 +142,98 @@ Retrieves progress entries based on the provided parameters.
     - **Content:**
 
     ```json
-    	{
-      "message": "User progress retrieved successfully.",
-      "progress": [
-        { "<user_progress_object_1>" },
-        { "<user_progress_object_2>" },
-
+    {
+      "message": "String",
+      "count": "Number",
+      "data": [
+        {
+          "type": "String",
+          "completed": "String",
+          "planned": "String",
+          "blockers": "String",
+          "userId": "String",
+          "taskId": "String (for task type)",
+          "createdAt": "Timestamp",
+          "date": "Timestamp",
+          "id": "String"
+        },
+        {
+          "type": "String",
+          "completed": "String",
+          "planned": "String",
+          "blockers": "String",
+          "userId": "String",
+          "taskId": "String (for task type)",
+          "createdAt": "Timestamp",
+          "date": "Timestamp",
+          "id": "String"
+        }
       ]
     }
     ```
 
-- **Error Response:**
-
-  - **Code:** 500
-    - **Content:**
-      ```json
-      {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "An internal server error occurred"
-      }
-      ```
-
 - **Example:**
-  GET /progress?type=task
+  GET /progress?type=user
   ```json
   {
-    "message": "All User Progress found successfully.",
-    "progress": [
+    "message": "Progress document retrieved successfully.",
+    "count": 2,
+    "data": [
       {
-        "id": "progress1",
-        "type": "task",
-        "userId": "b0ad77cf461633s7745d59d8",
-        "taskId": "d576s3cd4450df7698731b7a",
-        "completed": "added modal progress",
-        "planned": "write test for modal progress",
+        "date": 1683590400000,
+        "createdAt": 1683650576402,
         "blockers": "None",
-        "createdAt": 1654101900000
+        "completed": "Monitoring for issues and performance",
+        "planned": "Plan for future enhancements",
+        "type": "user",
+        "userId": "NLFSj7Kz30oHgolfIZtJ"
       },
       {
-        "id": "progress2",
-        "type": "task",
-        "userId": "4d973377d1ad504b8cs6f576",
-        "completed": "added controllers",
-        "planned": "add model functions",
-        "blockers": "Pending review",
-        "date": "2023-04-30",
-        "createdAt": 1654101900400
-      }
-    ]
-  }
-  ```
-  GET /progress?type=user&id=ab39f75s4341d870cd67d576
-  ```json
-  {
-    "message": "User progress retrieved successfully.",
-    "progress": [
-      {
-        "id": "z5346177sd5f7476d8dac093",
+        "createdAt": 1683650564713,
+        "blockers": "None",
+        "completed": "Implemented error handling for API endpoints",
+        "planned": "Add unit tests for backend",
         "type": "user",
-        "userId": "ab39f75s4341d870cd67d576",
-        "completed": "made backend changes for the feature a23",
-        "planned": "make frontend changes for the feature a23",
-        "blockers": "Pending review",
-        "date": "2023-04-30",
-        "createdAt": "1654101900400"
+        "userId": "SooJK37gzjIZfFNH0tlL",
+        "date": 1683417600000
       }
     ]
   }
   ```
-  GET /progress?type=user&id=d757s743d3c54bdf61a68079
+  GET /progress?userId=NLFSj7Kz30oHgolfIZtJ
   ```json
   {
-    "message": "No User progress found.",
-    "progress": []
+    "message": "Progress document retrieved successfully.",
+    "count": 1,
+    "data": [
+      {
+        "date": 1683590400000,
+        "createdAt": 1683650576402,
+        "blockers": "None",
+        "completed": "Monitoring for issues and performance",
+        "planned": "Plan for future enhancements",
+        "type": "user",
+        "userId": "NLFSj7Kz30oHgolfIZtJ"
+      }
+    ]
   }
   ```
-
-## POST /progress
-
-    Creates a new progress entry.
-
-- **Params**  
-  None
-- **Query**
-  None
-- **Body**  
-  Attributes:
-  -type (required, string): Specifies the type of the progress entry (e.g., "task", "user").
-  -userId (required, string): User ID associated with the progress entry.
-  -taskId (optional, string): Task ID associated with the progress entry (applicable for task progress only).
-  -completed (required, string): Completed portion of the task or progress.
-  -planned (required, string): Planned portion of the task or progress.
-  -blockers (required, string): Blockers for the progress entry.
-  -date (required, timestamp): Date of the progress entry (applicable for user progress only).
-- **Headers**  
-  Content-Type: application/json
-- **Cookie**  
-  rds-session: `<JWT>`
-- **Success Response:**
-  - **Code:** 201
-    - **Content:**
-      ```json
-      {
-        "message": "Progress entry created successfully.",
-        "progress": { "<progress_object>" }
-      }
-      ```
-- **Error Response:**
-
-  - **Code:** 401
-    - **Content:**
-      ```json
-      {
-        "statusCode": 401,
-        "error": "Unauthorized",
-        "message": "Authentication credentials are missing or invalid."
-      }
-      ```
-  - **Code:** 400
-
-    - **Content:**
-      ```json
-      {
-        "statusCode": 400,
-        "error": "Bad Request",
-        "message": "Task or user not found"
-      }
-      ```
-
-  - **Code:** 500
-    - **Content:**
-      ```json
-      {
-        "statusCode": 500,
-        "error": "Internal Server Error",
-        "message": "The User Status could not be found as an internal server error occurred."
-      }
-      ```
-
-- **Example:**
-  POST /progress
-  Content-Type: application/json
-  Request-Body:
+  GET /progress?taskId=d757s743d3c54bdf61a6
   ```json
   {
-    "type": "task",
-    "userId": "5d4c3f6079a8b775451db867",
-    "taskId": "6f53574d684dacd0b791773s",
-    "completed": "50%",
-    "planned": "80%",
-    "blockers": "Waiting for approval"
-  }
-  ```
-  Response:
-  Status 201 Created
-  Content-Type: application/json
-  ```json
-  {
-    "message": "Progress entry created successfully.",
-    "progress": {
-      "id": "5d4c3f6079a8b775451db867",
-      "type": "task",
-      "userId": "d8d7014sd69f535637c47ab7",
-      "taskId": "167cfb7dd45ad967s3380547",
-      "completed": "50%",
-      "planned": "80%",
-      "blockers": "Waiting for approval",
-      "createdAt": 1654101900000
-    }
+    "message": "Progress document retrieved successfully.",
+    "count": 1,
+    "data": [
+      {
+        "date": 1683676800000,
+        "createdAt": 1683690250824,
+        "blockers": "None",
+        "completed": "Monitoring for issues and performance",
+        "planned": "Plan for future enhancements",
+        "type": "task",
+        "userId": "SooJK37gzjIZfFNH0tlL",
+        "taskId": "d757s743d3c54bdf61a6"
+      }
+    ]
   }
   ```
