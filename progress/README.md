@@ -57,6 +57,7 @@
         "message": "Bad Request"
       }
       ```
+
   - **Code:** 401
     - **Content:**
       ```json
@@ -64,6 +65,13 @@
         "statusCode": 401,
         "error": "Unauthorized",
         "message": "Unauthenticated User."
+      }
+      ```
+  - **Code:** 404
+    - **Content:**
+      ```json
+      {
+        "message": "Task with id <:taskId> does not exist."
       }
       ```
   - **Code:** 409
@@ -116,11 +124,20 @@
   ```
 
   for progress document already created
-  Status 400
+  Status 409 Conflict
 
   ```json
   {
     "message": "User Progress for the day has already been created"
+  }
+  ```
+
+  for progress taskId that doesn't exist
+  Status 404 Not Found
+
+  ```json
+  {
+    "message": "Task with id 4ERr8WrizICemnQnMF0U1511 does not exist."
   }
   ```
 
@@ -182,6 +199,7 @@ Retrieves progress entries based on the provided parameters.
 
 - **Example:**
   GET /progresses?type=user
+  Status: 200 OK
   ```json
   {
     "message": "Progress document retrieved successfully.",
@@ -209,6 +227,7 @@ Retrieves progress entries based on the provided parameters.
   }
   ```
   GET /progresses?userId=NLFSj7Kz30oHgolfIZtJ
+  Status: 200 OK
   ```json
   {
     "message": "Progress document retrieved successfully.",
@@ -227,6 +246,7 @@ Retrieves progress entries based on the provided parameters.
   }
   ```
   GET /progresses?taskId=d757s743d3c54bdf61a6
+  Status: 200 OK
   ```json
   {
     "message": "Progress document retrieved successfully.",
@@ -245,6 +265,20 @@ Retrieves progress entries based on the provided parameters.
     ]
   }
   ```
+  GET /?userId=invalidUserId
+  Status: 404 Not Found
+  ```json
+  {
+    "message": "No progress records found."
+  }
+  ```
+  GET /?taskId=invalidTaskId
+  Status: 404 Not Found
+  ```json
+  {
+    "message": "No progress records found."
+  }
+  ```
 
 ## GET /progresses/range
 
@@ -260,6 +294,7 @@ Retrieves the progress records for a particular user or task within the specifie
   - startDate : Specifies the start date of the date range in ISO 8601 format (e.g. "2023-05-15"). Only progress data on or after this date will be included in the results.
   - endDate : Specifies the end date of the date range in ISO 8601 format (e.g. "2023-05-24"). Only progress data on or before this date will be included in the results.
     Note: The date should be in the ISO 8601 format i.e YYYY-MM-DD
+
 - **Body**  
   None
 - **Headers**  
@@ -287,9 +322,39 @@ Retrieves the progress records for a particular user or task within the specifie
     }
     ```
 
+- **Error Response:**
+
+  - **Code:** 400
+
+    - **Content:**
+      ```json
+      {
+        "message": "Bad Request"
+      }
+      ```
+
+  - **Code:** 404
+    - **Content:**
+      ```json
+      {
+        "message": "User / Task with id <:id> does not exist."
+      },
+      {
+        "message": "No progress records found."
+      }
+      ```
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "message": "Internal Server Error"
+      }
+      ```
+
 - **Example:**
   GET /progresses/range?userId=SooJK37gzjIZfFNH0tlL&startDate=2023-05-01&endDate=2023-05-10
-    Note: The date passe in the query params is of ISO 8601 format i.e YYYY-MM-DD
+  Status: 200 OK
+  Note: The date passe in the query params is of ISO 8601 format i.e YYYY-MM-DD
   ```json
   {
     "message": "Progress document retrieved successfully.",
@@ -309,5 +374,35 @@ Retrieves the progress records for a particular user or task within the specifie
         "2023-05-10": true
       }
     }
+  }
+  ```
+  GET /?userId=GTB4UUtlKwGemRN2lwBp11
+  Status: 400 Bad Request
+  ```json
+  {
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": "Start date and End date is mandatory."
+  }
+  ```
+  GET /?userId=invalidUserId&startDate=2023-05-01&endDate=2023-05-15
+  Status: 404 Not Found
+  ```json
+  {
+    "message": "User with id invalidUserId does not exist."
+  }
+  ```
+  GET /?userId=GTB4UUtlKwGemRN2lwBp11&startDate=2023-05-01&endDate=2023-05-15
+  Status: 404 Not Found
+  ```json
+  {
+    "message": "No progress records found."
+  }
+  ```
+  GET /?userId=GTB4UUtlKwGemRN2lwBp11&startDate=2023-05-01&endDate=2023-05-15
+  Status: 500 Internal Server Error
+  ```json
+  {
+    "message": "Internal Server Error."
   }
   ```
