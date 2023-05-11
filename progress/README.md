@@ -197,6 +197,35 @@ Retrieves progress entries based on the provided parameters.
     }
     ```
 
+- **Error Response:**
+
+  - **Code:** 400
+
+    - **Content:**
+      ```json
+      {
+        "message": "Bad Request"
+      }
+      ```
+
+  - **Code:** 404
+    - **Content:**
+      ```json
+      {
+        "message": "User / Task with id <:id> does not exist."
+      },
+      {
+        "message": "No progress records found."
+      }
+      ```
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "message": "Internal Server Error"
+      }
+      ```
+
 - **Example:**
   GET /progresses?type=user
   Status: 200 OK
@@ -277,6 +306,22 @@ Retrieves progress entries based on the provided parameters.
   ```json
   {
     "message": "No progress records found."
+  }
+  ```
+  GET /
+  Status: 400 Bad Request
+  ```json
+  {
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": "value must contain at least one of type, userId, taskId"
+  }
+  ```
+  GET /?userId=GTB4UUtlKwGemRN2lwBp11
+  Status: 500 Internal Server Error
+  ```json
+  {
+    "message": "Internal Server Error."
   }
   ```
 
