@@ -53,6 +53,15 @@
       "message": "Internal server error"
     }
     ```
+  - **Code:** 404
+    - **Content:** 
+    ```json
+    {
+      "statusCode": 404,
+      "error": "NOT FOUND",
+      "message": "Not found"
+    }
+    ```
 
 ## **POST /group**
 > creates a new group role
