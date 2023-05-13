@@ -5,9 +5,9 @@
 
 |                         Route                          |          Description          |
 |:------------------------------------------------------:|:-----------------------------:|
-|           [GET /groups](#get-groups)           |    Returns all group roles     |
-|          [POST /groups](#post-groups)          |     Creates new group role     |
-| [POST /roles](#post-roles) | Adds a group role to a user |
+|           [GET /groups](#get-groups)                   |    Returns all group roles    |
+|          [POST /groups](#post-groups)                  |     Creates new group role    |
+| [POST /roles](#post-roles) | Adds group role to a user |                               |
 
 ## **GET /groups**
 
@@ -48,7 +48,7 @@
     - **Content:** 
     ```json
     {
-      "statusCode": 400,
+      "statusCode": 500,
       "error": "INTERNAL SERVER ERROR",
       "message": "Internal server error"
     }
@@ -86,6 +86,15 @@
       "message": "Role already exists"
     }
     ```
+  - **Code:** 500
+    - **Content:**
+    ```json
+    {
+      "statusCode": 500,
+      "error": "INTERNAL SERVER ERROR",
+      "message": "Internal server error!"
+    }
+    ```
 
 ## **POST /roles**
 
@@ -96,17 +105,17 @@
 Request
 
 ```json
-    {
-        "userid": "<unique discord id of the rds member>",
-        "roleid": "<role id of the group>"
-    }
+{
+    "userid": "<unique discord id of the rds member>",
+    "roleid": "<role id of the group>"
+}
 ```
 
 Response
 
 ```json
 {
-     "message": "Role added successfully!"
+  "message": "Role added successfully!"
 }
 ```
 - **Error Response:**
@@ -117,5 +126,14 @@ Response
       "statusCode": 400,
       "error": "BAD REQUEST",
       "message": "Role already exists!"
+    }
+    ```
+  - **Code:** 500
+    - **Content:** 
+    ```json
+    {
+      "statusCode": 500,
+      "error": "INTERNAL SERVER ERROR",
+      "message": "Internal server error!"
     }
     ```
