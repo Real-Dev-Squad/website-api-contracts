@@ -43,7 +43,16 @@
 }
 
 ```
-
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** 
+    ```json
+    {
+      "statusCode": 400,
+      "error": "INTERNAL SERVER ERROR",
+      "message": "Internal server error"
+    }
+    ```
 
 ## **POST /group**
 > creates a new group role
@@ -92,7 +101,7 @@ Response
 }
 ```
 - **Error Response:**
-  - **Code:** 404
+  - **Code:** 400
     - **Content:** 
     ```json
     {
