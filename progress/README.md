@@ -2,11 +2,12 @@
 
 ## Requests
 
-|                     Route                     |                                          Description                                          |
-| :-------------------------------------------: | :-------------------------------------------------------------------------------------------: |
-|     [POST /progresses](#post-progresses)      |                                 Creates a new progress entry.                                 |
-|      [GET /progresses](#get-progresses)       |                 Retrieves progress entries based on the provided parameters.                  |
-| [GET /progresses/range](#get-progressesrange) | Retrieves the progress records for a particular user or task within the specified date range. |
+|                     Route                     |                                           Description                                           |
+| :-------------------------------------------: | :---------------------------------------------------------------------------------------------: |
+|     [POST /progresses](#post-progresses)      |                                  Creates a new progress entry.                                  |
+|      [GET /progresses](#get-progresses)       |                  Retrieves progress entries based on the provided parameters.                   |
+| [GET /progresses/range](#get-progressesrange) |  Retrieves the progress records for a particular user or task within the specified date range.  |
+| [GET /progresses/:type/:typeId/date/:date](#get-progressestypetypeiddatedate)  | Retrieves the progress documents based on a specific user ID or task ID for the specified date. |
 
 ## POST /progresses
 
@@ -85,7 +86,7 @@
     - **Content:**
       ```json
       {
-        "message": "Internal Server Error"
+        "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
       }
       ```
 
@@ -222,7 +223,7 @@ Retrieves progress entries based on the provided parameters.
     - **Content:**
       ```json
       {
-        "message": "Internal Server Error"
+        "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
       }
       ```
 
@@ -321,7 +322,7 @@ Retrieves progress entries based on the provided parameters.
   Status: 500 Internal Server Error
   ```json
   {
-    "message": "Internal Server Error."
+    "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
   }
   ```
 
@@ -392,7 +393,7 @@ Retrieves the progress records for a particular user or task within the specifie
     - **Content:**
       ```json
       {
-        "message": "Internal Server Error"
+        "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
       }
       ```
 
@@ -448,6 +449,125 @@ Retrieves the progress records for a particular user or task within the specifie
   Status: 500 Internal Server Error
   ```json
   {
-    "message": "Internal Server Error."
+    "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
+  }
+  ```
+
+## GET /progresses/:type/:typeId/date/:date
+
+Retrieves the progress documents based on a specific user ID or task ID for the specified date.
+
+- **Params**
+
+  - type : Specifies the type of progress i.e. "task" or "user"
+  - typeId : Specifies the ID of the type i.e. "taskId" or "userId"
+  - date : Specifies the date of the progress record in ISO 8601 format i.e YYYY-MM-DD (e.g. "2023-05-02")
+
+- **Query**
+  None
+- **Body**  
+  None
+- **Headers**  
+  None
+- **Cookie**  
+  None
+- **Success Response:**
+
+  - **Code:** 200
+
+    - **Content:**
+
+    ```json
+    {
+      "message": "string",
+      "data": {
+        "id": "string",
+        "createdAt": "unixTimeStamp",
+        "blockers": "string",
+        "completed": "string",
+        "planned": "string",
+        "type": "string",
+        "userId": "string",
+        "date": "unixTimeStamp"
+      }
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 400
+
+    - **Content:**
+      ```json
+      {
+        "message": "Bad Request"
+      }
+      ```
+
+  - **Code:** 404
+    - **Content:**
+      ```json
+      {
+        "message": "User / Task with id <:id> does not exist."
+      },
+      {
+        "message": "No progress records found."
+      }
+      ```
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
+      }
+      ```
+
+- **Example:**
+  GET /progresses/user/SooJK37gzjIZfFNH0tlL/date/2023-05-02
+  Status: 200 OK
+  Note: The date passe in the query params is of ISO 8601 format i.e YYYY-MM-DD
+  ```json
+  {
+    "message": "Progress document retrieved successfully.",
+    "data": {
+      "id": "en7nlNnpfqoqodcmtMeZ",
+      "createdAt": 1683649828022,
+      "blockers": "None",
+      "completed": "Monitoring for issues and performance",
+      "planned": "Plan for future enhancements",
+      "type": "user",
+      "userId": "SooJK37gzjIZfFNH0tlL",
+      "date": 1682985600000
+    }
+  }
+  ```
+  GET /progresses/user/SooJK37gzjIZfFNH0tlL/date/2023-05-33
+  Status: 400 Bad Request
+  ```json
+  {
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": "date must be in ISO 8601 date format"
+  }
+  ```
+  GET /progresses/user/ZHjfz7NSIKFo3t0ogl1LJ/date/2023-05-33
+  Status: 404 Not Found
+  ```json
+  {
+    "message": "User with id invalidUserId does not exist."
+  }
+  ```
+  GET /progresses/user/SooJK37gzjIZfFNH0tlL/date/2023-05-02
+  Status: 404 Not Found
+  ```json
+  {
+    "message": "No progress records found."
+  }
+  ```
+  GET /progresses/user/SooJK37gzjIZfFNH0tlL/date/2023-05-02
+  Status: 500 Internal Server Error
+  ```json
+  {
+    "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
   }
   ```
