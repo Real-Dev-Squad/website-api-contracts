@@ -358,15 +358,21 @@ Retrieves the trackedProgress document based on the path parameters.
 
 - **Query**<br/>
   None
+
 - **Body**
+
   - Attributes:
     - currentlyTracked (optional,boolean): Whether the trackedProgresses entry is currently tracked
     - frequency (optional, positive integer): The frequency of the trackedProgresses entry (only applicable for task).
+
 - **Headers**  
   Content-Type: application/json
+
 - **Cookie**  
   rds-session: `<JWT>`
+
 - **Success Response:**
+
   - **Code:** 200
     - **Content:**
       ```json
@@ -384,6 +390,7 @@ Retrieves the trackedProgress document based on the path parameters.
         }
       }
       ```
+
 - **Error Response:**
 
   - **Code:** 400
