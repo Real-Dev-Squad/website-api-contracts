@@ -94,7 +94,7 @@
     - **Content:**
       ```json
       {
-        "message": "User/task <:id> is already being tracked."
+        "message": "Resource is already being tracked."
       }
       ```
 
@@ -127,7 +127,7 @@
 
   ```json
   {
-    "message": "User trackedProgresses document created successfully.",
+    "message": "Document created successfully.",
     "data": {
       "id": "en7nlNnpfqoqodcmtMeZ",
       "type": "user",
@@ -159,7 +159,7 @@
 
   ```json
   {
-    "message": "User trackedProgresses document created successfully.",
+    "message": "Document created successfully.",
     "data": {
       "id": "en7nlNnpfqoqodcmtMeZ",
       "type": "task",
@@ -213,7 +213,7 @@
 
   ```json
   {
-    "message": "User 4ERr8WrizICemnQnMF0U1511 is already being tracked."
+    "message": "Resource is already being tracked."
   }
   ```
 
@@ -463,7 +463,7 @@ Retrieves the trackedProgress document based on the path parameters.
 
   ```json
   {
-    "message": "User trackedProgresses document updated successfully.",
+    "message": "Document updated successfully.",
     "data": {
       "id": "en7nlNnpfqoqodcmtMeZ",
       "type": "user",
@@ -492,7 +492,7 @@ Retrieves the trackedProgress document based on the path parameters.
 
   ```json
   {
-    "message": "User trackedProgresses document created successfully.",
+    "message": "Document created successfully.",
     "data": {
       "id": "en7nlNnpfqoqodcmtMeZ",
       "type": "task",
