@@ -1,16 +1,16 @@
-# API Contracts for trackedProgresses Collection
+# API Contracts for tracked-progresses Collection
 
 ## Requests
 
-|                                Route                                 |                            Description                             |
-| :------------------------------------------------------------------: | :----------------------------------------------------------------: |
-|          [POST /trackedProgresses](#post-trackedprogresses)          |             Creates a new trackedProgresses document.              |
-|      [GET /trackedProgresses](#get-trackedprogressestypetypeid)      | Retrieves the trackedProgresses document based on path parameters. |
-| [PATCH /trackedProgresses/:type/:id](#patch-trackedprogressestypeid) |            Updates an existing trackedProgresses entry.            |
+|                                 Route                                  |                             Description                             |
+| :--------------------------------------------------------------------: | :-----------------------------------------------------------------: |
+|          [POST /tracked-progresses](#post-tracked-progresses)          |             Creates a new tracked-progresses document.              |
+|      [GET /tracked-progresses](#get-tracked-progressestypetypeid)      | Retrieves the tracked-progresses document based on path parameters. |
+| [PATCH /tracked-progresses/:type/:id](#patch-tracked-progressestypeid) |            Updates an existing tracked-progresses entry.            |
 
-## POST /trackedProgresses
+## POST /tracked-progresses
 
-    Creates a new trackedProgresses entry.
+    Creates a new tracked-progresses entry.
 
 - **Params**  
   None
@@ -21,11 +21,11 @@
 - **Body**
 
   - Attributes:
-    - type (required, string): Specifies the type of the trackedProgresses entry (e.g., "task", "user").
-    - taskId (optional, string): Task ID associated with the trackedProgresses entry (applicable for type task).
-    - userId (optional, string): Task ID associated with the trackedProgresses entry (applicable for type user).
-    - currentlyTracked (required, boolean): Whether the trackedProgresses entry is currently tracked
-    - frequency (optional, positive integer): The frequency of the trackedProgresses entry (default is 1 if not specified for task, for user its always 1).
+    - type (required, string): Specifies the type of the tracked-progresses entry (e.g., "task", "user").
+    - taskId (optional, string): Task ID associated with the tracked-progresses entry (applicable for type task).
+    - userId (optional, string): Task ID associated with the tracked-progresses entry (applicable for type user).
+    - currentlyTracked (required, boolean): Whether the tracked-progresses entry is currently tracked
+    - frequency (optional, positive integer): The frequency of the tracked-progresses entry (default is 1 if not specified for task, for user its always 1).
 
 - **Headers**  
   Content-Type: application/json
@@ -107,9 +107,9 @@
       }
       ```
 
-- **Example for trackedProgresses POST request:**<br/>
+- **Example for tracked-progresses POST request:**<br/>
 
-  POST /trackedProgresses<br/>
+  POST /tracked-progresses<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
@@ -140,7 +140,7 @@
   }
   ```
 
-  POST /trackedProgresses<br/>
+  POST /tracked-progresses<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
@@ -208,7 +208,7 @@
   }
   ```
 
-  For trackedProgresses document already created<br/>
+  For tracked-progresses document already created<br/>
   Status 409 Conflict
 
   ```json
@@ -226,7 +226,7 @@
   }
   ```
 
-## GET /trackedProgresses/:type/:typeId
+## GET /tracked-progresses/:type/:typeId
 
 Retrieves the trackedProgress document based on the path parameters.
 
@@ -300,7 +300,7 @@ Retrieves the trackedProgress document based on the path parameters.
 
 - **Example:**
 
-  GET /trackedProgresses/user/SooJK37gzjIZfFNH0tlL<br/>
+  GET /tracked-progresses/user/SooJK37gzjIZfFNH0tlL<br/>
   Status: 200 OK
 
   ```json
@@ -318,7 +318,7 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  GET /trackedProgresses/event/hPz5hfWBd9oSwMljGk1s<br/>
+  GET /tracked-progresses/event/hPz5hfWBd9oSwMljGk1s<br/>
   Status: 400 Bad Request
 
   ```json
@@ -327,7 +327,7 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  GET /trackedProgresses/user/SooSk37gzjIZfFNH0tlL<br/>
+  GET /tracked-progresses/user/SooSk37gzjIZfFNH0tlL<br/>
   Status: 404 Not Found
 
   ```json
@@ -336,7 +336,7 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  GET /trackedProgresses/user/invalidUser<br/>
+  GET /tracked-progresses/user/invalidUser<br/>
   Status: 404 Not Found
 
   ```json
@@ -345,7 +345,7 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  GET /trackedProgresses/user/hPz5hfWBd9oSwMljGk1s<br/>
+  GET /tracked-progresses/user/hPz5hfWBd9oSwMljGk1s<br/>
   Status: 500 Internal Server Error
 
   ```json
@@ -354,14 +354,14 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-## PATCH /trackedProgresses/:type/:id
+## PATCH /tracked-progresses/:type/:id
 
-    Updates an existing trackedProgresses entry.
+    Updates an existing tracked-progresses entry.
 
 - **Params**
 
-  - type (required, string): Specifies the type of the trackedProgresses entry (e.g., "task", "user").
-  - id (required, string): The ID of the task or user associated with the trackedProgresses entry. i.e taskId or userId
+  - type (required, string): Specifies the type of the tracked-progresses entry (e.g., "task", "user").
+  - id (required, string): The ID of the task or user associated with the tracked-progresses entry. i.e taskId or userId
 
 - **Query**<br/>
   None
@@ -369,8 +369,8 @@ Retrieves the trackedProgress document based on the path parameters.
 - **Body**
 
   - Attributes:
-    - currentlyTracked (optional,boolean): Whether the trackedProgresses entry is currently tracked
-    - frequency (optional, positive integer): The frequency of the trackedProgresses entry (only applicable for task).
+    - currentlyTracked (optional,boolean): Whether the tracked-progresses entry is currently tracked
+    - frequency (optional, positive integer): The frequency of the tracked-progresses entry (only applicable for task).
 
 - **Headers**  
   Content-Type: application/json
@@ -445,9 +445,9 @@ Retrieves the trackedProgress document based on the path parameters.
       }
       ```
 
-- **Example for trackedProgresses POST request:**<br/>
+- **Example for tracked-progresses POST request:**<br/>
 
-  PATCH /trackedProgresses/user/SooJK37gzjIZfFNH0tlL<br/>
+  PATCH /tracked-progresses/user/SooJK37gzjIZfFNH0tlL<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
@@ -476,7 +476,7 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  POST /trackedProgresses/task/SooJK37gzjIZfFNH0tlL<br/>
+  POST /tracked-progresses/task/SooJK37gzjIZfFNH0tlL<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
