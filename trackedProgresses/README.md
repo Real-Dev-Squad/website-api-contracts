@@ -2,12 +2,10 @@
 
 ## Requests
 
-|                                     Route                                     |                                           Description                                           |
-| :---------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------: |
-|                     [POST /progresses](#post-progresses)                      |                                  Creates a new progress entry.                                  |
-|                      [GET /progresses](#get-progresses)                       |                  Retrieves progress entries based on the provided parameters.                   |
-|                 [GET /progresses/range](#get-progressesrange)                 |  Retrieves the progress records for a particular user or task within the specified date range.  |
-| [GET /progresses/:type/:typeId/date/:date](#get-progressestypetypeiddatedate) | Retrieves the progress documents based on a specific user ID or task ID for the specified date. |
+|                           Route                            |                            Description                             |
+| :--------------------------------------------------------: | :----------------------------------------------------------------: |
+|     [POST /trackedProgresses](#post-trackedprogresses)     |             Creates a new trackedProgresses document.              |
+| [GET /trackedProgresses](#get-trackedprogressestypetypeid) | Retrieves the trackedProgresses document based on path parameters. |
 
 ## POST /trackedProgresses
 
