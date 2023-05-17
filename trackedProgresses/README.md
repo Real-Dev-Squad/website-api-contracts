@@ -541,15 +541,6 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  For trackedProgresses document already created<br/>
-  Status 409 Conflict
-
-  ```json
-  {
-    "message": "User 4ERr8WrizICemnQnMF0U1511 is already being tracked."
-  }
-  ```
-
   For Internal Server Error on the server side<br/>
   Status 500 Internal Server Error
 
