@@ -104,9 +104,9 @@
 
 - **Example for trackedProgresses POST request:**<br/>
 
-  POST /trackedProgresses</br>
-  Content-Type: application/json</br>
-  Request-Body:</br>
+  POST /trackedProgresses<br/>
+  Content-Type: application/json<br/>
+  Request-Body:<br/>
 
   ```json
   {
@@ -116,9 +116,9 @@
   }
   ```
 
-  Response :</br>
-  Status 201</br>
-  Content-Type: application/json</br>
+  Response :<br/>
+  Status 201<br/>
+  Content-Type: application/json<br/>
 
   ```json
   {
@@ -134,9 +134,10 @@
     }
   }
   ```
-  POST /trackedProgresses</br>
-  Content-Type: application/json</br>
-  Request-Body:</br>
+
+  POST /trackedProgresses<br/>
+  Content-Type: application/json<br/>
+  Request-Body:<br/>
 
   ```json
   {
@@ -147,9 +148,9 @@
   }
   ```
 
-  Response :</br>
-  Status 201</br>
-  Content-Type: application/json</br>
+  Response :<br/>
+  Status 201<br/>
+  Content-Type: application/json<br/>
 
   ```json
   {
@@ -166,7 +167,7 @@
   }
   ```
 
-  For Bad Request from the client</br>
+  For Bad Request from the client<br/>
   Status 400 Bad Request
 
   ```json
@@ -175,7 +176,7 @@
   }
   ```
 
-  For Unauthenticated Request from the client</br>
+  For Unauthenticated Request from the client<br/>
   Status 401 Unauthorized
 
   ```json
@@ -184,7 +185,7 @@
   }
   ```
 
-  For someone who doesn't have superuser permissions</br>
+  For someone who doesn't have superuser permissions<br/>
   Status 403 Forbidden
 
   ```json
@@ -193,7 +194,7 @@
   }
   ```
 
-  For taskId that doesn't exist</br>
+  For taskId that doesn't exist<br/>
   Status 404 Not Found
 
   ```json
@@ -202,7 +203,7 @@
   }
   ```
 
-  For trackedProgresses document already created</br>
+  For trackedProgresses document already created<br/>
   Status 409 Conflict
 
   ```json
@@ -211,8 +212,136 @@
   }
   ```
 
-  For Internal Server Error on the server side</br>
+  For Internal Server Error on the server side<br/>
   Status 500 Internal Server Error
+
+  ```json
+  {
+    "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
+  }
+  ```
+
+## GET /trackedProgresses/:type/:typeId
+
+Retrieves the trackedProgress document based on the path parameters.
+
+- **Params**<br/>
+
+  - type: The type of the trackedProgress document (string)
+  - typeId: The Id of the type tracked (string)
+
+- **Query**<br/>
+  None
+
+- **Body**  
+  None
+
+- **Headers**  
+  None
+
+- **Cookie**  
+  None
+
+- **Success Response:**
+
+  - **Code:** 200
+
+    - **Content:**
+
+    ```json
+    {
+      "message": "string",
+      "data": {
+        "id": "string",
+        "type": "string",
+        "userId": "string",
+        "taskId": "string",
+        "currentlyTracked": "boolean",
+        "frequency": "positive integer",
+        "createdAt": "Timestamp ISO 8601 format",
+        "updatedAt": "Timestamp ISO 8601 format"
+      }
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 400
+
+    - **Content:**
+      ```json
+      {
+        "message": "Bad Request"
+      }
+      ```
+
+  - **Code:** 404
+    - **Content:**
+      ```json
+      {
+        "message": "User / Task with id <:id> does not exist."
+      },
+      {
+        "message": "No trackedProgress records found."
+      }
+      ```
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
+      }
+      ```
+
+- **Example:**
+
+  GET /trackedProgresses/user/SooJK37gzjIZfFNH0tlL<br/>
+  Status: 200 OK
+
+  ```json
+  {
+    "message": "trackedProgress document retrieved successfully.",
+    "data": {
+      "id": "eBe01VS3oYI2HJuWdRuG",
+      "type": "user",
+      "userId": "SooJK37gzjIZfFNH0tlL",
+      "frequency": 1,
+      "currentlyTracked": true,
+      "createdAt": "2023-05-16T14:35:00Z",
+      "updatedAt": "2023-05-16T14:35:00Z"
+    }
+  }
+  ```
+
+  GET /trackedProgresses/event/hPz5hfWBd9oSwMljGk1s<br/>
+  Status: 400 Bad Request
+
+  ```json
+  {
+    "message": "type can either be user or task"
+  }
+  ```
+
+  GET /trackedProgresses/user/SooSk37gzjIZfFNH0tlL<br/>
+  Status: 404 Not Found
+
+  ```json
+  {
+    "message": "No progress records found."
+  }
+  ```
+
+  GET /trackedProgresses/user/invalidUser<br/>
+  Status: 404 Not Found
+
+  ```json
+  {
+    "message": "User invalidUser does not exist."
+  }
+  ```
+
+  GET /trackedProgresses/user/hPz5hfWBd9oSwMljGk1s<br/>
+  Status: 500 Internal Server Error
 
   ```json
   {
