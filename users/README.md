@@ -43,9 +43,9 @@ number and email address.
 |   [GET /users/:userId/badges](#get-usersidbadges)   |        Returns badges assigned to the user         |
 |             [POST /users](#post-users)              |                 Creates a new User                 |
 |        [PATCH /users/self](#patch-usersself)        |              Updates data of the User              |
-|   [POST /users/sync-inDiscord](#post-sync-inDiscord)    | Sync RDS users inDiscord role with Discord members |
-|   [GET /users/inDiscord](#get-usersinDiscord)    | Get RDS users with role: inDiscord = true |
-|   [GET /users/verified](#get-usersverified)    | Get RDS users who are verified |
+|   [POST /users/](#)    | Sync RDS users inDiscord role with Discord members |
+|   [GET /users//search/](#)    | Search RDS users  |
+
 
 ## **GET /users**
 
@@ -269,7 +269,7 @@ Updates data of the User.
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
 
-## **POST /users/sync-inDiscord**
+## **POST /users**
 
 It makes an API call to DISCORD_BOT and fetches a list of discord members and updates the **inDiscord** role for that users in our databse.
 
@@ -294,13 +294,14 @@ None
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
 
-## **GET /users/inDiscord**
+## **GET /users/search/**
 GET RDS users with role: inDiscord=true
 
   - **Params**  
     None
   - **Query**
-    None
+    Optional: `role=string` 
+    Optional: `verified=true`
   - **Body**  
     None
   - **Headers**  
@@ -320,36 +321,3 @@ GET RDS users with role: inDiscord=true
     }
   ```
 
-  ## **GET /users/verified**
-GET RDS users who are verified
-
-  - **Params**  
-    None
-  - **Query**
-    None
-  - **Body**  
-    None
-  - **Headers**  
-    Content-Type: application/json
-  - **Cookie**  
-    rds-session: `<JWT>`
-  - **Success Response:**
-    - **Code:** 200
-      - **Content:**
-
-    ```
-      {
-        message: 'Users returned successfully!'
-        users: [
-                {<user_object>}
-              ]
-      }
-    ```
-  - **Error Response:**
-    - **Code:** 401
-      - **Content:**
-        `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
-
-    - **Code:** 500
-      - **Content:**
-        `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
