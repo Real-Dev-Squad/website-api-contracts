@@ -13,19 +13,25 @@
 
 - **Params**  
   None
+
 - **Query**
   None
-- **Body**  
-  Attributes:
-  -type (required, string): Specifies the type of the trackedProgresses entry (e.g., "task", "user").
-  -taskId (optional, string): Task ID associated with the trackedProgresses entry (applicable for type task).
-  -userId (optional, string): Task ID associated with the trackedProgresses entry (applicable for type user).
-  -currentlyTracked (required, boolean): Whether the trackedProgresses entry is currently tracked
-  -frequency (optional, positive integer): The frequency of the trackedProgresses entry (default is 1 if not specified for task, for user its always 1).
+
+- **Body**
+
+  - Attributes:
+    - type (required, string): Specifies the type of the trackedProgresses entry (e.g., "task", "user").
+    - taskId (optional, string): Task ID associated with the trackedProgresses entry (applicable for type task).
+    - userId (optional, string): Task ID associated with the trackedProgresses entry (applicable for type user).
+    - currentlyTracked (required, boolean): Whether the trackedProgresses entry is currently tracked
+    - frequency (optional, positive integer): The frequency of the trackedProgresses entry (default is 1 if not specified for task, for user its always 1).
+
 - **Headers**  
   Content-Type: application/json
+
 - **Cookie**  
   rds-session: `<JWT>`
+
 - **Success Response:**
   - **Code:** 201
     - **Content:**
