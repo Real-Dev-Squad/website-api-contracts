@@ -2,10 +2,11 @@
 
 ## Requests
 
-|                           Route                            |                            Description                             |
-| :--------------------------------------------------------: | :----------------------------------------------------------------: |
-|     [POST /trackedProgresses](#post-trackedprogresses)     |             Creates a new trackedProgresses document.              |
-| [GET /trackedProgresses](#get-trackedprogressestypetypeid) | Retrieves the trackedProgresses document based on path parameters. |
+|                                Route                                 |                            Description                             |
+| :------------------------------------------------------------------: | :----------------------------------------------------------------: |
+|          [POST /trackedProgresses](#post-trackedprogresses)          |             Creates a new trackedProgresses document.              |
+|      [GET /trackedProgresses](#get-trackedprogressestypetypeid)      | Retrieves the trackedProgresses document based on path parameters. |
+| [PATCH /trackedProgresses/:type/:id](#patch-trackedprogressestypeid) |            Updates an existing trackedProgresses entry.            |
 
 ## POST /trackedProgresses
 
