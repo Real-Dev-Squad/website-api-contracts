@@ -51,9 +51,14 @@ Returns all users in the system.
 - **Params**  
   None
 - **Query**  
-  Optional: `size=[integer]` (`size` is number of users requested per page,
-  value ranges in between 1-100, and default value is 100) <br> Optional: `page=[integer]`
-  (`page` can either be 0 or positive-number, and default value is 0) <br> `search=[string]` (`search` is a string value for username prefix) <br> Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.) <br> Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
+  - Optional: `size=[integer]` (`size` is number of users requested per page,
+  value ranges in between 1-100, and default value is 100)
+  - Optional: `page=[integer]`
+  (`page` can either be 0 or positive-number, and default value is 0)
+  - Optional: `search=[string]` (`search` is a string value for username prefix)
+  - Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.)
+  - Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
+  - Optional: `query=[string]` ( `query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) ) 
 - **Body**  
   None
 - **Headers**  
