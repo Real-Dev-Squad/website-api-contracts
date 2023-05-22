@@ -6,7 +6,7 @@
 {
   'name': string,
   'description': string,
-  'room_id':string,
+  'event_id':string,
   'template_id': string,
   'enabled': boolean,
   'lock': boolean,
@@ -20,14 +20,14 @@
     ref: 'User',
   },
   'questions': [
-    "<question_id>",
-    "<question_id>",
-    "<question_id>"
+    "<question_object_id>",
+    "<question_object_id>",
+    "<question_object_id>"
   ],
   'comments: [
-    "<comment_id>",
-    "<comment_id>",
-    "<comment_id>",
+    "<comment_object_id>",
+    "<comment_object_id>",
+    "<comment_object_id>",
   ],
   'status': <'active' | 'inactive'>,
   'timestamp': {
@@ -91,36 +91,36 @@
 
 ## Requests
 
-| Route                                                        | Description                                                            |
-| ------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| [POST /rooms](#post---rooms)                                 | Create a new room, either randomly or with the requested configuration |
-| [GET /rooms](#get-rooms)                                     | Get all the rooms                                                      |
-| [POST /join](#post---join)                                   | Generate an auth token for a peer to join a room                       |
-| [GET /rooms/:id=<ROOM_ID>](#get---roomsidroom_id)            | Retrieves the details of a specific active room.                       |
-| [PUT /rooms](#put---rooms)                                   | Update the room, make room enabled/disabled,                           |
-| [DELETE /rooms](#delete---rooms)                             | Trigger this request to end an active room.                            |
-| [GET /sessions](#get---session)                              | To retrieve all the sessions.                                          |
-| [GET /sessions/:status](#get---sessionstatus)                | To get currently running session.                                      |
-| [GET /sessions/:id=<SESSION_ID>](#get---sessionidsession_id) | Retrieves the details of a specific active session.                    |
+| Route                                                        | Description                                                             |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------- |
+| [POST /events](#post---events)                               | Create a new event, either randomly or with the requested configuration |
+| [GET /events](#get-events)                                   | Get all the events                                                      |
+| [POST /events/join](#post---eventsjoin)                      | Generate an auth token for a peer to join a event                       |
+| [GET /events/:id=<EVENT_ID>](#get---eventsidevent_id)        | Retrieves the details of a specific active event.                       |
+| [PUT /events](#put---events)                                 | Update the event, make event enabled/disabled,                          |
+| [DELETE /events](#delete---events)                           | Trigger this request to end an active event.                            |
+| [GET /sessions](#get---session)                              | To retrieve all the sessions.                                           |
+| [GET /sessions/:status](#get---sessionstatus)                | To get currently running session.                                       |
+| [GET /sessions/:id=<SESSION_ID>](#get---sessionidsession_id) | Retrieves the details of a specific active session.                     |
 
-## POST - /rooms
+## POST - /events
 
-Create a new room, either randomly or with the requested configuration.
+Create a new event, either randomly or with the requested configuration.
 
 - **Params:**
   - None
 - **Query**
   - None
 - **Body**
-  - Optional: `name=[string]` (`name` is the name of the room which is case-insensitive. Accepted characters are `a-z, A-Z, 0-9, and . - : _`)
-  - Optional: `description=[string]` (`description` describes the usage of the room.)
+  - Optional: `name=[string]` (`name` is the name of the event which is case-insensitive. Accepted characters are `a-z, A-Z, 0-9, and . - : _`)
+  - Optional: `description=[string]` (`description` describes the usage of the event.)
   - Optional: template_id=[string] (template_id which can be found from dashboard)
-  - Optional: region=[string] (region in which you want to create room.)
+  - Optional: region=[string] (region in which you want to create event.)
   ```json
   {
-    "name": "new-room-1662723668",
-    "description": "This is a sample description for the room",
-    "template_id": "<template_id that you wish to associate w/ the room>",
+    "name": "new-event-1662723668",
+    "description": "This is a sample description for the event",
+    "template_id": "<template_id that you wish to associate w/ the event>",
     "region": "in"
   }
   ```
@@ -135,9 +135,9 @@ Create a new room, either randomly or with the requested configuration.
       ```json
       {
         "id": "<id>",
-        "name": "<room_name>",
+        "name": "<event_name>",
         "enabled": true,
-        "description": "This is a sample description for the room",
+        "description": "This is a sample description for the event",
         "customer": "<customer_id>",
         "recording_info": {
           "enabled": false
@@ -154,15 +154,15 @@ Create a new room, either randomly or with the requested configuration.
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 500
     - **Content**
-      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't create room. Please try again later'`
+      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't create event. Please try again later'`
 
-## GET /rooms
+## GET /events
 
-Get all the created rooms.
+Get all the created events.
 
 - Params:
   - enabled: true/false
-  - hits: Number of rooms in one response
+  - hits: Number of events in one response
   - offset: Start of response
     - ex: For 1-10 hits: 10, offset: 0; 11-20 hits: 10, offset: 10;
 - Query
@@ -181,8 +181,8 @@ Get all the created rooms.
       {
       	"limit": 10,
       	"data": [
-      		<room_object>,
-      		<room_object>,
+      		<event_object>,
+      		<event_object>,
       	]
       }
       ```
@@ -192,11 +192,11 @@ Get all the created rooms.
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 500
     - **Content**
-      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't get rooms. Please try again later'`
+      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't get events. Please try again later'`
 
-## POST - /join
+## POST - /events/join
 
-Generate an auth token for a peer to join a room.
+Generate an auth token for a peer to join a event.
 
 To join the event (for guests, host, maven, moderator)
 
@@ -205,12 +205,12 @@ To join the event (for guests, host, maven, moderator)
 - **Query**
   - None
 - **Body**
-  - Required: **`room_id=[string]`** (The ID of the room to which the user belongs)
+  - Required: **`event_id=[string]`** (The ID of the event to which the user belongs)
   - Required: **`user_id=[string]`** (The ID of the user for whom the token is being generated)
-  - Required: **`role=[string]`** (The role of the user in the room)
+  - Required: **`role=[string]`** (The role of the user in the event)
   ```json
   {
-    "room_id": "<room_id>",
+    "event_id": "<event_id>",
     "user_id": "<user_id>",
     "role": "<role>"
   }
@@ -234,12 +234,12 @@ To join the event (for guests, host, maven, moderator)
     - **Content**
       **`{ "msg": "Some error occured!", "success": false }`**
 
-## GET - /rooms/:id=<room_id>
+## GET - /events/:id=<event_id>
 
-Retrieves the details of a specific active room.
+Retrieves the details of a specific active event_id.
 
 - **Params:**
-  - **`id=[string]`** (The ID of the room to retrieve)
+  - **`id=[string]`** (The ID of the event to retrieve)
 - **Query**
   - None
 - **Body**
@@ -253,8 +253,8 @@ Retrieves the details of a specific active room.
     - **Content:**
       ```json
       {
-        "id": "<room_id>",
-        "name": "<room_name>",
+        "id": "<event_id>",
+        "name": "<event_name>",
         "customer_id": "<customer_id>",
         "session": {
           "id": "<session_id>",
@@ -273,25 +273,25 @@ Retrieves the details of a specific active room.
       **`{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`**
   - **Code:** 404
     - **Content**
-      **`{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Room not found' }`**
+      **`{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Event not found' }`**
   - **Code:** 500
     - **Content**
-      **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Unable to retrieve room details' }`**
+      **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Unable to retrieve event details' }`**
 
-## PUT - /rooms
+## PUT - /events
 
-Update the room, make room enabled/disabled,
+Update the event, make event enabled/disabled,
 
 - **Params:**
   - None
 - **Query**
   - None
 - **Body**
-  - Required: `id=[string]` (room id)
-  - Required: `enabled=[boolean]` (Flag to indicate if the room is enabled)
+  - Required: `id=[string]` (event id)
+  - Required: `enabled=[boolean]` (Flag to indicate if the event is enabled)
   ```json
   {
-    "id": "<room_id>",
+    "id": "<event_id>",
     "enabled": false
   }
   ```
@@ -305,7 +305,7 @@ Update the room, make room enabled/disabled,
     - **Content:**
       ```json
       {
-        "message": "Room is enabled"
+        "message": "Event is enabled"
       }
       ```
 - **Error Response:**
@@ -314,23 +314,23 @@ Update the room, make room enabled/disabled,
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 500
     - **Content**
-      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't update room. Please try again later'`
+      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't update event. Please try again later'`
 
-## DELETE - /rooms
+## DELETE - /events
 
-Trigger this request to end an active room.
+Trigger this request to end an active event.
 
 - **Params:**
   - None
 - **Query**
   - None
 - **Body**
-  - **`<room_id>`** (required) : string - The ID of the room to end an active room.
-  - Required: **`reason=[string]`** (reason for ending the room)
-  - Optional: **`lock=[boolean]`** (if true, no new peers will be allowed to join the room after it is ended.)
+  - **`<event_id>`** (required) : string - The ID of the event to end an active event.
+  - Required: **`reason=[string]`** (reason for ending the event)
+  - Optional: **`lock=[boolean]`** (if true, no new peers will be allowed to join the event after it is ended.)
   ```json
   {
-    "id": "<room_id>",
+    "id": "<event_id>",
     "reason": "Class has ended",
     "lock": false
   }
@@ -354,7 +354,7 @@ Trigger this request to end an active room.
       **`{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`**
   - **Code:** 500
     - **Content**
-      **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't end the room. Please try again later'}`**
+      **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't end the event. Please try again later'}`**
 
 ## GET - /sessions
 
@@ -451,7 +451,7 @@ Retrieves the details of a specific active session.
       ```json
       {
         "id": "<session_id>",
-        "room_id": "<room_id>",
+        "event_id": "<event_id>",
         "customer_id": "<customer_id>",
         "active": false,
         "peers": [
