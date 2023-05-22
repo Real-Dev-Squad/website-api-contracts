@@ -62,9 +62,9 @@
 	'question': string,
 	'is_new': boolean, //default to true,
 	'session_id': string,
-	'timestamps': {
-        'created_at': timestamp,
-        'updated_at': timestamp,
+  'timestamps': {
+    'created_at': timestamp,
+    'updated_at': timestamp,
 	}
 }
 ```
@@ -79,9 +79,9 @@
 	'is_blocked': boolean,
 	'is_pinned': boolean,
 	'session_id': string,
-	'timestamps': {
-      'created_at': timestamp,
-      'updated_at': timestamp,
+  'timestamps': {
+    'created_at': timestamp,
+    'updated_at': timestamp,
 	}
 }
 
