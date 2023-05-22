@@ -63,8 +63,8 @@
 	'is_new': boolean, //default to true,
 	'session_id': string,
 	'timestamps': {
-      'created_at': timestamp,
-      'updated_at': timestamp,
+    'created_at': timestamp,
+    'updated_at': timestamp,
 	}
 }
 ```
@@ -80,8 +80,8 @@
 	'is_pinned': boolean,
 	'session_id': string,
 	'timestamps': {
-      'created_at': timestamp,
-      'updated_at': timestamp,
+    'created_at': timestamp,
+    'updated_at': timestamp,
 	}
 }
 
