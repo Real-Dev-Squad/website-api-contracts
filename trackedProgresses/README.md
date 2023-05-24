@@ -497,7 +497,7 @@ Retrieves the document based on the path parameters.
       }
       ```
 
-- **Example for POST request:**<br/>
+- **Example for PATCH request:**<br/>
 
   PATCH /monitor/user/SooJK37gzjIZfFNH0tlL<br/>
   Content-Type: application/json<br/>
@@ -528,7 +528,7 @@ Retrieves the document based on the path parameters.
   }
   ```
 
-  POST /monitor/task/SooJK37gzjIZfFNH0tlL<br/>
+  PATCH /monitor/task/SooJK37gzjIZfFNH0tlL<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
