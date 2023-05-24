@@ -4,36 +4,41 @@
 
 ```
 {
-  'name': string,
-  'description': string,
-  'event_id':string,
-  'template_id': string,
-  'enabled': boolean,
-  'lock': boolean,
-  'region': <'in' | 'us' | 'eu' | 'auto'>,
-  'peers': [
-    "<peer_id>",
-    "<peer_id>",
-    "<peer_id>"
-   ]
-  'created_by': {
-    ref: 'User',
-  },
-  'questions': [
-    "<question_object_id>",
-    "<question_object_id>",
-    "<question_object_id>"
-  ],
-  'comments: [
-    "<comment_object_id>",
-    "<comment_object_id>",
-    "<comment_object_id>",
-  ],
-  'status': <'active' | 'inactive'>,
-  'timestamp': {
-    'created_at': timestamp,
-    'updated_at': timestamp,
-  }
+    id: "id", // This is event id
+    name: "string",
+    description: "string",
+    room_id: "string",
+    session_id: "string",
+    template_id: "string",
+    enabled: "boolean",
+    lock: "boolean",
+    region: <'in' | 'us' | 'eu' | 'auto'>,
+    created_by: "<USER_ID_OF_THE_USER_WHO_CREATED_THE_EVENT>",
+    peers: [
+      <peer_object_id1>,
+      <peer_object_id2>,
+      <peer_object_id3>,
+      <peer_object_id4>,
+      ...
+      <peer_object_idn>,
+    ],
+    'questions': [
+      "<question_object_id1>",
+      "<question_object_id2>",
+      ...
+      "<question_object_idn>"
+    ],
+    'comments: [
+      "<comment_object_id1>",
+      "<comment_object_id2>",
+      ...
+      "<comment_object_idn>",
+    ],
+    status: <'active' | 'inactive'>
+    timestamps: {
+      created_at: timestamp,
+      updated_at: timestamp,
+    }
 }
 ```
 
@@ -42,12 +47,27 @@
 ```
 {
   'id': string,
-  'session_id': string,
   'name': string,
   'role': <'host' | 'moderator' | 'guest' | 'maven'>,
+  'joinedEvents': [
+    {
+      'event_id':"<event_object_id1>",
+      'joined_at': timestamp,
+      'left_at': timestamp,
+    },
+    {
+      'event_id':"<event_object_id2>",
+      'joined_at': timestamp,
+      'left_at': timestamp,
+    },
+    ...
+    {
+      'event_id':"<event_object_idn>",
+      'joined_at': timestamp,
+      'left_at': timestamp,
+    }
+  ],
   'user_id': string,
-  'joined_at': timestamp,
-  'left_at': timestamp,
   'is_rds_user': boolean,
   // extends user model
 }
@@ -91,17 +111,14 @@
 
 ## Requests
 
-| Route                                                        | Description                                                             |
-| ------------------------------------------------------------ | ----------------------------------------------------------------------- |
-| [POST /events](#post---events)                               | Create a new event, either randomly or with the requested configuration |
-| [GET /events](#get-events)                                   | Get all the events                                                      |
-| [POST /events/join](#post---eventsjoin)                      | Generate an auth token for a peer to join a event                       |
-| [GET /events/:id=<EVENT_ID>](#get---eventsidevent_id)        | Retrieves the details of a specific active event.                       |
-| [PUT /events](#put---events)                                 | Update the event, make event enabled/disabled,                          |
-| [DELETE /events](#delete---events)                           | Trigger this request to end an active event.                            |
-| [GET /sessions](#get---session)                              | To retrieve all the sessions.                                           |
-| [GET /sessions/:status](#get---sessionstatus)                | To get currently running session.                                       |
-| [GET /sessions/:id=<SESSION_ID>](#get---sessionidsession_id) | Retrieves the details of a specific active session.                     |
+| Route                                                 | Description                                                             |
+| ----------------------------------------------------- | ----------------------------------------------------------------------- |
+| [POST /events](#post---events)                        | Create a new event, either randomly or with the requested configuration |
+| [GET /events](#get-events)                            | Get all the events                                                      |
+| [POST /events/join](#post---eventsjoin)               | Generate an auth token for a peer to join a event                       |
+| [GET /events/:id=<EVENT_ID>](#get---eventsidevent_id) | Retrieves the details of a specific active event.                       |
+| [PUT /events](#put---events)                          | Update the event, make event enabled/disabled,                          |
+| [DELETE /events](#delete---events)                    | Trigger this request to end an active event.                            |
 
 ## POST - /events
 
@@ -355,118 +372,3 @@ Trigger this request to end an active event.
   - **Code:** 500
     - **Content**
       **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't end the event. Please try again later'}`**
-
-## GET - /sessions
-
-To retrieve all the sessions.
-
-- Params:
-  - hits: Number of sessions in one response
-  - offset: Start of response
-    - ex: For 1-10 hits: 10, offset: 0; 11-20 hits: 10, offset: 10;
-- Query
-  - None
-- Body
-  - None
-- Headers
-  - Content-Type: application/json
-  - Authorization: Bearer <management_token>
-- **Cookie**
-  - rds-session: `<JWT>`
-- **Success Response:**
-  - **Code:** 200
-    - **Content:**
-      ```jsx
-      {
-      	"limit": 10,
-      	"data": [
-      		<session_object>,
-      		<session_object>,
-      	]
-      }
-      ```
-- **Error Response:**
-  - **Code:** 401
-    - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
-  - **Code:** 500
-    - **Content**
-      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't get sessions. Please try again later'`
-
-## GET - /sessions/:status
-
-To get currently running sessions.
-
-- Params:
-  - active: true/false
-  - hits: Number of sessions in one response
-  - offset: Start of response
-    - ex: For 1-10 hits: 10, offset: 0; 11-20 hits: 10, offset: 10;
-- Query
-  - None
-- Body
-  - None
-- Headers
-  - Content-Type: application/json
-  - Authorization: Bearer <management_token>
-- **Cookie**
-  - rds-session: `<JWT>`
-- **Success Response:**
-  - **Code:** 200
-    - **Content:**
-      ```jsx
-      {
-      	"limit": 10,
-      	"data": [
-      		<session_object>,
-      		<session_object>,
-      	]
-      }
-      ```
-- **Error Response:**
-  - **Code:** 401
-    - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
-  - **Code:** 500
-    - **Content**
-      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't get sessions. Please try again later'`
-
-## GET - /sessions/:id=<SESSION_ID>
-
-Retrieves the details of a specific active session.
-
-- **Params:**
-  - **`id=[string]`** (The ID of the session to retrieve)
-- **Query**
-  - None
-- **Body**
-  - None
-- **Headers**
-  - Authorization: Bearer <management_token>
-- **Cookie**
-  - rds-session: `<JWT>`
-- **Success Response:**
-  - **Code:** 200
-    - **Content:**
-      ```json
-      {
-        "id": "<session_id>",
-        "event_id": "<event_id>",
-        "customer_id": "<customer_id>",
-        "active": false,
-        "peers": [
-      		<peer_object>,
-      		<peer_object>
-      	]
-      }
-      ```
-- **Error Response:**
-  - **Code:** 401
-    - **Content:**
-      **`{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`**
-  - **Code:** 404
-    - **Content**
-      **`{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Session not found' }`**
-  - **Code:** 500
-    - **Content**
-      **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Unable to retrieve session details' }`**
