@@ -4,17 +4,17 @@
 
 ```
 {
-    id: "id", // This is event id
-    name: "string",
-    description: "string",
-    room_id: "string",
-    session_id: "string",
-    template_id: "string",
-    enabled: "boolean",
-    lock: "boolean",
-    region: <'in' | 'us' | 'eu' | 'auto'>,
-    created_by: "<USER_ID_OF_THE_USER_WHO_CREATED_THE_EVENT>",
-    peers: [
+    'id': "id", // This is event id
+    'name': "string",
+    'description': "string",
+    'room_id': "string",
+    'session_id': "string",
+    'template_id': "string",
+    'enabled': "boolean",
+    'lock': "boolean",
+    'region': <'in' | 'us' | 'eu' | 'auto'>,
+    'created_by': "<USER_ID_OF_THE_USER_WHO_CREATED_THE_EVENT>",
+    'peers': [
       <peer_object_id1>,
       <peer_object_id2>,
       <peer_object_id3>,
@@ -28,17 +28,17 @@
       ...
       "<question_object_idn>"
     ],
-    'comments: [
+    'comments': [
       "<comment_object_id1>",
       "<comment_object_id2>",
       ...
       "<comment_object_idn>",
     ],
-    status: <'active' | 'inactive'>
-    timestamps: {
-      created_at: timestamp,
-      updated_at: timestamp,
-    }
+    'status': <'active' | 'inactive'>
+    'timestamps': {
+      'created_at': timestamp,
+      'updated_at': timestamp,
+      }
 }
 ```
 
@@ -85,7 +85,7 @@
   'timestamps': {
     'created_at': timestamp,
     'updated_at': timestamp,
-	}
+  }
 }
 ```
 
@@ -102,7 +102,7 @@
   'timestamps': {
     'created_at': timestamp,
     'updated_at': timestamp,
-	}
+  }
 }
 
 ```
@@ -129,10 +129,10 @@ Create a new event, either randomly or with the requested configuration.
 - **Query**
   - None
 - **Body**
-  - Optional: `name=[string]` (`name` is the name of the event which is case-insensitive. Accepted characters are `a-z, A-Z, 0-9, and . - : _`)
-  - Optional: `description=[string]` (`description` describes the usage of the event.)
-  - Optional: template_id=[string] (template_id which can be found from dashboard)
-  - Optional: region=[string] (region in which you want to create event.)
+  - `name=[string]` - optional (`name` is the name of the event which is case-insensitive. Accepted characters are `a-z, A-Z, 0-9, and . - : _`)
+  - `description=[string]` - optional (`description` describes the usage of the event.)
+  - template_id=[string] - optional (template_id which can be found from dashboard)
+  - region=[string] - optional (region in which you want to create event.)
   ```json
   {
     "name": "new-event-1662723668",
@@ -147,7 +147,7 @@ Create a new event, either randomly or with the requested configuration.
 - **Cookie**
   - rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 200
+  - **Code:** 201
     - **Content:**
       ```json
       {
@@ -177,13 +177,13 @@ Create a new event, either randomly or with the requested configuration.
 
 Get all the created events.
 
-- Params:
-  - enabled: true/false
-  - hits: Number of events in one response
-  - offset: Start of response
-    - ex: For 1-10 hits: 10, offset: 0; 11-20 hits: 10, offset: 10;
-- Query
+- Params
   - None
+- Query
+  - enabled: true/false
+  - limit: Number of events in one response
+  - offset: Start of response
+    - ex: For 1-10 limit: 10, offset: 0; 11-20 limit: 10, offset: 10;
 - Body
   - None
 - Headers
@@ -194,16 +194,16 @@ Get all the created events.
 - **Success Response:**
   - **Code:** 200
     - **Content:**
-      ```jsx
+      ```json
       {
-      	"limit": 10,
-      	"data": [
-      		<event_object>,
-      		<event_object>,
-      	]
+        "limit": 10,
+        "data": ["<event_object>", "<event_object>"]
       }
       ```
 - **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid request body or missing required parameters' }`
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -234,22 +234,20 @@ To join the event (for guests, host, maven, moderator)
   ```
 - **Headers**
   - Content-Type: application/json
-- **Cookie**
-  - rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 200
+  - **Code:** 201
     - **Content:**
       ```json
       {
         "token": "<auth_token>",
-        "msg": "Token generated successfully!",
+        "message": "Token generated successfully!",
         "success": true
       }
       ```
 - **Error Response:**
   - **Code:** 500
     - **Content**
-      **`{ "msg": "Some error occured!", "success": false }`**
+      `{ "message": "Some error occured!", "success": false }`
 
 ## GET - /events/:id=<event_id>
 
@@ -276,24 +274,20 @@ Retrieves the details of a specific active event_id.
         "session": {
           "id": "<session_id>",
           "created_at": "YYYY-MM-DDTHH:MM:SS.sssZ",
-          "peers": [
-            <peer_object>,
-            <peer_object>,
-            <peer_object>
-          ]
+          "peers": ["<peer_object>", "<peer_object>", "<peer_object>"]
         }
       }
       ```
 - **Error Response:**
   - **Code:** 401
     - **Content:**
-      **`{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 404
     - **Content**
-      **`{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Event not found' }`**
+      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Event not found' }`
   - **Code:** 500
     - **Content**
-      **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Unable to retrieve event details' }`**
+      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Unable to retrieve event details' }`
 
 ## PUT - /events
 
@@ -326,9 +320,15 @@ Update the event, make event enabled/disabled,
       }
       ```
 - **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid request body or missing required parameters' }`
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content**
+      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Event not found' }`
   - **Code:** 500
     - **Content**
       `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't update event. Please try again later'`
@@ -343,8 +343,8 @@ Trigger this request to end an active event.
   - None
 - **Body**
   - **`<event_id>`** (required) : string - The ID of the event to end an active event.
-  - Required: **`reason=[string]`** (reason for ending the event)
-  - Optional: **`lock=[boolean]`** (if true, no new peers will be allowed to join the event after it is ended.)
+  - **`reason=[string]`** - required (reason for ending the event)
+  - **`lock=[boolean]`** - optional (if true, no new peers will be allowed to join the event after it is ended.)
   ```json
   {
     "id": "<event_id>",
@@ -362,13 +362,19 @@ Trigger this request to end an active event.
     - **Content:**
       ```json
       {
-        "message": "Session is ending."
+        "message": "Event ended successfully."
       }
       ```
 - **Error Response:**
-  - **Code:** 401
+  - **Code:** 400
     - **Content:**
-      **`{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid request body or missing required parameters' }`
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content**
+      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Event not found' }`
   - **Code:** 500
     - **Content**
-      **`{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't end the event. Please try again later'}`**
+      `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't end the event. Please try again later'}`
