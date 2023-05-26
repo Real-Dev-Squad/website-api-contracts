@@ -48,28 +48,31 @@
 {
   'id': string,
   'name': string,
-  'role': <'host' | 'moderator' | 'guest' | 'maven'>,
   'joinedEvents': [
     {
       'event_id':"<event_object_id1>",
       'joined_at': timestamp,
       'left_at': timestamp,
+      'role': <'host' | 'moderator' | 'guest' | 'maven'>,
     },
     {
       'event_id':"<event_object_id2>",
       'joined_at': timestamp,
       'left_at': timestamp,
+      'role': <'host' | 'moderator' | 'guest' | 'maven'>,
     },
     ...
     {
       'event_id':"<event_object_idn>",
       'joined_at': timestamp,
       'left_at': timestamp,
+      'role': <'host' | 'moderator' | 'guest' | 'maven'>,
     }
   ],
-  'user_id': string,
-  'is_rds_user': boolean,
-  // extends user model
+  'rds_user': {
+    is_rds_user:boolean,
+    user_id: "<USER_ID_OF_THE_USER_WHO_CREATED_THE_EVENT>"
+  },
 }
 ```
 
@@ -78,7 +81,7 @@
 ```
 {
 	'id': string,
-	'user_id': string,
+	'created_by': "<USER_ID_OF_THE_USER_WHO_CREATED_THE_EVENT>",
 	'question': string,
 	'is_new': boolean, //default to true,
 	'session_id': string,
@@ -117,8 +120,8 @@
 | [GET /events](#get-events)                            | Get all the events                                                      |
 | [POST /events/join](#post---eventsjoin)               | Generate an auth token for a peer to join a event                       |
 | [GET /events/:id=<EVENT_ID>](#get---eventsidevent_id) | Retrieves the details of a specific active event.                       |
-| [PUT /events](#put---events)                          | Update the event, make event enabled/disabled,                          |
-| [DELETE /events](#delete---events)                    | Trigger this request to end an active event.                            |
+| [PATCH /events](#patch---events)                      | Update the event, make event enabled/disabled,                          |
+| [PATCH /events/end](#patch---eventsend)               | Trigger this request to end an active event.                            |
 
 ## POST - /events
 
@@ -153,12 +156,10 @@ Create a new event, either randomly or with the requested configuration.
       {
         "id": "<id>",
         "name": "<event_name>",
-        "enabled": true,
         "description": "This is a sample description for the event",
-        "customer": "<customer_id>",
-        "recording_info": {
-          "enabled": false
-        },
+        "enabled": true,
+        "created_by": "user_id",
+        "room_id": "<room_id>",
         "template_id": "<template_id>",
         "region": "in",
         "created_at": "YYYY-MM-DDTHH:MM:SS.sssZ",
@@ -166,6 +167,9 @@ Create a new event, either randomly or with the requested configuration.
       }
       ```
 - **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid request body or missing required parameters' }`
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -197,7 +201,8 @@ Get all the created events.
       ```json
       {
         "limit": 10,
-        "data": ["<event_object>", "<event_object>"]
+        "data": ["<event_object>", "<event_object>"],
+        "start": "<room_id>"
       }
       ```
 - **Error Response:**
@@ -258,13 +263,14 @@ Retrieves the details of a specific active event_id.
 - **Query**
   - None
 - **Body**
-  - None
+  - isActiveRoom=[boolean] - required (isActiveRoom indicates whether the room is active or not)
 - **Headers**
   - Authorization: Bearer <management_token>
 - **Cookie**
   - rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 200
+  - if room is active
+    - **Code:** 200
     - **Content:**
       ```json
       {
@@ -278,7 +284,27 @@ Retrieves the details of a specific active event_id.
         }
       }
       ```
+  - if room is not active
+    - **Code:** 200
+    - **Content:**
+      ```json
+      {
+        "id": "<id>",
+        "name": "<event_name>",
+        "description": "This is a sample description for the event",
+        "enabled": true,
+        "created_by": "user_id",
+        "room_id": "<room_id>",
+        "template_id": "<template_id>",
+        "region": "in",
+        "created_at": "YYYY-MM-DDTHH:MM:SS.sssZ",
+        "updated_at": "YYYY-MM-DDTHH:MM:SS.sssZ"
+      }
+      ```
 - **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid request body or missing required parameters' }`
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
@@ -289,7 +315,7 @@ Retrieves the details of a specific active event_id.
     - **Content**
       `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Unable to retrieve event details' }`
 
-## PUT - /events
+## PATCH - /events
 
 Update the event, make event enabled/disabled,
 
@@ -316,7 +342,7 @@ Update the event, make event enabled/disabled,
     - **Content:**
       ```json
       {
-        "message": "Event is enabled"
+        "message": "Event is enabled."
       }
       ```
 - **Error Response:**
@@ -333,7 +359,7 @@ Update the event, make event enabled/disabled,
     - **Content**
       `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't update event. Please try again later'`
 
-## DELETE - /events
+## PATCH - /events/end
 
 Trigger this request to end an active event.
 
