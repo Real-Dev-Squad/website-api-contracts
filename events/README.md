@@ -250,6 +250,9 @@ To join the event (for guests, host, maven, moderator)
       }
       ```
 - **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid request body or missing required parameters' }`
   - **Code:** 500
     - **Content**
       `{ "message": "Some error occured!", "success": false }`
