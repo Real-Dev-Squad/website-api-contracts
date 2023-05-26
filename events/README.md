@@ -80,11 +80,11 @@
 
 ```
 {
-	'id': string,
-	'created_by': "<USER_ID_OF_THE_USER_WHO_CREATED_THE_EVENT>",
-	'question': string,
-	'is_new': boolean, //default to true,
-	'session_id': string,
+  'id': string,
+  'created_by': "<USER_ID_OF_THE_USER_WHO_CREATED_THE_EVENT>",
+  'question': string,
+  'is_new': boolean, //default to true,
+  'session_id': string,
   'timestamps': {
     'created_at': timestamp,
     'updated_at': timestamp,
@@ -96,12 +96,12 @@
 
 ```
 {
-	'id': string,
-	'comment': string,
-	'comment_by': string, //user id of the user who commented
-	'is_blocked': boolean,
-	'is_pinned': boolean,
-	'session_id': string,
+  'id': string,
+  'comment': string,
+  'comment_by': string, //user id of the user who commented
+  'is_blocked': boolean,
+  'is_pinned': boolean,
+  'session_id': string,
   'timestamps': {
     'created_at': timestamp,
     'updated_at': timestamp,
