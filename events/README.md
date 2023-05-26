@@ -132,10 +132,10 @@ Create a new event, either randomly or with the requested configuration.
 - **Query**
   - None
 - **Body**
-  - `name=[string]` - optional (`name` is the name of the event which is case-insensitive. Accepted characters are `a-z, A-Z, 0-9, and . - : _`)
-  - `description=[string]` - optional (`description` describes the usage of the event.)
-  - template_id=[string] - optional (template_id which can be found from dashboard)
-  - region=[string] - optional (region in which you want to create event.)
+  - `name=[string]` - required (`name` is the name of the event which is case-insensitive. Accepted characters are `a-z, A-Z, 0-9, and . - : _`)
+  - `description=[string]` - required (`description` describes the usage of the event.)
+  - template_id=[string] - required (template_id which can be found from dashboard)
+  - region=[string] - required (region in which you want to create event.)
   ```json
   {
     "name": "new-event-1662723668",
@@ -370,7 +370,7 @@ Trigger this request to end an active event.
 - **Body**
   - **`<event_id>`** (required) : string - The ID of the event to end an active event.
   - **`reason=[string]`** - required (reason for ending the event)
-  - **`lock=[boolean]`** - optional (if true, no new peers will be allowed to join the event after it is ended.)
+  - **`lock=[boolean]`** - required (if true, no new peers will be allowed to join the event after it is ended.)
   ```json
   {
     "id": "<event_id>",
