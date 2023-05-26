@@ -1,16 +1,16 @@
-# API Contracts for tracked-progresses Collection
+# API Contracts for trackedProgresses Collection
 
 ## Requests
 
-|                                 Route                                  |                             Description                             |
-| :--------------------------------------------------------------------: | :-----------------------------------------------------------------: |
-|          [POST /tracked-progresses](#post-tracked-progresses)          |             Creates a new tracked-progresses document.              |
-|      [GET /tracked-progresses](#get-tracked-progressestypetypeid)      | Retrieves the tracked-progresses document based on path parameters. |
-| [PATCH /tracked-progresses/:type/:id](#patch-tracked-progressestypeid) |            Updates an existing tracked-progresses entry.            |
+|                      Route                       |                   Description                    |
+| :----------------------------------------------: | :----------------------------------------------: |
+|          [POST /monitor](#post-monitor)          |             Creates a new document.              |
+|           [GET /monitor](#get-monitor)           | Retrieves the document based on path parameters. |
+| [PATCH /monitor/:type/:id](#patch-monitortypeid) |          Updates an existing document.           |
 
-## POST /tracked-progresses
+## POST /monitor
 
-    Creates a new tracked-progresses entry.
+    Creates a new document.
 
 - **Params**  
   None
@@ -21,11 +21,11 @@
 - **Body**
 
   - Attributes:
-    - type (required, string): Specifies the type of the tracked-progresses entry (e.g., "task", "user").
-    - taskId (optional, string): Task ID associated with the tracked-progresses entry (applicable for type task).
-    - userId (optional, string): Task ID associated with the tracked-progresses entry (applicable for type user).
-    - currentlyTracked (required, boolean): Whether the tracked-progresses entry is currently tracked
-    - frequency (optional, positive integer): The frequency of the tracked-progresses entry (default is 1 if not specified for task, for user its always 1).
+    - type (required, string): Specifies the type of the progresses entry (e.g., "task", "user").
+    - taskId (optional, string): Task ID associated with the progresses entry (applicable for type task).
+    - userId (optional, string): Task ID associated with the progresses entry (applicable for type user).
+    - monitored (required, boolean): Whether the progresses entry is currently monitored
+    - frequency (optional, positive integer): The frequency of the progresses entry (default is 1 if not specified for task, for user its always 1).
 
 - **Headers**  
   Content-Type: application/json
@@ -44,7 +44,7 @@
           "type": "string",
           "userId": "string (for type user)",
           "taskId": "string (for type task)",
-          "currentlyTracked": "boolean",
+          "monitored": "boolean",
           "frequency": "positive integer",
           "createdAt": "ISO 8601 format Timestamp",
           "updatedAt": "ISO 8601 format Timestamp"
@@ -94,7 +94,7 @@
     - **Content:**
       ```json
       {
-        "message": "Resource is already being tracked."
+        "message": "Resource is already being monitored."
       }
       ```
 
@@ -107,9 +107,9 @@
       }
       ```
 
-- **Example for tracked-progresses POST request:**<br/>
+- **Example for POST request:**<br/>
 
-  POST /tracked-progresses<br/>
+  POST /monitor<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
@@ -117,7 +117,7 @@
   {
     "type": "user",
     "userId": "SooJK37gzjIZfFNH0tlL",
-    "currentlyTracked": true
+    "monitored": true
   }
   ```
 
@@ -133,14 +133,14 @@
       "type": "user",
       "userId": "SooJK37gzjIZfFNH0tlL",
       "frequency": 1,
-      "currentlyTracked": true,
+      "monitored": true,
       "createdAt": "2023-05-16T14:35:00Z",
       "updatedAt": "2023-05-16T14:35:00Z"
     }
   }
   ```
 
-  POST /tracked-progresses<br/>
+  POST /monitor<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
@@ -148,7 +148,7 @@
   {
     "type": "task",
     "taskId": "SooJK37gzjIZfFNH0tlL",
-    "currentlyTracked": true,
+    "monitored": true,
     "frequency": 2
   }
   ```
@@ -165,7 +165,7 @@
       "type": "task",
       "taskId": "SooJK37gzjIZfFNH0tlL",
       "frequency": 2,
-      "currentlyTracked": true,
+      "monitored": true,
       "createdAt": "2023-05-16T14:35:00Z",
       "updatedAt": "2023-05-16T14:35:00Z"
     }
@@ -208,12 +208,12 @@
   }
   ```
 
-  For tracked-progresses document already created<br/>
+  For document already created<br/>
   Status 409 Conflict
 
   ```json
   {
-    "message": "Resource is already being tracked."
+    "message": "Resource is already being monitored."
   }
   ```
 
@@ -226,17 +226,19 @@
   }
   ```
 
-## GET /tracked-progresses/:type/:typeId
+## GET /monitor
 
-Retrieves the trackedProgress document based on the path parameters.
+Retrieves the document based on the path parameters.
 
 - **Params**<br/>
-
-  - type: The type of the trackedProgress document (string)
-  - typeId: The Id of the type tracked (string)
+  None
 
 - **Query**<br/>
-  None
+
+  - type: The type of the document (string)
+  - monitored: If the user/task is being tracked (boolean)
+  - userId: The ID of the user
+  - taskId: The ID of the task
 
 - **Body**  
   None
@@ -252,6 +254,27 @@ Retrieves the trackedProgress document based on the path parameters.
   - **Code:** 200
 
     - **Content:**
+      For multiple task/user
+
+    ```json
+    {
+      "message": "string",
+      "data": [
+        {
+          "id": "string",
+          "type": "string",
+          "userId": "string",
+          "taskId": "string",
+          "monitored": "boolean",
+          "frequency": "positive integer",
+          "createdAt": "Timestamp ISO 8601 format",
+          "updatedAt": "Timestamp ISO 8601 format"
+        }
+      ]
+    }
+    ```
+
+    For single task/user
 
     ```json
     {
@@ -261,7 +284,7 @@ Retrieves the trackedProgress document based on the path parameters.
         "type": "string",
         "userId": "string",
         "taskId": "string",
-        "currentlyTracked": "boolean",
+        "monitored": "boolean",
         "frequency": "positive integer",
         "createdAt": "Timestamp ISO 8601 format",
         "updatedAt": "Timestamp ISO 8601 format"
@@ -287,7 +310,7 @@ Retrieves the trackedProgress document based on the path parameters.
         "message": "User / Task with id <:id> does not exist."
       },
       {
-        "message": "No trackedProgress records found."
+        "message": "No records found."
       }
       ```
   - **Code:** 500
@@ -300,34 +323,63 @@ Retrieves the trackedProgress document based on the path parameters.
 
 - **Example:**
 
-  GET /tracked-progresses/user/SooJK37gzjIZfFNH0tlL<br/>
+  GET /monitor?userId=SooJK37gzjIZfFNH0tlL<br/>
   Status: 200 OK
 
   ```json
   {
-    "message": "trackedProgress document retrieved successfully.",
+    "message": "monitored document retrieved successfully.",
     "data": {
       "id": "eBe01VS3oYI2HJuWdRuG",
       "type": "user",
       "userId": "SooJK37gzjIZfFNH0tlL",
       "frequency": 1,
-      "currentlyTracked": true,
+      "monitored": true,
       "createdAt": "2023-05-16T14:35:00Z",
       "updatedAt": "2023-05-16T14:35:00Z"
     }
   }
   ```
 
-  GET /tracked-progresses/event/hPz5hfWBd9oSwMljGk1s<br/>
+  GET /monitor?type=task<br/>
+  Status: 200 OK
+
+  ```json
+  {
+    "message": "Resource retrieved successfully.",
+    "data": [
+      {
+        "id": "7GW0AoUagE662drETrmM",
+        "createdAt": "2023-05-23T16:35:33.588Z",
+        "type": "task",
+        "taskId": "ViMfxn7kDi5eRZD15p57",
+        "monitored": false,
+        "frequency": 2,
+        "updatedAt": "2023-05-23T16:38:56.458Z"
+      },
+      {
+        "id": "eKwSATvQyO7fTs3xhEoK",
+        "createdAt": "2023-05-23T03:37:20.627Z",
+        "type": "task",
+        "taskId": "y7pFElvT5gBo40cD9NxY",
+        "frequency": 5,
+        "monitored": true,
+        "updatedAt": "2023-05-23T16:38:08.200Z"
+      }
+    ]
+  }
+  ```
+
+  GET /monitor?type=event<br/>
   Status: 400 Bad Request
 
   ```json
   {
-    "message": "type can either be user or task"
+    "message": "Type field is restricted to either 'user' or 'task'."
   }
   ```
 
-  GET /tracked-progresses/user/SooSk37gzjIZfFNH0tlL<br/>
+  GET /monitor?userId=SooSk37gzjIZfFNH0tlL<br/>
   Status: 404 Not Found
 
   ```json
@@ -336,7 +388,7 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  GET /tracked-progresses/user/invalidUser<br/>
+  GET /monitor?userId=invalidUser<br/>
   Status: 404 Not Found
 
   ```json
@@ -345,7 +397,7 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-  GET /tracked-progresses/user/hPz5hfWBd9oSwMljGk1s<br/>
+  GET /monitor?userId=hPz5hfWBd9oSwMljGk1s<br/>
   Status: 500 Internal Server Error
 
   ```json
@@ -354,14 +406,14 @@ Retrieves the trackedProgress document based on the path parameters.
   }
   ```
 
-## PATCH /tracked-progresses/:type/:id
+## PATCH /monitor/:type/:id
 
-    Updates an existing tracked-progresses entry.
+    Updates an existing entry.
 
 - **Params**
 
-  - type (required, string): Specifies the type of the tracked-progresses entry (e.g., "task", "user").
-  - id (required, string): The ID of the task or user associated with the tracked-progresses entry. i.e taskId or userId
+  - type (required, string): Specifies the type of the progresses entry (e.g., "task", "user").
+  - id (required, string): The ID of the task or user associated with the progresses entry. i.e taskId or userId
 
 - **Query**<br/>
   None
@@ -369,8 +421,8 @@ Retrieves the trackedProgress document based on the path parameters.
 - **Body**
 
   - Attributes:
-    - currentlyTracked (optional,boolean): Whether the tracked-progresses entry is currently tracked
-    - frequency (optional, positive integer): The frequency of the tracked-progresses entry (only applicable for task).
+    - monitored (optional,boolean): Whether the progresses entry is currently monitored
+    - frequency (optional, positive integer): The frequency of the progresses entry (only applicable for task).
 
 - **Headers**  
   Content-Type: application/json
@@ -390,7 +442,7 @@ Retrieves the trackedProgress document based on the path parameters.
           "type": "string",
           "userId": "string (for type user)",
           "taskId": "string (for type task)",
-          "currentlyTracked": "boolean",
+          "monitored": "boolean",
           "frequency": "positive integer",
           "createdAt": "ISO 8601 format Timestamp",
           "updatedAt": "ISO 8601 format Timestamp"
@@ -445,15 +497,15 @@ Retrieves the trackedProgress document based on the path parameters.
       }
       ```
 
-- **Example for tracked-progresses POST request:**<br/>
+- **Example for PATCH request:**<br/>
 
-  PATCH /tracked-progresses/user/SooJK37gzjIZfFNH0tlL<br/>
+  PATCH /monitor/user/SooJK37gzjIZfFNH0tlL<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
   ```json
   {
-    "currentlyTracked": false
+    "monitored": false
   }
   ```
 
@@ -469,20 +521,20 @@ Retrieves the trackedProgress document based on the path parameters.
       "type": "user",
       "userId": "SooJK37gzjIZfFNH0tlL",
       "frequency": 1,
-      "currentlyTracked": false,
+      "monitored": false,
       "createdAt": "2023-05-16T14:35:00Z",
       "updatedAt": "2023-05-16T14:35:00Z"
     }
   }
   ```
 
-  POST /tracked-progresses/task/SooJK37gzjIZfFNH0tlL<br/>
+  PATCH /monitor/task/SooJK37gzjIZfFNH0tlL<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
   ```json
   {
-    "currentlyTracked": false
+    "monitored": false
   }
   ```
 
@@ -498,7 +550,7 @@ Retrieves the trackedProgress document based on the path parameters.
       "type": "task",
       "taskId": "SooJK37gzjIZfFNH0tlL",
       "frequency": 2,
-      "currentlyTracked": false,
+      "monitored": false,
       "createdAt": "2023-05-16T14:35:00Z",
       "updatedAt": "2023-05-16T14:35:00Z"
     }
