@@ -291,18 +291,7 @@ Retrieves the details of a specific active event_id.
     - **Code:** 200
     - **Content:**
       ```json
-      {
-        "id": "<id>",
-        "name": "<event_name>",
-        "description": "This is a sample description for the event",
-        "enabled": true,
-        "created_by": "user_id",
-        "room_id": "<room_id>",
-        "template_id": "<template_id>",
-        "region": "in",
-        "created_at": "YYYY-MM-DDTHH:MM:SS.sssZ",
-        "updated_at": "YYYY-MM-DDTHH:MM:SS.sssZ"
-      }
+        <event_object>
       ```
 - **Error Response:**
   - **Code:** 400
