@@ -57,12 +57,3 @@ Description: Authenticates the user by verifying the user ID and device informat
     "message": "Bad Request"
 }
 ```
-
-
-
-
-
-
-
-
-
