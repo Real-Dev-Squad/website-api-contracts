@@ -8,16 +8,24 @@
 
 Description: Authenticates the user by verifying the user ID and device information.
 
-#### Request Body:
+- **Params**
+  None
+- **Query**
+  None
 
-```
-{
+- **Body**  
+ ```
+ {
   "user_id": "<user-id>",
   "device_info": "<device-info>"
-}
+ }
 ```
+- **Headers**  
+  None
+- **Cookie**  
+  None
 
-#### Responses:
+#### Success Response:
 
 ```
 {
@@ -29,7 +37,7 @@ Description: Authenticates the user by verifying the user ID and device informat
     "message": "User Device Info added successfully!"
 }
 ```
-
+#### Error Responses
 ```
 {
     "statusCode": 404,
@@ -43,6 +51,14 @@ Description: Authenticates the user by verifying the user ID and device informat
     "message": "Internal server error."
 }
 ```
+```
+{
+    "statusCode": 400,
+    "message": "Bad Request"
+}
+```
+
+
 
 
 
