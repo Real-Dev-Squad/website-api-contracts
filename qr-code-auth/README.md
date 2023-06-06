@@ -18,7 +18,6 @@
   None
 - **Body**
   - Attributes
-    - **user_id** (required, string): Specifies the user ID associated with the authentication document.
     - **device_info** (required, string): Specifies the device information associated with the authentication authentication.
     - **is_authorized** (required, boolean): Indicates whether the authentication document is authorized or not.
     - **access_token** (required, string): Specifies the access token associated with the authentication document.
@@ -60,13 +59,6 @@
         "message": "Unauthenticated User."
       }
       ```
-  - **Code:** 404
-    - **Content:**
-      ```json
-      {
-        "message": "User with id <:user_id> does not exist."
-      }
-      ```
   - **Code:** 409
     - **Content:**
       ```json
@@ -89,7 +81,6 @@
 
   ```json
   {
-    "user_id": "SooJK37gzjIZfFNH0tlL",
     "device_info": "t5k77PHnuDSrgEzvMJAj",
     "is_authorized": true,
     "access_token": "NLFSj7Kz30oHgolfIZtJ"
@@ -212,12 +203,11 @@ Retrieves THE authentication document.
 
 Sure, here's the updated API contract for the PATCH call:
 
-## PATCH /qr-code-auth/user_id/{user_id}/is_authorized/{is_authorized}
+## PATCH /qr-code-auth/is_authorized/{is_authorized}
 
 Updates the is_authorized field of an existing qr-code-auth document for the specified user.
 
 - **Params**
-  - **user_id** (required, string): Specifies the user ID associated with the authentication document.
   - **is_authorized** (required, boolean): Specifies whether the authentication document is authorized or not.
 - **Query**
   None
@@ -275,12 +265,10 @@ Updates the is_authorized field of an existing qr-code-auth document for the spe
       ```
 
 - **Example for updating an existing authentication document:**
-  PATCH /qr-code-auth/user_id/SooJK37gzjIZfFNH0tlL/is_authorized/true<br/>
+  PATCH /qr-code-auth/is_authorized/true<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
-
   None
-
   Response :
   Status 200 OK <br/>
   Content-Type: application/json<br/>
