@@ -137,15 +137,12 @@ Retrieves THE authentication document.
     ```json
     {
       "message": "String",
-      "count": "Number",
-      "data": [
-        {
-          "user_id": "String",
-          "device_info": "String",
-          "is_authorized": "Boolean",
-          "access_token": "String"
-        }
-      ]
+      "data": {
+        "user_id": "String",
+        "device_info": "String",
+        "is_authorized": "Boolean",
+        "access_token": "String"
+      }
     }
     ```
 
@@ -181,21 +178,12 @@ Retrieves THE authentication document.
   ```json
   {
     "message": "Authentication document retrieved successfully.",
-    "count": 2,
-    "data": [
-      {
-        "user_id": "SooJK37gzjIZfFNH0tlL",
-        "device_info": "t5k77PHnuDSrgEzvMJAj",
-        "is_authorized": true,
-        "access_token": "NLFSj7Kz30oHgolfIZtJ"
-      },
-      {
-        "user_id": "SooJK37gzjIZfFNH0tlL",
-        "device_info": "en7nlNnpfqoqodcmtMeZ",
-        "is_authorized": false,
-        "access_token": "GTB4UUtlKwGemRN2lwBp11"
-      }
-    ]
+    "data": {
+      "user_id": "SooJK37gzjIZfFNH0tlL",
+      "device_info": "t5k77PHnuDSrgEzvMJAj",
+      "is_authorized": true,
+      "access_token": "NLFSj7Kz30oHgolfIZtJ"
+    }
   }
   ```
   GET /qr-code-auth?user_id=invalidUserId<br/>
