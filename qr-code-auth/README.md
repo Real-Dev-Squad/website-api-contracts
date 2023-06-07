@@ -18,13 +18,12 @@
   None
 - **Body**
   - Attributes
+    - **user_id** (required, string): Specifies the user id for the document.
     - **device_info** (required, string): Specifies the device information associated with the authentication authentication.
-    - **is_authorized** (required, boolean): Indicates whether the authentication document is authorized or not.
-    - **access_token** (required, string): Specifies the access token associated with the authentication document.
 - **Headers**
   - Content-Type: application/json
 - **Cookie**
-  - rds-session: `<JWT>`
+  None
 - **Success Response:**
   - **Code:** 201
     - **Content:**
@@ -34,7 +33,7 @@
         "data": {
           "user_id": "String",
           "device_info": "String",
-          "is_authorized": "Boolean",
+          "is_authorized": "String",
           "access_token": "String"
         }
       }
@@ -50,22 +49,15 @@
       }
       ```
 
-  - **Code:** 401
-    - **Content:**
-      ```json
-      {
-        "statusCode": 401,
-        "error": "Unauthorized",
-        "message": "Unauthenticated User."
-      }
-      ```
   - **Code:** 409
+
     - **Content:**
       ```json
       {
         "message": "The authentication document has already been created"
       }
       ```
+
   - **Code:** 500
     - **Content:**
       ```json
@@ -82,8 +74,7 @@
   ```json
   {
     "device_info": "t5k77PHnuDSrgEzvMJAj",
-    "is_authorized": true,
-    "access_token": "NLFSj7Kz30oHgolfIZtJ"
+    "user_id": "NLFSj7Kz30oHgolfIZtJ"
   }
   ```
 
@@ -96,8 +87,8 @@
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
-      "is_authorized": true,
-      "access_token": "NLFSj7Kz30oHgolfIZtJ"
+      "is_authorized": "",
+      "access_token": ""
     },
     "message": "authentication document created successfully."
   }
@@ -131,7 +122,7 @@ Retrieves THE authentication document.
       "data": {
         "user_id": "String",
         "device_info": "String",
-        "is_authorized": "Boolean",
+        "is_authorized": "String",
         "access_token": "String"
       }
     }
@@ -172,8 +163,8 @@ Retrieves THE authentication document.
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
-      "is_authorized": true,
-      "access_token": "NLFSj7Kz30oHgolfIZtJ"
+      "is_authorized": "",
+      "access_token": ""
     }
   }
   ```
@@ -224,7 +215,7 @@ Updates the is_authorized field of an existing qr-code-auth document for the spe
         "data": {
           "user_id": "String",
           "device_info": "String",
-          "is_authorized": "Boolean",
+          "is_authorized": "String",
           "access_token": "String"
         }
       }
@@ -278,7 +269,7 @@ Updates the is_authorized field of an existing qr-code-auth document for the spe
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
-      "is_authorized": true,
+      "is_authorized": "yes",
       "access_token": "NLFSj7Kz30oHgolfIZtJ"
     },
     "message": "Authentication document for user SooJK37gzjIZfFNH0tlL updated successfully."
