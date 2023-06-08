@@ -6,7 +6,7 @@
 | :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
 |                      [POST /qr-code-auth](#post-qr-code-auth)                      |                            Creates a new authentication document.                            |
 |                       [GET /qr-code-auth](#get-qr-code-auth)                       |           Retrieves all the authentication document belonging to a specified user            |
-| [PATCH /qr-code-auth](#patch-qr-code-authuser_iduser_idis_authorizedis_authorized) | Updates the is_authorized field of an existing qr-code-auth document for the specified user. |
+| [PATCH /qr-code-auth](#patch-qr-code-authauthorization_statusauthorization_status) | Updates the authorization_status field of an existing qr-code-auth document for the specified user. |
 
 ## POST /qr-code-auth
 
@@ -33,7 +33,7 @@
         "data": {
           "user_id": "String",
           "device_info": "String",
-          "is_authorized": "String",
+          "authorization_status": "String",
           "access_token": "String"
         }
       }
@@ -87,7 +87,7 @@
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
-      "is_authorized": "",
+      "authorization_status": "NOT_INIT",
       "access_token": ""
     },
     "message": "authentication document created successfully."
@@ -122,7 +122,7 @@ Retrieves THE authentication document.
       "data": {
         "user_id": "String",
         "device_info": "String",
-        "is_authorized": "String",
+        "authorization_status": "String",
         "access_token": "String"
       }
     }
@@ -163,7 +163,7 @@ Retrieves THE authentication document.
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
-      "is_authorized": "",
+      "authorization_status": "NOT_INIT",
       "access_token": ""
     }
   }
@@ -194,12 +194,12 @@ Retrieves THE authentication document.
 
 Sure, here's the updated API contract for the PATCH call:
 
-## PATCH /qr-code-auth/is_authorized/{is_authorized}
+## PATCH /qr-code-auth/authorization_status/{authorization_status}
 
-Updates the is_authorized field of an existing qr-code-auth document for the specified user.
+Updates the authorization_status field of an existing qr-code-auth document for the specified user.
 
 - **Params**
-  - **is_authorized** (required, boolean): Specifies whether the authentication document is authorized or not.
+  - **authorization_status** (required, string): Specifies the authorization status of the user. The possible values are "NOT_INIT" , "AUTHORIZED" , "REJECTED". The default value will be "NOT_INIT"
 - **Query**
   None
 - **Headers**
@@ -215,7 +215,7 @@ Updates the is_authorized field of an existing qr-code-auth document for the spe
         "data": {
           "user_id": "String",
           "device_info": "String",
-          "is_authorized": "String",
+          "authorization_status": "String",
           "access_token": "String"
         }
       }
@@ -256,7 +256,7 @@ Updates the is_authorized field of an existing qr-code-auth document for the spe
       ```
 
 - **Example for updating an existing authentication document:**
-  PATCH /qr-code-auth/is_authorized/true<br/>
+  PATCH /qr-code-auth/authorization_status/AUTHORIZED<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
   None
@@ -269,7 +269,7 @@ Updates the is_authorized field of an existing qr-code-auth document for the spe
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
-      "is_authorized": "yes",
+      "authorization_status": "AUTHORIZED",
       "access_token": "NLFSj7Kz30oHgolfIZtJ"
     },
     "message": "Authentication document for user SooJK37gzjIZfFNH0tlL updated successfully."
