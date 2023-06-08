@@ -19,7 +19,7 @@
 - **Body**
   - Attributes
     - **user_id** (required, string): Specifies the user id for the document.
-    - **device_info** (required, string): Specifies the device information associated with the authentication authentication.
+    - **device_info** (required, string): Specifies the device information associated with the authentication.
 - **Headers**
   - Content-Type: application/json
 - **Cookie**
