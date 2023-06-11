@@ -192,8 +192,6 @@ Retrieves THE authentication document.
   }
   ```
 
-Sure, here's the updated API contract for the PATCH call:
-
 ## PATCH /auth/qr-code-auth/authorization_status/{authorization_status}
 
 Updates the authorization_status field of an existing qr-code-auth document for the specified user.
