@@ -4,11 +4,11 @@
 
 |                                       Route                                        |                                         Description                                          |
 | :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
-|                      [POST /qr-code-auth](#post-qr-code-auth)                      |                            Creates a new authentication document.                            |
-|                       [GET /qr-code-auth](#get-qr-code-auth)                       |           Retrieves all the authentication document belonging to a specified user            |
-| [PATCH /qr-code-auth](#patch-qr-code-authauthorization_statusauthorization_status) | Updates the authorization_status field of an existing qr-code-auth document for the specified user. |
+|                      [POST /auth/qr-code-auth](#post-authqr-code-auth)                      |                            Creates a new authentication document.                            |
+|                       [GET /auth/qr-code-auth](#get-authqr-code-auth)                       |           Retrieves all the authentication document belonging to a specified user            |
+| [PATCH /auth/qr-code-auth](#patch-authqr-code-authauthorization_statusauthorization_status) | Updates the authorization_status field of an existing qr-code-auth document for the specified user. |
 
-## POST /qr-code-auth
+## POST /auth/qr-code-auth
 
     Creates a new qr-code-auth document.
 
@@ -67,7 +67,7 @@
       ```
 
 - **Example for user authentication document creation request:**
-  POST /qr-code-auth<br/>
+  POST /auth/qr-code-auth<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
@@ -94,7 +94,7 @@
   }
   ```
 
-## GET /qr-code-auth
+## GET /auth/qr-code-auth
 
 Retrieves THE authentication document.
 
@@ -155,7 +155,7 @@ Retrieves THE authentication document.
       ```
 
 - **Example:**
-  GET /qr-code-auth?user_id=SooJK37gzjIZfFNH0tlL<br/>
+  GET /auth/qr-code-auth?user_id=SooJK37gzjIZfFNH0tlL<br/>
   Status: 200 OK<br/>
   ```json
   {
@@ -168,14 +168,14 @@ Retrieves THE authentication document.
     }
   }
   ```
-  GET /qr-code-auth?user_id=invalidUserId<br/>
+  GET /auth/qr-code-auth?user_id=invalidUserId<br/>
   Status: 404 Not Found<br/>
   ```json
   {
     "message": "No Authentication authentication found."
   }
   ```
-  GET /qr-code-auth?taskId=GTB4UUtlKwGemRN2lwBp11<br/>
+  GET /auth/qr-code-auth?taskId=GTB4UUtlKwGemRN2lwBp11<br/>
   Status: 400 Bad Request
   ```json
   {
@@ -194,7 +194,7 @@ Retrieves THE authentication document.
 
 Sure, here's the updated API contract for the PATCH call:
 
-## PATCH /qr-code-auth/authorization_status/{authorization_status}
+## PATCH /auth/qr-code-auth/authorization_status/{authorization_status}
 
 Updates the authorization_status field of an existing qr-code-auth document for the specified user.
 
@@ -256,7 +256,7 @@ Updates the authorization_status field of an existing qr-code-auth document for 
       ```
 
 - **Example for updating an existing authentication document:**
-  PATCH /qr-code-auth/authorization_status/AUTHORIZED<br/>
+  PATCH /auth/qr-code-auth/authorization_status/AUTHORIZED<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
   None
