@@ -104,6 +104,7 @@ Retrieves THE authentication document.
 
   - user_id : Specifies the ID of the User whose authentication document will be retrieved
 
+  - device_id : Specifies the ID of the User' device whose device id will be unique.
 - **Body**  
   None
 - **Headers**  
@@ -121,6 +122,7 @@ Retrieves THE authentication document.
       "message": "String",
       "data": {
         "user_id": "String",
+        "device_id": "String",
         "device_info": "String",
         "authorization_status": "String",
         "access_token": "String"
@@ -155,7 +157,7 @@ Retrieves THE authentication document.
       ```
 
 - **Example:**
-  GET /auth/qr-code-auth?user_id=SooJK37gzjIZfFNH0tlL<br/>
+  GET /auth/qr-code-auth?user_id=SooJK37gzjIZfFNH0tlL&device_id=3ioui23u29sjkdnsjkndsk<br/>
   Status: 200 OK<br/>
   ```json
   {
@@ -163,6 +165,7 @@ Retrieves THE authentication document.
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
+      "device_id":"3ioui23u29sjkdnsjkndsk",
       "authorization_status": "NOT_INIT",
       "access_token": ""
     }
