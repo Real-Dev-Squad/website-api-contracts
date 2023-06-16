@@ -171,14 +171,14 @@ Retrieves THE authentication document.
     }
   }
   ```
-  GET /auth/qr-code-auth?user_id=invalidUserId<br/>
+  GET /auth/qr-code-auth?user_id=invalidUserId&device_id=3ioui23u29sjkdnsjkndsk<br/>
   Status: 404 Not Found<br/>
   ```json
   {
     "message": "No Authentication authentication found."
   }
   ```
-  GET /auth/qr-code-auth?taskId=GTB4UUtlKwGemRN2lwBp11<br/>
+  GET /auth/qr-code-auth?taskId=GTB4UUtlKwGemRN2lwBp11&device_id=3ioui23u29sjkdnsjkndsk<br/>
   Status: 400 Bad Request
   ```json
   {
@@ -187,7 +187,30 @@ Retrieves THE authentication document.
     "message": "invalid query parameters passed"
   }
   ```
-  GET /?user_id=GTB4UUtlKwGemRN2lwBp11
+  GET /?user_id=GTB4UUtlKwGemRN2lwBp11&device_id=3ioui23u29sjkdnsjkndsk
+  Status: 500 Internal Server Error
+  ```json
+  {
+    "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
+  }
+   ```
+  GET /auth/qr-code-auth?user_id=GTB4UUtlKwGemRN2lwBp11&device_id=InvalidUserData<br/>
+  Status: 404 Not Found<br/>
+  ```json
+  {
+    "message": "No Authentication authentication found."
+  }
+  ```
+  GET /auth/qr-code-auth?user_id=GTB4UUtlKwGemRN2lwBp11&mobileId=3ioui23u29sjkdnsjkndsk<br/>
+  Status: 400 Bad Request
+  ```json
+  {
+    "statusCode": 400,
+    "error": "Bad Request",
+    "message": "invalid query parameters passed"
+  }
+  ```
+  GET /?user_id=GTB4UUtlKwGemRN2lwBp11&device_id=3ioui23u29sjkdnsjkndsk
   Status: 500 Internal Server Error
   ```json
   {
