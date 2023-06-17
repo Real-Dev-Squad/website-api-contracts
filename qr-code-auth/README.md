@@ -175,7 +175,7 @@ Retrieves THE authentication document.
   Status: 404 Not Found<br/>
   ```json
   {
-    "message": "No Authentication authentication found."
+    "message": "No Authentication found."
   }
   ```
   GET /auth/qr-code-auth?taskId=GTB4UUtlKwGemRN2lwBp11&device_id=3ioui23u29sjkdnsjkndsk<br/>
@@ -198,7 +198,7 @@ Retrieves THE authentication document.
   Status: 404 Not Found<br/>
   ```json
   {
-    "message": "No Authentication authentication found."
+    "message": "No Authentication found."
   }
   ```
   GET /auth/qr-code-auth?user_id=GTB4UUtlKwGemRN2lwBp11&mobileId=3ioui23u29sjkdnsjkndsk<br/>
