@@ -34,7 +34,6 @@
           "user_id": "String",
           "device_info": "String",
           "authorization_status": "String",
-          "access_token": "String"
         }
       }
       ```
@@ -88,7 +87,6 @@
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
       "authorization_status": "NOT_INIT",
-      "access_token": ""
     },
     "message": "authentication document created successfully."
   }
@@ -240,7 +238,6 @@ Updates the authorization_status field of an existing qr-code-auth document for 
           "user_id": "String",
           "device_info": "String",
           "authorization_status": "String",
-          "access_token": "String"
         }
       }
       ```
@@ -294,7 +291,6 @@ Updates the authorization_status field of an existing qr-code-auth document for 
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
       "authorization_status": "AUTHORIZED",
-      "access_token": "NLFSj7Kz30oHgolfIZtJ"
     },
     "message": "Authentication document for user SooJK37gzjIZfFNH0tlL updated successfully."
   }
