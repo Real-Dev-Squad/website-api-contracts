@@ -121,6 +121,7 @@ Retrieves THE authentication document.
     {
       "message": "String",
       "data": {
+        "user_id": "String",
         "device_id": "String",
         "device_info": "String",
         "authorization_status": "String",
