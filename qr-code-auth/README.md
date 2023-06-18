@@ -20,6 +20,8 @@
   - Attributes
     - **user_id** (required, string): Specifies the user id for the document.
     - **device_info** (required, string): Specifies the device information associated with the authentication.
+    - **device_id** : Specifies the ID of the User' device whose device id will be unique.
+
 - **Headers**
   - Content-Type: application/json
 - **Cookie**
@@ -33,6 +35,7 @@
         "data": {
           "user_id": "String",
           "device_info": "String",
+          "device_id": "String",
           "authorization_status": "String",
         }
       }
@@ -73,7 +76,8 @@
   ```json
   {
     "device_info": "t5k77PHnuDSrgEzvMJAj",
-    "user_id": "NLFSj7Kz30oHgolfIZtJ"
+    "user_id": "NLFSj7Kz30oHgolfIZtJ",
+    "device_id": "sdkdjASdjdsfns3kdj"
   }
   ```
 
@@ -86,6 +90,7 @@
     "data": {
       "user_id": "SooJK37gzjIZfFNH0tlL",
       "device_info": "t5k77PHnuDSrgEzvMJAj",
+      "device_id": "sdkdjASdjdsfns3kdj",
       "authorization_status": "NOT_INIT",
     },
     "message": "authentication document created successfully."
@@ -99,9 +104,6 @@ Retrieves THE authentication document.
 - **Params**
   None
 - **Query**
-
-  - user_id : Specifies the ID of the User whose authentication document will be retrieved
-
   - device_id : Specifies the ID of the User' device whose device id will be unique.
 - **Body**  
   None
@@ -119,7 +121,6 @@ Retrieves THE authentication document.
     {
       "message": "String",
       "data": {
-        "user_id": "String",
         "device_id": "String",
         "device_info": "String",
         "authorization_status": "String",
@@ -155,7 +156,7 @@ Retrieves THE authentication document.
       ```
 
 - **Example:**
-  GET /auth/qr-code-auth?user_id=SooJK37gzjIZfFNH0tlL&device_id=3ioui23u29sjkdnsjkndsk<br/>
+  GET /auth/qr-code-auth?device_id=3ioui23u29sjkdnsjkndsk<br/>
   Status: 200 OK<br/>
   ```json
   {
@@ -169,30 +170,9 @@ Retrieves THE authentication document.
     }
   }
   ```
-  GET /auth/qr-code-auth?user_id=invalidUserId&device_id=3ioui23u29sjkdnsjkndsk<br/>
-  Status: 404 Not Found<br/>
-  ```json
-  {
-    "message": "No Authentication found."
-  }
-  ```
-  GET /auth/qr-code-auth?taskId=GTB4UUtlKwGemRN2lwBp11&device_id=3ioui23u29sjkdnsjkndsk<br/>
-  Status: 400 Bad Request
-  ```json
-  {
-    "statusCode": 400,
-    "error": "Bad Request",
-    "message": "invalid query parameters passed"
-  }
-  ```
-  GET /?user_id=GTB4UUtlKwGemRN2lwBp11&device_id=3ioui23u29sjkdnsjkndsk
-  Status: 500 Internal Server Error
-  ```json
-  {
-    "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
-  }
+
    ```
-  GET /auth/qr-code-auth?user_id=GTB4UUtlKwGemRN2lwBp11&device_id=InvalidUserData<br/>
+  GET /auth/qr-code-auth?device_id=InvalidUserData<br/>
   Status: 404 Not Found<br/>
   ```json
   {
@@ -208,7 +188,7 @@ Retrieves THE authentication document.
     "message": "invalid query parameters passed"
   }
   ```
-  GET /?user_id=GTB4UUtlKwGemRN2lwBp11&device_id=3ioui23u29sjkdnsjkndsk
+  GET /?device_id=3ioui23u29sjkdnsjkndsk
   Status: 500 Internal Server Error
   ```json
   {
