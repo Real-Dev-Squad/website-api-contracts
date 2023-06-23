@@ -135,7 +135,7 @@ Creates or Updates a new User Status data of the logged in User.
       - **message** (optional, string): Specifies a message associated with the status, if the state is `OOO`.
     - **monthlyHours** (optional, object):
       - **committed** (required, number): Specifies the number of hours committed by the user for the current month.
-    - **cancelOOO** (optional, boolean): If set to `true`, the API will cancel the user's OOO status by updating the `currentStatus` object with a `futureStatus`object of `ACTIVE` or `IDLE` if present.
+    - **cancelOOO** (optional, boolean): If set to `true`, the API will cancel the user's OOO status and update it to either `IDLE` or `ACTIVE`
 
 - **Success Response:**
   - **Code:** 201|200
@@ -168,7 +168,7 @@ Updates data of the User.
       - **message** (optional, string): Specifies a message associated with the status, if the state is `OOO`.
     - **monthlyHours** (optional, object):
       - **committed** (required, number): Specifies the number of hours committed by the user for the current month.
-    - **cancelOOO** (optional, boolean): If set to `true`, the API will cancel the user's OOO status by updating the `currentStatus` object with a `futureStatus`object of `ACTIVE` or `IDLE` if present.
+    - **cancelOOO** (optional, boolean): If set to `true`, the API will cancel the user's OOO status and update it to either `IDLE` or `ACTIVE`
 
 - **Success Response:**
   - **Code:** 201|200
