@@ -125,7 +125,18 @@ Creates or Updates a new User Status data of the logged in User.
   Content-Type: application/json
 - **Cookie**  
   rds-session: `<JWT>`
-- **Body** `{ <user_status_object> }`
+- **Body**<br/>
+
+  - Attributes:
+    - **currentStatus** (optional, object):
+      - **state** (required, string): Specifies the user's state, which must be one of the following values: `IDLE`, `ACTIVE`, `OOO`, or `ONBOARDING`.
+      - **from** (required, number): Specifies the timestamp from which the status is valid.
+      - **until** (optional, number): Specifies the timestamp until which the status is valid, if the state is `OOO`.required for OOO.
+      - **message** (optional, string): Specifies a message associated with the status, if the state is `OOO`.
+    - **monthlyHours** (optional, object):
+      - **committed** (required, number): Specifies the number of hours committed by the user for the current month.
+    - **cancelOOO** (optional, boolean): If set to `true`, the API will cancel the user's OOO status by updating the `currentStatus` object with a `futureStatus`object of `ACTIVE` or `IDLE` if present.
+
 - **Success Response:**
   - **Code:** 201|200
     - **Content:** `{'id':'documentId' ,'userId':'userId','data': <user_object>,"message": "User Status created successfully. | User Status updated successfully. " }`
