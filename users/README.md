@@ -34,15 +34,16 @@ number and email address.
 
 ## **Requests**
 
-|                        Route                        |             Description              |
-| :-------------------------------------------------: | :----------------------------------: |
-|              [GET /users](#get-users)               |   Returns all users in the system    |
-|          [GET /users/self](#get-usersSelf)          | Returns the logged in user's details |
-| [GET /users/userId/:userId](#get-usersuseriduserid) |    Returns user with given userId    |
-|     [GET /users/:username](#get-usersusername)      |   Returns user with given username   |
-|   [GET /users/:userId/badges](#get-usersidbadges)   | Returns badges assigned to the user  |
-|             [POST /users](#post-users)              |          Creates a new User          |
-|        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       |
+|                        Route                         |             Description              |
+| :--------------------------------------------------: | :----------------------------------: |
+|               [GET /users](#get-users)               |   Returns all users in the system    |
+|          [GET /users/self](#get-usersSelf)           | Returns the logged in user's details |
+| [GET /users/userId/:userId](#get-usersuseriduserid)  |    Returns user with given userId    |
+|      [GET /users/:username](#get-usersusername)      |   Returns user with given username   |
+|   [GET /users/:userId/badges](#get-usersidbadges)    | Returns badges assigned to the user  |
+|              [POST /users](#post-users)              |          Creates a new User          |
+| [POST /users/discord-sync](#post-users-discord-sync) | Syncs RDS users with Discord members |
+|        [PATCH /users/self](#patch-usersself)         |       Updates data of the User       |
 
 ## **GET /users**
 
@@ -235,6 +236,31 @@ Creates a new User.
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+
+## **POST /users/discord-sync**
+
+Sync RDS users with Discord server members using an `inDiscord` flag.
+
+- **Params**  
+  None
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Body**
+  None
+- **Success Response:**
+  - **Code:** 200
+    - **Content:** `{ markedTrue : <number>, markedFalse: <number>, unchanged: <number> }`
+- **Error Response:**
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 503
+    - **Content:**
+      `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
 
 ## **PATCH /users/self**
 
