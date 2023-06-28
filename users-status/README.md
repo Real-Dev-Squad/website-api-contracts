@@ -30,14 +30,14 @@
 
 ## **Requests**
 
-|                   Route                    |                           Description                           |
-| :----------------------------------------: | :-------------------------------------------------------------: |
-|      [GET /users/status](#get-users)       |     Returns the Users Status of all the Users in the system     |
-|  [GET /users/status/self](#get-usersSelf)  |     Returns the Users Status details of the logged in User      |
-|   [GET /users/status/:id](#get-usersid)    |         Returns the User Status data with the given id          |
-|  [PATCH /users/status/self](#post-users)   | Creates or Updates a new User Status data of the logged in User |
-| [PATCH /users/status/:userId](#post-users) |   Creates or Updates a new User Status data with the given id   |
-|   [DELETE /users/self](#patch-usersself)   |   Deletes the User Status data of the User with the given id    |
+|                          Route                          |                           Description                           |
+| :-----------------------------------------------------: | :-------------------------------------------------------------: |
+|          [GET /users/status](#get-usersstatus)          |     Returns the Users Status of all the Users in the system     |
+|     [GET /users/status/self](#get-usersstatusself)      |     Returns the Users Status details of the logged in User      |
+|    [GET /users/status/:id](#patch-usersstatususerid)    |         Returns the User Status data with the given id          |
+|   [PATCH /users/status/self](#patch-usersstatusself)    | Creates or Updates a new User Status data of the logged in User |
+| [PATCH /users/status/:userId](#patch-usersstatususerid) |   Creates or Updates a new User Status data with the given id   |
+|     [DELETE /users/self](#delete-usersstatususerid)     |   Deletes the User Status data of the User with the given id    |
 
 ## **GET /users/status**
 
@@ -56,11 +56,11 @@ Returns the users status of all the users in the system.
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{
-      message: 'All User Status found successfully.'
-      users: [
-              {<user_status_object>}
-            ]
-    }`
+  message: 'All User Status found successfully.'
+  users: [
+          {<user_status_object>}
+        ]
+}`
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
@@ -125,7 +125,18 @@ Creates or Updates a new User Status data of the logged in User.
   Content-Type: application/json
 - **Cookie**  
   rds-session: `<JWT>`
-- **Body** `{ <user_status_object> }`
+- **Body**<br/>
+
+  - Attributes:
+    - **currentStatus** (optional, object):
+      - **state** (required, string): Specifies the user's state, which must be one of the following values: `OOO`, or `ONBOARDING`.
+      - **from** (required, number): Specifies the timestamp from which the status is valid.
+      - **until** (optional, number): Specifies the timestamp until which the status is valid, if the state is `OOO`.required for OOO.
+      - **message** (optional, string): Specifies a message associated with the status, if the state is `OOO`.
+    - **monthlyHours** (optional, object):
+      - **committed** (required, number): Specifies the number of hours committed by the user for the current month.
+    - **cancelOOO** (optional, boolean): If set to `true`, the API will cancel the user's OOO status and update it to either `IDLE` or `ACTIVE`
+
 - **Success Response:**
   - **Code:** 201|200
     - **Content:** `{'id':'documentId' ,'userId':'userId','data': <user_object>,"message": "User Status created successfully. | User Status updated successfully. " }`
@@ -147,7 +158,18 @@ Updates data of the User.
   Content-Type: application/json
 - **Cookie**  
   rds-session: `<JWT>`
-- **Body** `{ <user_status_object> }`
+- **Body**
+
+  - Attributes:
+    - **currentStatus** (optional, object):
+      - **state** (required, string): Specifies the user's state, which must be one of the following values: `OOO`, or `ONBOARDING`.
+      - **from** (required, number): Specifies the timestamp from which the status is valid.
+      - **until** (optional, number): Specifies the timestamp until which the status is valid, if the state is `OOO`.required for OOO.
+      - **message** (optional, string): Specifies a message associated with the status, if the state is `OOO`.
+    - **monthlyHours** (optional, object):
+      - **committed** (required, number): Specifies the number of hours committed by the user for the current month.
+    - **cancelOOO** (optional, boolean): If set to `true`, the API will cancel the user's OOO status and update it to either `IDLE` or `ACTIVE`
+
 - **Success Response:**
   - **Code:** 201|200
     - **Content:** `{'id':'documentId' ,'userId':'userId','data': <user_object>,"message": "User Status created successfully. | User Status updated successfully. " }`
