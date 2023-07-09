@@ -199,19 +199,17 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
 - **Success Response:**
 
   - **Code:** 200
-
     - **Content:**
-
-      ```json
-      {
-        "message": "String",
-        "data": {
-          "totalUsers": "Number",
-          "usersWithStatusUpdated": "Number",
-          "usersOnboardingOrAlreadyIdle": "Number"
-        }
+    ```json
+    {
+      "message": "String",
+      "data": {
+        "totalUsers": "Number",
+        "usersWithStatusUpdated": "Number",
+        "usersOnboardingOrAlreadyIdle": "Number"
       }
-      ```
+    }
+    ```
 
 - **Error Response:**
   - **Code:** 401
