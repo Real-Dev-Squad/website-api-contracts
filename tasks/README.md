@@ -213,6 +213,15 @@ Returns all tasks of the requested user.
   message: 'Task created successfully!'
   task: {<task_object>}
   id: <newly created task id>
+  userStatus?: {
+    status : "String",
+    message : "String"
+    data: {
+      "previousStatus"?: "String",
+      "currentStatus"?: "String",
+      "futureStatus"?: "String"
+    }
+  }
 }
 ```
 
@@ -260,8 +269,20 @@ Returns all tasks of the requested user.
 
 - **Success Response:**
   - **Code**: 200
-    - **Content:** `{'message': 'Task updated successfully!'}`
-
+```
+{
+  message: 'Task updated successfully!'
+  userStatus?: {
+    status : "String",
+    message : "String"
+    data: {
+      "previousStatus"?: "String",
+      "currentStatus"?: "String",
+      "futureStatus"?: "String"
+    }
+  }
+}
+```
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'User can not be authenticated' }`
