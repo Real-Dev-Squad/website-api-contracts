@@ -209,7 +209,7 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
         "usersOnboardingOrAlreadyIdle": "Number"
       }
     }
-    ```
+```
 
 - **Error Response:**
   - **Code:** 401
