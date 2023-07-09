@@ -55,8 +55,7 @@ Returns the users status of all the users in the system.
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-  - **Code:** 200
-    - **Content:** `{
+  - **Code:** 200 - **Content:** `{
   message: 'All User Status found successfully.'
   users: [
           {<user_status_object>}
@@ -212,10 +211,6 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
           "usersOnboardingOrAlreadyIdle": "Number"
         }
       }
-      ```
-
-      ```
-
       ```
 
 - **Error Response:**
