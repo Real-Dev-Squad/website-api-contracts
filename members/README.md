@@ -114,3 +114,26 @@ Creates new request for member introduction
 - **Error Response:**
     - **Code:** 500
         - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+## Patch /members/archiveMembers/:username
+
+Add members/ users to Archive
+
+- **Params**\
+   _Required_: `username=[string]`
+- **Query**\
+   None
+- **Body**\
+   `{reason: <string>}`
+- **Headers**\
+   None
+- **Cookie**\
+   None
+
+  - **Success Response:**
+  - **Code:** 204
+    - **Content:**
+      None
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
