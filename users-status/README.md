@@ -38,6 +38,7 @@
 |   [PATCH /users/status/self](#patch-usersstatusself)    | Creates or Updates a new User Status data of the logged in User |
 | [PATCH /users/status/:userId](#patch-usersstatususerid) |   Creates or Updates a new User Status data with the given id   |
 |     [DELETE /users/self](#delete-usersstatususerid)     |   Deletes the User Status data of the User with the given id    |
+|  [PATCH /users/status/batch](#patch-usersstatusbatch)   |      Batch Update the UserIds of the passed users to Idle       |
 
 ## **GET /users/status**
 
@@ -178,6 +179,50 @@ Updates data of the User.
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **PATCH /users/status/batch**
+
+Batch Updates the UserIds of the passed user list to Idle if the user is not OOO or Onboarding. If the User is OOO then their future status is updated. Please note that this is a restricted route intended for super users only.
+
+- **Params**
+  None
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Body**
+
+  - Attributes:
+  - users[] (required) : Specifies the user list of User ids to be updated.
+
+- **Success Response:**
+
+  - **Code:** 200
+
+    - **Content:**
+
+      ```json
+      {
+        "message": "String",
+        "data": {
+          "totalUsers": "Number",
+          "usersWithStatusUpdated": "Number",
+          "usersOnboardingOrAlreadyIdle": "Number"
+        }
+      }
+      ```
+
+      ```
+
+      ```
+
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'The server has encountered an unexpected error. Please contact the administrator for more information.' }`
 
 ## **DELETE /users/status/:userId**
 
