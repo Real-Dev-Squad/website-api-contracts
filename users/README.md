@@ -34,16 +34,16 @@ number and email address.
 
 ## **Requests**
 
-|                        Route                        |             Description              |
-| :-------------------------------------------------: | :----------------------------------: |
-|              [GET /users](#get-users)               |   Returns all users in the system    |
-|          [GET /users/self](#get-usersSelf)          | Returns the logged in user's details |
-| [GET /users/userId/:userId](#get-usersuseriduserid) |    Returns user with given userId    |
-|     [GET /users/:username](#get-usersusername)      |   Returns user with given username   |
-|   [GET /users/:userId/badges](#get-usersidbadges)   | Returns badges assigned to the user  |
-|             [POST /users](#post-users)              |          Creates a new User          |
-|        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       |
-|        [PATCH /users/:id/roles](#patch-usersidroles)        |       Updates user roles     |
+|                         Route                          |             Description              |
+| :----------------------------------------------------: | :----------------------------------: |
+|                [GET /users](#get-users)                |   Returns all users in the system    |
+|           [GET /users/self](#get-usersSelf)            | Returns the logged in user's details |
+|  [GET /users/userId/:userId](#get-usersuseriduserid)   |    Returns user with given userId    |
+|       [GET /users/:username](#get-usersusername)       |   Returns user with given username   |
+|    [GET /users/:userId/badges](#get-usersidbadges)     | Returns badges assigned to the user  |
+|               [POST /users](#post-users)               |          Creates a new User          |
+|         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
+| [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
 
 ## **GET /users**
 
@@ -51,15 +51,15 @@ Returns all users in the system.
 
 - **Params**  
   None
-- **Query**  
+- **Query**
   - Optional: `size=[integer]` (`size` is number of users requested per page,
-  value ranges in between 1-100, and default value is 100)
+    value ranges in between 1-100, and default value is 100)
   - Optional: `page=[integer]`
-  (`page` can either be 0 or positive-number, and default value is 0)
+    (`page` can either be 0 or positive-number, and default value is 0)
   - Optional: `search=[string]` (`search` is a string value for username prefix)
   - Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.)
   - Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
-  - Optional: `query=[string]` ( `query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) ) 
+  - Optional: `query=[string]` ( `query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
 - **Body**  
   None
 - **Headers**  
@@ -272,7 +272,7 @@ Updates data of the User.
 Updates roles for the User.
 
 - **Params**  
-  None
+  _Required:_ `userId=[string]`
 - **Query**  
   None
 - **Headers**  
@@ -281,12 +281,16 @@ Updates roles for the User.
   rds-session: `<JWT>`
 - **Body**
   `{
-    rolename: <boolean>
-  }`
+  member: <boolean>
+  archived: <boolean>
+}`
 - **Success Response:**
-  - **Code:** 204
+  - **Code:** 200
     - **Content:** `{ 'message': 'role updated successfully!'}`
 - **Error Response:**
+- **Code:** 409
+  - **Content:**
+    `{ 'statusCode': 409, 'error': 'Not Found', 'message': 'role already exist!' }`
   - **Code:** 404
     - **Content:**
       `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
