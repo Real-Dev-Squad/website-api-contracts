@@ -72,7 +72,10 @@ Returns all the tasks
 - **Params**  
   None
 - **Query**  
-  None
+  - Optional: `dev=[boolean]` (`dev` is passed to get all tasks in the developer mode with features that are flagged)
+  - Optional: `status=[string]`
+    (`status` can either a case insenstive string with one of the following values [AVAILABLE, ASSIGNED, COMPLETED, IN_PROGRESS, BLOCKED, SMOKE_TESTING, NEEDS_REVIEW, IN_REVIEW, APPROVED, MERGED, SANITY_CHECK, REGRESSION_CHECK, RELEASED, VERIFIED, DONE, UNASSIGNED])
+    (`status` is a case insenstive string with one of the following values [AVAILABLE, ASSIGNED, COMPLETED, IN_PROGRESS, BLOCKED, SMOKE_TESTING, NEEDS_REVIEW, IN_REVIEW, APPROVED, MERGED, SANITY_CHECK, REGRESSION_CHECK, RELEASED, VERIFIED, DONE, UNASSIGNED] which represents the status of the task)
 - **Body**  
   None
 - **Headers**  
