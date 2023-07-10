@@ -300,6 +300,6 @@ Updates roles for the User.
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
-  - **Code:** 503
+  - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
