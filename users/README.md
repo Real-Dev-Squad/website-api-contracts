@@ -281,8 +281,8 @@ Updates roles for the User.
   rds-session: `<JWT>`
 - **Body**
   `{
-  member: <boolean>
-  archived: <boolean>
+  member?: <boolean>
+  archived?: <boolean>
 }`
 - **Success Response:**
   - **Code:** 200
