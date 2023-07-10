@@ -267,7 +267,7 @@ Updates data of the User.
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
 
-## **PATCH /users/:id/roles**
+## **PATCH /users/:id/temporary/data**
 
 Updates roles for the User.
 
