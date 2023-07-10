@@ -288,9 +288,9 @@ Updates roles for the User.
   - **Code:** 200
     - **Content:** `{ 'message': 'role updated successfully!'}`
 - **Error Response:**
-- **Code:** 409
-  - **Content:**
-    `{ 'statusCode': 409, 'error': 'Not Found', 'message': 'role already exist!' }`
+  - **Code:** 409
+    - **Content:**
+      `{ 'statusCode': 409, 'error': 'Not Found', 'message': 'role already exist!' }`
   - **Code:** 404
     - **Content:**
       `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
