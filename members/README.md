@@ -25,7 +25,8 @@ Same as the [user](https://github.com/Real-Dev-Squad/website-api-contracts/tree/
 | :------------------------------------------------------------: | :---------------------------------------------: |
 |                  [GET /members](#get-members)                  |        Returns all members in the system        |
 |        [GET /members/idle](#get-inactive/idle-members)         | Returns all inactive/idle members in the system |
-| [POST /members/intro/:username](#post-members/intro/:username) |  Post request for members profile introduction  |
+| [POST /members/intro/:username](#post-members/intro/:username) |  Post request for members profile introduction  | 
+| [PATCH /members/archiveMembers/:username](#patch-members/archiveMembers/:username) | Archive members/ users
 
 ---
 
@@ -131,14 +132,13 @@ Archive members / users
 - **Body**\
    `{reason: <string>}`
 - **Headers**\
-   None
-- **Cookie**\
-   None
-
+    Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
   - **Success Response:**
-  - **Code:** 204
+  - **Code:** 200
     - **Content:**
-      None
+      {"message":"User archived successfully","reason":"lorem ipsum"}
 
 - **Error Response:**
   - **Code:** 400
