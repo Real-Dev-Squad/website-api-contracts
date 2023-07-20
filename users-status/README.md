@@ -46,8 +46,11 @@ Returns the users status of all the users in the system.
 
 - **Params**  
   None
-- **Query**  
-  state=[OOO | IDLE | ACTIVE]
+- **Query**
+
+  - state=[OOO | IDLE | ACTIVE]
+  - batch = boolean
+
 - **Body**  
   None
 - **Headers**  
