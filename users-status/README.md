@@ -203,7 +203,8 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
   - **Code**
     - 200</br>
   - **Content**</br>
-    ```json
+
+```
     {
       "message": "String",
       "data": {
@@ -212,11 +213,11 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
         "usersOnboardingOrAlreadyIdle": "Number"
       }
     }
-    ```
+```
 
-````
-  example
-  ```json
+- **Example**
+
+```
   {
     "message": "users status updated successfully.",
     "data": {
@@ -230,7 +231,7 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
         "totalIdleUsersUnAltered": 1
     }
 }
-````
+```
 
 - **Error Response:**
   - **Code:** 401
