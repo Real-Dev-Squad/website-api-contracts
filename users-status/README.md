@@ -196,7 +196,23 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
   - Attributes:
     - users (required, array): An array of objects, each representing a user with the following properties:
       - userId (required, string): Specifies the unique identifier for the user.
-      - expectedState (required, string): Specifies the user's state, which must be one of the following values: idle or active.
+      - expectedState (required, string): Specifies the user's state, which must be one of the following values: IDLE or ACTIVE.
+  - Example:
+
+```
+  {
+      "users": [
+          {
+              "userId": "4kAkRv9TBlOfR6WEUhoQ",
+              "expectedState": "IDLE"
+          },
+          {
+              "userId": "SooJK37gzjIZfFNH0tlL",
+              "expectedState": "ACTIVE"
+          }
+      ]
+  }
+```
 
 - **Success Response:**
 
@@ -209,8 +225,13 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
       "message": "String",
       "data": {
         "totalUsers": "Number",
-        "usersWithStatusUpdated": "Number",
-        "usersOnboardingOrAlreadyIdle": "Number"
+        "totalUnprocessedUsers": "Number",
+        "totalOnboardingUsersAltered": "Number",
+        "totalOnboardingUsersUnAltered": "Number",
+        "totalActiveUsersAltered": "Number",
+        "totalActiveUsersUnAltered": "Number",
+        "totalIdleUsersAltered": "Number",
+        "totalIdleUsersUnAltered": "Number"
       }
     }
 ```
