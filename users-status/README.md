@@ -194,11 +194,14 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
 - **Body**
 
   - Attributes:
-  - users[] (required) : Specifies the user list of User ids to be updated.
+    - users (required, array): An array of objects, each representing a user with the following properties:
+      - userId (required, string): Specifies the unique identifier for the user.
+      - expectedState (required, string): Specifies the user's state, which must be one of the following values: idle or active.
 
 - **Success Response:**
 
-  - **Code** 200</br>
+  - **Code**
+    - 200</br>
   - **Content**</br>
     ```json
     {
@@ -209,7 +212,25 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
         "usersOnboardingOrAlreadyIdle": "Number"
       }
     }
-```
+    ```
+
+````
+  example
+  ```json
+  {
+    "message": "users status updated successfully.",
+    "data": {
+        "totalUsers": 7,
+        "totalUnprocessedUsers": 1,
+        "totalOnboardingUsersAltered": 1,
+        "totalOnboardingUsersUnAltered": 1,
+        "totalActiveUsersAltered": 1,
+        "totalActiveUsersUnAltered": 1,
+        "totalIdleUsersAltered": 1,
+        "totalIdleUsersUnAltered": 1
+    }
+}
+````
 
 - **Error Response:**
   - **Code:** 401
@@ -221,13 +242,13 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
 
 Deletes the User Status data of the User with the given id.
 
-- **Params**  
+- **Params**
   _Required:_ `userId=[string]`
-- **Query**  
+- **Query**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Body**
   None
@@ -241,3 +262,7 @@ Deletes the User Status data of the User with the given id.
     - **Content:** `{ 'statusCode': 404, 'id': null ,'userId':'userId',"message": "User Status to delete not found." }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+```
+
+```
