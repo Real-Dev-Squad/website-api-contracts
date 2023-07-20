@@ -3,10 +3,11 @@
 ## Member object
 
 Same as the [user](https://github.com/Real-Dev-Squad/website-api-contracts/tree/main/users#user-object) object
+
 ## Recruiter Object
 
 ```
-{   
+{
     'company': string,
     'first_name': string,
     'last_name': string,
@@ -20,12 +21,15 @@ Same as the [user](https://github.com/Real-Dev-Squad/website-api-contracts/tree/
 
 ## **Requests**
 
-|               Route                |           Description           |
-| :--------------------------------: | :-----------------------------: |
-|      [GET /members](#get-members)      | Returns all members in the system |
-|      [GET /members/idle](#get-inactive/idle-members)      | Returns all inactive/idle members in the system |
-|[POST /members/intro/:username](#post-members/intro/:username)|Post request for members profile introduction|
-----
+|                             Route                              |                   Description                   |
+| :------------------------------------------------------------: | :---------------------------------------------: |
+|                  [GET /members](#get-members)                  |        Returns all members in the system        |
+|        [GET /members/idle](#get-inactive/idle-members)         | Returns all inactive/idle members in the system |
+| [POST /members/intro/:username](#post-members/intro/:username) |  Post request for members profile introduction  | 
+| [PATCH /members/archiveMembers/:username](#patch-members/archiveMembers/:username) | Archive members/ users
+
+---
+
 ## **GET /members**
 
 Returns all members in the system.
@@ -89,28 +93,53 @@ Returns all inactive/idle members in the system.
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'Something went wrong. Please contact admin' }`
 
 ## POST /members/intro/:username
-Creates new request for member introduction 
+
+Creates new request for member introduction
 
 - **Params**\
-    _Required_: `username=[string]`
+   _Required_: `username=[string]`
 - **Query**\
-    None
+   None
 - **Body**\
-    `{<recruiter_object>}`
+   `{<recruiter_object>}`
 - **Headers**\
-    None
+   None
 - **Cookie**\
-    None
+   None
 - **Success Response:**
-    - **Code:** 200
-        - **Content:** 
-        ```
-        {
-            message: 'Request Submission Successful!!'
-            id: <new unique submission id>
-        }
-        ```
+
+  - **Code:** 200
+    - **Content:**
+    ```
+    {
+        message: 'Request Submission Successful!!'
+        id: <new unique submission id>
+    }
+    ```
 
 - **Error Response:**
-    - **Code:** 500
-        - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## Patch /members/archiveMembers/:username
+
+Archive members / users
+
+- **Params**\
+   _Required_: `username=[string]`
+- **Query**\
+   None
+- **Body**\
+   `{reason: <string>}`
+- **Headers**\
+    Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+  - **Success Response:**
+  - **Code:** 200
+    - **Content:**
+      {"message":"User archived successfully","reason":"lorem ipsum"}
+
+- **Error Response:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request","message": "Reason is required" }`
