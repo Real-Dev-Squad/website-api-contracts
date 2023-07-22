@@ -35,9 +35,9 @@
 |                         Route                          |             Description              |
 | :----------------------------------------------------: | :----------------------------------: |
 |                [GET /applications](#get-applications)                |   Returns all the applications in the system   |
-|           [GET /applications/:userId](#get-applicationsuserid)            | Returns the logged in user's details |
-|  [POST /applications](#post-applications)   |    Returns user with given userId    |
-|       [PATCH /applications/:userId](#patch-applicationsuserid)       |   Returns user with given username   |
+|           [GET /applications/:userId](#get-applicationsuserid)            | Retruns application of a particular user |
+|  [POST /applications](#post-applications)   |    Add application of a user    |
+|       [PATCH /applications/:userId](#patch-applicationsuserid)       |   Updates application of a user   |
 |        |
 
 ## **GET /applications/**
