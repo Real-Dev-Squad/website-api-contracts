@@ -44,6 +44,7 @@ number and email address.
 |               [POST /users](#post-users)               |          Creates a new User          |
 |         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
 | [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
+| [PATCH /users/update-archived](#patch-usersupdate-archived) | Archive users if not in discord |
 
 ## **GET /users**
 
@@ -297,6 +298,31 @@ Updates roles for the User.
   - **Code:** 400
     - **Content:**
       `{ 'statusCode': 400, 'error': 'Invalid Request', 'message': 'Invalid role' }`
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 500
+    - **Content:**
+      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **PATCH /users/update-archived**
+
+Archive users if not in Discord.
+
+- **Params**  
+  None
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Body**  
+  None
+- **Success Response:**
+  - **Code:** 200
+    - **Content:** `{ 'message': 'Successfully updated users archived role to true if in_discord role is false'}`
+- **Error Response:**
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
