@@ -25,7 +25,8 @@
     numberOfHours: string,
   },
   foundFrom: string,
-  status: string
+  status: string || null,
+  discordLink: string || null
 }
 ```
 
@@ -101,7 +102,7 @@ Return the application of a particular user, the super can access the applicatio
 - **Params**  
   _Required:_ `userId=[string]`
 - **Query** 
-  None
+  _optional:_ `generate_discord_link=[boolean]`
 - **Body**
   None
 - **Headers**  
