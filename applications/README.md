@@ -102,7 +102,7 @@ Return the application of a particular user, the super can access the applicatio
 - **Params**  
   _Required:_ `userId=[string]`
 - **Query** 
-  _optional:_ `generate_discord_link=[boolean]`
+  None
 - **Body**
   None
 - **Headers**  
@@ -131,7 +131,7 @@ This will update a particular application, this API will only be accessible to s
 - **Params**  
   _Required:_ `userId=[string]`
 - **Query** 
-  None
+  _optional:_ `generate_discord_link=[boolean]`
 - **Body**
   None
 - **Headers**  
