@@ -34,17 +34,17 @@ number and email address.
 
 ## **Requests**
 
-|                         Route                          |             Description              |
-| :----------------------------------------------------: | :----------------------------------: |
-|                [GET /users](#get-users)                |   Returns all users in the system    |
-|           [GET /users/self](#get-usersSelf)            | Returns the logged in user's details |
-|  [GET /users/userId/:userId](#get-usersuseriduserid)   |    Returns user with given userId    |
-|       [GET /users/:username](#get-usersusername)       |   Returns user with given username   |
-|    [GET /users/:userId/badges](#get-usersidbadges)     | Returns badges assigned to the user  |
-|               [POST /users](#post-users)               |          Creates a new User          |
-|         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
-| [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
-| [PATCH /users/update-archived](#patch-usersupdate-archived) | Archive users if not in discord |
+|                         Route                               |             Description              |
+| :---------------------------------------------------------: | :----------------------------------: |
+|                [GET /users](#get-users)                     |   Returns all users in the system    |
+|           [GET /users/self](#get-usersSelf)                 | Returns the logged in user's details |
+|  [GET /users/userId/:userId](#get-usersuseriduserid)        |    Returns user with given userId    |
+|       [GET /users/:username](#get-usersusername)            |   Returns user with given username   |
+|    [GET /users/:userId/badges](#get-usersidbadges)          | Returns badges assigned to the user  |
+|               [POST /users](#post-users)                    |          Creates a new User          |
+|         [PATCH /users/self](#patch-usersself)               |       Updates data of the User       |
+| [PATCH /users/:id/temporary/data](#patch-usersidroles)      |          Updates user roles          |
+| [PATCH /users/update-archived](#patch-usersupdate-archived) |   Archive users if not in discord    |
 
 ## **GET /users**
 
