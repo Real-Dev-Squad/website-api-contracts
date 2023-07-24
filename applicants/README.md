@@ -1,6 +1,6 @@
-# application
+# applicants
 
-## application object
+## applicants object
 
 ```{
   userId: string,
@@ -34,13 +34,13 @@
 
 |                         Route                          |             Description              |
 | :----------------------------------------------------: | :----------------------------------: |
-|                [GET /applications](#get-applications)                |   Returns all the applications in the system   |
-|           [GET /applications/:userId](#get-applicationsuserid)            | Retruns application of a particular user |
-|  [POST /applications](#post-applications)   |    Add application of a user    |
-|       [PATCH /applications/:userId](#patch-applicationsuserid)       |   Updates application of a user   |
+|                [GET /applications](#get-applicants)                |   Returns all the applications in the system   |
+|           [GET /applications/:userId](#get-applicantsuserid)            | Retruns application of a particular user |
+|  [POST /applications](#post-applicants)   |    Add application of a user    |
+|       [PATCH /applications/:userId](#patch-applicantsuserid)       |   Updates application of a user   |
 |        |
 
-## **GET /applications/**
+## **GET /applicants/**
 
 Return all the applications which are not accepted or rejected, this API will only be accessible to super_user
 
@@ -66,7 +66,7 @@ Return all the applications which are not accepted or rejected, this API will on
     - **Content:**
       `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **POST /applications/**
+## **POST /applicants/**
 
 Adds an application for joining RDS, a user can only add one application, until the previous application is either rejected or accepted by super_user
 
@@ -95,7 +95,7 @@ Adds an application for joining RDS, a user can only add one application, until 
       `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
 
-## **GET /applications/:userId**
+## **GET /applicants/:userId**
 
 Return the application of a particular user, the super can access the application of any user, but any other can only access their application
 
@@ -124,7 +124,7 @@ Return the application of a particular user, the super can access the applicatio
     - **Content:**
       `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **PATCH /applications/:userId**
+## **PATCH /applicants/:userId**
 
 This will update a particular application, this API will only be accessible to super_user
 
