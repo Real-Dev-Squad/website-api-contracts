@@ -57,14 +57,31 @@ Return all the applications which are not accepted or rejected, this API will on
 - **Success Response:**
   - **Code:** 200
     - **Content:**
-    `{ 'message': 'applications returned successfully!', 'applications': <application_object> }`
+    ```
+      { 
+        message: 'applications returned successfully!',
+        applications: <application_object> 
+      }
+    ```
 - **Error Response:**
   - **Code:** 401
     - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+      ```
+        { 
+          statusCode: 401,
+          error:'Unauthorized',
+          message: 'Unauthenticated User'
+        }
+      ```
   - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+      ```
+        { 
+          statusCode: 500,
+          error: 'Internal Server Error', 
+          message: 'An internal server error occurred' 
+        }
+      ```
 
 ## **POST /applications/**
 
@@ -82,17 +99,40 @@ Adds an application for joining RDS, a user can only add one application, until 
 - **Success Response:**
   - **Code:** 201
     - **Content:**
-    `{ 'message': 'application added successfully!', 'application': <application_object> }`
+    ```
+      { 
+        message: 'application added successfully!',
+        application: <application_object> 
+      }
+    ```
 - **Error Response:**
   - **Code:** 401
     - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+      ```
+        { 
+          statusCode: 401,
+          error: 'Unauthorized',
+          message: 'Unauthenticated User' 
+        }
+      ```
   - **Code:** 409
     - **Content:**
-      `{ 'statusCode': 409, 'error': 'Conflict', 'message': 'User application is already present' }`
+      ```
+        { 
+          statusCode: 409, 
+          error: 'Conflict',
+          message: 'Previous application is still under process' 
+        }
+      ```
   - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+      ```
+        { 
+          statusCode: 500,
+          error: 'Internal Server Error',
+          message: 'An internal server error occurred' 
+        }
+      ```
 
 
 ## **GET /applications/:userId**
@@ -112,17 +152,39 @@ Return the application of a particular user, the super can access the applicatio
 - **Success Response:**
   - **Code:** 200
     - **Content:**
-    `{ 'message': 'User application returned successfully!', 'application': <application_object> }`
+    ```
+      { 
+        message: 'User application returned successfully!', 
+        application: <application_object> }
+    ```
 - **Error Response:**
   - **Code:** 401
     - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+      ```
+        { 
+          statusCode: 401,
+          error: 'Unauthorized',
+          message: 'Unauthenticated User' 
+        }
+      ```
   - **Code:** 404
     - **Content:**
-      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Application doesn't exist' }`
+      ```
+        { 
+          'statusCode': 404,
+          'error': 'Not Found',
+          'message': 'Application doesn't exist' 
+        }
+      ```
   - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+      ```
+        { 
+          statusCode: 500,
+          error: 'Internal Server Error',
+          message: 'An internal server error occurred' 
+        }
+      ```
 
 ## **PATCH /applications/:userId**
 
@@ -141,14 +203,35 @@ This will update a particular application, this API will only be accessible to s
 - **Success Response:**
   - **Code:** 201
     - **Content:**
-    `{ 'message': 'Application updated successfully!' }`
+    ```
+      { 
+        message: 'Application updated successfully!' 
+      }
+    ```
 - **Error Response:**
   - **Code:** 401
     - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+      ```
+        { 
+          statusCode: 401,
+          error: 'Unauthorized',
+          message: 'Unauthenticated User' 
+        }
+      ```
   - **Code:** 404
     - **Content:**
-      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Application doesn't exist' }`
+      ```
+        {
+          statusCode: 404,
+          error: 'Not Found',
+          message: 'Application doesn't exist' 
+        }
+      ```
   - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+      ```
+        { 
+          statusCode': 500,
+          error: 'Internal Server Error',
+          message: 'An internal server error occurred' }
+      ```
