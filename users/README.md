@@ -34,17 +34,17 @@ number and email address.
 
 ## **Requests**
 
-|                         Route                               |             Description              |
-| :---------------------------------------------------------: | :----------------------------------: |
-|                [GET /users](#get-users)                     |   Returns all users in the system    |
-|           [GET /users/self](#get-usersSelf)                 | Returns the logged in user's details |
-|  [GET /users/userId/:userId](#get-usersuseriduserid)        |    Returns user with given userId    |
-|       [GET /users/:username](#get-usersusername)            |   Returns user with given username   |
-|    [GET /users/:userId/badges](#get-usersidbadges)          | Returns badges assigned to the user  |
-|               [POST /users](#post-users)                    |          Creates a new User          |
-|         [PATCH /users/self](#patch-usersself)               |       Updates data of the User       |
-| [PATCH /users/:id/temporary/data](#patch-usersidroles)      |          Updates user roles          |
-| [PATCH /users/update-archived](#patch-usersupdate-archived) |   Archive users if not in discord    |
+|                         Route                          |             Description              |
+| :----------------------------------------------------: | :----------------------------------: |
+|                [GET /users](#get-users)                |   Returns all users in the system    |
+|           [GET /users/self](#get-usersSelf)            | Returns the logged in user's details |
+|  [GET /users/userId/:userId](#get-usersuseriduserid)   |    Returns user with given userId    |
+|       [GET /users/:username](#get-usersusername)       |   Returns user with given username   |
+|    [GET /users/:userId/badges](#get-usersidbadges)     | Returns badges assigned to the user  |
+|               [POST /users](#post-users)               |          Creates a new User          |
+|         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
+| [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
+|     [PATCH /users/archived](#patch-usersarchived)      |   Archive users if not in discord    |
 
 ## **GET /users**
 
@@ -305,7 +305,7 @@ Updates roles for the User.
     - **Content:**
       `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## **PATCH /users/update-archived**
+## PATCH /users/archived
 
 Archive users if not in Discord.
 
@@ -315,17 +315,45 @@ Archive users if not in Discord.
   None
 - **Headers**  
   Content-Type: application/json
-- **Cookie**  
-  rds-session: `<JWT>`
+- **Cookie**
+  - **Prod**  
+    rds-session: `<SUPERUSER JWT>`
+  - **Development**  
+    rds-session-development: `<SUPERUSER JWT>`
+  - **Staging**  
+    rds-session-staging: `<SUPERUSER JWT>`
 - **Body**  
   None
 - **Success Response:**
+
   - **Code:** 200
-    - **Content:** `{ 'message': 'Successfully updated users archived role to true if in_discord role is false'}`
+    - **Content:**
+    ```json
+    {
+      "message": "Successfully updated users archived role to true if in_discord role is false",
+      "data": {
+        "totalUsersArchived": "number"
+      }
+    }
+    ```
+
 - **Error Response:**
+
   - **Code:** 401
     - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+    ```json
+    {
+      "statusCode": 401,
+      "error": "Unauthorized",
+      "message": "Unauthenticated User"
+    }
+    ```
   - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+    ```json
+    {
+      "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "An internal server error occurred"
+    }
+    ```
