@@ -327,7 +327,8 @@ Archive users if not in Discord.
     {
       "message": "Successfully updated users archived role to true if in_discord role is false",
       "data": {
-        "totalUsersArchived": "number"
+        "totalUsersArchived": "number",
+        "totalOperationsFailed": "number"
       }
     }
     ```
