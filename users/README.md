@@ -315,13 +315,8 @@ Archive users if not in Discord.
   None
 - **Headers**  
   Content-Type: application/json
-- **Cookie**
-  - **Prod**  
-    rds-session: `<SUPERUSER JWT>`
-  - **Development**  
-    rds-session-development: `<SUPERUSER JWT>`
-  - **Staging**  
-    rds-session-staging: `<SUPERUSER JWT>`
+- **Cookie**  
+  rds-session: `<SUPERUSER JWT>`
 - **Body**  
   None
 - **Success Response:**
