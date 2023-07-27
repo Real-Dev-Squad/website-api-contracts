@@ -121,12 +121,12 @@ Returns all logs of archive user
 
 - This API can only be accessed by super user
 
- This API will fetch the logs of specific archive details based on the query username
+ This API will fetch the logs of specific archive details based on the query userId
 
 - **Param**  
   None
 - **Query**  
-  username=<USERNAME>
+  userId=<USERID>
 - **Body**  
   None
 - **Headers**  
