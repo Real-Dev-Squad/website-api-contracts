@@ -325,8 +325,7 @@ Archive users if not in Discord.
     - **Content:**
     ```json
     {
-      "message": "Successfully updated users archived role to true if in_discord role is false |
-                  Couldn't find any users currently inactive in Discord but not archived.",
+      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
       "data": {
         "totalUsers": "number",
         "totalUsersArchived": "number",
