@@ -318,6 +318,7 @@ Archive users if not in Discord.
 - **Cookie**  
   rds-session: `<SUPERUSER JWT>`
 - **Body**
+
   ```json
   {
     // Defines action associated with PATCH /users route. Calls specific api based on action passed. If wrong payload is passed it throws an error
@@ -325,6 +326,7 @@ Archive users if not in Discord.
     "action": "nonVerifiedDiscordUsers | archiveUsersIfNotInDiscord"
   }
   ```
+
 - **Success Response:**
 
   - **Code:** 200
