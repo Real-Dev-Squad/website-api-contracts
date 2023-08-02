@@ -311,25 +311,49 @@ Archive users if not in Discord.
 
 - **Params**  
   None
-- **Query**  
-  None
+- **Query**
+  - Optional: `debug=[boolean]`(`debug` when set to true returns additional result in response to help debugging)
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
   rds-session: `<SUPERUSER JWT>`
-- **Body**  
-  None
+- **Body**
+  ```json
+  {
+    // Defines action associated with PATCH /users route. Calls specific api based on action passed. If wrong payload is passed it throws an error
+
+    "action": "nonVerifiedDiscordUsers | archiveUsersIfNotInDiscord"
+  }
+  ```
 - **Success Response:**
 
   - **Code:** 200
+
     - **Content:**
+
     ```json
     {
+      // If debug query is not passed or set to anything other then true
+
       "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
       "data": {
         "totalUsers": "number",
         "totalUsersArchived": "number",
         "totalOperationsFailed": "number"
+      }
+    }
+    ```
+
+    ```json
+    {
+      // If debug query is set to true
+
+      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+      "data": {
+        "totalUsers": "number",
+        "totalUsersArchived": "number",
+        "totalOperationsFailed": "number",
+        "updatedUserIds": "array" // Return last three updated user ids
       }
     }
     ```
@@ -343,6 +367,15 @@ Archive users if not in Discord.
       "statusCode": 401,
       "error": "Unauthorized",
       "message": "Unauthenticated User"
+    }
+    ```
+  - **Code:** 400
+    - **Content:**
+    ```json
+    {
+      "statusCode": 401,
+      "error": "Bad Request",
+      "message": "Invalid payload"
     }
     ```
   - **Code:** 500
