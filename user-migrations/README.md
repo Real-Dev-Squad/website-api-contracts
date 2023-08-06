@@ -24,16 +24,20 @@ Adds a colors field to every exisiting user.
 
     - **Content:**
 
-      ```json
-      {
-        "message": "String",
-        "usersDetails": {
-       "count": Number,
-        "users": Array<String>
-        }
+          ```json
+          {
+            "usersDetails": {
+             "totalUsersFetched": "Number",
+            "totalUsersUpdated": "Number",
+            "totalUsersUnaffected": "Number"
+            },
+            "message": "String",
+          }
+            ```json
 
-      }
-      ```
+    ```
+
+    ```
 
 - **Error Response:**
 
@@ -67,10 +71,13 @@ Adds a colors field to every exisiting user.
 
   ```json
   {
+     {
     "usersDetails": {
-      "count": 3,
-      "users": ["ankur_1010", "ankur", "vivek"]
+        "totalUsersFetched": 5,
+        "totalUsersUpdated": 2,
+        "totalUsersUnaffected": 3
     },
     "message": "User colors updated successfully!"
+  }
   }
   ```
