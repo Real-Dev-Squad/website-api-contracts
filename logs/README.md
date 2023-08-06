@@ -15,11 +15,11 @@
 
 |         Route          |        Description        |
 | :--------------------: | :-----------------------: |
-| [GET /logs](#get-logs) | Returns logs of all types |
+| [GET /logs/:type](#get-logs) | Returns logs of all types |
 
 ---
 
-## **GET /logs/**
+## **GET /logs/:type**
 
 **Note :**
 
