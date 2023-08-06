@@ -13,8 +13,8 @@
 
 ## **Requests**
 
-|         Route          |        Description        |
-| :--------------------: | :-----------------------: |
+|            Route             |        Description        |
+| :--------------------------: | :-----------------------: |
 | [GET /logs/:type](#get-logs) | Returns logs of all types |
 
 ---
@@ -64,7 +64,7 @@ Returns all logs according to the provided queries and path/named-route param.
     {
       "statusCode": 401,
       "error": "Unauthorized",
-      "message": "Unauthenticated User"
+      "message": "You are not authorized for this action."
     }
     ```
   - **Code:** 500
@@ -72,6 +72,15 @@ Returns all logs according to the provided queries and path/named-route param.
     ```json
     {
       "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "Something went wrong. Please contact admin"
+    }
+    ```
+    - **Code:** 503
+    - **Content:**
+    ```json
+    {
+      "statusCode": 503,
       "error": "Internal Server Error",
       "message": "Something went wrong. Please contact admin"
     }
