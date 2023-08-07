@@ -321,9 +321,7 @@ Archive users if not in Discord.
 
   ```json
   {
-    // Defines action associated with PATCH /users route. Calls specific api based on action passed. If wrong payload is passed it throws an error
-
-    "action": "nonVerifiedDiscordUsers | archiveUsersIfNotInDiscord"
+    "action": "nonVerifiedDiscordUsers | archiveUsers"
   }
   ```
 
@@ -335,8 +333,6 @@ Archive users if not in Discord.
 
     ```json
     {
-      // If debug query is not passed or set to anything other then true
-
       "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
       "data": {
         "totalUsers": "number",
@@ -348,14 +344,13 @@ Archive users if not in Discord.
 
     ```json
     {
-      // If debug query is set to true
-
       "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
       "data": {
         "totalUsers": "number",
         "totalUsersArchived": "number",
         "totalOperationsFailed": "number",
-        "updatedUserIds": "array" // Return last three updated user ids
+        "updatedUserDetails": "array",
+        "failedUserDetails": "array"
       }
     }
     ```
@@ -375,7 +370,7 @@ Archive users if not in Discord.
     - **Content:**
     ```json
     {
-      "statusCode": 401,
+      "statusCode": 400,
       "error": "Bad Request",
       "message": "Invalid payload"
     }
