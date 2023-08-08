@@ -38,8 +38,9 @@ Returns all logs according to the provided queries and path/named-route param.
   - `archiveDetails`
 
 - **Query**
-- Optional: `userId=[string]` for type = `archiveDetails`
-- type = <LOG_TYPE>
+
+  - Optional: `userId=[string]` for type = `archiveDetails`
+  - type = <LOG_TYPE>
 
 - **Headers**  
   None
