@@ -39,7 +39,7 @@ Returns all logs according to the provided queries and path/named-route param.
 
 - **Query**
 
-  - Optional: `userId=[string]` for type = `archiveDetails`
+  - Optional: `userId=[string]` for type = `archive-details`
 
 - **Headers**  
   None
