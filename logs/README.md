@@ -35,7 +35,7 @@ Returns all logs according to the provided queries and path/named-route param.
   - `PROFILE_DIFF_REJECTED`
   - `extensionRequests`
   - `task`
-  - `archiveDetails`
+  - `archive-details`
 
 - **Query**
 
