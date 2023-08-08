@@ -76,7 +76,7 @@ Returns all logs according to the provided queries and path/named-route param.
       "message": "Something went wrong. Please contact admin"
     }
     ```
-    - **Code:** 503
+  - **Code:** 503
     - **Content:**
     ```json
     {
