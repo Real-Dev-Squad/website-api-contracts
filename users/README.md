@@ -326,7 +326,9 @@ Archive users if not in Discord.
   ```
 
 - **Success Response:**
+
   - **Code:** 200
+
     - **Content:**
 
       ```json
@@ -340,7 +342,7 @@ Archive users if not in Discord.
       }
       ```
 
-    **Addition info if debug query is set to true**
+      **Addition info if debug query is set to true**
 
       ```json
       {
@@ -356,7 +358,9 @@ Archive users if not in Discord.
       ```
 
 - **Error Response:**
+
   - **Code:** 401
+
     - **Content:**
 
       ```json
@@ -366,7 +370,9 @@ Archive users if not in Discord.
         "message": "Unauthenticated User"
       }
       ```
+
   - **Code:** 400
+
     - **Content:**
 
       ```json
@@ -376,9 +382,11 @@ Archive users if not in Discord.
         "message": "Invalid payload"
       }
       ```
+
   - **Code:** 500
+
     - **Content:**
-    
+
       ```json
       {
         "statusCode": 500,
