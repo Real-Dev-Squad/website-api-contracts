@@ -340,7 +340,7 @@ Archive users if not in Discord.
 }
 ```
 
-    **Addition info if debug query is set to true**
+**Addition info if debug query is set to true**
 
 ```json
 {
