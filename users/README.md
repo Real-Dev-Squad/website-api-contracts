@@ -326,36 +326,34 @@ Archive users if not in Discord.
   ```
 
 - **Success Response:**
-
   - **Code:** 200
-
     - **Content:**
 
-    ```json
-    {
-      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
-      "data": {
-        "totalUsers": "number",
-        "totalUsersArchived": "number",
-        "totalOperationsFailed": "number"
-      }
-    }
-    ```
+```json
+{
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number"
+  }
+}
+```
 
     **Addition info if debug query is set to true**
 
-    ```json
-    {
-      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
-      "data": {
-        "totalUsers": "number",
-        "totalUsersArchived": "number",
-        "totalOperationsFailed": "number",
-        "updatedUserDetails": "array",
-        "failedUserDetails": "array"
-      }
-    }
-    ```
+```json
+{
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number",
+    "updatedUserDetails": "array",
+    "failedUserDetails": "array"
+  }
+}
+```
 
 - **Error Response:**
 
@@ -363,35 +361,34 @@ Archive users if not in Discord.
 
     - **Content:**
 
-    ```json
-    {
-      "statusCode": 401,
-      "error": "Unauthorized",
-      "message": "Unauthenticated User"
-    }
-    ```
+```json
+{
+  "statusCode": 401,
+  "error": "Unauthorized",
+  "message": "Unauthenticated User"
+}
+```
 
-  - **Code:** 400
+- **Code:** 400
 
-    - **Content:**
+  - **Content:**
 
-    ```json
-    {
-      "statusCode": 400,
-      "error": "Bad Request",
-      "message": "Invalid payload"
-    }
-    ```
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "Invalid payload"
+}
+```
 
-  - **Code:** 500
+- **Code:** 500
 
-    - **Content:**
+  - **Content:**
 
-    ```json
-    {
-      "statusCode": 500,
-      "error": "Internal Server Error",
-      "message": "An internal server error occurred"
-    }
-    ```
-
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "An internal server error occurred"
+}
+```
