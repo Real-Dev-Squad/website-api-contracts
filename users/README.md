@@ -342,9 +342,7 @@ Archive users if not in Discord.
     }
     ```
 
-    ```json
-    {}
-    ```
+    **Addition info if debug query is passed**
 
     ```json
     {
