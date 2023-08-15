@@ -326,11 +326,8 @@ Archive users if not in Discord.
   ```
 
 - **Success Response:**
-
   - **Code:** 200
-
     - **Content:**
-
     ```json
     {
       "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
@@ -341,9 +338,7 @@ Archive users if not in Discord.
       }
     }
     ```
-
-    **Addition info if debug query is passed**
-
+    **Addition info if debug query is set to true**
     ```json
     {
       "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
