@@ -356,3 +356,32 @@ Archive users if not in Discord.
       }
     }
     ```
+
+- **Error Response:**
+  - **Code:** 401
+    - **Content:**
+    ```json
+    {
+      "statusCode": 401,
+      "error": "Unauthorized",
+      "message": "Unauthenticated User"
+    }
+    ```
+  - **Code:** 400
+    - **Content:**
+    ```json
+    {
+      "statusCode": 400,
+      "error": "Bad Request",
+      "message": "Invalid payload"
+    }
+    ```
+  - **Code:** 500
+    - **Content:**
+    ```json
+    {
+      "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "An internal server error occurred"
+    }
+    ```
