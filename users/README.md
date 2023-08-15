@@ -331,6 +331,76 @@ Archive users if not in Discord.
 
     - **Content:**
 
+    ```json
+    {
+      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+      "data": {
+        "totalUsers": "number",
+        "totalUsersArchived": "number",
+        "totalOperationsFailed": "number"
+      }
+    }
+    ```
+
+    **Addition info if debug query is set to true**
+
+    ```json
+    {
+      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+      "data": {
+        "totalUsers": "number",
+        "totalUsersArchived": "number",
+        "totalOperationsFailed": "number",
+        "updatedUserDetails": "array",
+        "failedUserDetails": "array"
+      }
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 401
+
+    - **Content:**
+
+    ```json
+    {
+      "statusCode": 401,
+      "error": "Unauthorized",
+      "message": "Unauthenticated User"
+    }
+    ```
+
+  - **Code:** 400
+
+    - **Content:**
+
+    ```json
+    {
+      "statusCode": 400,
+      "error": "Bad Request",
+      "message": "Invalid payload"
+    }
+    ```
+
+  - **Code:** 500
+
+    - **Content:**
+
+    ```json
+    {
+      "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "An internal server error occurred"
+    }
+    ```
+
+- **Success Response:**
+
+  - **Code:** 200
+
+    - **Content:**
+
       ```json
       {
         "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
@@ -394,3 +464,4 @@ Archive users if not in Discord.
         "message": "An internal server error occurred"
       }
       ```
+
