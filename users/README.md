@@ -324,3 +324,29 @@ Archive users if not in Discord.
     "action": "nonVerifiedDiscordUsers | archiveUsers"
   }
   ```
+
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+    ```json
+    {
+      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+      "data": {
+        "totalUsers": "number",
+        "totalUsersArchived": "number",
+        "totalOperationsFailed": "number"
+      }
+    }
+    ```
+    ```json
+    {
+      "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+      "data": {
+        "totalUsers": "number",
+        "totalUsersArchived": "number",
+        "totalOperationsFailed": "number",
+        "updatedUserDetails": "array",
+        "failedUserDetails": "array"
+      }
+    }
+    ```
