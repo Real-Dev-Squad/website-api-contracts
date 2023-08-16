@@ -44,6 +44,7 @@ number and email address.
 |               [POST /users](#post-users)               |          Creates a new User          |
 |         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
 | [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
+|              [PATCH /users](#patch-users)              |   Archive users if not in discord    |
 
 ## **GET /users**
 
@@ -303,3 +304,91 @@ Updates roles for the User.
   - **Code:** 500
     - **Content:**
       `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## PATCH /users
+
+Archive users if not in Discord.
+
+- **Params**  
+  None
+- **Query**
+  - Optional: `debug=[boolean]`(`debug` when set to true returns additional result in response to help debugging)
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<SUPERUSER JWT>`
+- **Body**
+
+  ```json
+  {
+    "action": "nonVerifiedDiscordUsers | archiveUsers"
+  }
+  ```
+
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+
+```json
+{
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number"
+  }
+}
+```
+
+**Addition info if debug query is set to true**
+
+```json
+{
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number",
+    "updatedUserDetails": "array",
+    "failedUserDetails": "array"
+  }
+}
+```
+
+- **Error Response:**
+
+  - **Code:** 401
+
+    - **Content:**
+
+```json
+{
+  "statusCode": 401,
+  "error": "Unauthorized",
+  "message": "Unauthenticated User"
+}
+```
+
+- **Code:** 400
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "Invalid payload"
+}
+```
+
+- **Code:** 500
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "An internal server error occurred"
+}
+```
