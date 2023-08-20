@@ -44,7 +44,7 @@ number and email address.
 |               [POST /users](#post-users)               |          Creates a new User          |
 |         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
 | [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
-|              [PATCH /users](#patch-users)              |   Archive users if not in discord    |
+|              [POST /users](#post-users-1)              |   Archive users if not in discord    |
 
 ## **GET /users**
 
@@ -305,7 +305,7 @@ Updates roles for the User.
     - **Content:**
       `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
-## PATCH /users
+## POST /users
 
 Archive users if not in Discord.
 
@@ -321,7 +321,8 @@ Archive users if not in Discord.
 
   ```json
   {
-    "action": "nonVerifiedDiscordUsers | archiveUsers"
+    "action": "archive",
+    "on": "in_discord"
   }
   ```
 
