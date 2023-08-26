@@ -22,7 +22,7 @@
   'github_display_name': string,
   'isMember': boolean,
   'userType': string,
-  'tokens': {},
+  'discordId': string,
   'badges': []
 }
 ```

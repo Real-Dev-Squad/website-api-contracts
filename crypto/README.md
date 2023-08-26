@@ -18,6 +18,7 @@
         "manufacturer" : "some name",
         "price" : 200
     }
+    'discordId': string,
  }
  ```
 

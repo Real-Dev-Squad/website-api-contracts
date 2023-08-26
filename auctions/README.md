@@ -16,7 +16,8 @@
   'highest_bid': <example: 200 dinero | default: initial_price>,
   'start_time': <unix-timestamp>,
   'end_time': <unix-timestamp>,
-  'bidders': [<userId>, <userId>]
+  'bidders': [<userId>, <userId>],
+  'discordId': string
 }
 ```
 
