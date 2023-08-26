@@ -23,6 +23,7 @@
   'isMember': boolean,
   'userType': string,
   'discordId': string,
+  'tokens': {},
   'badges': []
 }
 ```
