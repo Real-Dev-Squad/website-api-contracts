@@ -14,8 +14,7 @@ Same as the [user](https://github.com/Real-Dev-Squad/website-api-contracts/tree/
     'reason': string,
     'email': string,
     'currency': string,
-    'package': number,
-    'discordId': string
+    'package': number
 
 }
 ```

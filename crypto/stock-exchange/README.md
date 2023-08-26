@@ -11,8 +11,7 @@
 {
   "name": <stock_name>,
   "price": <listed_price>,
-  "quantity": <available_quantity>,
-  'discordId': string,
+  "quantity": <available_quantity>
 }
 ```
 

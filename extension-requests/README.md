@@ -10,8 +10,7 @@
     oldEndsOn: "<epoch>",
     newEndsOn: "<epoch>",
     reason: "string" (Reasons for asking extension),
-    status : `PENDING | APPROVED | DENIED`,
-      'discordId': string
+    status : `PENDING | APPROVED | DENIED`
 
 }
 ```

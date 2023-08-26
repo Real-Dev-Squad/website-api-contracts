@@ -9,8 +9,7 @@
   'description': string,
   'imageUrl': string,
   'createdBy': string,
-  'createdAt': { 'date': string, 'time': string },
-  'discordId': string
+  'createdAt': { 'date': string, 'time': string }
 }
 ```
 
