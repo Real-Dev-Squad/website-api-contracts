@@ -38,9 +38,7 @@
     'timestamps': {
       'created_at': timestamp,
       'updated_at': timestamp,
-      }
-    
-
+      } 
 }
 ```
 

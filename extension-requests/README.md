@@ -11,7 +11,6 @@
     newEndsOn: "<epoch>",
     reason: "string" (Reasons for asking extension),
     status : `PENDING | APPROVED | DENIED`
-
 }
 ```
 
