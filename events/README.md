@@ -114,14 +114,18 @@
 
 ## Requests
 
-| Route                                                 | Description                                                             |
-| ----------------------------------------------------- | ----------------------------------------------------------------------- |
-| [POST /events](#post---events)                        | Create a new event, either randomly or with the requested configuration |
-| [GET /events](#get-events)                            | Get all the events                                                      |
-| [POST /events/join](#post---eventsjoin)               | Generate an auth token for a peer to join a event                       |
-| [GET /events/:id=<EVENT_ID>](#get---eventsidevent_id) | Retrieves the details of a specific active event.                       |
-| [PATCH /events](#patch---events)                      | Update the event, make event enabled/disabled,                          |
-| [PATCH /events/end](#patch---eventsend)               | Trigger this request to end an active event.                            |
+| Route                                                            | Description                                                             |
+| ---------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [POST /events](#post---events)                                   | Create a new event, either randomly or with the requested configuration |
+| [GET /events](#get-events)                                       | Get all the events                                                      |
+| [POST /events/join](#post---eventsjoin)                          | Generate an auth token for a peer to join a event                       |
+| [GET /events/:id=<EVENT_ID>](#get---eventsidevent_id)            | Retrieves the details of a specific active event.                       |
+| [PATCH /events](#patch---events)                                 | Update the event, make event enabled/disabled,                          |
+| [PATCH /events/end](#patch---eventsend)                          | Trigger this request to end an active event.                            |
+| [POST /events/:id/peers](#post---eventsidpeers)                  | Add a peer to a specific event.                                         |
+| [PATCH /events/:id/peers/kickout](#patch---eventsidpeerskickout) | Kick out a peer from a specific event.                                  |
+| [POST /events/:id/codes](#post---eventsidcodes)                  | Generate event codes for a specific event.                              |
+| [GET /events/:id/codes](#get---eventsidcodes)                    | Get event codes for a specific event.                                   |
 
 ## POST - /events
 
@@ -396,3 +400,246 @@ Trigger this request to end an active event.
   - **Code:** 500
     - **Content**
       `{ 'statusCode': 500, 'error': 'Internal server error', 'message': 'Couldn't end the event. Please try again later'}`
+
+## POST - /events/:id/peers
+
+Use this request to add a participant to an event.
+
+- **Params:**
+
+  - **`:id`** (required) : string - The ID of the event to which you want to add a participant.
+
+- **Query**
+
+  - None
+
+- **Body**
+
+  - **`peerId`** (required) : string - The ID of the participant to be added.
+  - **`name`** (required) : string - The name of the participant.
+  - **`role`** (required) : string - The role of the participant.
+  - **`joinedAt`** (required) : string - The timestamp when the participant joined the event.
+
+  ```json
+  {
+    "peerId": "<peer_id>",
+    "name": "John Doe",
+    "role": "Participant",
+    "joinedAt": "2023-09-09T12:00:00Z"
+  }
+  ```
+
+- **Headers**
+
+  - Content-Type: application/json
+  - Authorization: Bearer <management_token>
+
+- **Cookie**
+
+  - rds-session: `<JWT>`
+
+- **Success Response:**
+
+  - **Code:** 200
+    - **Content:**
+      ```json
+      {
+        "data": {
+          // Participant data
+        },
+        "message": "Selected Participant is added to the event."
+      }
+      ```
+
+- **Error Response:**
+
+  - **Code:** 400
+    - **Content:**
+      ```json
+      {
+        "statusCode": 400,
+        "error": "Bad Request",
+        "message": "Invalid request body or missing required parameters"
+      }
+      ```
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "You can't add the selected Participant. Please ask Admin or Host for help."
+      }
+      ```
+
+## PATCH - /events/:id/peers/kickout
+
+Use this request to remove a participant from an event.
+
+- **Params:**
+
+  - **`:id`** (required) : string - The ID of the event from which you want to remove a participant.
+
+- **Query**
+
+  - None
+
+- **Body**
+
+  - **`peerId`** (required) : string - The ID of the participant to be removed.
+  - **`reason`** (required) : string - The reason for removing the participant.
+
+  ```json
+  {
+    "peerId": "<peer_id>",
+    "reason": "Inappropriate behavior"
+  }
+  ```
+
+- **Headers**
+
+  - Content-Type: application/json
+  - Authorization: Bearer <management_token>
+
+- **Cookie**
+
+  - rds-session: `<JWT>`
+
+- **Success Response:**
+
+  - **Code:** 200
+    - **Content:**
+      ```json
+      {
+        "message": "Selected Participant is removed from the event."
+      }
+      ```
+
+- **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      ```json
+      {
+        "statusCode": 400,
+        "error": "Bad Request",
+        "message": "Invalid request body or missing required parameters"
+      }
+      ```
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "You can't remove the selected Participant. Please ask the Admin or Host for help."
+      }
+      ```
+
+### POST - /events/:id/codes
+
+Use this request to generate an event code for a specific event.
+
+- **Params:**
+
+  - **`:id`** (required) : string - The ID of the event for which you want to generate a code.
+
+- **Query**
+
+  - None
+
+- **Body**
+
+  - **`eventCode`** (required) : string - The code to be generated for the event.
+  - **`role`** (required) : string - The role for which the code is being generated. Currently, this feature is only available for "mavens."
+
+  ```json
+  {
+    "eventCode": "ABC123",
+    "role": "maven"
+  }
+  ```
+
+- **Headers**
+
+  - Content-Type: application/json
+  - Authorization: Bearer <management_token>
+
+- **Cookie**
+
+  - rds-session: `<JWT>`
+
+- **Success Response:**
+
+  - **Code:** 201
+    - **Content:**
+      ```json
+      {
+        "message": "Event code created successfully!",
+        "data": [
+          // Event code object
+        ]
+      }
+      ```
+
+- **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      ```json
+      {
+        "message": "Currently, the room codes feature is only for mavens!"
+      }
+      ```
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "Couldn't create event code. Please try again later."
+      }
+      ```
+
+### GET - /events/:id/codes
+
+Use this request to get event codes for a particular event.
+
+- **Params:**
+
+  - **`:id`** (required) : string - The ID of the event for which you want to retrieve codes.
+
+- **Query**
+
+  - None
+
+- **Headers**
+
+  - Content-Type: application/json
+  - Authorization: Bearer <management_token>
+
+- **Cookie**
+
+  - rds-session: `<JWT>`
+
+- **Success Response:**
+
+  - **Code:** 200
+    - **Content:**
+      ```json
+      {
+        "message": "Event codes are successfully fetched for the event!",
+        "data": [
+          // Event code objects
+        ]
+      }
+      ```
+
+- **Error Response:**
+  - **Code:** 500
+    - **Content:**
+      ```json
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "Something went wrong while getting the event codes!"
+      }
+      ```
