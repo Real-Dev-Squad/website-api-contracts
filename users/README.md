@@ -22,6 +22,7 @@
   'github_display_name': string,
   'isMember': boolean,
   'userType': string,
+  'discordId': string,
   'tokens': {},
   'badges': []
 }
@@ -34,15 +35,17 @@ number and email address.
 
 ## **Requests**
 
-|                        Route                        |             Description              |
-| :-------------------------------------------------: | :----------------------------------: |
-|              [GET /users](#get-users)               |   Returns all users in the system    |
-|          [GET /users/self](#get-usersSelf)          | Returns the logged in user's details |
-| [GET /users/userId/:userId](#get-usersuseriduserid) |    Returns user with given userId    |
-|     [GET /users/:username](#get-usersusername)      |   Returns user with given username   |
-|   [GET /users/:userId/badges](#get-usersidbadges)   | Returns badges assigned to the user  |
-|             [POST /users](#post-users)              |          Creates a new User          |
-|        [PATCH /users/self](#patch-usersself)        |       Updates data of the User       |
+|                         Route                          |             Description              |
+| :----------------------------------------------------: | :----------------------------------: |
+|                [GET /users](#get-users)                |   Returns all users in the system    |
+|           [GET /users/self](#get-usersSelf)            | Returns the logged in user's details |
+|  [GET /users/userId/:userId](#get-usersuseriduserid)   |    Returns user with given userId    |
+|       [GET /users/:username](#get-usersusername)       |   Returns user with given username   |
+|    [GET /users/:userId/badges](#get-usersidbadges)     | Returns badges assigned to the user  |
+|               [POST /users](#post-users)               |          Creates a new User          |
+|         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
+| [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
+|              [PATCH /users](#patch-users)              |   Archive users if not in discord    |
 
 ## **GET /users**
 
@@ -50,10 +53,15 @@ Returns all users in the system.
 
 - **Params**  
   None
-- **Query**  
-  Optional: `size=[integer]` (`size` is number of users requested per page,
-  value ranges in between 1-100, and default value is 100) <br> Optional: `page=[integer]`
-  (`page` can either be 0 or positive-number, and default value is 0) <br> `search=[string]` (`search` is a string value for username prefix) <br> Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.) <br> Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
+- **Query**
+  - Optional: `size=[integer]` (`size` is number of users requested per page,
+    value ranges in between 1-100, and default value is 100)
+  - Optional: `page=[integer]`
+    (`page` can either be 0 or positive-number, and default value is 0)
+  - Optional: `search=[string]` (`search` is a string value for username prefix)
+  - Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.)
+  - Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
+  - Optional: `query=[string]` ( `query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
 - **Body**  
   None
 - **Headers**  
@@ -260,3 +268,128 @@ Updates data of the User.
   - **Code:** 503
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
+## **PATCH /users/:id/temporary/data**
+
+Updates roles for the User.
+
+- **Params**  
+  _Required:_ `userId=[string]`
+- **Query**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Body**
+  `{
+  member?: <boolean>
+  archived?: <boolean>
+}`
+- **Success Response:**
+  - **Code:** 200
+    - **Content:** `{ 'message': 'role updated successfully!'}`
+- **Error Response:**
+  - **Code:** 409
+    - **Content:**
+      `{ 'statusCode': 409, 'error': 'Not Found', 'message': 'role already exist!' }`
+  - **Code:** 404
+    - **Content:**
+      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Invalid Request', 'message': 'Invalid role' }`
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 500
+    - **Content:**
+      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## PATCH /users
+
+Archive users if not in Discord.
+
+- **Params**  
+  None
+- **Query**
+  - Optional: `debug=[boolean]`(`debug` when set to true returns additional result in response to help debugging)
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<SUPERUSER JWT>`
+- **Body**
+
+  ```json
+  {
+    "action": "nonVerifiedDiscordUsers | archiveUsers"
+  }
+  ```
+
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+
+```json
+{
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number"
+  }
+}
+```
+
+**Addition info if debug query is set to true**
+
+```json
+{
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number",
+    "updatedUserDetails": "array",
+    "failedUserDetails": "array"
+  }
+}
+```
+
+- **Error Response:**
+
+  - **Code:** 401
+
+    - **Content:**
+
+```json
+{
+  "statusCode": 401,
+  "error": "Unauthorized",
+  "message": "Unauthenticated User"
+}
+```
+
+- **Code:** 400
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "Invalid payload"
+}
+```
+
+- **Code:** 500
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "An internal server error occurred"
+}
+```

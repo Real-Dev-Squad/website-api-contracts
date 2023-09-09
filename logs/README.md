@@ -13,13 +13,13 @@
 
 ## **Requests**
 
-|         Route          |        Description        |
-| :--------------------: | :-----------------------: |
-| [GET /logs](#get-logs) | Returns logs of all types |
+|            Route             |        Description        |
+| :--------------------------: | :-----------------------: |
+| [GET /logs/:type](#get-logs) | Returns logs of all types |
 
 ---
 
-## **GET /logs**
+## **GET /logs/:type**
 
 **Note :**
 
@@ -28,11 +28,19 @@
 Returns all logs according to the provided queries and path/named-route param.
 
 - **Param**  
-  None
-- **Query**  
-  type=<LOG_TYPE>
-- **Body**  
-  None
+  type:
+
+  - `CLOUDFLARE_CACHE_PURGED`
+  - `PROFILE_DIFF_APPROVED`
+  - `PROFILE_DIFF_REJECTED`
+  - `extensionRequests`
+  - `task`
+  - `archive-details`
+
+- **Query**
+
+  - Optional: `userId=[string]` for type = `archive-details`
+
 - **Headers**  
   None
 - **Cookie**  
@@ -56,7 +64,7 @@ Returns all logs according to the provided queries and path/named-route param.
     {
       "statusCode": 401,
       "error": "Unauthorized",
-      "message": "Unauthenticated User"
+      "message": "You are not authorized for this action."
     }
     ```
   - **Code:** 500
@@ -64,6 +72,15 @@ Returns all logs according to the provided queries and path/named-route param.
     ```json
     {
       "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "Something went wrong. Please contact admin"
+    }
+    ```
+  - **Code:** 503
+    - **Content:**
+    ```json
+    {
+      "statusCode": 503,
       "error": "Internal Server Error",
       "message": "Something went wrong. Please contact admin"
     }
