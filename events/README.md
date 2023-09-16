@@ -406,20 +406,14 @@ Trigger this request to end an active event.
 Use this request to add a participant to an event.
 
 - **Params:**
-
   - **`:id`** (required) : string - The ID of the event to which you want to add a participant.
-
 - **Query**
-
   - None
-
 - **Body**
-
   - **`peerId`** (required) : string - The ID of the participant to be added.
   - **`name`** (required) : string - The name of the participant.
   - **`role`** (required) : string - The role of the participant.
   - **`joinedAt`** (required) : string - The timestamp when the participant joined the event.
-
   ```json
   {
     "peerId": "<peer_id>",
@@ -428,31 +422,26 @@ Use this request to add a participant to an event.
     "joinedAt": "2023-09-09T12:00:00Z"
   }
   ```
-
 - **Headers**
-
   - Content-Type: application/json
   - Authorization: Bearer <management_token>
-
 - **Cookie**
-
   - rds-session: `<JWT>`
-
 - **Success Response:**
-
   - **Code:** 200
     - **Content:**
       ```json
       {
         "data": {
-          // Participant data
+          "peerId": "<peer_id>",
+          "name": "John Doe",
+          "role": "Participant",
+          "joinedAt": "2023-09-09T12:00:00Z"
         },
         "message": "Selected Participant is added to the event."
       }
       ```
-
 - **Error Response:**
-
   - **Code:** 400
     - **Content:**
       ```json
@@ -477,36 +466,24 @@ Use this request to add a participant to an event.
 Use this request to remove a participant from an event.
 
 - **Params:**
-
   - **`:id`** (required) : string - The ID of the event from which you want to remove a participant.
-
 - **Query**
-
   - None
-
 - **Body**
-
   - **`peerId`** (required) : string - The ID of the participant to be removed.
   - **`reason`** (required) : string - The reason for removing the participant.
-
   ```json
   {
     "peerId": "<peer_id>",
     "reason": "Inappropriate behavior"
   }
   ```
-
 - **Headers**
-
   - Content-Type: application/json
   - Authorization: Bearer <management_token>
-
 - **Cookie**
-
   - rds-session: `<JWT>`
-
 - **Success Response:**
-
   - **Code:** 200
     - **Content:**
       ```json
@@ -514,7 +491,6 @@ Use this request to remove a participant from an event.
         "message": "Selected Participant is removed from the event."
       }
       ```
-
 - **Error Response:**
   - **Code:** 400
     - **Content:**
@@ -540,47 +516,32 @@ Use this request to remove a participant from an event.
 Use this request to generate an event code for a specific event.
 
 - **Params:**
-
   - **`:id`** (required) : string - The ID of the event for which you want to generate a code.
-
 - **Query**
-
   - None
-
 - **Body**
-
   - **`eventCode`** (required) : string - The code to be generated for the event.
   - **`role`** (required) : string - The role for which the code is being generated. Currently, this feature is only available for "mavens."
-
   ```json
   {
     "eventCode": "ABC123",
     "role": "maven"
   }
   ```
-
 - **Headers**
-
   - Content-Type: application/json
   - Authorization: Bearer <management_token>
-
 - **Cookie**
-
   - rds-session: `<JWT>`
-
 - **Success Response:**
-
   - **Code:** 201
     - **Content:**
       ```json
       {
         "message": "Event code created successfully!",
-        "data": [
-          // Event code object
-        ]
+        "data": [{ "eventCode": "ABC123", "role": "maven" }]
       }
       ```
-
 - **Error Response:**
   - **Code:** 400
     - **Content:**
@@ -604,35 +565,23 @@ Use this request to generate an event code for a specific event.
 Use this request to get event codes for a particular event.
 
 - **Params:**
-
   - **`:id`** (required) : string - The ID of the event for which you want to retrieve codes.
-
 - **Query**
-
   - None
-
 - **Headers**
-
   - Content-Type: application/json
   - Authorization: Bearer <management_token>
-
 - **Cookie**
-
   - rds-session: `<JWT>`
-
 - **Success Response:**
-
   - **Code:** 200
     - **Content:**
       ```json
       {
         "message": "Event codes are successfully fetched for the event!",
-        "data": [
-          // Event code objects
-        ]
+        "data": [{ "eventCode": "ABC123", "role": "maven" }]
       }
       ```
-
 - **Error Response:**
   - **Code:** 500
     - **Content:**
