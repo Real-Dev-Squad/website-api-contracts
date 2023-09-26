@@ -32,7 +32,15 @@ Return all the extension-requests
 - **Params**  
   None
 - **Query**  
-  `status=APPROVED | DENIED | PENDING, taskId=<task_object_id>, assignee=userId`
+  - Optional: `dev=[boolean]` (`dev` is passed to get all tasks in the developer mode with features that are flagged)
+  - Optional: `q=[string]` (`q` can have the following values)
+      - Optional: `status=[string]` (`status` is a case senstive string with one of the following values [APPROVED,PENDING, DENIED] )
+      - Optional: `taskId=[string]` (`taskId` is the taskId related to the extension request)
+      - Optional: `assignee=[string]` (`assignee` is the userId of the assignee )
+  - Optional: `size=[integer]` (`size` is the number of tasks requested per page. Range of value is 1-100.)
+  - Optional: `cursor=[string]` (`cursor` is id of the document to get next page of results from that document)
+  - Optional: `order=[string]` (`order` sorts the response based on created_at time and can have following values [asc,desc])
+
 - **Body**  
   None
 - **Headers**  
@@ -50,6 +58,7 @@ Return all the extension-requests
            {<extension_request_object>},
            {<extension_request_object>}
          ]
+  next: <string>
 }
 ```
 
