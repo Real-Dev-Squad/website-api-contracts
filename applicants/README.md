@@ -35,9 +35,8 @@
 |                         Route                          |             Description              |
 | :----------------------------------------------------: | :----------------------------------: |
 |                [GET /applications](#get-applications)                |   Returns all the applications in the system   |
-|           [GET /applications/:userId](#get-applicationsuserid)            | Retruns application of a particular user |
 |  [POST /applications](#post-applications)   |    Add application of a user    |
-|       [PATCH /applications/:userId](#patch-applicationsuserid)       |   Updates application of a user   |
+|       [PATCH /applications/:applicationId](#patch-applicationsapplicationid)       |   Updates application of a user   |
 |        |
 
 ## **GET /applications/**
@@ -47,7 +46,7 @@ Return all the applications which are not accepted or rejected, this API will on
 - **Params**  
   None
 - **Query** 
-  None
+    - Optional: `userId=[string]`: if userId is provided it return application of one user, if the user is not super user then the userId passed here must be the userId of that user only otherwise it will give 403
 - **Body**  
   None
 - **Headers**  
@@ -57,10 +56,18 @@ Return all the applications which are not accepted or rejected, this API will on
 - **Success Response:**
   - **Code:** 200
     - **Content:**
+    The following response will be returned if userId is not provided in the query param 
     ```
       { 
-        message: 'applications returned successfully!',
-        applications: <application_object> 
+        message: 'applications returned successfully! || 'applications returned successfully'',
+        applications: [<application_object>, <application_object>]
+      }
+    ```
+    The following response will be returned if userId is provided in the query param 
+    ```
+      { 
+        message: 'applications returned successfully! || 'application returned successfully'',
+        application: <application_object>
       }
     ```
 - **Error Response:**
@@ -101,8 +108,7 @@ Adds an application for joining RDS, a user can only add one application, until 
     - **Content:**
     ```
       { 
-        message: 'application added successfully!',
-        application: <application_object> 
+        message: 'User application added.',
       }
     ```
 - **Error Response:**
@@ -135,67 +141,17 @@ Adds an application for joining RDS, a user can only add one application, until 
       ```
 
 
-## **GET /applications/:userId**
 
-Return the application of a particular user, the super can access the application of any user, but any other can only access their application
-
-- **Params**  
-  _Required:_ `userId=[string]`
-- **Query** 
-  None
-- **Body**
-  None
-- **Headers**  
-  Content-Type: application/json
-- **Cookie**  
-  rds-session: `<JWT>`
-- **Success Response:**
-  - **Code:** 200
-    - **Content:**
-    ```
-      { 
-        message: 'User application returned successfully!', 
-        application: <application_object> }
-    ```
-- **Error Response:**
-  - **Code:** 401
-    - **Content:**
-      ```
-        { 
-          statusCode: 401,
-          error: 'Unauthorized',
-          message: 'Unauthenticated User' 
-        }
-      ```
-  - **Code:** 404
-    - **Content:**
-      ```
-        { 
-          'statusCode': 404,
-          'error': 'Not Found',
-          'message': 'Application doesn't exist' 
-        }
-      ```
-  - **Code:** 500
-    - **Content:**
-      ```
-        { 
-          statusCode: 500,
-          error: 'Internal Server Error',
-          message: 'An internal server error occurred' 
-        }
-      ```
-
-## **PATCH /applications/:userId**
+## **PATCH /applications/:applicationId**
 
 This will update a particular application, this API will only be accessible to super_user
 
 - **Params**  
   _Required:_ `userId=[string]`
 - **Query** 
-  _optional:_ `generate_discord_link=[boolean]`
 - **Body**
-  None
+  _optional_: `reason=[string]`
+  _optional_: `status=[string]`
 - **Headers**  
   Content-Type: application/json
 - **Cookie**  
