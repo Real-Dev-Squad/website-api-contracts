@@ -203,31 +203,15 @@ Code: 409
 {
 	"statusCode": 409,
 	"error": "Conflict",
-	"message": "User is already requesting for the task"
-}
-```
-Code: 409
-```
-{
-	"statusCode": 409,
-	"error": "Conflict",
-	"message": "User does not exist"
-}
-```
-Code: 409
-```		
-{
-	"statusCode": 409,
-	"error": "Conflict",
-	"message": "User Status does not exist"
-}
-```
-Code: 409
-```
-{
-	"statusCode": 409,
-	"error": "Conflict",
 	"message": "Task does not exist"
+}
+```
+Code: 409
+```
+{
+	"statusCode": 409,
+	"error": "Conflict",
+	"message": "Issue does not exist"
 }
 ```
     
