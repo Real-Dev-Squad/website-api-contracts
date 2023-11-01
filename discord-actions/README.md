@@ -1,15 +1,4 @@
-# discord
-
-
-## invite object
-
-```json
-{
-  "id": "string",
-  "inviteLink": "string",
-  "userId": "string",
-}
-```
+# discord-actions
 
 ## **Requests**
 
@@ -39,7 +28,7 @@
     ```json
     {
       "message": "Invite return successfully!",
-      "inviteResponse":  "<invite_object>"
+      "inviteLink":  "discord_invite_link_here"
     }
     ```
 
