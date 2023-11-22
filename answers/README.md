@@ -2,9 +2,9 @@
 
 | Method | Route                        | Description                                                    |
 | ------ | ---------------------------- | -------------------------------------------------------------- |
-| POST   | [/answers](#post---answers)  | it will be to submit questions by the peers                    |
+| POST   | [/answers](#post---answers)  | it will be to submit answer by the peers                       |
 | PATCH  | [/answers](#patch---answers) | for updating the answers(will primarily be using for approval) |
-| GET    | [/answers](#get---answers)   | it will be to get the answer                                   |
+| GET    | [/answers](#get---answers)   | it will be to get the answers                                  |
 
 ### POST - /answers
 
@@ -37,8 +37,8 @@ It will be used for peers to answer questions.
       "is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
       "approved_by": "<RDS_USER_ID>", //can be of HOST | MODERATOR
       "question_id": "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
-      "event_id": "EVENT_ID", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
       "answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
+      "event_id": "EVENT_ID", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
       "timestamps": {
         "created_at": "<FIREBASE_TIMESTAMP>",
         "updated_at": "<FIREBASE_TIMESTAMP>"
@@ -66,7 +66,7 @@ It will be used to update the answers.
 - **Query**
   - None
 - **Body**
-  - **`isApproved=[BOOLEAN]`** required
+  - **`isApproved=[BOOLEAN]`** optional
 - **Headers**
   - Authorization: Bearer <management_token>
 - **Cookie**
@@ -135,9 +135,9 @@ It will be used to get all the answers in realtime.
   							"approved_by": "<RDS_USER_ID>",//can be of HOST | MODERATOR
   							"question_id":  "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
   							"event_id": "EVENT_ID", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
+  							"answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
   							"created_at": "<FIREBASE_TIMESTAMP>",
   							"updated_at": "<FIREBASE_TIMESTAMP>",
-  							"answered_by": "<STRING>" //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
   					},
   					{
   							"id": "<STRING>",
@@ -146,9 +146,9 @@ It will be used to get all the answers in realtime.
   							"approved_by": "<RDS_USER_ID>",//can be of HOST | MODERATOR
   							"question_id":  "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
   							"event_id": "EVENT_ID", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
+  							"answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
   							"created_at": "<FIREBASE_TIMESTAMP>",
   							"updated_at": "<FIREBASE_TIMESTAMP>",
-  							"answered_by": "<STRING>" //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
   					}
   		]
   }

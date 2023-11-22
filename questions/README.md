@@ -36,6 +36,7 @@ It will be used for host to ask the question.
       "created_by": "<STRING>",
       "event_id": "EVENT_ID",
       "word_limit": "<NUMBER>",
+      "is_new": "<BOOLEAN>",
       "timestamps": {
         "created_at": "<FIREBASE_TIMESTAMP>",
         "updated_at": "<FIREBASE_TIMESTAMP>"
