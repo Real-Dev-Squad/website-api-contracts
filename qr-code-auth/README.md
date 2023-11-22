@@ -2,10 +2,11 @@
 
 ## API Endpoints
 
-|                                            Route                                            |                                             Description                                             |
-| :-----------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------: |
-|                      [POST /auth/qr-code-auth](#post-authqr-code-auth)                      |                               Creates a new authentication document.                                |
-|                       [GET /auth/qr-code-auth](#get-authqr-code-auth)                       |               Retrieves all the authentication document belonging to a specified user               |
+|                                       Route                                        |                                         Description                                          |
+| :--------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------: |
+|                      [POST /auth/qr-code-auth](#post-authqr-code-auth)                      |                            Creates a new authentication document.                            |
+|                       [GET /auth/qr-code-auth](#get-authqr-code-auth)                       |           Retrieves all the authentication document belonging to a specified user            |
+
 | [PATCH /auth/qr-code-auth](#patch-authqr-code-authauthorization_statusauthorization_status) | Updates the authorization_status field of an existing qr-code-auth document for the specified user. |
 
 ## POST /auth/qr-code-auth
