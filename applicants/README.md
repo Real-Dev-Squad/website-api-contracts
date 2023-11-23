@@ -41,7 +41,7 @@
 
 ## **GET /applications/**
 
-Return all the applications which are not accepted or rejected, this API will only be accessible to super_user
+Return all the applications which are not accepted or rejected, this API will only be accessible to super_user or user who have filled the application if the userId passed in same as the userId of the user
 
 - **Params**  
   None
@@ -147,7 +147,7 @@ Adds an application for joining RDS, a user can only add one application, until 
 This will update a particular application, this API will only be accessible to super_user
 
 - **Params**  
-  _Required:_ `userId=[string]`
+  _Required:_ `applicationId=[string]`
 - **Query** 
 - **Body**
   _optional_: `reason=[string]`
