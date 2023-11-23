@@ -17,7 +17,7 @@ It will be used for host to ask the question.
   - **`question=[STRING]`** required - (The question text.)
   - **`createdBy=[STRING]`** required (The ID of the user who asked the question.)
   - **`eventId=[STRING]`** required (The ID of the session where the question was asked.)
-  - **`maxWords=[NUMBER || null]`** optional
+  - **`maxCharacters=[NUMBER || null]`** optional
 - **Headers**
   - Authorization: Bearer <management_token>
 - **Cookie**
@@ -94,7 +94,7 @@ It will be used to get the questions in realtime.
   		"question": "<STRING>",
   		"event_id": "EVENT_ID",
   		"is_new": "<BOOLEAN>",//will help us in filtering which question to broadcast/send to connected clients
-  		"max_words": "<NUMBER>" //number of words answer can have for this question
+  		"max_characters": "<NUMBER>" //number of words answer can have for this question
   		"created_at": "<FIREBASE_TIMESTAMP>",
   		"updated_at": "<FIREBASE_TIMESTAMP>",
   		"created_by": "STRING" //ID OF THE CREATOR OF THE QUESTION(FROM RDS USER COLLECTION)
