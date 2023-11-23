@@ -4,8 +4,8 @@
 
 |                          Route                          |           Description            |
 | :-----------------------------------------------------: | :------------------------------: |
-|  [GET /discord/invites](#get-discord-actions-invites)   | return all the invites generated |
-| [POST /discord/invites](#post-discord-actions -invites) |  generates a invite for a user   |
+|  [GET /discord-actions/invites](#get-discord-actions-invites)   | return all the invites generated |
+| [POST /discord-actions/invites](#post-discord-actions-invites) |  generates a invite for a user   |
 
 ---
 
