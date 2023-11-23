@@ -26,7 +26,7 @@
   },
   foundFrom: string,
   status: string || null,
-  discordLink: string || null
+  reason: string || null
 }
 ```
 
