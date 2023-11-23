@@ -38,7 +38,7 @@ It will be used for peers to answer questions.
       "approved_by": "<RDS_USER_ID>", //can be of HOST | MODERATOR
       "question_id": "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
       "answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
-      "event_id": "EVENT_ID", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
+      "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
       "timestamps": {
         "created_at": "<FIREBASE_TIMESTAMP>",
         "updated_at": "<FIREBASE_TIMESTAMP>"
@@ -126,31 +126,31 @@ It will be used to get all the answers in realtime.
   - **Content:**
   ```json
   {
-  		"message": "Answers returned successfully",
-  		"data": [
-  					{
-  							"id": "<STRING>",
-  							"answer":: "<STRING>",
-  							"is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
-  							"approved_by": "<RDS_USER_ID>",//can be of HOST | MODERATOR
-  							"question_id":  "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
-  							"event_id": "EVENT_ID", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
-  							"answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
-  							"created_at": "<FIREBASE_TIMESTAMP>",
-  							"updated_at": "<FIREBASE_TIMESTAMP>",
-  					},
-  					{
-  							"id": "<STRING>",
-  							"answer":: "<STRING>",
-  							"is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
-  							"approved_by": "<RDS_USER_ID>",//can be of HOST | MODERATOR
-  							"question_id":  "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
-  							"event_id": "EVENT_ID", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
-  							"answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
-  							"created_at": "<FIREBASE_TIMESTAMP>",
-  							"updated_at": "<FIREBASE_TIMESTAMP>",
-  					}
-  		]
+    "message": "Answers returned successfully",
+    "data": [
+      {
+        "id": "<STRING>",
+        "answer": "<STRING>",
+        "is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
+        "approved_by": "<RDS_USER_ID>", //can be of HOST | MODERATOR
+        "question_id": "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
+        "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
+        "answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
+        "created_at": "<FIREBASE_TIMESTAMP>",
+        "updated_at": "<FIREBASE_TIMESTAMP>"
+      },
+      {
+        "id": "<STRING>",
+        "answer": "<STRING>",
+        "is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
+        "approved_by": "<RDS_USER_ID>", //can be of HOST | MODERATOR
+        "question_id": "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
+        "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
+        "answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
+        "created_at": "<FIREBASE_TIMESTAMP>",
+        "updated_at": "<FIREBASE_TIMESTAMP>"
+      }
+    ]
   }
   ```
 - **Error Response:**

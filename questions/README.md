@@ -34,7 +34,7 @@ It will be used for host to ask the question.
       "id": "<STRING>",
       "question": "<STRING>",
       "created_by": "<STRING>",
-      "event_id": "EVENT_ID",
+      "event_id": "<STRING>",
       "word_limit": "<NUMBER>",
       "is_new": "<BOOLEAN>",
       "timestamps": {
@@ -92,7 +92,7 @@ It will be used to get the questions in realtime.
   "data": 	{
   		"id": "<STRING>",
   		"question": "<STRING>",
-  		"event_id": "EVENT_ID",
+  		"event_id": "<STRING>",
   		"is_new": "<BOOLEAN>",//will help us in filtering which question to broadcast/send to connected clients
   		"max_characters": "<NUMBER>" //number of words answer can have for this question
   		"created_at": "<FIREBASE_TIMESTAMP>",
