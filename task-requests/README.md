@@ -75,7 +75,7 @@ Return all the task-requests
 	Content: { 'statusCode': 500, 
 				'error': 'Internal Server Error', 
 				'message': 'An internal server error occurred' 
-			 }
+		}
 ```
 ## **GET /taskRequests/:id**
 
@@ -97,7 +97,7 @@ Code: 200
 Content: {
 			message: 'Task request returned successfully'
 			data:{<task_request_object>}
-		 }
+	}
 ```
   - **Error Response:**
 ``` 
@@ -106,13 +106,13 @@ Content: {
 				'statusCode': 500, 
 				'error': 'Internal Server Error', 
 				'message': 'An internal server error occurred' 
-			 }
+		}
 ```
 ```
 	Code: 404
 	Content: {
 			   message:  "Task request not found",
-			 }
+		}
 ```
 
 ## **POST /taskRequests**
@@ -135,7 +135,7 @@ Content: {
 	Content: {
 			  message: 'Task request created successfully'
 			  taskRequest: {<task_request_object>}
-			 }
+		}
 ```
   - **Error Response:**
 ``` 
@@ -143,7 +143,7 @@ Content: {
 	Content: { 'statusCode': 500, 
 				'error': 'Internal Server Error', 
 				'message': 'An internal server error occurred' 
-			 }
+		}
 ```
 ```
 	Code: 401
@@ -155,7 +155,7 @@ Content: {
 			'statusCode': 409,
 			'error': 'Conflict',
 			'message': 'User is already requesting for the task'
-		}
+	}
 ```
 ```
 Code: 409
@@ -163,7 +163,7 @@ Content: {
 			'statusCode': 409,
 			'error': 'Conflict',
 			'message': 'User does not exist'
-		 }
+	}
 ```
 ```		
 Code: 409
@@ -171,7 +171,7 @@ Content:{
 			'statusCode': 409,
 			'error': 'Conflict',
 			'message': 'User Status does not exist'
-		}
+	}
 ```
 ```
 Code: 409
@@ -179,7 +179,7 @@ Content: {
 			'statusCode': 409,
 			'error': 'Conflict',
 			'message': "Task does not exist"
-		 }
+	}
 ```
     
 ## **PATCH /taskRequests/:**
@@ -195,7 +195,7 @@ Content: {
 	content: {
 			taskRequestId : <id>
 			userId : <userId>
-			}
+		}
 ```
 - **Cookie**  
   rds-session: `<JWT SUPERUSER>`
@@ -205,7 +205,7 @@ Content: {
 	Content: {
 			  message: 'Task request updated successfully'
 			  taskRequest: {<task_request_object>}
-			 }
+		}
 ```
   - **Error Response:**
 ``` 
@@ -213,7 +213,7 @@ Content: {
 	Content: { 'statusCode': 500, 
 				'error': 'Internal Server Error', 
 				'message': 'An internal server error occurred' 
-			 }
+		}
 ```
 ```
 Code: 409
@@ -221,7 +221,7 @@ Content: {
 			'statusCode': 409,
 			'error': 'Conflict',
 			'message': 'User does not exist'
-		 }
+	}
 ```
 ```
 	Code: 401
