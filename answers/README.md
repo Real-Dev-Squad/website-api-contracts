@@ -20,7 +20,7 @@ It will be used for peers to answer questions.
   - **`eventId=[STRING]`** required (The ID of the event where the question was asked.)
   - **`questionId=[STRING]`** required (The ID of the question for which the answer is.)
 - **Headers**
-  - Authorization: Bearer <management_token>
+  - `n/a`
 - **Cookie**
   - `none`
 - **Middlewares**
@@ -57,7 +57,7 @@ It will be used for peers to answer questions.
     }
     ```
 
-### PATCH - /answers
+### PATCH - /answers/:answerId
 
 It will be used to update the answers.
 
@@ -68,7 +68,7 @@ It will be used to update the answers.
 - **Body**
   - **`isApproved=[BOOLEAN]`** optional
 - **Headers**
-  - Authorization: Bearer <management_token>
+  - `n/a`
 - **Cookie**
   - `rds-session`
 - **Middlewares**
@@ -113,7 +113,7 @@ It will be used to get all the answers in realtime.
 - **Body**
   - `none`
 - **Headers**
-  - Authorization: Bearer <management_token>
+  - `n/a`
   - Content-Type: 'text/event-stream'
   - Connection: 'keep-alive'
   - Cache-Control: 'no-cache'

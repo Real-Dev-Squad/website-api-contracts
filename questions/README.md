@@ -19,7 +19,7 @@ It will be used for host to ask the question.
   - **`eventId=[STRING]`** required (The ID of the session where the question was asked.)
   - **`maxCharacters=[NUMBER || null]`** optional
 - **Headers**
-  - Authorization: Bearer <management_token>
+  - `n/a`
 - **Cookie**
   - `rds-session`
 - **Middlewares**
@@ -77,7 +77,7 @@ It will be used to get the questions in realtime.
 - **Body**
   - `none`
 - **Headers**
-  - Authorization: Bearer <management_token>
+  - `n/a`
   - Content-Type: 'text/event-stream'
   - Connection: 'keep-alive'
   - Cache-Control: 'no-cache'
