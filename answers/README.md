@@ -9,7 +9,9 @@
 ### Status description
 
 `PENDING` - peer has submitted the answer but haven't got any review on the answer yet.
+
 `APPROVED` - if host/moderator has approved the answer
+
 `REJECTED` - if host/moderator has rejected the answer
 
 ### POST - /answers
