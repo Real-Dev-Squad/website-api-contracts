@@ -6,6 +6,12 @@
 | PATCH  | [/answers](#patch---answers) | for updating the answers(will primarily be using for approval) |
 | GET    | [/answers](#get---answers)   | it will be to get the answers                                  |
 
+### Status description
+
+`PENDING` - peer has submitted the answer but haven't got any review on the answer yet.
+`APPROVED` - if host/moderator has approved the answer
+`REJECTED` - if host/moderator has rejected the answer
+
 ### POST - /answers
 
 It will be used for peers to answer questions.
@@ -26,26 +32,28 @@ It will be used for peers to answer questions.
 - **Middlewares**
   - `none`
 - **Success Response:**
+
   - **Status Code:** 201 CREATED
   - **Content:**
+
   ```json
   {
     "message": "Answer submitted successfully",
     "data": {
       "id": "<STRING>",
       "answer": "<STRING>",
-      "is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
-      "approved_by": "<RDS_USER_ID>", //can be of HOST | MODERATOR
+      "status": "<STRING>", //(can be PENDING, APPROVED,REJECTED) //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
+      "approved_by": "<RDS_USER_ID> || null", //can be of HOST | MODERATOR
+      "rejected_by": "<RDS_USER_ID> || null", //can be of HOST | MODERATOR
       "question_id": "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
       "answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
       "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
-      "timestamps": {
-        "created_at": "<FIREBASE_TIMESTAMP>",
-        "updated_at": "<FIREBASE_TIMESTAMP>"
-      }
+      "created_at": "<FIREBASE_TIMESTAMP>",
+      "updated_at": "<FIREBASE_TIMESTAMP>"
     }
   }
   ```
+
 - **Error Response:**
   - **Code:** 500 INTERNAL_SERVER_ERROR
     - **Content:**
@@ -66,7 +74,7 @@ It will be used to update the answers.
 - **Query**
   - None
 - **Body**
-  - **`isApproved=[BOOLEAN]`** optional
+  - **`status=[STRING]`** optional
 - **Headers**
   - `n/a`
 - **Cookie**
@@ -97,7 +105,7 @@ It will be used to update the answers.
     ```
 
 <aside>
-📌 `approvedBy` will be taken from `req.userData` in backend
+📌 `approvedBy || rejectedBy` will be taken from `req.userData` in backend
 </aside>
 
 ### GET - /answers
@@ -107,7 +115,7 @@ It will be used to get all the answers in realtime.
 - **Params:**
   - None
 - **Query**
-  - `isApproved` - `<BOOLEAN>`
+  - `status` - `<STRING>`
   - `eventId` - `<STRING>`
   - `questionId` - `<STRING>`
 - **Body**
@@ -131,22 +139,24 @@ It will be used to get all the answers in realtime.
       {
         "id": "<STRING>",
         "answer": "<STRING>",
-        "is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
-        "approved_by": "<RDS_USER_ID>", //can be of HOST | MODERATOR
+        "status": "<STRING>", //(can be PENDING, APPROVED,REJECTED) //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
+        "approved_by": "<RDS_USER_ID> || null", //can be of HOST | MODERATOR
+        "rejected_by": "<RDS_USER_ID> || null", //can be of HOST | MODERATOR
         "question_id": "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
-        "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
         "answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
+        "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
         "created_at": "<FIREBASE_TIMESTAMP>",
         "updated_at": "<FIREBASE_TIMESTAMP>"
       },
       {
         "id": "<STRING>",
         "answer": "<STRING>",
-        "is_approved": "<BOOLEAN>", //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
-        "approved_by": "<RDS_USER_ID>", //can be of HOST | MODERATOR
+        "status": "<STRING>", //(can be PENDING, APPROVED,REJECTED) //so that HOST | MODERATOR can filter out the answers which has to be shown in word cloud
+        "approved_by": "<RDS_USER_ID> || null", //can be of HOST | MODERATOR
+        "rejected_by": "<RDS_USER_ID> || null", //can be of HOST | MODERATOR
         "question_id": "<STRING>", //FOREIGN KEY POINTING TO QUESTION COLLECTION
-        "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
         "answered_by": "<STRING>", //ID OF THE RESPONDER OF THE QUESTION(FROM PEERS COLLECTION)
+        "event_id": "<STRING>", //ID OF THE EVENT IN WHICH ANSWER IS GIVEN
         "created_at": "<FIREBASE_TIMESTAMP>",
         "updated_at": "<FIREBASE_TIMESTAMP>"
       }
