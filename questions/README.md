@@ -25,8 +25,10 @@ It will be used for host to ask the question.
 - **Middlewares**
   - `authorizeRoles([SUPERUSER, MEMBER])`
 - **Success Response:**
+
   - **Status Code:** 201 CREATED
   - **Content:**
+
   ```json
   {
     "message": "Question created successfully",
@@ -37,13 +39,12 @@ It will be used for host to ask the question.
       "event_id": "<STRING>",
       "word_limit": "<NUMBER>",
       "is_new": "<BOOLEAN>",
-      "timestamps": {
-        "created_at": "<FIREBASE_TIMESTAMP>",
-        "updated_at": "<FIREBASE_TIMESTAMP>"
-      }
+      "created_at": "<FIREBASE_TIMESTAMP>",
+      "updated_at": "<FIREBASE_TIMESTAMP>"
     }
   }
   ```
+
 - **Error Response:**
   - **Code:** 401 UNAUTHORIZED
     - **Content:**
