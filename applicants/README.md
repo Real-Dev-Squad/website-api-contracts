@@ -150,7 +150,7 @@ This will update a particular application, this API will only be accessible to s
   _Required:_ `applicationId=[string]`
 - **Query** 
 - **Body**
-  _optional_: `reason=[string]`
+  _optional_: `feedback=[string]`
   _optional_: `status=[string]`
 - **Headers**  
   Content-Type: application/json
