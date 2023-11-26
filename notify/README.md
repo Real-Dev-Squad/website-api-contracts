@@ -1,4 +1,4 @@
-# Collection - notify
+# Collection - no collection for now
 
 ## API Endpoints
 
