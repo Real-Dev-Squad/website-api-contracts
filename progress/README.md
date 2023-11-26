@@ -154,6 +154,7 @@ Retrieves progress entries based on the provided parameters.
   - type : Specifies the type of progress to filter (e.g., "task", "user").
   - userId : Specifies the ID of the User whose progress we are interested in
   - taskId : Specifies the ID of the Task whose progress we are interested in
+  - orderBy : pass the field as a value by which you want to sort the result and -fieldName to sort in reverse order. By default the result will be latest date first.
 
 - **Body**  
   None

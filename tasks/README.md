@@ -72,7 +72,12 @@ Returns all the tasks
 - **Params**  
   None
 - **Query**  
-  None
+  - Optional: `dev=[boolean]` (`dev` is passed to get all tasks in the developer mode with features that are flagged)
+  - Optional: `status=[string]` (`status` is a case insenstive string with one of the following values [AVAILABLE, ASSIGNED, COMPLETED, IN_PROGRESS, BLOCKED, SMOKE_TESTING, NEEDS_REVIEW, IN_REVIEW, APPROVED, MERGED, SANITY_CHECK, REGRESSION_CHECK, RELEASED, VERIFIED, DONE, UNASSIGNED] which represents the status of the task)
+  - Optional: `page=[integer]` (`page` can either be 0 or a positive integer. Default value is 0)
+  - Optional: `size=[integer]` (`size` is the number of tasks requested per page. Range of value is 1-100. Default value is 5)
+  - Optional: `next=[string]` (`next` is id of the document to get next page of results from that document)
+  - Optional: `prev=[string]` (`prev` is id of the document to get prev page of results from that document)
 - **Body**  
   None
 - **Headers**  
@@ -213,6 +218,15 @@ Returns all tasks of the requested user.
   message: 'Task created successfully!'
   task: {<task_object>}
   id: <newly created task id>
+  userStatus?: {
+    status : "String",
+    message : "String"
+    data: {
+      "previousStatus"?: "String",
+      "currentStatus"?: "String",
+      "futureStatus"?: "String"
+    }
+  }
 }
 ```
 
@@ -260,8 +274,20 @@ Returns all tasks of the requested user.
 
 - **Success Response:**
   - **Code**: 200
-    - **Content:** `{'message': 'Task updated successfully!'}`
-
+```
+{
+  message: 'Task updated successfully!'
+  userStatus?: {
+    status : "String",
+    message : "String"
+    data: {
+      "previousStatus"?: "String",
+      "currentStatus"?: "String",
+      "futureStatus"?: "String"
+    }
+  }
+}
+```
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'User can not be authenticated' }`
