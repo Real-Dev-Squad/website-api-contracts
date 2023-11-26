@@ -52,6 +52,7 @@
     - **Content:**
       ```json
       {
+        "statusCode": 500,
         "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
       }
       ```
