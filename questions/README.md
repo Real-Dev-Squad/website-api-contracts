@@ -19,11 +19,9 @@ It will be used for host to ask the question.
   - **`eventId=[STRING]`** required (The ID of the session where the question was asked.)
   - **`maxCharacters=[NUMBER || null]`** optional
 - **Headers**
-  - `n/a`
+  - n/a
 - **Cookie**
-  - `rds-session`
-- **Middlewares**
-  - `authorizeRoles([SUPERUSER, MEMBER])`
+  - `rds-session` - for super user or member
 - **Success Response:**
 
   - **Status Code:** 201 CREATED
@@ -37,10 +35,8 @@ It will be used for host to ask the question.
       "question": "<STRING>",
       "created_by": "<STRING>",
       "event_id": "<STRING>",
-      "word_limit": "<NUMBER>",
-      "is_new": "<BOOLEAN>",
-      "created_at": "<FIREBASE_TIMESTAMP>",
-      "updated_at": "<FIREBASE_TIMESTAMP>"
+      "max_characters": "<NUMBER>",
+      "created_at": "TIMESTAMP"
     }
   }
   ```
@@ -73,18 +69,14 @@ It will be used to get the questions in realtime.
   - None
 - **Query**
   - `eventId` - `<STRING>`
-  - `isNew` - `<BOOLEAN>`
   - `questionId` - `<STRING>`
 - **Body**
   - `none`
 - **Headers**
-  - `n/a`
   - Content-Type: 'text/event-stream'
   - Connection: 'keep-alive'
   - Cache-Control: 'no-cache'
 - **Cookie**
-  - `none`
-- **Middlewares**
   - `none`
 - **Success Response:**
   - **Status Code:** 200 OK
@@ -94,10 +86,8 @@ It will be used to get the questions in realtime.
   		"id": "<STRING>",
   		"question": "<STRING>",
   		"event_id": "<STRING>",
-  		"is_new": "<BOOLEAN>",//will help us in filtering which question to broadcast/send to connected clients
-  		"max_characters": "<NUMBER>" //number of words answer can have for this question
-  		"created_at": "<FIREBASE_TIMESTAMP>",
-  		"updated_at": "<FIREBASE_TIMESTAMP>",
+  		"max_characters": "<NUMBER>", //number of words answer can have for this question
+  		"created_at": "TIMESTAMP",
   		"created_by": "STRING" //ID OF THE CREATOR OF THE QUESTION(FROM RDS USER COLLECTION)
   }
   ```
