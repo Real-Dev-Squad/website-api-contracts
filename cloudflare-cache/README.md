@@ -39,7 +39,7 @@ Returns the cache meta data and its count of last 24 hours.
     ```json
     {
       "message": "Cache data fetched successfully",
-      "count": "number",
+      "remainingCount": "number",
       "timeLastCleared": "<ISO 8601 timestamp>"
     }
     ```
@@ -76,14 +76,14 @@ Purges the cloudflare cache of a page
   user: "<USERNAME>" // optional - only super user has authority to pass this
   JSON
 - **Headers**  
-  X-Auth-Key: `<CLOUDFLARE_X_AUTH_KEY>` 
+  X-Auth-Key: `<CLOUDFLARE_X_AUTH_KEY>`
   X-Auth-Email: `<CLOUDFLARE_X_AUTH_EMAIL>`
 - **Cookie**  
   rds-session: `<JWT>`
 
-- **Data** 
+- **Data**
   files: `<FILES>`
-- **API Used** 
+- **API Used**
   CLOUDFLARE_PURGE_CACHE_API: `https://api.cloudflare.com/client/v4/zones/${CLOUDFLARE_ZONE_ID}/purge_cache`
 
 - **Success Responses:**
