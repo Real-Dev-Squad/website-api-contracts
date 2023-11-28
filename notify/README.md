@@ -2,12 +2,12 @@
 
 ## API Endpoints
 
-|                    Route                    |                  Description                  |
-| :-----------------------------------------: | :-------------------------------------------: |
-| [POST /v1/notification](#post-notification) | send notification to your specified fcm token |
-|                                             |
+|                     Route                     |                  Description                  |
+| :-------------------------------------------: | :-------------------------------------------: |
+| [POST /v1/notifications](#post-notifications) | send notification to your specified fcm token |
+|                                               |
 
-## POST /v1/notification
+## POST /v1/notifications
 
     Send notification to your specified device.
 
@@ -71,7 +71,7 @@
       ```
 
 - **Example for device fcm-token document creation request:**
-  POST /v1/notification<br/>
+  POST /v1/notifications<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
