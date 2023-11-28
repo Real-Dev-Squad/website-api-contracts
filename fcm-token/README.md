@@ -16,6 +16,7 @@
 - **Query**
   None
 - **Body**
+
   - Attributes
     - **fcmToken** (required, string): Specifies the fcm token for the document which will uniquely identified the device.
 
@@ -38,18 +39,18 @@
 
     - **Content:**
       ```json
-        {
-          "statusCode": 400,
-          "error": "Bad Request",
-          "message": "\"fcmToken\" is required"
-        }
+      {
+        "statusCode": 400,
+        "error": "Bad Request",
+        "message": "\"fcmToken\" is required"
+      }
       ```
 
   - **Code:** 409
 
     - **Content:**
       ```json
-       {
+      {
         "status": 409,
         "message": "Device Already Registered"
       }
@@ -69,9 +70,9 @@
   Request-Body:<br/>
 
   ```json
-    {
-       "fcmToken":"jkshdsadlksajdl"
-    }
+  {
+    "fcmToken": "jkshdsadlksajdl"
+  }
   ```
 
   Response :
@@ -79,8 +80,8 @@
   Content-Type: application/json<br/>
 
   ```json
-   {
-     "status": 200,
+  {
+    "status": 200,
     "message": "Device registered successfully"
-   }
+  }
   ```
