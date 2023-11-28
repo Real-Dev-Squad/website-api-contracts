@@ -25,7 +25,9 @@
 - **Cookie**
   None
 - **Success Response:**
+
   - **Code:** 200
+
     - **Content:**
 
       ```json
@@ -61,6 +63,7 @@
       ```
 
   - **Code:** 500
+
     - **Content:**
 
       ```json
