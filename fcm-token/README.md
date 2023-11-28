@@ -7,7 +7,7 @@
 | [POST /v1/fcm-tokens](#post-notify) | Saves FCM token to uniquely identified the device. |
 |                                     |
 
-## POST /v1/fcmTokens
+## POST /v1/fcm-tokens
 
     Creates a new fcm-token document.
 
@@ -73,7 +73,7 @@
       ```
 
 - **Example for device fcm-token document creation request:**
-  POST /v1/fcm-token<br/>
+  POST /v1/fcm-tokens<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 

@@ -2,12 +2,12 @@
 
 ## API Endpoints
 
-|              Route              |                  Description                  |
-| :-----------------------------: | :-------------------------------------------: |
-| [POST /v1/notify](#post-notify) | send notification to your specified fcm token |
-|                                 |
+|                    Route                    |                  Description                  |
+| :-----------------------------------------: | :-------------------------------------------: |
+| [POST /v1/notification](#post-notification) | send notification to your specified fcm token |
+|                                             |
 
-## POST /v1/notify
+## POST /v1/notification
 
     Send notification to your specified device.
 
@@ -21,7 +21,7 @@
     - **title** (required, string): notification title
     - **body** (required, string): notification message
     - **userId** (string): user who is assigning
-    - **groupRoleId** (string): group to whom they are assigning
+    - **groupRoleId** (string): group to whom the notification will be broadcasted
 
 - **Headers**
   - Content-Type: application/json
@@ -71,7 +71,7 @@
       ```
 
 - **Example for device fcm-token document creation request:**
-  POST /v1/notify<br/>
+  POST /v1/notification<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
