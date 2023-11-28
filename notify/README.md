@@ -2,10 +2,10 @@
 
 ## API Endpoints
 
-|            Route             |                  Description                  |
-| :--------------------------: | :-------------------------------------------: |
-| [POST /notify](#post-notify) | send notification to your specified fcm token |
-|                              |
+|              Route              |                  Description                  |
+| :-----------------------------: | :-------------------------------------------: |
+| [POST /v1/notify](#post-notify) | send notification to your specified fcm token |
+|                                 |
 
 ## POST /notify
 
@@ -16,6 +16,7 @@
 - **Query**
   None
 - **Body**
+
   - Attributes
     - **title** (required, string): notification title
     - **body** (required, string): notification message
@@ -30,22 +31,34 @@
   - **Code:** 200
     - **Content:**
       ```json
-       {  
-      "status": 200,
-      "message": "User notified successfully"
-       }
+      {
+        "status": 200,
+        "message": "User notified successfully"
+      }
       ```
 - **Error Response:**
 
   - **Code:** 400
 
     - **Content:**
+
       ```json
-        {
-         "statusCode": 400,
-         "error": "Bad Request",
-         "message": "\"value\" must contain at least one of [userId, groupRoleId]"
-        }
+      {
+        "statusCode": 400,
+        "error": "Bad Request",
+        "message": "\"value\" must contain at least one of [userId, groupRoleId]"
+      }
+      ```
+
+      - **Code:** 401
+
+    - **Content:**
+      ```json
+      {
+        "statusCode": 406,
+        "error": "Bad Request",
+        "message": "the message length exceeds"
+      }
       ```
 
   - **Code:** 500
@@ -58,17 +71,16 @@
       ```
 
 - **Example for device fcm-token document creation request:**
-  POST /notify<br/>
+  POST /v1/notify<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 
   ```json
-    {
-       "title" : "testing",
-    "body" : "Helloo world",
+  {
+    "title": "testing",
+    "body": "Helloo world",
     "userId": "feJ49TjqHVG4O0luUDlz"
-    
-    }
+  }
   ```
 
   Response :
@@ -76,18 +88,18 @@
   Content-Type: application/json<br/>
 
   ```json
-   {
-     "status": 200,
+  {
+    "status": 200,
     "message": "User notified successfully"
-   }
+  }
   ```
 
-    ```json
-    {
-       "title" : "testing",
-    "body" : "Helloo world",
-   "groupRoleId": "1147354535342383104"
-    }
+  ```json
+  {
+    "title": "testing",
+    "body": "Helloo world",
+    "groupRoleId": "1147354535342383104"
+  }
   ```
 
   Response :
@@ -95,8 +107,8 @@
   Content-Type: application/json<br/>
 
   ```json
-   {
-     "status": 200,
-     "message": "User notified successfully"
-   }
+  {
+    "status": 200,
+    "message": "User notified successfully"
+  }
   ```

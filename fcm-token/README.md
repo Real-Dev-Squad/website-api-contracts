@@ -1,4 +1,4 @@
-# Collection - fcmToken
+# Collection - fcmTokens
 
 ## API Endpoints
 
@@ -7,7 +7,7 @@
 | [POST /fcm-token](#post-notify) | Saves FCM token to uniquely identified the device. |
 |                                 |
 
-## POST /fcmToken
+## POST /v1/fcmToken
 
     Creates a new fcm-token document.
 
