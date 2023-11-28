@@ -27,17 +27,20 @@
 - **Success Response:**
   - **Code:** 200
     - **Content:**
+
       ```json
       {
         "status": 200,
         "message": "Device registered successfully"
       }
       ```
+
 - **Error Response:**
 
   - **Code:** 400
 
     - **Content:**
+
       ```json
       {
         "statusCode": 400,
@@ -49,6 +52,7 @@
   - **Code:** 409
 
     - **Content:**
+
       ```json
       {
         "status": 409,
@@ -58,6 +62,7 @@
 
   - **Code:** 500
     - **Content:**
+
       ```json
       {
         "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
