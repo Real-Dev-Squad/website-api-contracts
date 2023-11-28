@@ -26,13 +26,13 @@
   None
 - **Success Response:**
 
-  - **Code:** 200
+  - **Code:** 201
 
     - **Content:**
 
       ```json
       {
-        "status": 200,
+        "status": 201,
         "message": "Device registered successfully"
       }
       ```
@@ -84,12 +84,12 @@
   ```
 
   Response :
-  Status 200<br/>
+  Status 201<br/>
   Content-Type: application/json<br/>
 
   ```json
   {
-    "status": 200,
+    "status": 201,
     "message": "Device registered successfully"
   }
   ```
