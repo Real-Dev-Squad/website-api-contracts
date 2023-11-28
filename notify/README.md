@@ -20,8 +20,8 @@
   - Attributes
     - **title** (required, string): notification title
     - **body** (required, string): notification message
-    - **userId** (string): user who is assigning
-    - **groupRoleId** (string): group to whom the notification will be broadcasted
+    - **userId** (optional, string): user who is assigning
+    - **groupRoleId** (optional, string) : group to whom the notification will be broadcasted
 
 - **Headers**
   - Content-Type: application/json
