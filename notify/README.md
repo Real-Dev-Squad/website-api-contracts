@@ -57,7 +57,7 @@
       {
         "statusCode": 406,
         "error": "Bad Request",
-        "message": "the message length exceeds"
+        "message": "Message length exceeds"
       }
       ```
 
