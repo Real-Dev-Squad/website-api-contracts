@@ -2,10 +2,10 @@
 
 ## API Endpoints
 
-|              Route              |                    Description                     |
-| :-----------------------------: | :------------------------------------------------: |
-| [POST /fcm-token](#post-notify) | Saves FCM token to uniquely identified the device. |
-|                                 |
+|               Route                |                    Description                     |
+| :--------------------------------: | :------------------------------------------------: |
+| [POST /v1/fcm-token](#post-notify) | Saves FCM token to uniquely identified the device. |
+|                                    |
 
 ## POST /v1/fcmToken
 
@@ -65,7 +65,7 @@
       ```
 
 - **Example for device fcm-token document creation request:**
-  POST /fcm-token<br/>
+  POST /v1/fcm-token<br/>
   Content-Type: application/json<br/>
   Request-Body:<br/>
 

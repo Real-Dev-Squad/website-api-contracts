@@ -7,7 +7,7 @@
 | [POST /v1/notify](#post-notify) | send notification to your specified fcm token |
 |                                 |
 
-## POST /notify
+## POST /v1/notify
 
     Send notification to your specified device.
 
