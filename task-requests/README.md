@@ -35,7 +35,7 @@
 |      [GET /taskRequests/:id](#get-task-requests-id)      | Return task request details for the provided id |
 |     [POST /taskRequests](#post-task-requests)     | Creates new task request  |
 |     [PATCH /taskRequests](#patch-task-requests) |   Updates task request   |
-|     [PATCH /taskRequests](#patch-task-requests-approve) |   Deprecated api, please dont use  |
+|     [PATCH /taskRequests/approve](#patch-task-requests-approve) |   Deprecated api, please dont use  |
 
 
 ## **GET /taskRequests**
