@@ -66,6 +66,7 @@
 | [GET /tasks/:id/details](#get-tasksiddetails)         | Get details of a particular task|
 | [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
 | [PATCH /tasks/self/:id](#patch-tasksselfid) |  Changes in own task  |
+| [GET /tasks/users/discord](#get-tasksusersdiscord) |  Returns discord details of users with active tasks |
 
 ## **GET /tasks**
 
@@ -299,5 +300,40 @@ Returns all tasks of the requested user.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message':'This task is not assigned to you' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Task doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **GET /tasks/users/discord**
+
+Returns details of a particular task
+- **Params**  
+  None
+- **Query**  
+  - Optional: `q=[string]` (`q` can have the following values)
+      - Optional: `status=[string]` (`status` is a case senstive string with one of the following values [missed-updates] )
+      - Optional: `date-count=[integer]` (`date-count` is the number of days where the users have not provided an update ont their task default :[3] )
+      - Optional: `date=[timestamp]` (`date` is the timestamp of the date that needs to be excluded from the date-count. No default. eg [1702122435405] )
+      - Optional: `weekday=[string]` (`weekday` the weekday that needs to be excluded while calculating the missed updates eg: [sun,mon,tue,wed,thu,fri,sat])
+  - Optional: `size=[integer]` (`size` is the number of tasks that are processed to find the users. Range of value is 1-1000.)
+  - Optional: `cursor=[string]` (`cursor` is id of the document to get next page of results from that document)
+  eg: `?size=10&cursor=1xh3Bsd32&q=status:missed-updates -date-count:3 -date:1702122435405 -weekday:sun -weekday:sat`
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+```
+{
+  usersToAddRole: Array : `List of users who missed update`
+  tasks: number : `Total tasks processed`
+  missedUpdatesTasks: number : `Tasks with missed updates`
+ }
+```
+
+- **Error Response:**
+  - **Code:** 400
+    - **Content:** `{ 'statusCode': 400, 'error': 'Bad request' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
