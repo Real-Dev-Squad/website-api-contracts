@@ -305,7 +305,7 @@ Returns all tasks of the requested user.
 
 ## **GET /tasks/users/discord**
 
-Returns details of a particular task
+Returns the list of users discord id who have not provided an update on their task 
 - **Params**  
   None
 - **Query**  
