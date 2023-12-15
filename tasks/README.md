@@ -326,10 +326,13 @@ Returns the list of users discord id who have not provided an update on their ta
     - **Content:**
 ```
 {
-  usersToAddRole: Array : `List of users who missed update`
-  tasks: number : `Total tasks processed`
-  missedUpdatesTasks: number : `Tasks with missed updates`
- }
+  message: 'Discord details of users with status missed updates fetched successfully',
+  data: {
+          usersToAddRole: Array : `List of users who missed update`
+          tasks: number : `Total tasks processed`
+          missedUpdatesTasks: number : `Tasks with missed updates`
+         }
+}
 ```
 
 - **Error Response:**
