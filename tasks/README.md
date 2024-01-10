@@ -304,19 +304,20 @@ Returns all tasks of the requested user.
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
 ## **GET /tasks/users/discord**
+Returns a list of Discord IDs of users who have not provided progress updates on their tasks.
 
-Returns the list of users discord id who have not provided an update on their task 
-- **Params**  
-  None
-- **Query**  
-  - Optional: `q=[string]` (`q` can have the following values)
-      - Optional: `status=[string]` (`status` is a case senstive string with one of the following values [missed-updates] )
-      - Optional: `date-count=[integer]` (`date-count` is the number of days where the users have not provided an update ont their task default :[3] )
-      - Optional: `date=[timestamp]` (`date` is the timestamp of the date that needs to be excluded from the date-count. No default. eg [1702122435405] )
-      - Optional: `weekday=[string]` (`weekday` the weekday that needs to be excluded while calculating the missed updates eg: [sun,mon,tue,wed,thu,fri,sat])
-  - Optional: `size=[integer]` (`size` is the number of tasks that are processed to find the users. Range of value is 1-1000.)
-  - Optional: `cursor=[string]` (`cursor` is id of the document to get next page of results from that document)
-  eg: `?size=10&cursor=1xh3Bsd32&q=status:missed-updates -date-count:3 -date:1702122435405 -weekday:sun -weekday:sat`
+- **Parameters**: None required.
+- **Query Options**: 
+  - `q=[string]`: Optional parameter. This query can include the following values:
+      - `status=[string]`: Optional. This is a case-sensitive string, accepting values like [missed-updates].
+      - `date-count=[integer]`: Optional. Specifies the number of days during which users have not provided an update on their task. Default is [3].
+      - `date=[timestamp]`: Optional. This is a timestamp which will be excluded while calculating missed updates. There is no default value (e.g., [1702122435405]).
+      - `weekday=[string]`: Optional. Specifies the weekday(s) to be excluded while calculating missed updates (e.g., [sun, mon, tue, wed, thu, fri, sat]).
+  - `size=[integer]`: Optional. Determines the number of tasks processed to identify the users. The value range is from 1 to 1000.
+  - `cursor=[string]`: Optional. This is the ID of the document used to retrieve the next page of results.
+
+Example usage: `?size=10&cursor=1xh3Bsd32&q=status:missed-updates -date-count:3 -date:1702122435405 -weekday:sun -weekday:sat`
+
 - **Body**  
   None
 - **Headers**  
