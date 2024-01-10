@@ -327,7 +327,7 @@ Example usage: `?size=10&cursor=1xh3Bsd32&q=status:missed-updates -date-count:3 
     - **Content:**
 ```
 {
-  message: 'Discord details of users with status missed updates fetched successfully',
+  message: 'Discord details of users fetched successfully',
   data: {
           usersToAddRole: Array : `List of users who missed update`
           tasks: number : `Total tasks processed`
