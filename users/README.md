@@ -15,6 +15,7 @@
   'designation': string,
   'img': string,
   'github_id': string,
+  'github_user_id': string,
   'linkedin_id': string,
   'twitter_id': string,
   'instagram_id': string,
@@ -322,7 +323,7 @@ Archive users if not in Discord.
 
   ```json
   {
-    "action": "nonVerifiedDiscordUsers | archiveUsers"
+  	"action": "nonVerifiedDiscordUsers | archiveUsers"
   }
   ```
 
@@ -332,12 +333,12 @@ Archive users if not in Discord.
 
 ```json
 {
-  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
-  "data": {
-    "totalUsers": "number",
-    "totalUsersArchived": "number",
-    "totalOperationsFailed": "number"
-  }
+	"message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+	"data": {
+		"totalUsers": "number",
+		"totalUsersArchived": "number",
+		"totalOperationsFailed": "number"
+	}
 }
 ```
 
@@ -345,14 +346,14 @@ Archive users if not in Discord.
 
 ```json
 {
-  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
-  "data": {
-    "totalUsers": "number",
-    "totalUsersArchived": "number",
-    "totalOperationsFailed": "number",
-    "updatedUserDetails": "array",
-    "failedUserDetails": "array"
-  }
+	"message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+	"data": {
+		"totalUsers": "number",
+		"totalUsersArchived": "number",
+		"totalOperationsFailed": "number",
+		"updatedUserDetails": "array",
+		"failedUserDetails": "array"
+	}
 }
 ```
 
@@ -364,9 +365,9 @@ Archive users if not in Discord.
 
 ```json
 {
-  "statusCode": 401,
-  "error": "Unauthorized",
-  "message": "Unauthenticated User"
+	"statusCode": 401,
+	"error": "Unauthorized",
+	"message": "Unauthenticated User"
 }
 ```
 
@@ -376,9 +377,9 @@ Archive users if not in Discord.
 
 ```json
 {
-  "statusCode": 400,
-  "error": "Bad Request",
-  "message": "Invalid payload"
+	"statusCode": 400,
+	"error": "Bad Request",
+	"message": "Invalid payload"
 }
 ```
 
@@ -388,8 +389,8 @@ Archive users if not in Discord.
 
 ```json
 {
-  "statusCode": 500,
-  "error": "Internal Server Error",
-  "message": "An internal server error occurred"
+	"statusCode": 500,
+	"error": "Internal Server Error",
+	"message": "An internal server error occurred"
 }
 ```
