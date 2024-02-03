@@ -55,14 +55,13 @@ Returns all users in the system.
 - **Params**  
   None
 - **Query**
-  - Optional: `size=[integer]` (`size` is number of users requested per page,
-    value ranges in between 1-100, and default value is 100)
-  - Optional: `page=[integer]`
-    (`page` can either be 0 or positive-number, and default value is 0)
+  - Optional: `size=[integer]` (`size` is the number of users requested per page, value ranges between 1-100, and the default value is 100)
+  - Optional: `page=[integer]` (`page` can either be 0 or a positive number, and the default value is 0)
   - Optional: `search=[string]` (`search` is a string value for username prefix)
-  - Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.)
-  - Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
-  - Optional: `query=[string]` ( `query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
+  - Optional: `next=[string]` (`next` is the id of the DB document to get the next batch/page of results after that document.)
+  - Optional: `prev=[string]` (`prev` is the id of the DB document to get the previous batch/page of results before that document.)
+  - Optional: `query=[string]` (`query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
+  - Optional: `dev=[boolean]` (`dev` flag to enable dev mode and return paginated results)
 - **Body**  
   None
 - **Headers**  
@@ -70,21 +69,21 @@ Returns all users in the system.
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-- **Code:** 200
-  - **Content:**
+  - **Code:** 200
+    - **Content:**
 
-```
-{
-  message: 'Users returned successfully!'
-  users: [
-           {<user_object>}
-         ]
-  links: {
-    next: '/users?next={<DB document id>}&size={number}&search={string}',
-    prev: '/users?prev={<DB document id>}&size={number}&search={string}'
-  }
-}
-```
+    ```json
+    {
+      "message": "Users returned successfully!",
+      "users": [
+        { <user_object> }
+      ],
+      "links": {
+        "next": '/users?next={<DB document id>}&size={number}&search={string}',
+        "prev": '/users?prev={<DB document id>}&size={number}&search={string}'
+      }
+    }
+    ```
 
 - **Error Response:**
   - **Code:** 401
