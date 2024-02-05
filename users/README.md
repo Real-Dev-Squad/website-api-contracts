@@ -223,7 +223,7 @@ Returns users based on the specified filters.
 
 - **Query Parameters:**
   - Optional: `page=[integer]` (Specifies the page number, default is 0)
-  - Optional: `size=[integer]` (Specifies the number of users per page, default is 100)
+  - Optional: `size=[number]` (Specifies the number of users per page, default is 100)
   - Optional: `dev=[boolean]` (Enables dev mode for paginated results)
   - Optional: `state=[string]` (Specifies the user state, can be repeated for multiple states)
   - Optional: `time=[string]` (Specifies the time filter, e.g., "31d")
