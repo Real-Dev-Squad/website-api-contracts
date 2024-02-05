@@ -226,6 +226,7 @@ Returns users based on the specified filters.
   - Optional: `size=[integer]` (Specifies the number of users per page, default is 100)
   - Optional: `dev=[boolean]` (Enables dev mode for paginated results)
   - Optional: `state=[string]` (Specifies the user state, can be repeated for multiple states)
+  - Optional: `time=[string]` (Specifies the time filter, e.g., "31d")
 
 - **Body:**  
   None
@@ -245,8 +246,8 @@ Returns users based on the specified filters.
         { <user_object> }
       ],
       "links": {
-        "next": "/users/search?next={<DB document id>}&size={number}&dev={boolean}&state={string}",
-        "prev": "/users/search?prev={<DB document id>}&size={number}&dev={boolean}&state={string}"
+        "next": "/users/search?next={<DB document id>}&page={number}&size={number}&dev={boolean}&state=ACTIVE&state=OOO&state=IDLE&state=ONBOARDING&time=31d",
+        "prev": "/users/search?prev={<DB document id>}&page={number}&size={number}&dev={boolean}&state=ACTIVE&state=OOO&state=IDLE&state=ONBOARDING&time=31d"
       },
       "count": number
     }
@@ -264,7 +265,6 @@ Returns users based on the specified filters.
   - **Code:** 503
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong, please contact admin' }`
-
 
 ## **POST /users**
 
