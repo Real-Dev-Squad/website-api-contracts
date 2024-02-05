@@ -61,7 +61,6 @@ Returns all users in the system.
   - Optional: `next=[string]` (`next` is the id of the DB document to get the next batch/page of results after that document.)
   - Optional: `prev=[string]` (`prev` is the id of the DB document to get the previous batch/page of results before that document.)
   - Optional: `query=[string]` (`query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
-  - Optional: `dev=[boolean]` (`dev` flag to enable dev mode and return paginated results)
 - **Body**  
   None
 - **Headers**  
@@ -72,7 +71,7 @@ Returns all users in the system.
   - **Code:** 200
     - **Content:**
 
-    ```json
+    ```
     {
       "message": "Users returned successfully!",
       "users": [
@@ -214,6 +213,58 @@ Returns badges assigned to the user
   - **Code:** 400
     - **Content:**
       `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Failed to get user badges.' }`
+
+## **GET /users/search**
+
+Returns users based on the specified filters.
+
+- **Params:**  
+  None
+
+- **Query Parameters:**
+  - Optional: `page=[integer]` (Specifies the page number, default is 0)
+  - Optional: `size=[integer]` (Specifies the number of users per page, default is 100)
+  - Optional: `dev=[boolean]` (Enables dev mode for paginated results)
+  - Optional: `state=[string]` (Specifies the user state, can be repeated for multiple states)
+
+- **Body:**  
+  None
+
+- **Headers:**  
+  Content-Type: application/json
+  rds-session: `<JWT>`
+
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+
+    ```
+    {
+      "message": "Users found successfully!",
+      "users": [
+        { <user_object> }
+      ],
+      "links": {
+        "next": "/users/search?next={<DB document id>}&size={number}&dev={boolean}&state={string}",
+        "prev": "/users/search?prev={<DB document id>}&size={number}&dev={boolean}&state={string}"
+      },
+      "count": number
+    }
+    ```
+
+- **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Filter for item not provided' }`
+
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+
+  - **Code:** 503
+    - **Content:**
+      `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong, please contact admin' }`
+
 
 ## **POST /users**
 
