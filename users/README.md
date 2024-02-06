@@ -43,6 +43,7 @@ number and email address.
 |  [GET /users/userId/:userId](#get-usersuseriduserid)   |    Returns user with given userId    |
 |       [GET /users/:username](#get-usersusername)       |   Returns user with given username   |
 |    [GET /users/:userId/badges](#get-usersidbadges)     | Returns badges assigned to the user  |
+|          [GET /users/search](#get-users-search)        | Returns users based on specified filters |
 |               [POST /users](#post-users)               |          Creates a new User          |
 |         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
 | [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
@@ -55,14 +56,12 @@ Returns all users in the system.
 - **Params**  
   None
 - **Query**
-  - Optional: `size=[integer]` (`size` is number of users requested per page,
-    value ranges in between 1-100, and default value is 100)
-  - Optional: `page=[integer]`
-    (`page` can either be 0 or positive-number, and default value is 0)
+  - Optional: `size=[integer]` (`size` is the number of users requested per page, value ranges between 1-100, and the default value is 100)
+  - Optional: `page=[integer]` (`page` can either be 0 or a positive number, and the default value is 0)
   - Optional: `search=[string]` (`search` is a string value for username prefix)
-  - Optional: `next=[string]` (`next` is id of the DB document to get next batch/page of results after that document.)
-  - Optional: `prev=[string]` (`prev` is id of the DB document to get previous batch/page of results before that document.)
-  - Optional: `query=[string]` ( `query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
+  - Optional: `next=[string]` (`next` is the id of the DB document to get the next batch/page of results after that document.)
+  - Optional: `prev=[string]` (`prev` is the id of the DB document to get the previous batch/page of results before that document.)
+  - Optional: `query=[string]` (`query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
 - **Body**  
   None
 - **Headers**  
@@ -70,21 +69,21 @@ Returns all users in the system.
 - **Cookie**  
   rds-session: `<JWT>`
 - **Success Response:**
-- **Code:** 200
-  - **Content:**
+  - **Code:** 200
+    - **Content:**
 
-```
-{
-  message: 'Users returned successfully!'
-  users: [
-           {<user_object>}
-         ]
-  links: {
-    next: '/users?next={<DB document id>}&size={number}&search={string}',
-    prev: '/users?prev={<DB document id>}&size={number}&search={string}'
-  }
-}
-```
+    ```
+    {
+      "message": "Users returned successfully!",
+      "users": [
+        { <user_object> }
+      ],
+      "links": {
+        "next": '/users?next={<DB document id>}&size={number}&search={string}',
+        "prev": '/users?prev={<DB document id>}&size={number}&search={string}'
+      }
+    }
+    ```
 
 - **Error Response:**
   - **Code:** 401
@@ -215,6 +214,61 @@ Returns badges assigned to the user
   - **Code:** 400
     - **Content:**
       `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Failed to get user badges.' }`
+
+## **GET /users/search**
+
+Returns users based on the specified filters.
+
+- **Params:**  
+  None
+
+- **Query Parameters:**
+  - Optional: `levelId=[string]` (Specifies the level ID)
+  - Optional: `levelName=[string]` (Specifies the level name)
+  - Optional: `levelValue=[number]` (Specifies the level value)
+  - Optional: `tagId=[string]` (Specifies the tag ID)
+  - Optional: `state=[string]` (Specifies the user state. Possible values: "ACTIVE", "OOO", "IDLE", "ONBOARDING", "ONBOARDING31DAYS". This parameter can be repeated for multiple states.)
+  - Optional: `role=[string]` (Specifies the user role, valid values are "MEMBER", "INDISCORD", "ARCHIVED")
+  - Optional: `verified=[string]` (Specifies if the user is verified. Possible values: "true", "false")
+  - Optional: `time=[string]` (Specifies the time filter, e.g., "31d")
+
+- **Body:**  
+  None
+
+- **Headers:**  
+  Content-Type: application/json
+  rds-session: `<JWT>`
+
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+
+    ```
+    {
+      "message": "Users found successfully!",
+      "users": [
+        { <user_object> }
+      ],
+      "links": {
+        "next": "/users/search?next={<DB document id>}&page={number}&size={number}&dev={boolean}&state=ACTIVE&state=OOO&state=IDLE&state=ONBOARDING&time=31d",
+        "prev": "/users/search?prev={<DB document id>}&page={number}&size={number}&dev={boolean}&state=ACTIVE&state=OOO&state=IDLE&state=ONBOARDING&time=31d"
+      },
+      "count": Number
+    }
+    ```
+
+- **Error Response:**
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Filter for item not provided' }`
+
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+
+  - **Code:** 503
+    - **Content:**
+      `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong, please contact admin' }`
 
 ## **POST /users**
 
