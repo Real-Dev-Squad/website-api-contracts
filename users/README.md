@@ -222,10 +222,13 @@ Returns users based on the specified filters.
   None
 
 - **Query Parameters:**
-  - Optional: `page=[integer]` (Specifies the page number, default is 0)
-  - Optional: `size=[number]` (Specifies the number of users per page, default is 100)
-  - Optional: `dev=[boolean]` (Enables dev mode for paginated results)
+  - Optional: `levelId=[string]` (Specifies the level ID)
+  - Optional: `levelName=[string]` (Specifies the level name)
+  - Optional: `levelValue=[number]` (Specifies the level value)
+  - Optional: `tagId=[string]` (Specifies the tag ID)
   - Optional: `state=[string]` (Specifies the user state, can be repeated for multiple states)
+  - Optional: `role=[string]` (Specifies the user role, valid values are "MEMBER", "INDISCORD", "ARCHIVED")
+  - Optional: `verified=[string]` (Specifies if the user is verified)
   - Optional: `time=[string]` (Specifies the time filter, e.g., "31d")
 
 - **Body:**  
@@ -249,7 +252,7 @@ Returns users based on the specified filters.
         "next": "/users/search?next={<DB document id>}&page={number}&size={number}&dev={boolean}&state=ACTIVE&state=OOO&state=IDLE&state=ONBOARDING&time=31d",
         "prev": "/users/search?prev={<DB document id>}&page={number}&size={number}&dev={boolean}&state=ACTIVE&state=OOO&state=IDLE&state=ONBOARDING&time=31d"
       },
-      "count": number
+      "count": Number
     }
     ```
 
