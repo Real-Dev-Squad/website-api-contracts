@@ -43,6 +43,7 @@ number and email address.
 |  [GET /users/userId/:userId](#get-usersuseriduserid)   |    Returns user with given userId    |
 |       [GET /users/:username](#get-usersusername)       |   Returns user with given username   |
 |    [GET /users/:userId/badges](#get-usersidbadges)     | Returns badges assigned to the user  |
+|          [GET /users/search](#get-users-search)        | Returns users based on specified filters |
 |               [POST /users](#post-users)               |          Creates a new User          |
 |         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
 | [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
