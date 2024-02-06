@@ -227,9 +227,9 @@ Returns users based on the specified filters.
   - Optional: `levelName=[string]` (Specifies the level name)
   - Optional: `levelValue=[number]` (Specifies the level value)
   - Optional: `tagId=[string]` (Specifies the tag ID)
-  - Optional: `state=[string]` (Specifies the user state, can be repeated for multiple states)
+  - Optional: `state=[string]` (Specifies the user state. Possible values: "ACTIVE", "OOO", "IDLE", "ONBOARDING", "ONBOARDING31DAYS". This parameter can be repeated for multiple states.)
   - Optional: `role=[string]` (Specifies the user role, valid values are "MEMBER", "INDISCORD", "ARCHIVED")
-  - Optional: `verified=[string]` (Specifies if the user is verified)
+  - Optional: `verified=[string]` (Specifies if the user is verified. Possible values: "true", "false")
   - Optional: `time=[string]` (Specifies the time filter, e.g., "31d")
 
 - **Body:**  
