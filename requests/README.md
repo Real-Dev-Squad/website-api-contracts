@@ -14,7 +14,7 @@ Returns a list of requests with pagination and filtering options.
 
 - **Description:** Fetches a list of requests, optionally filtered by various parameters.
 
-- **URL:** `https://api.realdevsquad.com/requests`
+- **URL:** `https://api.realdevsquad.com/requests?dev=true`
 
 - **Method:** GET
 
@@ -189,7 +189,7 @@ Updates an existing request with the provided details.
 
 - **Description:** Updates an existing request with the provided details.
 
-- **URL:** `https://staging-api.realdevsquad.com/requests/:id`
+- **URL:** `https://api.realdevsquad.com/requests/:id`
 
 - **Method:** PUT
 
