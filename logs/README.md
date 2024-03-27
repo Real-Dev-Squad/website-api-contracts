@@ -15,15 +15,15 @@
 
 |            Route             |        Description        |
 | :--------------------------: | :-----------------------: |
-| [GET /logs/:type](#get-logs) | Returns logs of all types |
+| [GET /logs/:type](#get-logstype) | Returns logs of the specific types |
+| [GET /logs](#get-logs) | Returns all the logs |
 
 ---
-
-## **GET /logs/:type**
-
 **Note :**
 
-- This API can only be accessed by super user
+- These API can only be accessed by super user
+  
+## **GET /logs/:type**
 
 Returns all logs according to the provided queries and path/named-route param.
 
@@ -40,7 +40,7 @@ Returns all logs according to the provided queries and path/named-route param.
 - **Query**
 
   - Optional: `userId=[string]` for type = `archive-details`
-
+  
 - **Headers**  
   None
 - **Cookie**  
@@ -85,3 +85,55 @@ Returns all logs according to the provided queries and path/named-route param.
       "message": "Something went wrong. Please contact admin"
     }
     ```
+## **GET /logs**
+
+Returns all the logs present in the collection.
+
+**Query**
+
+  `dev=[boolean]`
+  
+  Optional: `type=`
+  - `CLOUDFLARE_CACHE_PURGED`
+  - `PROFILE_DIFF_APPROVED`
+  - `PROFILE_DIFF_REJECTED`
+  - `extensionRequests`
+  - `task`
+  - `task-requests`
+  - `REQUEST_CREATED`
+  - `REQUEST_APPROVED`
+  - `REQUEST_REJECTED`
+
+- Optional: `format=feed` (returns all the logs in flattend or formatted way)
+- Optional: `page=[integer]` (page can either be 0 or a positive integer. Default value is 0)
+- Optional: `size=[integer]` (size is the number of logs requested per page. Default value is 5)
+- Optional: `next=[string]` (next is the id of the document to get next set of documents of results from that document)
+- Optional: `prev=[string]` (prev is the id of the document to get prev set of documents of results before that document)
+
+- **Body**  
+  None
+- **Headers**  
+  None
+
+- **Cookie**
+rds-session: <JWT SUPERUSER>
+
+- **Success Response:**
+
+  - **Code:** 200
+    - **Content:**
+    ```json
+    {
+      "message": "All Logs fetched successfully",
+      "data": ["<LOG_OBJECT>", "<LOG_OBJECT>...."],
+      "next": "/logs?dev=true&size=5&next=<document-id>",
+      "prev": null
+    }
+    ```
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 204
+    - **Content:** `{ 'statusCode': 204, 'error': 'Not Found', 'message': 'Logs not found' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
