@@ -101,8 +101,8 @@ Returns all the logs present in the collection.
   - `task`
   - `task-requests`
   - `REQUEST_CREATED`
-  - `REQUEST-APPROVED`
-  - `REQUEST-REJECTED`
+  - `REQUEST_APPROVED`
+  - `REQUEST_REJECTED`
 
 - Optional: `format=feed` (returns all the logs in flattend or formatted way)
 - Optional: `page=[integer]` (page can either be 0 or a positive integer. Default value is 0)
