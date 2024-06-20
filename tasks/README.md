@@ -66,6 +66,7 @@
 | [GET /tasks/:id/details](#get-tasksiddetails)         | Get details of a particular task|
 | [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
 | [PATCH /tasks/self/:id](#patch-tasksselfid) |  Changes in own task  |
+| [GET /tasks/users/discord](#get-tasksusersdiscord) |  Returns discord details of users with active tasks |
 
 ## **GET /tasks**
 
@@ -299,5 +300,44 @@ Returns all tasks of the requested user.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message':'This task is not assigned to you' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Task doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **GET /tasks/users/discord**
+Returns a list of Discord IDs of users who have not provided progress updates on their tasks.
+
+- **Parameters**: None required.
+- **Query Options**: 
+  - `q=[string]`: Optional parameter. This query can include the following values:
+      - `status=[string]`: Optional. This is a case-sensitive string, accepting values like [missed-updates].
+      - `date-count=[integer]`: Optional. Specifies the number of days during which users have not provided an update on their task. Default is [3].
+      - `date=[timestamp]`: Optional. This is a timestamp which will be excluded while calculating missed updates. There is no default value (e.g., [1702122435405]).
+      - `weekday=[string]`: Optional. Specifies the weekday(s) to be excluded while calculating missed updates (e.g., [sun, mon, tue, wed, thu, fri, sat]).
+  - `size=[integer]`: Optional. Determines the number of tasks processed to identify the users. The value range is from 1 to 1000.
+  - `cursor=[string]`: Optional. This is the ID of the document used to retrieve the next page of results.
+
+Example usage: `?size=10&cursor=1xh3Bsd32&q=status:missed-updates -date-count:3 -date:1702122435405 -weekday:sun -weekday:sat`
+
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+```
+{
+  message: 'Discord details of users fetched successfully',
+  data: {
+          usersToAddRole: Array : `List of users who missed update`
+          tasks: number : `Total tasks processed`
+          missedUpdatesTasks: number : `Tasks with missed updates`
+         }
+}
+```
+
+- **Error Response:**
+  - **Code:** 400
+    - **Content:** `{ 'statusCode': 400, 'error': 'Bad request' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
