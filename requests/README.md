@@ -91,11 +91,11 @@ Returns a list of requests with pagination and filtering options.
   - Filtering options are available using parameters like `requestedBy`,`type`, and `state`.
   - The response includes a list of request objects with their respective properties.
 
-### Authentication and Authorization:
+#### Authentication and Authorization:
 
 - Authentication is required for accessing this endpoint.
 
-### Additional Notes:
+#### Additional Notes:
 
 - The provided response includes details of each request, such as ID, timestamps, requester, type, message, state, etc.
 - Pagination functionality is implemented using `next` and `prev` parameters in the response.
@@ -129,24 +129,51 @@ Creates a new request.
 
 - Body Parameters:
 
-  - `type`: Required string to specify the type of request (e.g., OOO).
+  - `type`: Required string to specify the type of request (e.g., OOO,EXTENSION,TASK).
   - `from`: Required number to specify the start timestamp of the request.
   - `until`: Required number to specify the end timestamp of the request.
   - `message`: Required string to specify the message for the request.
   - `state`: Required string to specify the state of the request (e.g., PENDING).
 
-  - Example:
+  - Example OOO Request:
     ```json
     {
       "type": "OOO",
       "from": "<timestamp>",
       "until": "<timestamp>",
-      "message": "string",
+      "message": "<Request Message>",
+      "state": "PENDING"
+    }
+    ```
+  - Example EXTENSION Request:
+    ```json
+    {
+      "type": "EXTENSION",
+      "taskId": "<Task ID>",
+      "title": "<Extension Title>",
+      "oldEndsOn": "<timestamp>",
+      "newEndsOn": "<timestamp>",
+      "message": "<Extension Message>",
+      "state": "PENDING"
+    }
+    ```
+  - Example TASK Request:
+    ```json
+    {
+      "type": "TASK",
+      "externalIssueUrl": "<GitHub Issue API URL>",
+      "externalIssueHtmlUrl": "<GitHub Issue HTML URL>",
+      "requestType": "CREATION | ASSIGNMENT",
+      "proposedStartDate": "<timestamp>",
+      "proposedDeadline": "<timestamp>",
+      "description": "<Request Description>",
+      "markdownEnabled": "false | true",
+      "userId": "<RDS User ID>",
       "state": "PENDING"
     }
     ```
 
-- **Success Response:**
+- **Success Response of OOO Request:**
 
   - **Code:** 200
   - **Content:**
@@ -173,11 +200,11 @@ Creates a new request.
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
-### Authentication and Authorization:
+#### Authentication and Authorization:
 
 - Authentication is required for creating a new request.
 
-### Additional Notes:
+#### Additional Notes:
 
 - The request body should contain the necessary details for creating a new request, including type, timestamps for from and until, message, and state.
 - The state is set to "PENDING" by default.
@@ -248,11 +275,11 @@ Updates an existing request with the provided details.
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
-### Authentication and Authorization:
+#### Authentication and Authorization:
 
 - Authentication is required for accessing this endpoint.
 
-### Additional Notes:
+#### Additional Notes:
 
 - The request body should contain the necessary details for updating an existing request, including type, reason, and state.
 - Error handling is provided for cases where the request is already approved and for internal server errors.
