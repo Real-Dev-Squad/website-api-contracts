@@ -15,3 +15,4 @@
 - [Users](/users)
 - [Badges](/badges)
 - [CloudflareCache](/cloudflare-cache)
+- [Logs](/logs)
