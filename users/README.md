@@ -26,6 +26,7 @@
   'discordId': string,
   'tokens': {},
   'badges': []
+  'disabled_roles':[]
 }
 ```
 
@@ -53,7 +54,7 @@ number and email address.
 
 Returns all users in the system.
 
-- **Params**  
+- **Params**
   None
 - **Query**
   - Optional: `size=[integer]` (`size` is the number of users requested per page, value ranges between 1-100, and the default value is 100)
@@ -62,11 +63,11 @@ Returns all users in the system.
   - Optional: `next=[string]` (`next` is the id of the DB document to get the next batch/page of results after that document.)
   - Optional: `prev=[string]` (`prev` is the id of the DB document to get the previous batch/page of results before that document.)
   - Optional: `query=[string]` (`query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
-- **Body**  
+- **Body**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Success Response:**
   - **Code:** 200
@@ -94,14 +95,14 @@ Returns all users in the system.
 
 Returns the details of logged in user.
 
-- **Params**  
+- **Params**
   None
 - **Query** private=[boolean] private=[boolean]
-- **Body**  
+- **Body**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Success Response:**
   - **Code:** 200
@@ -124,13 +125,13 @@ Returns the details of logged in user.
 
 Returns the specified user.
 
-- **Params**  
+- **Params**
   _Required:_ `userId=[string]`
-- **Body**  
+- **Body**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   None
 - **Success Response:**
 - **Code:** 200
@@ -150,13 +151,13 @@ Returns the specified user.
 
 Returns the specified user.
 
-- **Params**  
+- **Params**
   _Required:_ `username=[string]`
-- **Body**  
+- **Body**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   None
 - **Success Response:**
 - **Code:** 200
@@ -173,13 +174,13 @@ Returns the specified user.
 
 Returns the availability of username.
 
-- **Params**  
+- **Params**
   _Required:_ `username=[string]`
-- **Body**  
+- **Body**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Success Response:**
   - **Code:** 200
@@ -196,15 +197,15 @@ Returns the availability of username.
 
 Returns badges assigned to the user
 
-- **Params**  
+- **Params**
   Required: `id=[string]`
-- **Query**  
+- **Query**
   None
-- **Body**  
+- **Body**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   None
 - **Success Response:**
 - **Code:** 200
@@ -219,7 +220,7 @@ Returns badges assigned to the user
 
 Returns users based on the specified filters.
 
-- **Params:**  
+- **Params:**
   None
 
 - **Query Parameters:**
@@ -232,10 +233,10 @@ Returns users based on the specified filters.
   - Optional: `verified=[string]` (Specifies if the user is verified. Possible values: "true", "false")
   - Optional: `time=[string]` (Specifies the time filter, e.g., "31d")
 
-- **Body:**  
+- **Body:**
   None
 
-- **Headers:**  
+- **Headers:**
   Content-Type: application/json
   rds-session: `<JWT>`
 
@@ -274,13 +275,13 @@ Returns users based on the specified filters.
 
 Creates a new User.
 
-- **Params**  
+- **Params**
   None
-- **Query**  
+- **Query**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Body** `{ <user_object> }`
 - **Success Response:**
@@ -296,20 +297,22 @@ Creates a new User.
 
 ## **PATCH /users/self**
 
-Updates data of the User.
+Updates data of the User. Doesn't update if user is  `(in_discord && !userDetailsIncomplete)`, Except for `disabled_roles` property.
 
-- **Params**  
+- **Params**
   None
-- **Query**  
+- **Query**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Body** `{ <user_object> }`
 - **Success Response:**
   - **Code:** 204
     - **Content:** `{ 'message': 'User updated successfully!'}`
+  - **Code:** 200
+    - **Content** `{ message: "Privilege modified successfully!", disabled_roles: string[] }`
 - **Error Response:**
   - **Code:** 404
     - **Content:**
@@ -320,6 +323,7 @@ Updates data of the User.
   - **Code:** 403
     - **Content:**
       `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
+      `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Developers can only update disabled_roles. Use profile service for updating other attributes.'}`
   - **Code:** 503
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
@@ -328,13 +332,13 @@ Updates data of the User.
 
 Updates roles for the User.
 
-- **Params**  
+- **Params**
   _Required:_ `userId=[string]`
-- **Query**  
+- **Query**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Body**
   `{
@@ -365,13 +369,13 @@ Updates roles for the User.
 
 Archive users if not in Discord.
 
-- **Params**  
+- **Params**
   None
 - **Query**
   - Optional: `debug=[boolean]`(`debug` when set to true returns additional result in response to help debugging)
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<SUPERUSER JWT>`
 - **Body**
 
