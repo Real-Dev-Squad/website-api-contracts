@@ -219,10 +219,6 @@ Updates an existing request with the provided details.
 
   - `id`: The unique identifier of the request to be updated.
 
-- **Query Parameters:**
-
-  - `dev`: Required boolean to update requests in developer mode.
-
 - **Headers:**
   - Content-Type: application/json
 - **Cookie:**
