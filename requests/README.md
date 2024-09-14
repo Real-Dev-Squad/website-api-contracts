@@ -108,11 +108,7 @@ Creates a new request.
 
 - **Description:** Creates a new request with the provided details.
 
-- **URL:** `https://api.realdevsquad.com/requests?dev=true`
-
-- **Query Parameters:**
-
-  - `dev`: Required boolean to create requests in developer mode.
+- **URL:** `https://api.realdevsquad.com/requests`
 
 - **Method:** POST
 
