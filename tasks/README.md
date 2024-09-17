@@ -74,7 +74,6 @@ Returns all the tasks
 - **Params**  
   None
 - **Query**  
-  - Optional: `dev=[boolean]` (`dev` is passed to get all tasks in the developer mode with features that are flagged)
   - Optional: `status=[string]` (`status` is a case insenstive string with one of the following values [AVAILABLE, ASSIGNED, COMPLETED, IN_PROGRESS, BLOCKED, SMOKE_TESTING, NEEDS_REVIEW, IN_REVIEW, APPROVED, MERGED, SANITY_CHECK, REGRESSION_CHECK, RELEASED, VERIFIED, DONE, UNASSIGNED] which represents the status of the task)
   - Optional: `assignee=[string]` (`assignee` can be assignee username in case of single assignee or multiple comma separated values in case of multiple assignee)
   - Optional: `title=[string]` (`title` can be case sensitive, whole or starting portion of task title)

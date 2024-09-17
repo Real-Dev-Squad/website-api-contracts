@@ -14,13 +14,12 @@ Returns a list of requests with pagination and filtering options.
 
 - **Description:** Fetches a list of requests, optionally filtered by various parameters.
 
-- **URL:** `https://api.realdevsquad.com/requests?dev=true`
+- **URL:** `https://api.realdevsquad.com/requests`
 
 - **Method:** GET
 
 - **Query Parameters:**
 
-  - `dev`: Required boolean to fetch requests.
   - `page`: Optional integer to specify the page number. Default is 1.
   - `size`: Optional integer to specify the number of requests per page. Default is 5.
   - `requestedBy`: Optional string to filter requests by the requester's username.
@@ -109,11 +108,7 @@ Creates a new request.
 
 - **Description:** Creates a new request with the provided details.
 
-- **URL:** `https://api.realdevsquad.com/requests?dev=true`
-
-- **Query Parameters:**
-
-  - `dev`: Required boolean to create requests in developer mode.
+- **URL:** `https://api.realdevsquad.com/requests`
 
 - **Method:** POST
 
@@ -223,10 +218,6 @@ Updates an existing request with the provided details.
 - **Path Parameters:**
 
   - `id`: The unique identifier of the request to be updated.
-
-- **Query Parameters:**
-
-  - `dev`: Required boolean to update requests in developer mode.
 
 - **Headers:**
   - Content-Type: application/json
