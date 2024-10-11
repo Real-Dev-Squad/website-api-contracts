@@ -6,7 +6,7 @@
 |-------|--------|-------------|
 | [/subscription](#post-subscription) | POST | Subscribe a user |
 | [/subscription](#put-subscription) | PUT | Unsubscribe a user |
-| [/subscription/send-email](#get-subscriptionsend-email) | GET | Send a test email |
+| [/subscription/notify](#get-subscriptionnotify) | GET | Send a test email |
 
 ## POST /subscription
 
@@ -76,7 +76,7 @@ Unsubscribe a user from notifications.
     }
     ```
 
-## GET /subscription/send-email
+## GET /subscription/notify
 
 Send a test email. This endpoint is for development and testing purposes only.
 
@@ -116,7 +116,7 @@ Send a test email. This endpoint is for development and testing purposes only.
 ## Notes
 
 1. All routes require authentication.
-2. The `/subscription/send-email` route is restricted to users with the SUPERUSER role.
+2. The `/subscription/notify` route is restricted to users with the SUPERUSER role.
 3. Error handling for authentication and authorization failures is not explicitly defined in the provided code, but would typically result in 401 (Unauthorized) or 403 (Forbidden) responses.
 4. The email sending functionality uses nodemailer and requires proper configuration of SMTP credentials.
 5. The API uses Express.js and includes middleware for authentication and role-based authorization.
