@@ -5,7 +5,7 @@
 | Route | Method | Description |
 |-------|--------|-------------|
 | [/subscription](#post-subscription) | POST | Subscribe a user |
-| [/subscription](#put-subscription) | PUT | Unsubscribe a user |
+| [/subscription](#patch-subscription) | PATCH | Unsubscribe a user |
 | [/subscription/notify](#get-subscriptionnotify) | GET | Send a test email |
 
 ## POST /subscription
@@ -43,7 +43,7 @@ Subscribe a user to notifications.
     }
     ```
 
-## PUT /subscription
+## PATCH /subscription
 
 Unsubscribe a user from notifications.
 
