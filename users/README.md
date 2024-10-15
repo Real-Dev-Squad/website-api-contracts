@@ -306,7 +306,11 @@ Creates a new User.
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
-## **PATCH /users/self**
+## **PATCH /users/self(To Be Deprecated)**
+  > **⚠️ Deprecation Notice**
+  >
+  > This endpoint is scheduled for deprecation. A new endpoint will be announced in the future to replace this functionality.
+   Please prepare to update your integrations accordingly.
 
 Updates data of the User. Doesn't update if user is  `(in_discord && !userDetailsIncomplete)`, Except for `disabled_roles` property.
 
