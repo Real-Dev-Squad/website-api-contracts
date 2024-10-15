@@ -57,6 +57,7 @@ Returns all users in the system.
 - **Params**
   None
 - **Query**
+  - Optional: `profile=["true"]&dev=["true]` (if profile is set true with dev feature flag as true, it will return currently logged-in users data.)
   - Optional: `size=[integer]` (`size` is the number of users requested per page, value ranges between 1-100, and the default value is 100)
   - Optional: `page=[integer]` (`page` can either be 0 or a positive number, and the default value is 0)
   - Optional: `search=[string]` (`search` is a string value for username prefix)
@@ -83,6 +84,16 @@ Returns all users in the system.
         "next": '/users?next={<DB document id>}&size={number}&search={string}',
         "prev": '/users?prev={<DB document id>}&size={number}&search={string}'
       }
+    }
+    ```
+
+  **If `/users?profile=true&dev=true`**
+  - **Code:** 200
+    - **Content:**
+
+    ```
+    {
+      <user_object>
     }
     ```
 
