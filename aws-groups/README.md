@@ -4,7 +4,7 @@
 
 ## **Requests**
 
-[POST /aws/groups](#aws/groups)  - Creates and adds user to the AWS group    
+[POST /aws/groups/access](#aws/groups/access)  - Creates and adds user to the AWS group    
 
 ## POST /aws/groups/access
 
