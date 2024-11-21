@@ -90,8 +90,6 @@ Returns all logs according to the provided queries and path/named-route param.
 Returns all the logs present in the collection.
 
 **Query**
-
-  `dev=[boolean]`
   
   Optional: `type=`
   - `CLOUDFLARE_CACHE_PURGED`
@@ -126,7 +124,7 @@ rds-session: <JWT SUPERUSER>
     {
       "message": "All Logs fetched successfully",
       "data": ["<LOG_OBJECT>", "<LOG_OBJECT>...."],
-      "next": "/logs?dev=true&size=5&next=<document-id>",
+      "next": "/logs?size=5&next=<document-id>",
       "prev": null
     }
     ```
