@@ -49,6 +49,9 @@ number and email address.
 |         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
 | [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
 |              [PATCH /users](#patch-users)              |   Archive users if not in discord    |
+| [GET /users/picture/all](#get-all-photo-verification)  |   Get `Pending` photo-verification objects of all    |
+| [GET /users/picture/:userId](#get-photo-verification)  |   Get `Pending` user photo-verification object    |
+| [PATCH /users/picture/verify/:userId](#patch-photo-verification)  |   Accept or Reject photo-verification object    |
 
 ## **GET /users**
 
@@ -467,3 +470,134 @@ Archive users if not in Discord.
 	"message": "An internal server error occurred"
 }
 ```
+
+## **GET /users/picture/all**
+
+- **Params:**
+    
+    None
+    
+- **Query:**
+    - **`username`** (string, optional): search for a photo-verification object for a particular user with `username`.
+    
+- **Headers:**
+    
+    Cookie: rds-session: **`<JWT-SUPERUSER>`**
+    
+- **Success Response:**
+    - **Code:** 200
+        - **Content:**
+        
+        ```json
+        {
+          "message": "User image verification record fetched successfully!",
+          "data": [
+            {
+              "discordId": "12345",
+              "userId": "1234567abcd",
+              "discord": {
+                "url": "https://cdn.discordapp.com/avatars/abc/1234abcd.png",
+                "approved": false,
+                "date": {
+                  "_seconds": 1686518413,
+                  "_nanoseconds": 453000000
+                }
+              },
+              "profile": {
+                "url": "https://res.cloudinary.com/avatars/1234/something.png",
+                "approved": false,
+                "date": {
+                  "_seconds": 1686518413,
+                  "_nanoseconds": 453000000
+                },
+                "publicId": "profile/1234567abcd/umgnk8o7ujrzbmy"
+              },
+              "status": "PENDING"
+            }
+          ]
+        }
+        ```
+        
+- **Error Response:**
+    - **Code:** 500
+        - **Content:** **`{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`**
+        
+
+
+
+## **GET /users/picture/:userId**
+
+- **Params:**
+    - **`userId`** (string): The ID of the user whose image verification record is to be fetched.
+- **Query:**
+    
+    None
+    
+- **Headers:**
+    
+    Cookie: rds-session: **`<JWT>`**
+    
+- **Success Response:**
+    - **Code:** 200
+        - **Content:**
+        
+        ```json
+        {
+          "message": "User image verification record fetched successfully!",
+          "data": {
+            "discordId": "12345",
+            "userId": "1234567abcd",
+            "discord": {
+              "url": "https://cdn.discordapp.com/avatars/abc/1234abcd.png",
+              "approved": false,
+              "date": {
+                "_seconds": 1686518413,
+                "_nanoseconds": 453000000
+              }
+            },
+            "profile": {
+              "url": "https://res.cloudinary.com/avatars/1234/something.png",
+              "approved": false,
+              "date": {
+                "_seconds": 1686518413,
+                "_nanoseconds": 453000000
+              },
+              "publicId": "profile/1234567abcd/umgnk8o7ujrzbmy"
+            },
+            "status": "PENDING"
+          }
+        }
+        ```
+        
+- **Error Response:**
+    - **Code:** 500
+        - **Content:** **`{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`**
+        
+
+
+
+## **PATCH /users/picture/verify/:userId**
+
+- **Params:**
+    - **`userId`** (string): The ID of the user whose image verification record is to be updated.
+- **Query:**
+    - **`type`** (string, required): The type of verification to be updated, which can be 'discord', 'profile', or 'both'.
+    - **`status`** (string, required): The status of the verification, which can be 'APPROVED' or 'REJECTED'.
+- **Headers:**
+    
+    Cookie: rds-session: **`<JWT-SUPERUSER>`**
+    
+- **Success Response:**
+    - **Code:** 200
+        - **Content:**
+        
+        ```json
+        {
+          "message": "<verificationResponse>"
+        }
+        ```
+        
+- **Error Response:**
+    - **Code:** 500
+        - **Content:** **`{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`**
+        
