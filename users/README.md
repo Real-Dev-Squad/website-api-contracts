@@ -37,18 +37,18 @@ number and email address.
 
 ## **Requests**
 
-|                         Route                          |             Description              |
-| :----------------------------------------------------: | :----------------------------------: |
-|                [GET /users](#get-users)                |   Returns all users in the system    |
-|           [GET /users/self](#get-usersSelf)            | Returns the logged in user's details |
-|  [GET /users/userId/:userId](#get-usersuseriduserid)   |    Returns user with given userId    |
-|       [GET /users/:username](#get-usersusername)       |   Returns user with given username   |
-|    [GET /users/:userId/badges](#get-usersidbadges)     | Returns badges assigned to the user  |
-|          [GET /users/search](#get-users-search)        | Returns users based on specified filters |
-|               [POST /users](#post-users)               |          Creates a new User          |
-|         [PATCH /users/self](#patch-usersself)          |       Updates data of the User       |
-| [PATCH /users/:id/temporary/data](#patch-usersidroles) |          Updates user roles          |
-|              [PATCH /users](#patch-users)              |   Archive users if not in discord    |
+|                         Route                          |               Description                |
+| :----------------------------------------------------: | :--------------------------------------: |
+|                [GET /users](#get-users)                |     Returns all users in the system      |
+|           [GET /users/self](#get-usersSelf)            |   Returns the logged in user's details   |
+|  [GET /users/userId/:userId](#get-usersuseriduserid)   |      Returns user with given userId      |
+|       [GET /users/:username](#get-usersusername)       |     Returns user with given username     |
+|    [GET /users/:userId/badges](#get-usersidbadges)     |   Returns badges assigned to the user    |
+|         [GET /users/search](#get-users-search)         | Returns users based on specified filters |
+|               [POST /users](#post-users)               |            Creates a new User            |
+|         [PATCH /users/self](#patch-usersself)          |         Updates data of the User         |
+| [PATCH /users/:id/temporary/data](#patch-usersidroles) |            Updates user roles            |
+|              [PATCH /users](#patch-users)              |     Archive users if not in discord      |
 
 ## **GET /users**
 
@@ -64,6 +64,7 @@ Returns all users in the system.
   - Optional: `next=[string]` (`next` is the id of the DB document to get the next batch/page of results after that document.)
   - Optional: `prev=[string]` (`prev` is the id of the DB document to get the previous batch/page of results before that document.)
   - Optional: `query=[string]` (`query` can be used to filter and/or sort users based on their PR and Issue status within a given date range. [Learn more](https://github.com/Real-Dev-Squad/website-backend/wiki/Filter-and-sort-users-based-on-PRs-and-Issues) )
+  - Optional: `departed=[boolean]` ( if departed is set to true with dev feature flag as true, it will return all the users who have departed the discord server with pending tasks assigned to them. )
 - **Body**
   None
 - **Headers**
@@ -71,7 +72,9 @@ Returns all users in the system.
 - **Cookie**
   rds-session: `<JWT>`
 - **Success Response:**
+
   - **Code:** 200
+
     - **Content:**
 
     ```
@@ -88,7 +91,9 @@ Returns all users in the system.
     ```
 
   **If `/users?profile=true`**
+
   - **Code:** 200
+
     - **Content:**
 
     ```
@@ -97,10 +102,20 @@ Returns all users in the system.
     }
     ```
 
+  **If `/users?departed=true&dev=true`**
+
+  - **Code:** 204 (for `departed=true` when no abandoned tasks exist)
+
+    - **Content:**
+      `{}`
+
 - **Error Response:**
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404 (for `departed=true` without `dev=true`)
+    - **Content:**
+      `{ 'message': 'Route not found' }
 
 ## **GET /users/self**
 
@@ -235,6 +250,7 @@ Returns users based on the specified filters.
   None
 
 - **Query Parameters:**
+
   - Optional: `levelId=[string]` (Specifies the level ID)
   - Optional: `levelName=[string]` (Specifies the level name)
   - Optional: `levelValue=[number]` (Specifies the level value)
@@ -252,7 +268,9 @@ Returns users based on the specified filters.
   rds-session: `<JWT>`
 
 - **Success Response:**
+
   - **Code:** 200
+
     - **Content:**
 
     ```
@@ -270,11 +288,14 @@ Returns users based on the specified filters.
     ```
 
 - **Error Response:**
+
   - **Code:** 400
+
     - **Content:**
       `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Filter for item not provided' }`
 
   - **Code:** 401
+
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
@@ -307,12 +328,13 @@ Creates a new User.
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
 
 ## **PATCH /users/self(To Be Deprecated)**
-  > **⚠️ Deprecation Notice**
-  >
-  > This endpoint is scheduled for deprecation. A new endpoint will be announced in the future to replace this functionality.
-   Please prepare to update your integrations accordingly.
 
-Updates data of the User. Doesn't update if user is  `(in_discord && !userDetailsIncomplete)`, Except for `disabled_roles` property.
+> **⚠️ Deprecation Notice**
+>
+> This endpoint is scheduled for deprecation. A new endpoint will be announced in the future to replace this functionality.
+> Please prepare to update your integrations accordingly.
+
+Updates data of the User. Doesn't update if user is `(in_discord && !userDetailsIncomplete)`, Except for `disabled_roles` property.
 
 - **Params**
   None
@@ -396,7 +418,7 @@ Archive users if not in Discord.
 
   ```json
   {
-  	"action": "nonVerifiedDiscordUsers | archiveUsers"
+    "action": "nonVerifiedDiscordUsers | archiveUsers"
   }
   ```
 
@@ -406,12 +428,12 @@ Archive users if not in Discord.
 
 ```json
 {
-	"message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
-	"data": {
-		"totalUsers": "number",
-		"totalUsersArchived": "number",
-		"totalOperationsFailed": "number"
-	}
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number"
+  }
 }
 ```
 
@@ -419,14 +441,14 @@ Archive users if not in Discord.
 
 ```json
 {
-	"message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
-	"data": {
-		"totalUsers": "number",
-		"totalUsersArchived": "number",
-		"totalOperationsFailed": "number",
-		"updatedUserDetails": "array",
-		"failedUserDetails": "array"
-	}
+  "message": "Successfully updated users archived role to true if in_discord role is false | Couldn't find any users currently inactive in Discord but not archived.",
+  "data": {
+    "totalUsers": "number",
+    "totalUsersArchived": "number",
+    "totalOperationsFailed": "number",
+    "updatedUserDetails": "array",
+    "failedUserDetails": "array"
+  }
 }
 ```
 
@@ -438,9 +460,9 @@ Archive users if not in Discord.
 
 ```json
 {
-	"statusCode": 401,
-	"error": "Unauthorized",
-	"message": "Unauthenticated User"
+  "statusCode": 401,
+  "error": "Unauthorized",
+  "message": "Unauthenticated User"
 }
 ```
 
@@ -450,9 +472,9 @@ Archive users if not in Discord.
 
 ```json
 {
-	"statusCode": 400,
-	"error": "Bad Request",
-	"message": "Invalid payload"
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "Invalid payload"
 }
 ```
 
@@ -462,8 +484,8 @@ Archive users if not in Discord.
 
 ```json
 {
-	"statusCode": 500,
-	"error": "Internal Server Error",
-	"message": "An internal server error occurred"
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "An internal server error occurred"
 }
 ```
