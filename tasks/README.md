@@ -82,7 +82,7 @@ Returns all the tasks
   - Optional: `size=[integer]` (`size` is the number of tasks requested per page. Range of value is 1-100. Default value is 5)
   - Optional: `next=[string]` (`next` is id of the document to get next page of results from that document)
   - Optional: `prev=[string]` (`prev` is id of the document to get prev page of results from that document)
-  - Optional: `orphaned=[boolean]` ( if departed is set to true with dev feature flag as true, it will return all the pending tasks which have assigned to users who have departed the discord server. )
+  - Optional: `orphaned=[boolean]` ( if orphaned is set to true with dev feature flag as true, it will return all the pending tasks which have assigned to users who have departed the discord server. )
 - **Body**  
   None
 - **Headers**  
@@ -103,7 +103,7 @@ Returns all the tasks
 }
 ```
 
-- **Code:** 204 (for `orphaned=true` when no abandoned tasks exist)
+- **Code:** 204 (for `orphaned=true` when no orphaned tasks exist)
 
   - **Content:** `No Content`
 
