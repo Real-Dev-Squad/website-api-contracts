@@ -26,7 +26,7 @@
     <task_id>,
     <task_id>
   ],
-  "level": 1 | 2 | 3 | 4 | 5 // optional - can be added only if category exists, 
+  "level": 1 | 2 | 3 | 4 | 5 // optional - can be added only if category exists,
   "category": <string> // optional (example: "FRONTEND" | "BACKEND"),
   "participants": [
     // for group tasks
@@ -57,15 +57,15 @@
 
 ## **Requests**
 
-|               Route                |    Description    |
-| :--------------------------------: | :---------------: |
-|      [GET /tasks](#get-tasks)      | Returns all tasks |
-|      [GET /tasks/self](#get-tasksself)      | Returns all tasks of a user |
-|     [POST /tasks](#post-tasks)     | Creates new task  |
-| [PATCH /tasks/:id](#patch-tasksid) |   Updates tasks   |
-| [GET /tasks/:id/details](#get-tasksiddetails)         | Get details of a particular task|
-| [GET /tasks/:username](#get-tasksusername) |  Returns all tasks of the user |
-| [PATCH /tasks/self/:id](#patch-tasksselfid) |  Changes in own task  |
+|                     Route                     |           Description            |
+| :-------------------------------------------: | :------------------------------: |
+|           [GET /tasks](#get-tasks)            |        Returns all tasks         |
+|       [GET /tasks/self](#get-tasksself)       |   Returns all tasks of a user    |
+|          [POST /tasks](#post-tasks)           |         Creates new task         |
+|      [PATCH /tasks/:id](#patch-tasksid)       |          Updates tasks           |
+| [GET /tasks/:id/details](#get-tasksiddetails) | Get details of a particular task |
+|  [GET /tasks/:username](#get-tasksusername)   |  Returns all tasks of the user   |
+|  [PATCH /tasks/self/:id](#patch-tasksselfid)  |       Changes in own task        |
 
 ## **GET /tasks**
 
@@ -73,7 +73,7 @@ Returns all the tasks
 
 - **Params**  
   None
-- **Query**  
+- **Query**
   - Optional: `dev=[boolean]` (`dev` is passed to get all tasks in the developer mode with features that are flagged)
   - Optional: `status=[string]` (`status` is a case insenstive string with one of the following values [AVAILABLE, ASSIGNED, COMPLETED, IN_PROGRESS, BLOCKED, SMOKE_TESTING, NEEDS_REVIEW, IN_REVIEW, APPROVED, MERGED, SANITY_CHECK, REGRESSION_CHECK, RELEASED, VERIFIED, DONE, UNASSIGNED] which represents the status of the task)
   - Optional: `assignee=[string]` (`assignee` can be assignee username in case of single assignee or multiple comma separated values in case of multiple assignee)
@@ -82,6 +82,7 @@ Returns all the tasks
   - Optional: `size=[integer]` (`size` is the number of tasks requested per page. Range of value is 1-100. Default value is 5)
   - Optional: `next=[string]` (`next` is id of the document to get next page of results from that document)
   - Optional: `prev=[string]` (`prev` is id of the document to get prev page of results from that document)
+  - Optional: `orphaned=[boolean]` ( if orphaned is set to true with dev feature flag as true, it will return all the pending tasks which have assigned to users who have departed the discord server. )
 - **Body**  
   None
 - **Headers**  
@@ -102,10 +103,16 @@ Returns all the tasks
 }
 ```
 
+- **Code:** 204 (for `orphaned=true` when no orphaned tasks exist)
+
+  - **Content:** `No Content`
+
 - **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
+  - **Code:** 404 (for `orphaned=true` without `dev=true`)
+    - **Content:**
+      `{ 'message': 'Route not found' }`
 
 ## **GET /tasks/self**
 
@@ -124,6 +131,7 @@ Returns all the completed tasks of user if query `completed=true` is passed, els
 - **Success Response:**
   - **Code:** 200
     - **Content:**
+
 ```
 [
   {<task_object>},
@@ -157,6 +165,7 @@ Returns details of a particular task
 - **Success Response:**
   - **Code:** 200
     - **Content:**
+
 ```
 {
   "message":"task returned successfully",
@@ -187,6 +196,7 @@ Returns all tasks of the requested user.
 - **Success Response:**
   - **Code:** 200
     - **Content:**
+
 ```
 {
   message: 'Tasks returned successfully!'
@@ -202,7 +212,6 @@ Returns all tasks of the requested user.
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-
 
 ## **POST /tasks**
 
@@ -265,10 +274,11 @@ Returns all tasks of the requested user.
 - **Headers**  
   Content-Type: application/json
 
-- **Body**  
+- **Body**
+
   ```
-  { 
-    status: <new-status> 
+  {
+    status: <new-status>
     percentCompleted: <number>
   }
   ```
@@ -278,6 +288,7 @@ Returns all tasks of the requested user.
 
 - **Success Response:**
   - **Code**: 200
+
 ```
 {
   message: 'Task updated successfully!'
@@ -292,6 +303,7 @@ Returns all tasks of the requested user.
   }
 }
 ```
+
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'User can not be authenticated' }`
