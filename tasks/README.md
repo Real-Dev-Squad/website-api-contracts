@@ -66,7 +66,7 @@
 | [GET /tasks/:id/details](#get-tasksiddetails) | Get details of a particular task |
 |  [GET /tasks/:username](#get-tasksusername)   |  Returns all tasks of the user   |
 |  [PATCH /tasks/self/:id](#patch-tasksselfid)  |       Changes in own task        |
-|            [GET /tasks/:userId]()             |   Returns all the task a user    |
+|   [GET /tasks/:userId](#get-tasksuserid)      |   Returns all the task a user    |
 
 ## **GET /tasks**
 
