@@ -66,6 +66,7 @@
 | [GET /tasks/:id/details](#get-tasksiddetails) | Get details of a particular task |
 |  [GET /tasks/:username](#get-tasksusername)   |  Returns all tasks of the user   |
 |  [PATCH /tasks/self/:id](#patch-tasksselfid)  |       Changes in own task        |
+|            [GET /tasks/:userId]()             |   Returns all the task a user    |
 
 ## **GET /tasks**
 
@@ -311,5 +312,40 @@ Returns all tasks of the requested user.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message':'This task is not assigned to you' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Task doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+## **GET /tasks/:userId**
+
+Returns all the completed tasks of user if query `completed=true` is passed, else returns all the active and blocked tasks of the user. This is the new route which needs to be used in place of tasks/self
+
+- **Params**  
+  _Required:_ `userId=[string]`
+
+- **Query**  
+  completed=[boolean]
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+
+```
+[
+  {<task_object>},
+  {<task_object>},
+  {<task_object>},
+  {<task_object>},
+  {<task_object>}
+]
+```
+
+- **Error Response:**
+  - **Code:** 403
+    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Forbidden' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
