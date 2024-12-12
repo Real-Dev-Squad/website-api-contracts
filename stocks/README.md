@@ -41,7 +41,6 @@ Returns all the stocks of the user.
     - **Content:**
 
     ```
-
     {
         "message": "User stocks returned successfully!",
         "userStocks": [
@@ -58,14 +57,34 @@ Returns all the stocks of the user.
     }
     ```
 
+When No Stock is found.
+
+  - **Code:** 200
+    - **Content:**
+
+    ```
+    { 
+      message: "No stocks found", 
+      userStocks: [] 
+    }
+    ```
+
 - **Error Response:**
   - **Code:** 403
     - **Content:**
-      `{ 'statusCode': 403, 'error': 'Unauthorized', 'message': 'Unauthorized access' }`
-  - **Code:** 204
-    - **Content:**
-      `{}`
+      ```
+      { 
+        'statusCode': 403,
+        'error': 'Unauthorized',
+        'message': 'Unauthorized access' 
+      }
+      ```
   - **Code:** 500
     - **Content:**
-      `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
-      
+      ```
+      { 
+        'statusCode': 500, 
+        'error': 'Internal Server Error', 
+        'message': 'An internal server error occurred' 
+      }
+      ```
