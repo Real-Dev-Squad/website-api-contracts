@@ -489,3 +489,107 @@ Archive users if not in Discord.
   "message": "An internal server error occurred"
 }
 ```
+
+## PUT /users/:userId/intro
+
+Creating a User Intro in DB if not available
+
+- **Params**
+  None
+- **Query**
+  None
+- **Headers**
+  Content-Type: application/json
+- **Cookie**
+  rds-session: `<JWT>`
+- **Body**
+
+  ```json
+  {
+    "firstName": string,
+    "lastName": string,
+    "college": string,
+    "skills": string,
+    "city": string,
+    "state": string,
+    "country": string,
+    "foundFrom": string,
+    "introduction": string,
+    "funFact": string,
+    "whyRds": string,
+    "flowState": string,
+    "numberOfHours": number
+  }
+  ```
+
+- **Success Response:**
+  - **Code:** 201
+    - **Content:**
+
+```json
+{
+    "message": "User join data and newstatus data added and updated successfully"
+}
+```
+
+- **Error Response:**
+
+- **Code:** 400
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 400,
+  "error": "Bad Request",
+  "message": "{key} is required"
+}
+```
+
+- **Code:** 401
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 401,
+  "error": "Unauthorized",
+  "message": "Unauthenticated User"
+}
+```
+
+- **Code:** 403
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 403,
+  "error": "Forbidden",
+  "message": "Forbidden access"
+}
+```
+
+- **Code:** 409
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 409,
+  "error": "Conflict",
+  "message": "User data is already present!"
+}
+```
+
+- **Code:** 500
+
+  - **Content:**
+
+```json
+{
+  "statusCode": 500,
+  "error": "Internal Server Error",
+  "message": "An internal server error occurred"
+}
+```
