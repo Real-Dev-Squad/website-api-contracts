@@ -525,7 +525,6 @@ Creating a User Intro in DB if not available
 - **Success Response:**
   - **Code:** 201
     - **Content:**
-
 ```json
 {
     "message": "User join data and newstatus data added and updated successfully"
@@ -535,9 +534,7 @@ Creating a User Intro in DB if not available
 - **Error Response:**
 
 - **Code:** 400
-
   - **Content:**
-
 ```json
 {
   "statusCode": 400,
@@ -547,9 +544,7 @@ Creating a User Intro in DB if not available
 ```
 
 - **Code:** 401
-
   - **Content:**
-
 ```json
 {
   "statusCode": 401,
@@ -559,9 +554,7 @@ Creating a User Intro in DB if not available
 ```
 
 - **Code:** 403
-
   - **Content:**
-
 ```json
 {
   "statusCode": 403,
@@ -571,9 +564,7 @@ Creating a User Intro in DB if not available
 ```
 
 - **Code:** 409
-
   - **Content:**
-
 ```json
 {
   "statusCode": 409,
@@ -583,9 +574,7 @@ Creating a User Intro in DB if not available
 ```
 
 - **Code:** 500
-
   - **Content:**
-
 ```json
 {
   "statusCode": 500,
