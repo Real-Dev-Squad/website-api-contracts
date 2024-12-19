@@ -134,7 +134,7 @@ Returns all the extension requests of a user for a task if query `taskId=<taskId
 Returns all the extension requests of a authenticated user for a task by userId if query `taskId=<taskId>` is passed, else returns all the extension requests of the user.
 
 - **Params**  
-    userId=<userId>
+    userId=``<userId>``
 - **Query**  
   `status=APPROVED | DENIED | PENDING, taskId=<task_object_id>`
 - **Body**  
@@ -156,6 +156,8 @@ Returns all the extension requests of a authenticated user for a task by userId 
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 403
+    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Forbidden access' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
