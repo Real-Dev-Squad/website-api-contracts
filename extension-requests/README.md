@@ -21,6 +21,7 @@
 |      [GET /extension-requests](#get-extension-requests)      | Return all extension requests |
 |      [GET /extension-requests/:id](#get-extension-requests-id)      | Return extension request with id |
 |      [GET /extension-requests/self](#get-extension-requests-self)      | Return all extension requests of a user |
+|     [GET /extension-requests/user/:userId](#get-extension-requests-userId) |   Return extension request with userId   |
 |     [POST /extension-requests](#post-extension-requests)     | Creates new extension request  |
 |     [PATCH /extension-requests/:id](#patch-extension-requestsid) |   Updates extension request   |
 |     [PATCH /extension-requests/:id/status](#patch-extension-requests-id-status) |   APPROVE or DENY an extension request   |
@@ -122,6 +123,41 @@ Returns all the extension requests of a user for a task if query `taskId=<taskId
 - **Error Response:**
   - **Code:** 401
     - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+
+## **GET /extension-requests/user/:userId**
+
+Returns all the extension requests of a authenticated user for a task by userId if query `taskId=<taskId>` is passed, else returns all the extension requests of the user.
+
+- **Params**  
+    userId=``<userId>``
+- **Query**  
+  `status=APPROVED | DENIED | PENDING, taskId=<task_object_id>`
+- **Body**  
+  None
+- **Headers**  
+  Content-Type: application/json
+- **Cookie**  
+  rds-session: `<JWT>`
+- **Success Response:**
+  - **Code:** 200
+    - **Content:**
+```
+{
+  message: 'Extension Requests returned successfully!'
+  allExtensionRequests: [{<extension_request_object>}]
+}
+```
+
+- **Error Response:**
+  - **Code:** 401
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+  - **Code:** 403
+    - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Forbidden access' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User doesn't exist' }`
   - **Code:** 500
