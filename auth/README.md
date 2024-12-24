@@ -17,6 +17,7 @@ Initiates the Google OAuth authentication process by redirecting the user to Goo
   None
 
 - **Query**
+  - Required: `dev=[boolean]` (Must be set to true for this feature to work.)
   - Optional: `redirectURL=[string]` (The URL to redirect the user to after authentication is successful. It should be a valid URL.)
 
 ### Response
