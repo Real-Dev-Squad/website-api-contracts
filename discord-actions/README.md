@@ -6,6 +6,7 @@
 | :-----------------------------------------------------: | :------------------------------: |
 |  [GET /discord-actions/invites](#get-discord-actions-invites)   | return all the invites generated |
 | [POST /discord-actions/invites](#post-discord-actions-invites) |  generates a invite for a user   |
+| [GET /discord-actions/groups](#get-discord-actions-groups)     | Returns all group roles or paginated results |
 
 ---
 
@@ -138,4 +139,86 @@
       ```
     ```
 
+    ```
+
+## **GET /discord-actions/groups**
+
+- Fetches all Discord group roles or provides paginated results when the `?dev=true` query parameter is passed.
+
+- **Query**
+
+  - Optional: `page=[number]`: Specifies the page of results to fetch (used only when `dev=true`). Must be `>= 0`. Defaults to `0`.
+  - Optional: `size=[number]`: Specifies the number of results per page (used only when `dev=true`). Must be between `1` and `100`. Defaults to `10`.
+  - Optional: `dev=[boolean]`: When set to `true`, returns paginated results with additional metadata. Defaults to `false`.
+
+- **Headers**  
+  None
+
+- **Cookie**  
+  `rds-session`: `<JWT>` (Required for authentication)
+
+- **Success Response**
+
+  - **Code:** 200
+    - **Content:**
+    ```json
+    {
+      "message": "Roles fetched successfully!",
+      "groups": [
+        {
+          "id": "string",
+          "rolename": "string",
+          "roleid": "string",
+          "description": "string",
+          "createdBy": "string",
+          "firstName": "string",
+          "lastName": "string",
+          "image": "string",
+          "date": "string (ISO timestamp)",
+          "lastUsedOn": "string (ISO timestamp)",
+          "memberCount": 0,
+          "isMember": true
+        }
+      ],
+      "links": {
+        "next": "string (URL for the next page)",
+        "prev": "string (URL for the previous page)"
+      }
+    }
+    ```
+
+- **Error Responses**
+
+  - **Code:** 400 (Bad Request)
+    - **Content:** Invalid `page` parameter:
+      ```json
+      {
+        "message": "Invalid page parameter. Must be 0 or greater."
+      }
+      ```
+    - **Content:** Invalid `size` parameter:
+      ```json
+      {
+        "message": "Invalid size. Must be between 1 and 100."
+      }
+      ```
+
+  - **Code:** 401 (Unauthorized)
+    - **Content:**
+    ```json
+    {
+      "statusCode": 401,
+      "error": "Unauthorized",
+      "message": "You are not authorized for this action."
+    }
+    ```
+
+  - **Code:** 500 (Internal Server Error)
+    - **Content:**
+    ```json
+    {
+      "statusCode": 500,
+      "error": "Internal Server Error",
+      "message": "An internal server error occurred"
+    }
     ```
