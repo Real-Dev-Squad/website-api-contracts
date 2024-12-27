@@ -175,7 +175,9 @@ Updates data of the User.
     - **Content:** `{'id':'documentId' ,'userId':'userId','data': <user_object>,"message": "User Status created successfully. | User Status updated successfully. " }`
 - **Error Response:**
   - **Code:** 401
-    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' | 'You are not authorized to perform this action.'  }`
+  - **Code:** 404
+    - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'The User doesn't exist.' }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
 
