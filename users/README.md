@@ -617,9 +617,12 @@ Allow SuperUser to approve the profilediff and Authenticated user to update thei
   - **Code:** 404
     - **Content:**
       `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid Request.'}`
   - **Code:** 401
     - **Content:**
-      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' | 'You are not authorized for this action.'}`
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User'}`
   - **Code:** 403
     - **Content:**
       `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
