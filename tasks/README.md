@@ -66,6 +66,7 @@
 | [GET /tasks/:id/details](#get-tasksiddetails) | Get details of a particular task |
 |  [GET /tasks/:username](#get-tasksusername)   |  Returns all tasks of the user   |
 |  [PATCH /tasks/self/:id](#patch-tasksselfid)  |       Changes in own task        |
+|  [PATCH /tasks/assign/:userId]()  |       Assigns the task based on task availability and skill        |
 
 ## **GET /tasks**
 
@@ -311,5 +312,33 @@ Returns all tasks of the requested user.
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message':'This task is not assigned to you' }`
   - **Code:** 404
     - **Content:** `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'Task doesn't exist' }`
+  - **Code:** 500
+    - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+
+## **PATCH /tasks/assign/:userId**
+
+- **Params**  
+  _Required:_ `userId = <userId>`
+
+- **Headers**  
+  Content-Type: application/json
+
+- **Body**
+
+- **Cookie**  
+  rds-session: `<JWT>`
+
+- **Success Response:**
+  - **Code**: 200
+
+```
+{
+  message: 'Task assigned',
+  id: <string>
+}
+```
+
+- **Error Response:**
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
