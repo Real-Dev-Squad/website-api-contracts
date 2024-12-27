@@ -385,7 +385,7 @@ Returns all tasks of the requested user.
 
 - **Error Response:**
   - **Code:** 401
-    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'User can not be authenticated' }`
+    - **Content:** `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
   - **Code:** 403
     - **Content:** `{ 'statusCode': 403, 'error': 'Forbidden', 'message':'This task is not assigned to you' }`
   - **Code:** 404
