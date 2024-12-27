@@ -582,3 +582,51 @@ Creating a User Intro in DB if not available
   "message": "An internal server error occurred"
 }
 ```
+
+## **PATCH /users/:userId**
+
+Allow SuperUser to approve the profilediff and Authenticated user to update their profile data.
+
+- **Params**
+  - Optional: `userId=<userId>` 
+- **Query**
+  - Optional: `profile=["true"]` (if profile is set to true, it will allow Authenticated user to update the profile data.)
+
+- **Headers**
+  Content-Type: application/json
+- **Cookie**
+  - rds-session: `<JWT>`
+  - rds-session: `<SUPERUSER JWT>`
+- **Body** 
+  - `{ <user_object> }`
+  - ```
+    {
+      id: `<profileDiffsId>,
+      message: string 
+    }
+    ```
+  
+- **Success Response:**
+  - **Code:** 204
+    - **Content:** `{ 'message': 'User updated successfully!'}`
+  - **Code:** 200
+    - **Content** `{ message: "Privilege modified successfully!" , disabled_roles: string[] }`
+    - **Content** `{ message: "Updated user's data successfully!" }`
+
+- **Error Response:**
+  - **Code:** 404
+    - **Content:**
+      `{ 'statusCode': 404, 'error': 'Not Found', 'message': 'User not found' }`
+  - **Code:** 400
+    - **Content:**
+      `{ 'statusCode': 400, 'error': 'Bad Request', 'message': 'Invalid Request.'}`
+  - **Code:** 401
+    - **Content:**
+      `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User'}`
+  - **Code:** 403
+    - **Content:**
+      `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
+      `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Developers can only update disabled_roles. Use profile service for updating other attributes.'}`
+  - **Code:** 503
+    - **Content:**
+      `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
