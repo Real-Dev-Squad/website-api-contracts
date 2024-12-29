@@ -239,8 +239,8 @@ Creates a new request.
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "Error while creating request" }`
   - **Code:** 404
     - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "User not found" }`
-  - **Code:** 401
-    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Only super user and onboarding user are  authorized to create an onboarding extension request" }`
+  - **Code:** 403
+    - **Content:** `{ "statusCode": 401, "error": "Forbidden", "message": "Only super user and onboarding user are  authorized to create an onboarding extension request" }`
 
 
 #### Authentication and Authorization:
