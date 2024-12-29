@@ -240,7 +240,7 @@ Creates a new request.
   - **Code:** 404
     - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "User not found" }`
   - **Code:** 403
-    - **Content:** `{ "statusCode": 401, "error": "Forbidden", "message": "Only super user and onboarding user are  authorized to create an onboarding extension request" }`
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Only super user and onboarding user are  authorized to create an onboarding extension request" }`
 
 
 #### Authentication and Authorization:
