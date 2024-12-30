@@ -40,7 +40,7 @@ number and email address.
 |                         Route                          |               Description                |
 | :----------------------------------------------------: | :--------------------------------------: |
 |                [GET /users](#get-users)                |     Returns all users in the system      |
-|           [GET /users/self](#get-usersSelf)            |   Returns the logged in user's details   |
+|           [GET /users?profile=true](#get-usersSelf)            |   Returns the logged in user's details   |
 |  [GET /users/userId/:userId](#get-usersuseriduserid)   |      Returns user with given userId      |
 |       [GET /users/:username](#get-usersusername)       |     Returns user with given username     |
 |    [GET /users/:userId/badges](#get-usersidbadges)     |   Returns badges assigned to the user    |
@@ -90,17 +90,6 @@ Returns all users in the system.
     }
     ```
 
-  **If `/users?profile=true`**
-
-  - **Code:** 200
-
-    - **Content:**
-
-    ```
-    {
-      <user_object>
-    }
-    ```
 
   **If `/users?departed=true&dev=true`**
 
@@ -117,13 +106,14 @@ Returns all users in the system.
     - **Content:**
       `{ 'message': 'Route not found' }
 
-## **GET /users/self**
+## **GET /users?profile=true**
 
 Returns the details of logged in user.
 
 - **Params**
   None
-- **Query** private=[boolean] private=[boolean]
+- **Query**
+  None
 - **Body**
   None
 - **Headers**
@@ -133,10 +123,6 @@ Returns the details of logged in user.
 - **Success Response:**
   - **Code:** 200
     - **Content:** `{ <user_object> }`
-      > **Note**: The user object will include `phone` and `email` only when the
-      > query `private` is passed as `true` for this route. No other route will
-      > return `phone` and `email`.
-- **Error Response:**
   - **Code:** 401
     - **Content:**
       `{ 'statusCode': 401, 'error': 'Unauthorized', 'message': 'Unauthenticated User' }`
