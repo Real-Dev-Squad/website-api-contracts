@@ -172,6 +172,15 @@ Creates a new request.
       "state": "PENDING"
     }
     ```
+  - Example Onboarding Extension Request:
+    ```json
+    {
+      "type": "ONBOARDING",
+      "numberOfDays": "<number>",
+      "userId": "<RDS Discord Id>",
+      "reason": "<Request Reason>"
+    }
+    ```
 
 - **Success Response of OOO Request:**
 
@@ -199,6 +208,40 @@ Creates a new request.
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already exists. Please wait for approval or rejection" }`
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
+- **Success Response of Onboarding Extension Request:**
+
+  - **Code:** 201
+  - **Content:**
+    ```json
+    {
+      "message": "Onboarding extension request created successfully",
+      "data": {
+        "id": "string",
+        "createdAt": "number",
+        "updatedAt": "number",
+        "requestedBy": "string",
+        "type": "string",
+        "state": "string",
+        "userId": "string",
+        "requestNumber": "number",
+        "reason": "string",
+        "newEndsOn": "number",
+        "oldEndsOn": "number",
+      }
+    }
+    ```
+
+- **Error Responses of Onboarding Extension Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already exists please wait for approval or rejection" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "Error while creating request" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "User not found" }`
+  - **Code:** 403
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Only super user and onboarding user are  authorized to create an onboarding extension request" }`
+
 
 #### Authentication and Authorization:
 
@@ -274,6 +317,38 @@ Updates an existing request with the provided details.
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already approved" }`
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
+- **Success Response of Onboarding Extension Request:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "message": "Request approved successfully | Request rejected successfully",
+      "data": {
+        "id": "string",
+        "updatedAt": "number",
+        "type": "string",
+        "state": "string",
+        "lastModifiedBy": "string",
+        "message": "string"
+      }
+    }
+    ```
+
+- **Error Responses of Onboarding Extension Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already rejected" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already approved" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": ""An internal server error occurred" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "You are not authorized for this action." }`
 
 #### Authentication and Authorization:
 
