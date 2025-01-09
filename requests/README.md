@@ -233,10 +233,6 @@ Creates a new request.
     ```
 
 - **Error Responses of Onboarding Extension Request:**
-  - **Code:** 400
-    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already exists please wait for approval or rejection" }`
-  - **Code:** 500
-    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "Error while creating request" }`
   - **Code:** 409
     - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "Request already exists please wait for approval or rejection" }`
   - **Code:** 500
