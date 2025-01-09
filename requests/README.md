@@ -172,6 +172,15 @@ Creates a new request.
       "state": "PENDING"
     }
     ```
+  - Example Onboarding Extension Request:
+    ```json
+    {
+      "type": "ONBOARDING",
+      "numberOfDays": "<number>",
+      "userId": "<RDS Discord Id>",
+      "reason": "<Request Reason>"
+    }
+    ```
 
 - **Success Response of OOO Request:**
 
@@ -199,6 +208,40 @@ Creates a new request.
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already exists. Please wait for approval or rejection" }`
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
+- **Success Response of Onboarding Extension Request:**
+
+  - **Code:** 201
+  - **Content:**
+    ```json
+    {
+      "message": "Onboarding extension request created successfully",
+      "data": {
+        "id": "string",
+        "createdAt": "number",
+        "updatedAt": "number",
+        "requestedBy": "<username>",
+        "type": "string",
+        "state": "string",
+        "userId": "string",
+        "requestNumber": "number",
+        "reason": "<request-reason>",
+        "newEndsOn": "number",
+        "oldEndsOn": "number",
+      }
+    }
+    ```
+
+- **Error Responses of Onboarding Extension Request:**
+  - **Code:** 409
+    - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "Request already exists please wait for approval or rejection" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred"" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "User not found" }`
+  - **Code:** 403
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Only super user and onboarding user are  authorized to create an onboarding extension request" }`
+
 
 #### Authentication and Authorization:
 
