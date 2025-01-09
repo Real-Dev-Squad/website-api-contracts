@@ -341,8 +341,8 @@ Updates an existing request with the provided details.
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already rejected" }`
   - **Code:** 400
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already approved" }`
-  - **Code:** 400
-    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request does not exist" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": ""An internal server error occurred" }`
   - **Code:** 401
