@@ -220,12 +220,12 @@ Creates a new request.
         "id": "string",
         "createdAt": "number",
         "updatedAt": "number",
-        "requestedBy": "string",
+        "requestedBy": "<username>",
         "type": "string",
         "state": "string",
         "userId": "string",
         "requestNumber": "number",
-        "reason": "string",
+        "reason": "<request-reason>",
         "newEndsOn": "number",
         "oldEndsOn": "number",
       }
@@ -237,6 +237,10 @@ Creates a new request.
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already exists please wait for approval or rejection" }`
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "Error while creating request" }`
+  - **Code:** 409
+    - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "Request already exists please wait for approval or rejection" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred"" }`
   - **Code:** 404
     - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "User not found" }`
   - **Code:** 403
