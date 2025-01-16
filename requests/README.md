@@ -318,6 +318,38 @@ Updates an existing request with the provided details.
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
+- **Success Response of Onboarding Extension Request:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "message": "Request approved successfully | Request rejected successfully",
+      "data": {
+        "id": "string",
+        "updatedAt": "number",
+        "type": "string",
+        "state": "string",
+        "lastModifiedBy": "string",
+        "message": "string"
+      }
+    }
+    ```
+
+- **Error Responses of Onboarding Extension Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already rejected" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already approved" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": ""An internal server error occurred" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "You are not authorized for this action." }`
+
 #### Authentication and Authorization:
 
 - Authentication is required for accessing this endpoint.
