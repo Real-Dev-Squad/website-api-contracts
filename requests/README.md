@@ -424,7 +424,7 @@ Updates an existing request before approval or rejection with the provided detai
   - **Code:** 400
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Only pending extension request can be updated" }`
   - **Code:** 400
-    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request new deadline must be greater than old deadline" }`
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "New deadline of the request must be greater than old deadline" }`
   - **Code:** 403
     - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Unauthorized to update request" }`
   - **Code:** 404
