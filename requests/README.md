@@ -7,6 +7,7 @@ The Requests API provides endpoints for creating, fetching, and updating request
 | [GET /requests](#get-requests)       | Returns a list of requests with pagination and filtering options. |
 | [POST /requests](#post-requests)     | Creates a new request.                                            |
 | [PUT /requests/:id](#put-requestsid) | Updates an existing request.                                      |
+| [PATCH /requests/:id](#patch-requestsid) | Updates an existing request before approval or rejection.                                      |
 
 ### **GET /requests**
 
@@ -344,7 +345,7 @@ Updates an existing request with the provided details.
   - **Code:** 404
     - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
   - **Code:** 500
-    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": ""An internal server error occurred" }`
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
   - **Code:** 401
     - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
   - **Code:** 401
@@ -358,6 +359,84 @@ Updates an existing request with the provided details.
 
 - The request body should contain the necessary details for updating an existing request, including type, reason, and state.
 - Error handling is provided for cases where the request is already approved and for internal server errors.
+
+### **PATCH /requests/:id**
+
+Updates an existing request before approval or rejection with the provided details.
+
+- **Description:** Updates an existing request before approval or rejection with the provided details..
+
+- **URL:** `https://api.realdevsquad.com/requests/:id`
+
+- **Method:** PATCH
+
+- **Path Parameters:**
+
+  - `id`: The unique identifier of the request to be updated.
+
+- **Query Parameters:**
+
+  - `dev`: Required boolean to update requests in developer mode.
+
+- **Headers:**
+  - Content-Type: application/json
+- **Cookie:**
+
+  - rds-session: `<JWT>`
+
+- **Request Body:**
+
+- Body Parameters:
+
+   - **Example of Onboarding Extension Request:**
+    ```json
+    {
+      "type": "ONBOARDING",
+      "reason": "string", // optional
+      "newEndsOn": "number"
+    }
+    ```
+- **Success Response of Onboarding Extension Request:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "message": "Request updated successfully",
+      "data": {
+        "id": "string",
+        "newEndsOn": "number"
+        "updatedAt": "number",
+        "type": "ONBOARDING",
+        "lastModifiedBy": "string",
+        "reason": "string"
+      }
+    }
+    ```
+
+- **Error Responses of Onboarding Extension Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid type" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid request" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid request type" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Only pending extension request can be updated" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "New deadline of the request must be greater than old deadline" }`
+  - **Code:** 403
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Unauthorized to update request" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+
+#### Authentication and Authorization:
+
+- Authentication is required for accessing this endpoint.
 
 ## Conclusion
 
