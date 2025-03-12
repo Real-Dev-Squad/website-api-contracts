@@ -142,8 +142,7 @@ Creates a new request.
       "type": "OOO",
       "from": "<timestamp>",
       "until": "<timestamp>",
-      "message": "<Request Message>",
-      "state": "PENDING"
+      "reason": "<Request Reason>"
     }
     ```
   - Example EXTENSION Request:
@@ -195,18 +194,25 @@ Creates a new request.
         "createdAt": "number",
         "updatedAt": "number",
         "requestedBy": "string",
+        "userId": "string",
         "type": "string",
         "from": "number",
         "until": "number",
-        "message": "string",
-        "state": "string"
+        "reason": "string",
+        "comment": "string",
+        "status": "string",
+        "lastModifiedBy": "string"
       }
     }
     ```
 
-- **Error Responses:**
-  - **Code:** 400
-    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already exists. Please wait for approval or rejection" }`
+- **Error Responses of OOO Request:**
+  - **Code:** 403
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Your status is already OOO. Please cancel OOO to raise new one" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "User status not found" }`
+  - **Code:** 409
+    - **Content:** `{ "statusCode": 409, "error": "Conflict", "message": "Request already exists please wait for approval or rejection" }`
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
