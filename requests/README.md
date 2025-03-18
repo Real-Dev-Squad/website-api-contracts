@@ -394,6 +394,41 @@ Updates an existing request before approval or rejection with the provided detai
 
 - Body Parameters:
 
+   - **Example of OOO Request:**
+    ```json
+    {
+      "type": "OOO",
+      "status": "string", // status must be APPROVED or REJECTED
+      "comment": "string" // optional
+    }
+    ```
+
+- **Success Response of OOO Request:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "message": "Request approved/rejected successfully"
+    }
+    ```
+
+- **Error Responses of OOO Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid request type" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already approved" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already rejected" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Only super users are allowed to acknowledge OOO requests" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
    - **Example of Onboarding Extension Request:**
     ```json
     {
