@@ -206,6 +206,8 @@ Returns all the extension requests of a authenticated user for a task by userId 
   - **Content:** `<No Content>`
 
 - **Error Response:**
+  - **Code** 403
+    - **Content** `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'You don't have permission to update the extension request' }`
   - **Code** 404
     - **Content** `{ 'statusCode': 404, 'error': 'Not found', 'message': 'No extension requests found' }`
   - **Code:** 500
