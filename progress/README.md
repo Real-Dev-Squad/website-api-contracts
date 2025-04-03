@@ -89,6 +89,13 @@
         "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
       }
       ```
+  - **Code:** 403
+    - **Content:**
+      ```json
+      {
+        "message": "Unauthorized to write progress of task"
+      }
+      ```
 
 - **Example for user progress creation request:**
   POST /progresses
@@ -139,6 +146,14 @@
   ```json
   {
     "message": "Task with id 4ERr8WrizICemnQnMF0U1511 does not exist."
+  }
+  ```
+  when archived user creates progress
+  Status 403 Forbidden
+
+  ```json
+  {
+    "message": "Unauthorized to write progress of task"
   }
   ```
 
