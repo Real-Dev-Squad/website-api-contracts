@@ -65,12 +65,51 @@ Return all tasks with pagination support
     {
       "tasks": [
         {
-          // Task object
+          "id": "<string>",
+          "displayId": "<string>",
+          "title": "<string>",
+          "description": "<string> | null",
+          "priority": "LOW | MEDIUM | HIGH",
+          "status": "TODO | IN_PROGRESS | DONE",
+          "assignee": {
+            "id": "<string>",
+            "name": "<string>"
+          } | null,
+          "isAcknowledged": "<boolean>",
+          "labels": [
+            {
+              "name": "<string>",
+              "color": "<string>",
+              "createdAt": "<datetime> | null",
+              "updatedAt": "<datetime> | null",
+              "createdBy": {
+                "id": "<string>",
+                "name": "<string>"
+              } | null,
+              "updatedBy": {
+                "id": "<string>",
+                "name": "<string>"
+              } | null
+            }
+          ],
+          "startedAt": "<datetime> | null",
+          "dueAt": "<datetime> | null",
+          "createdAt": "<datetime>",
+          "updatedAt": "<datetime> | null",
+          "createdBy": {
+            "id": "<string>",
+            "name": "<string>"
+          },
+          "updatedBy": {
+            "id": "<string>",
+            "name": "<string>"
+          } | null
         }
       ],
-      "total": "<integer>",
-      "page": "<integer>",
-      "limit": "<integer>"
+      "links": {
+        "next": "<string> | null",
+        "prev": "<string> | null"
+      }
     }
     ```
 
