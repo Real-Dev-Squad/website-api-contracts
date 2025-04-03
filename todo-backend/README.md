@@ -131,10 +131,21 @@ Creates a new task
       "message": "Validation Error",
       "errors": [
         {
-          "source": {
-            "parameter": "<string>"
-          },
-          "detail": "<string>"
+          "field": "<string>",
+          "message": "<string>"
+        }
+      ]
+    }
+    ```
+  - **Code:** 500
+  - **Content:**
+    ```json
+    {
+      "statusCode": 500,
+      "message": "An unexpected error occurred",
+      "errors": [
+        {
+          "detail": "Internal server error"
         }
       ]
     }
