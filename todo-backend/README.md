@@ -54,8 +54,8 @@ Return all tasks with pagination support
   None
 - **Query**
 
-  - Required: `page=[integer]` (Page number for pagination)
-  - Required: `limit=[integer]` (Number of items per page)
+  - Optional: `page=[integer]` (Page number for pagination, defaults to 1)
+  - Optional: `limit=[integer]` (Number of items per page)
 
 - **Success Response:**
 
@@ -118,6 +118,7 @@ Return all tasks with pagination support
   - **Content:**
     ```json
     {
+      "status": "validation_failed",
       "statusCode": 400,
       "message": "Validation Error",
       "errors": [
@@ -157,8 +158,48 @@ Creates a new task
   - **Content:**
     ```json
     {
-      // Created Task object
-    }
+      "task": {
+          "id": "<string>",
+          "displayId": "<string>",
+          "title": "<string>",
+          "description": "<string> | null",
+          "priority": "LOW | MEDIUM | HIGH",
+          "status": "TODO | IN_PROGRESS | DONE",
+          "assignee": {
+            "id": "<string>",
+            "name": "<string>"
+          } | null,
+          "isAcknowledged": "<boolean>",
+          "labels": [
+            {
+              "name": "<string>",
+              "color": "<string>",
+              "createdAt": "<datetime> | null",
+              "updatedAt": "<datetime> | null",
+              "createdBy": {
+                "id": "<string>",
+                "name": "<string>"
+              } | null,
+              "updatedBy": {
+                "id": "<string>",
+                "name": "<string>"
+              } | null
+            }
+          ],
+          "startedAt": "<datetime> | null",
+          "dueAt": "<datetime> | null",
+          "createdAt": "<datetime>",
+          "updatedAt": "<datetime> | null",
+          "createdBy": {
+            "id": "<string>",
+            "name": "<string>"
+          },
+          "updatedBy": {
+            "id": "<string>",
+            "name": "<string>"
+          } | null
+        }
+      },
     ```
 
 - **Error Response:**
@@ -166,12 +207,15 @@ Creates a new task
   - **Content:**
     ```json
     {
+      "status": "validation_failed"
       "statusCode": 400,
       "message": "Validation Error",
       "errors": [
         {
-          "field": "<string>",
-          "message": "<string>"
+          "source": {
+            "parameter": "<string>"
+          },
+          "detail": "<string>"
         }
       ]
     }
@@ -180,6 +224,7 @@ Creates a new task
   - **Content:**
     ```json
     {
+      "status": "internal_server_error"
       "statusCode": 500,
       "message": "An unexpected error occurred",
       "errors": [
