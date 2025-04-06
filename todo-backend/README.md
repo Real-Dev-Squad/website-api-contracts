@@ -5,13 +5,31 @@
 ```
 {
     id: <ObjectId>
-    displayId: <string>
+    taskId: <string>
     title: <string>
     description: <string> | null
     priority: LOW | MEDIUM | HIGH
     status: TODO | IN_PROGRESS | DONE
-    assignee: <string> | null
-    labels: [<ObjectId>]
+    assignee: {
+        id: <string>
+        name: <string>
+    } | null
+    labels: [
+        {
+            name: <string>
+            color: <string>
+            createdAt: <datetime> | null
+            updatedAt: <datetime> | null
+            createdBy: {
+                id: <string>
+                name: <string>
+            } | null
+            updatedBy: {
+                id: <string>
+                name: <string>
+            } | null
+        }
+    ]
     isAcknowledged: <boolean>
     isDeleted: <boolean>
     deferredDetails: {
@@ -19,8 +37,8 @@
         deferredTill: <datetime> | null
         deferredBy: <string> | null
     }
-    dueAt: <datetime>
-    startedAt: <datetime> | null
+    dueDate: <datetime>
+    startDate: <datetime> | null
     createdAt: <datetime>
     updatedAt: <datetime> | null
     createdBy: <string>
@@ -32,7 +50,7 @@
 
 ```
 {
-    deferredAt: <datetime> | null
+    deferredDate: <datetime> | null
     deferredTill: <datetime> | null
     deferredBy: <string> | null
 }
@@ -54,8 +72,8 @@ Return all tasks with pagination support
   None
 - **Query**
 
-  - Optional: `page=[integer]` (Page number for pagination, defaults to 1)
-  - Optional: `limit=[integer]` (Number of items per page)
+  - Optional: `page=[integer]` (Page number for pagination, default: 1)
+  - Optional: `limit=[integer]` (Number of items per page, default: from Settings)
 
 - **Success Response:**
 
@@ -63,10 +81,12 @@ Return all tasks with pagination support
   - **Content:**
     ```json
     {
-      "tasks": [
+      "statusCode": 200,
+      "sucessMessage": "Tasks retrieved successfully",
+      "data": [
         {
           "id": "<string>",
-          "displayId": "<string>",
+          "taskId": "<string>",
           "title": "<string>",
           "description": "<string> | null",
           "priority": "LOW | MEDIUM | HIGH",
@@ -92,8 +112,8 @@ Return all tasks with pagination support
               } | null
             }
           ],
-          "startedAt": "<datetime> | null",
-          "dueAt": "<datetime> | null",
+          "startDate": "<datetime> | null",
+          "dueDate": "<datetime> | null",
           "createdAt": "<datetime>",
           "updatedAt": "<datetime> | null",
           "createdBy": {
@@ -109,24 +129,44 @@ Return all tasks with pagination support
       "links": {
         "next": "<string> | null",
         "prev": "<string> | null"
-      }
+      },
+      "count":"number"
     }
     ```
 
 - **Error Response:**
+
   - **Code:** 400
   - **Content:**
+
     ```json
     {
       "status": "validation_failed",
       "statusCode": 400,
-      "message": "Validation Error",
+      "errorMessage": "Validation Error",
       "errors": [
         {
-          "source": {
-            "parameter": "<string>"
-          },
-          "detail": "<string>"
+          "field": "<string>",
+          "message": "<string>"
+        }
+      <!-- Example {
+          "field": "page",
+        "message": "page must be greater than or equal to 1"
+      } -->
+      ]
+    }
+    ```
+
+  - **Code:** 500
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 500,
+      "errorMessage": "An unexpected error occurred",
+      "errors": [
+        {
+          "detail": "Internal server error"
         }
       ]
     }
@@ -148,7 +188,7 @@ Creates a new task
     "status": "TODO | IN_PROGRESS | DONE",
     "assignee": "<string> | null",
     "labels": ["<ObjectId>"],
-    "dueAt": "<datetime>"
+    "dueDate": "<datetime>"
   }
   ```
 
@@ -158,9 +198,11 @@ Creates a new task
   - **Content:**
     ```json
     {
-      "task": {
+      "statusCode": 201,
+      "sucessMessage": "Task created successfully",
+      "data": {
           "id": "<string>",
-          "displayId": "<string>",
+          "taskId": "<string>", // "TASK-1001"
           "title": "<string>",
           "description": "<string> | null",
           "priority": "LOW | MEDIUM | HIGH",
@@ -174,32 +216,26 @@ Creates a new task
             {
               "name": "<string>",
               "color": "<string>",
-              "createdAt": "<datetime> | null",
-              "updatedAt": "<datetime> | null",
+              "createdAt": "<datetime>",
+              "updatedAt": null,
               "createdBy": {
                 "id": "<string>",
                 "name": "<string>"
-              } | null,
-              "updatedBy": {
-                "id": "<string>",
-                "name": "<string>"
-              } | null
+              },
+              "updatedBy": null
             }
           ],
-          "startedAt": "<datetime> | null",
-          "dueAt": "<datetime> | null",
+          "startDate": null,
+          "dueDate": "<datetime> | null",
           "createdAt": "<datetime>",
-          "updatedAt": "<datetime> | null",
+          "updatedAt": null,
           "createdBy": {
             "id": "<string>",
             "name": "<string>"
           },
-          "updatedBy": {
-            "id": "<string>",
-            "name": "<string>"
-          } | null
+          "updatedBy": null
         }
-      },
+    }
     ```
 
 - **Error Response:**
@@ -209,14 +245,16 @@ Creates a new task
     {
       "status": "validation_failed"
       "statusCode": 400,
-      "message": "Validation Error",
+      "errorMessage": "Validation Error",
       "errors": [
         {
-          "source": {
-            "parameter": "<string>"
-          },
-          "detail": "<string>"
-        }
+          "field": "<string>",
+          "message": "<string>"
+        },
+        <!-- Example {
+          "field": "title",
+          "message": "This field is required"
+        } -->
       ]
     }
     ```
@@ -226,7 +264,7 @@ Creates a new task
     {
       "status": "internal_server_error"
       "statusCode": 500,
-      "message": "An unexpected error occurred",
+      "errorMessage": "An unexpected error occurred",
       "errors": [
         {
           "detail": "Internal server error"
