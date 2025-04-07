@@ -68,6 +68,13 @@
         "message": "Unauthenticated User."
       }
       ```
+   - **Code:** 403
+        - **Content:**
+          ```json
+          {
+            "message": "Unauthorized to write progress of task"
+          }
+          ```
   - **Code:** 404
     - **Content:**
       ```json
@@ -139,6 +146,14 @@
   ```json
   {
     "message": "Task with id 4ERr8WrizICemnQnMF0U1511 does not exist."
+  }
+  ```
+  when archived user creates progress
+  Status 403 Forbidden
+
+  ```json
+  {
+    "message": "Unauthorized to write progress of task"
   }
   ```
 
