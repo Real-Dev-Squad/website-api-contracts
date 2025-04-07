@@ -68,6 +68,13 @@
         "message": "Unauthenticated User."
       }
       ```
+   - **Code:** 403
+        - **Content:**
+          ```json
+          {
+            "message": "Unauthorized to write progress of task"
+          }
+          ```
   - **Code:** 404
     - **Content:**
       ```json
@@ -87,13 +94,6 @@
       ```json
       {
         "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
-      }
-      ```
-  - **Code:** 403
-    - **Content:**
-      ```json
-      {
-        "message": "Unauthorized to write progress of task"
       }
       ```
 
