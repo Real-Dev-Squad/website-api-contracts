@@ -7,7 +7,7 @@ The Requests API provides endpoints for creating, fetching, and updating request
 | [GET /requests](#get-requests)       | Returns a list of requests with pagination and filtering options. |
 | [POST /requests](#post-requests)     | Creates a new request.                                            |
 | [PUT /requests/:id](#put-requestsid) | Updates an existing request.                                      |
-| [PATCH /requests/:id](#patch-requestsid) | Updates an existing request before approval or rejection.                                      |
+| [PATCH /requests/:id](#patch-requestsid) | Updates an existing request before approval or rejection. Also acknowledges (approve or reject) existing request.                                     |
 
 ### **GET /requests**
 
@@ -368,9 +368,10 @@ Updates an existing request with the provided details.
 
 ### **PATCH /requests/:id**
 
-Updates an existing request before approval or rejection with the provided details.
+This endpoint serves dual purposes based on the request type:
+- Updates an existing request before approval or rejection with the provided details. Also acknowledges (approve or reject) existing request with the provided details.
 
-- **Description:** Updates an existing request before approval or rejection with the provided details..
+- **Description:** Updates an existing request before approval or rejection with the provided details. Also acknowledges (approve or reject) existing request with the provided details.
 
 - **URL:** `https://api.realdevsquad.com/requests/:id`
 
@@ -393,6 +394,41 @@ Updates an existing request before approval or rejection with the provided detai
 - **Request Body:**
 
 - Body Parameters:
+
+   - **Example of OOO Request:**
+    ```json
+    {
+      "type": "OOO",
+      "status": "string", // status must be APPROVED or REJECTED
+      "comment": "string" // optional
+    }
+    ```
+
+- **Success Response of OOO Request:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "message": "Request approved/rejected successfully"
+    }
+    ```
+
+- **Error Responses of OOO Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid request type" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already approved" }`
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Request already rejected" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Only super users are allowed to acknowledge OOO requests" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
    - **Example of Onboarding Extension Request:**
     ```json
