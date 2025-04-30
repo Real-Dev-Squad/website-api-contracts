@@ -40,7 +40,7 @@ number and email address.
 |                         Route                                  |               Description                       |
 | :------------------------------------------------------------: | :---------------------------------------------: |
 |                [GET /users](#get-users)                        |     Returns all users in the system             |
-|           [GET /users/self](#get-usersself)                    |   Returns the logged in user's details          |
+|           [GET /users/self](#get-usersself)                    |   Returns the logged-in user's details          |
 |  [GET /users/userId/:userId](#get-usersuseriduserid)           |      Returns user with given userId             |
 |       [GET /users/:username](#get-usersusername)               |     Returns user with given username            |
 |    [GET /users/:userId/badges](#get-usersidbadges)             |   Returns badges assigned to the user           |
@@ -50,7 +50,7 @@ number and email address.
 | [PATCH /users/:id/temporary/data](#patch-usersidtemporarydata) |            Updates user roles                   |
 |              [PATCH /users](#patch-users)                      |     Archive users if not in discord             |
 | [PUT /users/:userId/intro](#put-usersuseridintro)              | Create a User Intro in DB if not present        |
-|      [PATCH /users/:userId](#patch-usersuserid)                | Allows super users to approve profile diff      |
+|      [PATCH /users/:userId](#patch-usersuserid)                | Allows super users to approve profile diffs     |
 |      [PATCH /users/:userId](#patch-usersuserid)                |Allows authenticated users to update profile data|
 
 ## **GET /users**
