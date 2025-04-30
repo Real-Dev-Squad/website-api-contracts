@@ -37,18 +37,21 @@ number and email address.
 
 ## **Requests**
 
-|                         Route                          |               Description                |
-| :----------------------------------------------------: | :--------------------------------------: |
-|                [GET /users](#get-users)                |     Returns all users in the system      |
-|           [GET /users/self](#get-usersSelf)            |   Returns the logged in user's details   |
-|  [GET /users/userId/:userId](#get-usersuseriduserid)   |      Returns user with given userId      |
-|       [GET /users/:username](#get-usersusername)       |     Returns user with given username     |
-|    [GET /users/:userId/badges](#get-usersidbadges)     |   Returns badges assigned to the user    |
-|         [GET /users/search](#get-users-search)         | Returns users based on specified filters |
-|               [POST /users](#post-users)               |            Creates a new User            |
-|         [PATCH /users/self](#patch-usersself)          |         Updates data of the User         |
-| [PATCH /users/:id/temporary/data](#patch-usersidroles) |            Updates user roles            |
-|              [PATCH /users](#patch-users)              |     Archive users if not in discord      |
+|                         Route                                  |               Description                       |
+| :------------------------------------------------------------: | :---------------------------------------------: |
+|                [GET /users](#get-users)                        |     Returns all users in the system             |
+|           [GET /users/self](#get-usersself)                    |   Returns the logged in user's details          |
+|  [GET /users/userId/:userId](#get-usersuseriduserid)           |      Returns user with given userId             |
+|       [GET /users/:username](#get-usersusername)               |     Returns user with given username            |
+|    [GET /users/:userId/badges](#get-usersidbadges)             |   Returns badges assigned to the user           |
+|         [GET /users/search](#get-userssearch)                  | Returns users based on specified filters        |
+|               [POST /users](#post-users)                       |            Creates a new User                   |
+|         [PATCH /users/self](#patch-usersself-to-be-deprecated) |         Updates data of the User                |
+| [PATCH /users/:id/temporary/data](#patch-usersidtemporarydata) |            Updates user roles                   |
+|              [PATCH /users](#patch-users)                      |     Archive users if not in discord             |
+| [PUT /users/:userId/intro](#put-usersuseridintro)              | Create a User Intro in DB if not present        |
+|      [PATCH /users/:userId](#patch-usersuserid)                | Allows super users to approve profile diff      |
+|      [PATCH /users/:userId](#patch-usersuserid)                |Allows authenticated users to update profile data|
 
 ## **GET /users**
 
