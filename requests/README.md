@@ -368,11 +368,8 @@ Updates an existing request with the provided details.
 
 ### **PATCH /requests/:id**
 
-- **Description:** Partially updates an existing request based on its type:
-
-  - For requests of type ONBOARDING, this endpoint updates the request details prior to its approval or rejection.
-
-  - For requests of type OOO (Out-Of-Office), it processes the approval or rejection of the request using the provided data.
+- **Description:** 
+  - This endpoint updates the details of any type of exsisting request (OOO, ONBOARDING etc.).
 
 - **URL:** `https://api.realdevsquad.com/requests/:id`
 
