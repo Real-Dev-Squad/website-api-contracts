@@ -111,7 +111,7 @@ Content: {
 		}
 ```
 ```
-	Code: 404
+	Code: 404   (We return 404 when wrong task Request Id is requested.)
 	Content: {
 			   message:  "Task request not found",
 		}
