@@ -62,6 +62,7 @@
 | :---------------------------: | :------------------------------: |
 |  [GET /v1/tasks](#get-tasks)  | Return all tasks with pagination |
 | [POST /v1/tasks](#post-tasks) |         Creates new task         |
+| [DELETE /v1/tasks/{task_id}](#delete-task) | Deletes a specific task    |
 | [GET /v1/health](#get-health) |      Health check endpoint       |
 
 ## **GET /v1/tasks**
@@ -272,6 +273,71 @@ Creates a new task
       ]
     }
     ```
+
+## **DELETE /v1/tasks/{task_id}**
+
+Deletes a task with the given `task_id`.
+
+- **Params**
+  - `task_id`: The unique identifier of the task (as a path parameter)
+
+- **Success Response:**
+  - **Code:** 204
+  - **Content:** None
+
+- **Error Responses:**
+
+  - **Code:** 400
+      - **Reason:** Invalid `task_id` format
+      - **Content:**
+        ```json
+        {
+          "statusCode": 400,
+          "message": "Please enter a valid Task ID format.",
+          "errors": [
+            {
+              "source": {
+                "path": "task_id"
+              },
+              "title": "Validation Error",
+              "detail": "Please enter a valid Task ID format."
+            },
+          ]
+        }
+        ```
+
+  - **Code:** 404  
+    - **Reason:** Task with the given `task_id` was not found  
+    - **Content:**
+      ```json
+      {
+        "statusCode": 404,
+        "message": "Task with ID <task_id> not found.",
+        "errors": [
+          {
+            "source" : {
+              "parameter": "task_id"
+            },
+            "title": "Resource Not Found",
+            "detail": "Task with ID <task_id> not found."
+          }
+        ]
+      }
+      ```
+
+  - **Code:** 500  
+    - **Reason:** Internal server error  
+    - **Content:**
+      ```json
+      {
+        "statusCode": 500,
+        "message": "An unexpected error occurred",
+        "errors": [
+          {
+            "detail": "Internal server error"
+          }
+        ]
+      }
 
 ## **GET /v1/health**
 
