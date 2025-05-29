@@ -383,14 +383,14 @@ Retrieves a single task by its ID.
     ```json
     {
       "statusCode": 404,
-      "message": "Task with ID 6835c057e6cd2770313a9361 not found.",
+      "message": "Task with ID <taskId> not found.",
       "errors": [
         {
           "source": {
             "path": "task_id"
           },
           "title": "Resource Not Found",
-          "detail": "Task with ID 6835c057e6cd2770313a9361 not found."
+          "detail": "Task with ID <taskId> not found."
         }
       ]
     }
