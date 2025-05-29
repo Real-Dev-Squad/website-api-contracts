@@ -363,13 +363,15 @@ Retrieves a single task by its ID.
 
     ```json
     {
-      "status": "validation_failed",
       "statusCode": 400,
-      "errorMessage": "Validation Error",
+      "message": "Please enter a valid Task ID format.",
       "errors": [
         {
-          "field": "taskId",
-          "message": "Task ID has an invalid format. Must be a 24-character hex string."
+          "source": {
+            "path": "task_id"
+          },
+          "title": "Validation Error",
+          "detail": "Please enter a valid Task ID format."
         }
       ]
     }
@@ -380,12 +382,15 @@ Retrieves a single task by its ID.
 
     ```json
     {
-      "status": "not_found",
       "statusCode": 404,
-      "errorMessage": "Task not found.",
+      "message": "Task with ID 6835c057e6cd2770313a9361 not found.",
       "errors": [
         {
-          "detail": "Task with ID '{taskId}' not found."
+          "source": {
+            "path": "task_id"
+          },
+          "title": "Resource Not Found",
+          "detail": "Task with ID 6835c057e6cd2770313a9361 not found."
         }
       ]
     }
