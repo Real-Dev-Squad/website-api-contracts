@@ -58,11 +58,12 @@
 
 ## **Requests**
 
-|             Route             |           Description            |
-| :---------------------------: | :------------------------------: |
-|  [GET /v1/tasks](#get-tasks)  | Return all tasks with pagination |
-| [POST /v1/tasks](#post-tasks) |         Creates new task         |
-| [GET /v1/health](#get-health) |      Health check endpoint       |
+|                    Route                     |            Description            |
+| :------------------------------------------: | :-------------------------------: |
+|        [GET /v1/tasks](#get-v1tasks)         | Return all tasks with pagination  |
+|       [POST /v1/tasks](#post-v1tasks)        |         Creates new task          |
+|       [GET /v1/health](#get-v1health)        |       Health check endpoint       |
+| [GET /v1/tasks/{taskId}](#get-v1taskstaskid) | Retrieves a single task by its ID |
 
 ## **GET /v1/tasks**
 
@@ -298,6 +299,115 @@ Health check endpoint
     ```json
     {
       "status": "unhealthy"
+    }
+    ```
+
+## **GET /v1/tasks/{taskId}**
+
+Retrieves a single task by its ID.
+
+- **Params**
+  - `taskId=[string]` (Path parameter: The MongoDB ObjectId of the task to retrieve)
+- **Query**
+  None
+
+- **Success Response:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "statusCode": 200,
+      "data": {
+        "id": "<ObjectId (string)>",
+        "displayId": "<string>",
+        "title": "<string>",
+        "description": "<string> | null",
+        "priority": "LOW | MEDIUM | HIGH",
+        "status": "TODO | IN_PROGRESS | DONE | DEFERRED",
+        "assignee": {
+          "id": "<string>",
+          "name": "<string>"
+        } | null,
+        "isAcknowledged": "<boolean>",
+        "labels": [
+          {
+            "name": "<string>",
+            "color": "<string>",
+            "createdAt": "<datetime> | null",
+            "updatedAt": "<datetime> | null",
+            "createdBy": { "id": "<string>", "name": "<string>" } | null,
+            "updatedBy": { "id": "<string>", "name": "<string>" } | null
+          }
+        ],
+        "startedAt": "<datetime> | null",
+        "dueAt": "<datetime> | null",
+        "createdAt": "<datetime>",
+        "updatedAt": "<datetime> | null",
+        "createdBy": {
+          "id": "<string>",
+          "name": "<string>"
+        },
+        "updatedBy": {
+          "id": "<string>",
+          "name": "<string>"
+        } | null
+      }
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 400 (Invalid Task ID Format)
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Please enter a valid Task ID format.",
+      "errors": [
+        {
+          "source": {
+            "path": "task_id"
+          },
+          "title": "Validation Error",
+          "detail": "Please enter a valid Task ID format."
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 404 (Task Not Found)
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 404,
+      "message": "Task with ID <taskId> not found.",
+      "errors": [
+        {
+          "source": {
+            "path": "task_id"
+          },
+          "title": "Resource Not Found",
+          "detail": "Task with ID <taskId> not found."
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 500 (Internal Server Error)
+  - **Content:**
+    ```json
+    {
+      "status": "internal_server_error",
+      "statusCode": 500,
+      "errorMessage": "An unexpected error occurred",
+      "errors": [
+        {
+          "detail": "Internal server error"
+        }
+      ]
     }
     ```
 
