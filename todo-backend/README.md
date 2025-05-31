@@ -58,12 +58,13 @@
 
 ## **Requests**
 
-|                    Route                     |            Description            |
-| :------------------------------------------: | :-------------------------------: |
-|        [GET /v1/tasks](#get-v1tasks)         | Return all tasks with pagination  |
-|       [POST /v1/tasks](#post-v1tasks)        |         Creates new task          |
-|       [GET /v1/health](#get-v1health)        |       Health check endpoint       |
-| [GET /v1/tasks/{taskId}](#get-v1taskstaskid) | Retrieves a single task by its ID |
+|                      Route                       |            Description             |
+| :----------------------------------------------: | :--------------------------------: |
+|          [GET /v1/tasks](#get-v1tasks)           |  Return all tasks with pagination  |
+|         [POST /v1/tasks](#post-v1tasks)          |          Creates new task          |
+| [PATCH /v1/tasks/{taskId}](#patch-v1taskstaskid) | Partially updates an existing task |
+|         [GET /v1/health](#get-v1health)          |       Health check endpoint        |
+|   [GET /v1/tasks/{taskId}](#get-v1taskstaskid)   | Retrieves a single task by its ID  |
 
 ## **GET /v1/tasks**
 
@@ -240,8 +241,10 @@ Creates a new task
     ```
 
 - **Error Response:**
+
   - **Code:** 400
   - **Content:**
+
     ```json
     {
       "status": "validation_failed"
@@ -251,19 +254,190 @@ Creates a new task
         {
           "field": "<string>",
           "message": "<string>"
-        },
-        <!-- Example {
-          "field": "title",
-          "message": "This field is required"
-        } -->
+        }
       ]
     }
     ```
+
+    <!-- Example {
+          "field": "title",
+          "message": "This field is required"
+        } -->
+
   - **Code:** 500
   - **Content:**
     ```json
     {
-      "status": "internal_server_error"
+      "status": "internal_server_error",
+      "statusCode": 500,
+      "errorMessage": "An unexpected error occurred",
+      "errors": [
+        {
+          "detail": "Internal server error"
+        }
+      ]
+    }
+    ```
+
+## **PATCH /v1/tasks/{taskId}**
+
+Partially updates an existing task by its ID. The `{taskId}` in the path refers to the MongoDB ObjectId of the task.
+
+- **Params**
+  - `taskId=[string]` (Path parameter: The MongoDB ObjectId of the task to update)
+- **Body**
+  _(Provide any subset of the fields below to update. Fields not provided will remain unchanged.)_
+
+  ```json
+  {
+    "title": "<string>",
+    "description": "<string> | null",
+    "priority": "LOW | MEDIUM | HIGH",
+    "status": "TODO | IN_PROGRESS | DONE | DEFERRED",
+    "assignee": "<string (User ID)> | null",
+    "labels": ["<ObjectId (Label ID)>"],
+    "isAcknowledged": "<boolean>",
+    "deferredDetails": {
+        "deferredAt": "<datetime> | null",
+        "deferredTill": "<datetime> | null"
+    } | null,
+    "dueAt": "<datetime> | null",
+    "startedAt": "<datetime> | null"
+  }
+  ```
+
+- **Success Response:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "id": "672f7c5b775ee9f4471ff1dd",
+      "displayId": "#2",
+      "title": "Refactor Optimize the TaskDetails Component",
+      "description": "Refactor Optimize the TaskDetails Component and break it into multiple sub-component",
+      "priority": "MEDIUM",
+      "status": "IN_PROGRESS",
+      "assignee": {
+        "id": "qMbT6M2GB65W7UHgJS4g",
+        "name": "SYSTEM"
+      },
+      "isAcknowledged": false,
+      "labels": [
+        {
+          "name": "Label 1",
+          "color": "#fa1e4e",
+          "createdAt": "2024-11-08T10:14:35",
+          "updatedAt": "2025-05-30T14:00:45.458000",
+          "createdBy": {
+            "id": "qMbT6M2GB65W7UHgJS4g",
+            "name": "SYSTEM"
+          },
+          "updatedBy": null
+        },
+        {
+          "name": "Label 2",
+          "color": "#ea1e4e",
+          "createdAt": "2024-11-08T10:14:35",
+          "updatedAt": "2025-05-30T14:00:45.466000",
+          "createdBy": {
+            "id": "qMbT6M2GB65W7UHgJS4g",
+            "name": "SYSTEM"
+          },
+          "updatedBy": null
+        }
+      ],
+      "dueAt": "2025-12-08T10:14:35",
+      "createdAt": "2024-11-08T10:14:35",
+      "updatedAt": "2025-05-31T19:14:55.080000",
+      "createdBy": {
+        "id": "qMbT6M2GB65W7UHgJS4g",
+        "name": "SYSTEM"
+      },
+      "updatedBy": {
+        "id": "system_patch_user",
+        "name": "SYSTEM"
+      },
+      "startedAt": null
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 400 (Invalid Task ID Format)
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 400,
+      "message": "Please enter a valid Task ID format.",
+      "errors": [
+        {
+          "source": {
+            "path": "task_id"
+          },
+          "title": "Validation Error",
+          "detail": "Please enter a valid Task ID format."
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 400 (Validation Error in Request Body)
+  - **Content:**
+
+    ```json
+    {
+      "status": "validation_failed",
+      "statusCode": 400,
+      "errorMessage": "Validation Error",
+      "errors": [
+        {
+          "field": "<field_name>",
+          "message": "<error_message>"
+        }
+      ]
+    }
+    ```
+
+    <!-- Example:
+    {
+      "status": "validation_failed",
+      "statusCode": 400,
+      "errorMessage": "Validation Error",
+      "errors": [
+        {
+          "field": "priority",
+          "message": "Priority must be one of LOW, MEDIUM, HIGH."
+        }
+      ]
+    }
+    -->
+
+  - **Code:** 404 (Task Not Found)
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 404,
+      "message": "Task with ID 672f7c5b775ee9f4471ff1dc not found.",
+      "errors": [
+        {
+          "source": {
+            "path": "task_id"
+          },
+          "title": "Resource Not Found",
+          "detail": "Task with ID 672f7c5b775ee9f4471ff1dc not found."
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 500 (Internal Server Error)
+  - **Content:**
+    ```json
+    {
+      "status": "internal_server_error",
       "statusCode": 500,
       "errorMessage": "An unexpected error occurred",
       "errors": [
