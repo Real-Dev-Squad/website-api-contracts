@@ -275,7 +275,7 @@ Creates a new task
     }
     ```
 
-## **DELETE /v1/tasks/{task_id}**
+## **DELETE /v1/tasks/{taskId}**
 
 Deletes a task with the given `task_id`.
 
@@ -321,7 +321,7 @@ Deletes a task with the given `task_id`.
         "errors": [
           {
             "source": {
-              "parameter": "task_id"
+              "path": "task_id"
             },
             "title": "Resource Not Found",
             "detail": "Task with ID <task_id> not found."
