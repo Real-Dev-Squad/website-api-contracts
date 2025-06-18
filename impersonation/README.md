@@ -8,11 +8,11 @@ The Impersonation API provides endpoints for creating, fetching, and updating im
 
 ## **POST /impersonation/requests**
 
-Creates a new request.
+Creates a new impersonation request.
 
 - **Description:** Allows a super-user to create a new impersonation request with the provided details.
 
-- **URL:** `https://api.realdevsquad.com/impersonation/requests?dev=true`
+- **URL:** `https://api.realdevsquad.com/impersonation/requests`
 
 - **Query Parameters:**
 
@@ -30,19 +30,19 @@ Creates a new request.
 
 - **Request Body:**
 
-- Body Parameters:
+  - Body Parameters:
 
-  - `impersonatedUserId`: **Required.** String. The userId of the user to be impersonated.
-  - `reason`: **Required.** String. The reason for requesting impersonation.
+    - `impersonatedUserId`: Required string to specify userId of the user to be impersonated.
+    - `reason`: Required string to specify reason for requesting impersonation.
 
-  - Example Request Body:
+    - Example Request Body:
 
-    ```json
-    {
-      "impersonatedUserId": "<id of user to impersonate>",
-      "reason": "<reason for impersonation>"
-    }
-    ```
+      ```json
+      {
+        "impersonatedUserId": "<id of user to impersonate>",
+        "reason": "<reason for impersonation>"
+      }
+      ```
 
 - **Success Response of Impersonation Request:**
 
@@ -74,6 +74,8 @@ Creates a new request.
     { "statusCode": 403, "error": "Forbidden", "message": "Request already exists, please wait for approval or rejection." }
     ```
 
+  - **Code:** 403
+  
     ```json
     { "statusCode": 403, "error": "Forbidden", "message": "Please complete impersonation before creating a new request." }
     ```
