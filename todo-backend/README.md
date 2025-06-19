@@ -58,14 +58,15 @@
 
 ## **Requests**
 
-|                         Route                          |            Description             |
-| :----------------------------------------------------: | :--------------------------------: |
-|             [GET /v1/tasks](#get-v1tasks)              |  Return all tasks with pagination  |
-|            [POST /v1/tasks](#post-v1tasks)             |          Creates new task          |
-|    [PATCH /v1/tasks/{taskId}](#patch-v1taskstaskid) | Partially updates an existing task |
-|         [GET /v1/health](#get-v1health)             |       Health check endpoint        |
-|      [GET /v1/tasks/{taskId}](#get-v1taskstaskid)      | Retrieves a single task by its ID  |
-| [DELETE /v1/tasks/{taskId}](#delete-v1taskstaskid) |      Deletes a specific task      |
+|                                  Route                                   |            Description             |
+| :----------------------------------------------------------------------: | :--------------------------------: |
+|                      [GET /v1/tasks](#get-v1tasks)                       |  Return all tasks with pagination  |
+|                     [POST /v1/tasks](#post-v1tasks)                      |          Creates new task          |
+|             [PATCH /v1/tasks/{taskId}](#patch-v1taskstaskid)             | Partially updates an existing task |
+| [PATCH /v1/tasks/{taskId}?action=defer](#patch-v1taskstaskidactiondefer) |   Defers a task to a future date   |
+|                     [GET /v1/health](#get-v1health)                      |       Health check endpoint        |
+|               [GET /v1/tasks/{taskId}](#get-v1taskstaskid)               | Retrieves a single task by its ID  |
+|            [DELETE /v1/tasks/{taskId}](#delete-v1taskstaskid)            |      Deletes a specific task       |
 
 ## **GET /v1/tasks**
 
@@ -313,53 +314,53 @@ Partially updates an existing task by its ID. The `{taskId}` in the path refers 
   - **Content:**
     ```json
     {
-      "id": "672f7c5b775ee9f4471ff1dd",
-      "displayId": "#2",
-      "title": "Refactor Optimize the TaskDetails Component",
-      "description": "Refactor Optimize the TaskDetails Component and break it into multiple sub-component",
-      "priority": "MEDIUM",
-      "status": "IN_PROGRESS",
+      "id": "<string>",
+      "displayId": "<string>",
+      "title": "<string>",
+      "description": "<string>",
+      "priority": "LOW | MEDIUM | HIGH",
+      "status": "TODO | IN_PROGRESS | DONE ",
       "assignee": {
-        "id": "qMbT6M2GB65W7UHgJS4g",
-        "name": "SYSTEM"
+        "id": "<string>",
+        "name": "<string>"
       },
-      "isAcknowledged": false,
+      "isAcknowledged": "<boolean>",
       "labels": [
         {
-          "name": "Label 1",
-          "color": "#fa1e4e",
-          "createdAt": "2024-11-08T10:14:35",
-          "updatedAt": "2025-05-30T14:00:45.458000",
+          "name": "<string>",
+          "color": "<string>",
+          "createdAt": "<datetime>",
+          "updatedAt": "<datetime>| null",
           "createdBy": {
-            "id": "qMbT6M2GB65W7UHgJS4g",
-            "name": "SYSTEM"
+            "id": "<string>",
+            "name": "<string>"
           },
-          "updatedBy": null
+          "updatedBy": "<datetime>| null"
         },
         {
-          "name": "Label 2",
-          "color": "#ea1e4e",
-          "createdAt": "2024-11-08T10:14:35",
-          "updatedAt": "2025-05-30T14:00:45.466000",
+          "name": "<string>",
+          "color": "<string>",
+          "createdAt": "<datetime>",
+          "updatedAt": "<datetime>| null",
           "createdBy": {
-            "id": "qMbT6M2GB65W7UHgJS4g",
-            "name": "SYSTEM"
+            "id": "<string>",
+            "name": "<string>"
           },
-          "updatedBy": null
+          "updatedBy": "<datetime>| null"
         }
       ],
-      "dueAt": "2025-12-08T10:14:35",
-      "createdAt": "2024-11-08T10:14:35",
-      "updatedAt": "2025-05-31T19:14:55.080000",
+      "dueAt": "<datetime>| null",
+      "createdAt": "<datetime>",
+      "updatedAt": "<datetime>",
       "createdBy": {
-        "id": "qMbT6M2GB65W7UHgJS4g",
-        "name": "SYSTEM"
+        "id": "<string>",
+        "name": "<string>"
       },
       "updatedBy": {
-        "id": "system_patch_user",
-        "name": "SYSTEM"
+        "id": "<string>",
+        "name": "<string>"
       },
-      "startedAt": null
+      "startedAt": "<datetime>| null"
     }
     ```
 
@@ -401,19 +402,129 @@ Partially updates an existing task by its ID. The `{taskId}` in the path refers 
     }
     ```
 
-    <!-- Example:
+  - **Code:** 404 (Task Not Found)
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 404,
+      "message": "Task with ID taskId not found.",
+      "errors": [
+        {
+          "source": {
+            "path": "task_id"
+          },
+          "title": "Resource Not Found",
+          "detail": "Task with ID taskId not found."
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 500 (Internal Server Error)
+  - **Content:**
+    ```json
+    {
+      "status": "internal_server_error",
+      "statusCode": 500,
+      "errorMessage": "An unexpected error occurred",
+      "errors": [
+        {
+          "detail": "Internal server error"
+        }
+      ]
+    }
+    ```
+
+## **PATCH /v1/tasks/{taskId}?action=defer**
+
+Defers a task to a future date. This is an action performed on the Task resource.
+
+- **Params**
+  - `taskId=[string]` (Path parameter: The MongoDB ObjectId of the task to defer)
+- **Query**
+
+  - `action=defer` (Required action parameter)
+
+- **Body**
+
+  ```json
+  {
+    "deferredTill": "<datetime>"
+  }
+  ```
+
+- **Success Response:**
+
+  - **Code:** 200
+  - **Content:** The full updated task object with status as `DEFERRED` and `deferredDetails` populated.
+    ```json
+    {
+      "id": "<string>",
+      "displayId": "<string>",
+      "title": "<string>",
+      "description": "<string> | null",
+      "priority": "LOW | MEDIUM | HIGH",
+      "status": "TODO | IN_PROGRESS | DONE",
+      "assignee": {
+        "id": "<string>",
+        "name": "<string>"
+      },
+      "isAcknowledged": "<boolean>",
+      "labels": [
+        {
+          "name": "<string>",
+          "color": "<string>",
+          "createdAt": "<datetime>",
+          "updatedAt": "<datetime>| null",
+          "createdBy": {
+            "id": "<string>",
+            "name": "<string>"
+          },
+          "updatedBy": "<datetime>| null"
+        }
+      ],
+      "deferredDetails": {
+        "deferredAt": "<datetime>",
+        "deferredTill": "<datetime>",
+        "deferredBy": {
+          "id": "<string>",
+          "name": "<string>"
+        }
+      },
+      "dueAt": "<datetime>",
+      "createdAt": "<datetime>",
+      "updatedAt": "<datetime>",
+      "createdBy": {
+        "id": "<string>",
+        "name": "<string>"
+      },
+      "updatedBy": {
+        "id": "<string>",
+        "name": "<string>"
+      },
+      "startedAt": "<datetime> | null"
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 400 (Validation Error in Request Body)
+  - **Content:**
+
+    ```json
     {
       "status": "validation_failed",
       "statusCode": 400,
       "errorMessage": "Validation Error",
       "errors": [
         {
-          "field": "priority",
-          "message": "Priority must be one of LOW, MEDIUM, HIGH."
+          "field": "deferredTill",
+          "message": "Datetime has wrong format. Use one of these formats instead: YYYY-MM-DDThh:mm[:ss[.uuuuuu]][+HH:MM|-HH:MM|Z]."
         }
       ]
     }
-    -->
+    ```
 
   - **Code:** 404 (Task Not Found)
   - **Content:**
@@ -421,14 +532,52 @@ Partially updates an existing task by its ID. The `{taskId}` in the path refers 
     ```json
     {
       "statusCode": 404,
-      "message": "Task with ID 672f7c5b775ee9f4471ff1dc not found.",
+      "message": "Task with ID taskId not found.",
       "errors": [
         {
           "source": {
             "path": "task_id"
           },
           "title": "Resource Not Found",
-          "detail": "Task with ID 672f7c5b775ee9f4471ff1dc not found."
+          "detail": "Task with ID taskId not found."
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 409 (State Conflict)
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 409,
+      "message": "Cannot defer a task that is already done.",
+      "errors": [
+        {
+          "source": {
+            "path": "task_id"
+          },
+          "title": "State Conflict",
+          "detail": "Cannot defer a task that is already done."
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 422 (Unprocessable Entity)
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 422,
+      "message": "Cannot defer a task less than 7 days before the due date.",
+      "errors": [
+        {
+          "source": {
+            "parameter": "deferredTill"
+          },
+          "title": "Validation Error",
+          "detail": "Cannot defer a task less than 7 days before the due date."
         }
       ]
     }
@@ -665,3 +814,4 @@ Retrieves a single task by its ID.
 |     400     | Bad Request (Validation Error) |
 |     404     |           Not Found            |
 |     500     |     Internal Server Error      |
+|     422     |      Unprocessable Entity      |
