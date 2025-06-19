@@ -58,13 +58,14 @@
 
 ## **Requests**
 
-|                      Route                       |            Description             |
-| :----------------------------------------------: | :--------------------------------: |
-|          [GET /v1/tasks](#get-v1tasks)           |  Return all tasks with pagination  |
-|         [POST /v1/tasks](#post-v1tasks)          |          Creates new task          |
-| [PATCH /v1/tasks/{taskId}](#patch-v1taskstaskid) | Partially updates an existing task |
-|         [GET /v1/health](#get-v1health)          |       Health check endpoint        |
-|   [GET /v1/tasks/{taskId}](#get-v1taskstaskid)   | Retrieves a single task by its ID  |
+|                         Route                          |            Description             |
+| :----------------------------------------------------: | :--------------------------------: |
+|             [GET /v1/tasks](#get-v1tasks)              |  Return all tasks with pagination  |
+|            [POST /v1/tasks](#post-v1tasks)             |          Creates new task          |
+|    [PATCH /v1/tasks/{taskId}](#patch-v1taskstaskid) | Partially updates an existing task |
+|         [GET /v1/health](#get-v1health)             |       Health check endpoint        |
+|      [GET /v1/tasks/{taskId}](#get-v1taskstaskid)      | Retrieves a single task by its ID  |
+| [DELETE /v1/tasks/{taskId}](#delete-v1taskstaskid) |      Deletes a specific task      |
 
 ## **GET /v1/tasks**
 
@@ -447,6 +448,76 @@ Partially updates an existing task by its ID. The `{taskId}` in the path refers 
       ]
     }
     ```
+
+## **DELETE /v1/tasks/{taskId}**
+
+Deletes a task with the given `task_id`.
+
+- **Params**
+
+  - `task_id`: The unique identifier of the task (as a path parameter)
+
+- **Success Response:**
+
+  - **Code:** 204
+  - **Content:** None
+
+- **Error Responses:**
+
+  - **Code:** 400
+
+    - **Reason:** Invalid `task_id` format
+    - **Content:**
+      ```json
+      {
+        "statusCode": 400,
+        "message": "Please enter a valid Task ID format.",
+        "errors": [
+          {
+            "source": {
+              "path": "task_id"
+            },
+            "title": "Validation Error",
+            "detail": "Please enter a valid Task ID format."
+          }
+        ]
+      }
+      ```
+
+  - **Code:** 404
+
+    - **Reason:** Task with the given `task_id` was not found
+    - **Content:**
+      ```json
+      {
+        "statusCode": 404,
+        "message": "Task with ID <task_id> not found.",
+        "errors": [
+          {
+            "source": {
+              "path": "task_id"
+            },
+            "title": "Resource Not Found",
+            "detail": "Task with ID <task_id> not found."
+          }
+        ]
+      }
+      ```
+
+  - **Code:** 500
+    - **Reason:** Internal server error
+    - **Content:**
+      ```json
+      {
+        "statusCode": 500,
+        "message": "An unexpected error occurred",
+        "errors": [
+          {
+            "detail": "Internal server error"
+          }
+        ]
+      }
+      ```
 
 ## **GET /v1/health**
 
