@@ -487,7 +487,10 @@ Defers a task to a future date. This is an action performed on the Task resource
             "id": "<string>",
             "name": "<string>"
           },
-          "updatedBy": "<datetime>| null"
+          "updatedBy": {
+            "id": "<string>",
+            "name": "<string>"
+          }
         }
       ],
       "deferredDetails": {
