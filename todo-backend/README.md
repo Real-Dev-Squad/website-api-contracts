@@ -335,7 +335,7 @@ Partially updates an existing task by its ID. The `{taskId}` in the path refers 
             "id": "<string>",
             "name": "<string>"
           },
-          "updatedBy": "<datetime>| null"
+          "updatedBy": "<string>"
         },
         {
           "name": "<string>",
