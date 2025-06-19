@@ -335,7 +335,10 @@ Partially updates an existing task by its ID. The `{taskId}` in the path refers 
             "id": "<string>",
             "name": "<string>"
           },
-          "updatedBy": "<string>"
+          "updatedBy": {
+            "id": "<string>",
+            "name": "<string>"
+          }
         },
         {
           "name": "<string>",
@@ -346,7 +349,10 @@ Partially updates an existing task by its ID. The `{taskId}` in the path refers 
             "id": "<string>",
             "name": "<string>"
           },
-          "updatedBy": "<datetime>| null"
+          "updatedBy": {
+            "id": "<string>",
+            "name": "<string>"
+          }
         }
       ],
       "dueAt": "<datetime>| null",
