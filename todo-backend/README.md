@@ -578,15 +578,16 @@ Defers a task to a future date. This is an action performed on the Task resource
 
     ```json
     {
+      "status": "Unprocessable Entity",
       "statusCode": 422,
-      "message": "Cannot defer a task less than 7 days before the due date.",
+      "message": "Cannot defer a task less than 20 days before the due date.",
       "errors": [
         {
           "source": {
             "parameter": "deferredTill"
           },
           "title": "Validation Error",
-          "detail": "Cannot defer a task less than 7 days before the due date."
+          "detail": "Cannot defer a task less than 20 days before the due date."
         }
       ]
     }
