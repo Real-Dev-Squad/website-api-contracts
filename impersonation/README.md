@@ -71,13 +71,7 @@ Creates a new impersonation request.
   - **Code:** 403
 
     ```json
-    { "statusCode": 403, "error": "Forbidden", "message": "Request already exists, please wait for approval or rejection." }
-    ```
-
-  - **Code:** 403
-  
-    ```json
-    { "statusCode": 403, "error": "Forbidden", "message": "Please complete impersonation before creating a new request." }
+    { "statusCode": 403, "error": "Forbidden", "message": "You are not allowed for this Operation at the moment" }
     ```
 
   - **Code:** 500
