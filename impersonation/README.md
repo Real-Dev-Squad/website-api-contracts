@@ -101,3 +101,74 @@ Creates a new impersonation request.
 
 - The request body must contain the necessary details for creating a new request, which are the ID of the user to be impersonated and the reason for impersonation.
 - The status is set to "PENDING" by default.
+
+
+## **PATCH /impersonation/requests/:id**
+
+- **Description:** 
+  - This endpoint updates the status of an impersonation request.
+
+- **URL:** `https://api.realdevsquad.com/impersonation/requests/:id`
+
+- **Method:** PATCH
+
+- **Path Parameters:**
+
+  - `id`: The unique identifier of the request to be updated.
+
+- **Query Parameters:**
+
+  - `dev`: Required boolean feature flag to update request status.
+
+- **Headers:**
+  - Content-Type: application/json
+- **Cookie:**
+
+  - rds-session: `<JWT>`
+
+- **Request Body:**
+
+- Body Parameters:
+
+   - **Example of impersonation Request:**
+    ```json
+    {
+      "status": "string", // status must be APPROVED or REJECTED
+      "message": "string" // optional
+    }
+    ```
+
+- **Success Response of OOO Request:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "message": "Request approved/rejected successfully",
+      "data": {
+        "id": "string",
+        "lastModifiedBy": "string",
+        "message": "string",
+        "status": "string",
+      }
+    }
+    ```
+
+- **Error Responses of OOO Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid request type" }`
+  - **Code:** 403
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Request already approved" }`
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Request already rejected" }`
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Unauthorized to update the request" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
+#### Authentication and Authorization:
+
+- Authentication is required for accessing this endpoint.
+
