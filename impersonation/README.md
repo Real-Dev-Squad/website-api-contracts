@@ -5,7 +5,7 @@ The Impersonation API provides endpoints for creating, fetching, and updating im
 |                         Route                                  |               Description                 |
 | :------------------------------------------------------------: | :---------------------------------------: |
 | [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request     |
-| [GET /impersonation/requests](#get-impersonationrequests)      |   Returns a list of impersonation requests with pagination and filtering options.    |
+| [GET /impersonation/requests](#get-impersonationrequests)      |    Returns a list of impersonation requests with pagination and filtering options.    |
 
 ## **POST /impersonation/requests**
 
@@ -17,7 +17,7 @@ Creates a new impersonation request.
 
 - **Query Parameters:**
 
-  - `dev`: Required Boolean flag to enable developer mode. If not provided, developer mode is disabled by default and the request will be processed in production mode.
+  - `dev`: Required Boolean flag to create impersonation requests.
 
 - **Method:** POST
 
@@ -101,10 +101,10 @@ Creates a new impersonation request.
 #### Additional Notes
 
 - The request body must contain the necessary details for creating a new request, which are the ID of the user to be impersonated and the reason for impersonation.
-- The status is set to "PENDING" by default.# Impersonation API Contract
+- The status is set to "PENDING" by default.
 
 
-### **GET /impersonation/requests**
+## **GET /impersonation/requests**
 
 Returns a list of impersonation requests with pagination and filtering options.
 
@@ -123,8 +123,8 @@ Returns a list of impersonation requests with pagination and filtering options.
   - `createdBy`: Optional string to filter requests by username of super-user who created the request.
   - `createdFor`: Optional string to filter requests by username of user for whom the request is created.
   - `status`: Optional string to filter requests by status (e.g., APPROVED, REJECTED, PENDING).
-  - `prev`: Optional string to filter requests by the next cursor, used in cursor based pagination.
-  - `next`: Optional string to filter requests by the prev curosr, used in cursor based pagination.
+  - `prev`: Optional string to filter requests by the prev cursor, used in cursor based pagination.
+  - `next`: Optional string to filter requests by the next cursor, used in cursor based pagination.
 
 - **Headers:**
 
@@ -138,42 +138,42 @@ Returns a list of impersonation requests with pagination and filtering options.
 
   - **Code:** 200
   - **Content:**
+  
     ```json
     {
       "message": "Request fetched successfully",
       "data": [
         {
-        "id": "string",
-        "createdAt": "Timestamp",
-        "updatedAt": "Timestamp",
-        "status": "string",
-        "userId": "string",
-        "impersonatedUserId": "string",
-        "isImpersonationFinished": "boolean",
-        "createdBy": "string",
-        "createdFor": "string",
-        "startedAt": "Timestamp",
-        "endedAt": "Timestamp",
-        "reason": "string"
-       },
-       {
-        "id": "string",
-        "createdAt": "Timestamp",
-        "updatedAt": "Timestamp",
-        "status": "string",
-        "userId": "string",
-        "impersonatedUserId": "string",
-        "isImpersonationFinished": "boolean",
-        "createdBy": "string",
-        "createdFor": "string",
-        "startedAt": "Timestamp",
-        "endedAt": "Timestamp",
-        "reason": "string"
-      }
+          "id": "string",
+          "createdAt": "Timestamp",
+          "updatedAt": "Timestamp",
+          "status": "string",
+          "userId": "string",
+          "impersonatedUserId": "string",
+          "isImpersonationFinished": "boolean",
+          "createdBy": "string",
+          "createdFor": "string",
+          "startedAt": "Timestamp",
+          "endedAt": "Timestamp",
+          "reason": "string"
+        },
+        {
+          "id": "string",
+          "createdAt": "Timestamp",
+          "updatedAt": "Timestamp",
+          "status": "string",
+          "userId": "string",
+          "impersonatedUserId": "string",
+          "isImpersonationFinished": "boolean",
+          "createdBy": "string",
+          "createdFor": "string",
+          "startedAt": "Timestamp",
+          "endedAt": "Timestamp",
+          "reason": "string"
+        }
       ],
       "next": "string",
       "prev": "string",
-      "nextPage": "string",
       "count": "number"
     }
     ```
@@ -183,21 +183,21 @@ Returns a list of impersonation requests with pagination and filtering options.
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
-- **Not Found Response:**
+- **No Content Response:**
 
   - **Code:** 204
     - **Content:** No content
 
 
-#### Authentication and Authorization:
+#### Authentication and Authorization
 
 - Authentication is required for accessing this endpoint.
 
-#### Additional Notes:
+#### Additional Notes
 
-- The provided response includes details of each request, such as ID, timestamps, username, userId, reson, status, etc.
+- The provided response includes details of each request, such as ID, timestamps, username, userId, reason, status, etc.
 - Pagination functionality is implemented using `next` and `prev` parameters in the response.
-- Filtering options are available using parameters like `createdBy`,`createdFor`,`status`,etc.
+- Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, etc.
 - The response includes a list of request objects with their respective properties.
 - Error handling is provided for internal server errors (status code 500).
 
