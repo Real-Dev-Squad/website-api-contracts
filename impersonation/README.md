@@ -5,6 +5,7 @@ The Impersonation API provides endpoints for creating, fetching, and updating im
 |                         Route                                  |               Description                 |
 | :------------------------------------------------------------: | :---------------------------------------: |
 | [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request     |
+| [PATCH /impersonation/requests/:id](#patch-impersonationrequestsid)      |  Updates the status of an impersonation request.    |
 
 ## **POST /impersonation/requests**
 
@@ -16,7 +17,7 @@ Creates a new impersonation request.
 
 - **Query Parameters:**
 
-  - `dev`: Required Boolean flag to enable developer mode. If not provided, developer mode is disabled by default and the request will be processed in production mode.
+  - `dev`: Required boolean feature flag to create impersonation requests.
 
 - **Method:** POST
 
@@ -32,8 +33,8 @@ Creates a new impersonation request.
 
   - Body Parameters:
 
-    - `impersonatedUserId`: Required string to specify userId of the user to be impersonated.
-    - `reason`: Required string to specify reason for requesting impersonation.
+    - `impersonatedUserId`: **Required.** String. The userId of the user to be impersonated.
+    - `reason`: **Required.** String. The reason for requesting impersonation.
 
     - Example Request Body:
 
@@ -102,18 +103,16 @@ Creates a new impersonation request.
 - The request body must contain the necessary details for creating a new request, which are the ID of the user to be impersonated and the reason for impersonation.
 - The status is set to "PENDING" by default.
 
-
 ## **PATCH /impersonation/requests/:id**
 
-- **Description:** 
-  - This endpoint updates the status of an impersonation request.
+- **Description:**  
+  This endpoint updates the status of an impersonation request.
 
 - **URL:** `https://api.realdevsquad.com/impersonation/requests/:id`
 
 - **Method:** PATCH
 
 - **Path Parameters:**
-
   - `id`: The unique identifier of the request to be updated.
 
 - **Query Parameters:**
@@ -122,23 +121,27 @@ Creates a new impersonation request.
 
 - **Headers:**
   - Content-Type: application/json
-- **Cookie:**
 
+- **Cookie:**
   - rds-session: `<JWT>`
 
 - **Request Body:**
 
-- Body Parameters:
+  - Body Parameters:
 
-   - **Example of impersonation Request:**
-    ```json
-    {
-      "status": "string", // status must be APPROVED or REJECTED
-      "message": "string" // optional
-    }
-    ```
+    - `status`: **Required.** String. Allowed values: `"APPROVED"` or `"REJECTED"`. The new status for the impersonation request.
+    - `message`: **Optional.** String. An optional message or reason for approval or rejection.
 
-- **Success Response of OOO Request:**
+    - Example Request Body:
+
+      ```json
+      {
+        "status": "APPROVED",
+        "message": "Approved by the user"
+      }
+      ```
+
+- **Success Response of Impersonation Request:**
 
   - **Code:** 200
   - **Content:**
@@ -149,18 +152,16 @@ Creates a new impersonation request.
         "id": "string",
         "lastModifiedBy": "string",
         "message": "string",
-        "status": "string",
+        "status": "string"
       }
     }
     ```
 
-- **Error Responses of OOO Request:**
+- **Error Responses of Impersonation Request:**
   - **Code:** 400
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid request type" }`
   - **Code:** 403
-    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Request already approved" }`
-    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Request already rejected" }`
-    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "Unauthorized to update the request" }`
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "You are not allowed for this Operation at the moment" }`
   - **Code:** 401
     - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
   - **Code:** 404
@@ -168,7 +169,6 @@ Creates a new impersonation request.
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
-#### Authentication and Authorization:
+#### Authentication and Authorization
 
 - Authentication is required for accessing this endpoint.
-
