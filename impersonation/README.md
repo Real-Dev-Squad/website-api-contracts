@@ -117,7 +117,6 @@ Returns a list of impersonation requests with pagination and filtering options.
 - **Query Parameters:**
 
   - `dev`: Required boolean to fetch requests.
-  - `id`: Optional string to fetch the request by its id.
   - `size`: Optional integer to specify the number of requests per page. Default is 5.
   - `createdBy`: Optional string to filter requests by username of super-user who created the request.
   - `createdFor`: Optional string to filter requests by username of user for whom the request is created.
@@ -202,8 +201,81 @@ Returns a list of impersonation requests with pagination and filtering options.
 - The provided response includes details of each request, such as its id, createdAt, updatedAt, startedAt, endedAt, createdBy, createdFor, reason, status, userId, impersonatedUserId, isImpersonationFinished and message.
 
 - Pagination functionality is implemented using `next` and `prev` parameters in the response.
-- Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, `id`, `size`.
+- Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, `size`.
 - The response includes a list of request objects with their respective properties.
 - Error handling is provided for internal server errors (status code 500).
 
 This API contract details the GET method for fetching impersonation requests, including all available query parameters, response structure, potential error responses, authentication, authorization requirements, and additional notes.
+
+
+## **GET /impersonation/requests/:id**
+
+Return a single impersonation requests based on the request id.
+
+- **Description:** Fetches a single impersonation request based on the request ID.
+
+- **URL:** `https://api.realdevsquad.com/impersonation/requests/:id`
+
+- **Method:** GET
+
+- **Query Parameters:**
+  
+  - `dev`: Required boolean to fetch requests.
+
+- **Path Parameters:**
+  
+  - `id`: The unique identifier of the request to be updated.
+
+- **Headers:**
+
+  - Content-Type: application/json
+
+- **Cookie:**
+
+  - rds-session: `<JWT>`
+
+- **Success Response:**
+
+  - **Code:** 200
+  - **Content:**
+  
+    ```json
+    {
+      "message": "Request fetched successfully",
+      "data": {
+          "id": "string",
+          "createdAt": "Timestamp",
+          "updatedAt": "Timestamp",
+          "status": "string",
+          "userId": "string",
+          "impersonatedUserId": "string",
+          "isImpersonationFinished": "boolean",
+          "createdBy": "string",
+          "createdFor": "string",
+          "startedAt": "Timestamp",
+          "endedAt": "Timestamp",
+          "reason": "string",
+          "message": "string"
+        }
+    }
+    ```
+
+- **Error Responses of Impersonation Request:**
+  - **Code:** 400
+    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Error while validating the request" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
+
+#### Authentication and Authorization
+
+- Authentication is required for accessing this endpoint.
+
+#### Additional Notes
+
+- This endpoint returns a specific impersonation request with respect to the request ID.
+- It returns 404 not found if the request does not exist
