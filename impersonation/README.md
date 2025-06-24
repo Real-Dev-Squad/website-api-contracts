@@ -6,6 +6,7 @@ The Impersonation API provides endpoints for creating, fetching, and updating im
 | :------------------------------------------------------------: | :---------------------------------------: |
 | [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request     |
 | [GET /impersonation/requests](#get-impersonationrequests)      |    Returns a list of impersonation requests with pagination and filtering options.    |
+| [GET /impersonation/requests/:id](#get-impersonationrequestsid)    |    Returns a single impersonation request based on id    |
 
 ## **POST /impersonation/requests**
 
@@ -205,12 +206,9 @@ Returns a list of impersonation requests with pagination and filtering options.
 - The response includes a list of request objects with their respective properties.
 - Error handling is provided for internal server errors (status code 500).
 
-This API contract details the GET method for fetching impersonation requests, including all available query parameters, response structure, potential error responses, authentication, authorization requirements, and additional notes.
-
-
 ## **GET /impersonation/requests/:id**
 
-Return a single impersonation requests based on the request id.
+Returns a single impersonation request identified by its `id`.
 
 - **Description:** Fetches a single impersonation request based on the request ID.
 
@@ -224,7 +222,7 @@ Return a single impersonation requests based on the request id.
 
 - **Path Parameters:**
   
-  - `id`: The unique identifier of the request to be updated.
+  - `id`: The unique identifier of the request to retrieve.
 
 - **Headers:**
 
@@ -260,7 +258,7 @@ Return a single impersonation requests based on the request id.
     }
     ```
 
-- **Error Responses of Impersonation Request:**
+- **Error Responses**
   - **Code:** 400
     - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Error while validating the request" }`
   - **Code:** 401
@@ -270,12 +268,11 @@ Return a single impersonation requests based on the request id.
   - **Code:** 500
     - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
 
-
 #### Authentication and Authorization
 
 - Authentication is required for accessing this endpoint.
 
 #### Additional Notes
 
-- This endpoint returns a specific impersonation request with respect to the request ID.
+- This endpoint returns the impersonation request matching the provided `id`.
 - It returns 404 not found if the request does not exist
