@@ -5,6 +5,7 @@ The Impersonation API provides endpoints for creating, fetching, and updating im
 |                         Route                                  |               Description                 |
 | :------------------------------------------------------------: | :---------------------------------------: |
 | [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request     |
+| [GET /impersonation/requests](#get-impersonationrequests)      |    Returns a list of impersonation requests with pagination and filtering options.    |
 
 ## **POST /impersonation/requests**
 
@@ -16,7 +17,7 @@ Creates a new impersonation request.
 
 - **Query Parameters:**
 
-  - `dev`: Required Boolean flag to enable developer mode. If not provided, developer mode is disabled by default and the request will be processed in production mode.
+  - `dev`: Required Boolean flag to create impersonation requests.
 
 - **Method:** POST
 
@@ -101,3 +102,108 @@ Creates a new impersonation request.
 
 - The request body must contain the necessary details for creating a new request, which are the ID of the user to be impersonated and the reason for impersonation.
 - The status is set to "PENDING" by default.
+
+
+## **GET /impersonation/requests**
+
+Returns a list of impersonation requests with pagination and filtering options.
+
+- **Description:** Fetches a list of impersonation requests, optionally filtered by various parameters.
+
+- **URL:** `https://api.realdevsquad.com/impersonation/requests`
+
+- **Method:** GET
+
+- **Query Parameters:**
+
+  - `dev`: Required boolean to fetch requests.
+  - `id`: Optional string to fetch the request by its id.
+  - `size`: Optional integer to specify the number of requests per page. Default is 5.
+  - `createdBy`: Optional string to filter requests by username of super-user who created the request.
+  - `createdFor`: Optional string to filter requests by username of user for whom the request is created.
+  - `status`: Optional string to filter requests by status (e.g., APPROVED, REJECTED, PENDING).
+
+  - `prev`: Optional string containing the pagination cursor for the previous page of results.
+  - `next`: Optional string containing the pagination cursor for the next page of results.
+
+
+- **Headers:**
+
+  - Content-Type: application/json
+
+- **Cookie:**
+
+  - rds-session: `<JWT>`
+
+- **Success Response:**
+
+  - **Code:** 200
+  - **Content:**
+  
+    ```json
+    {
+      "message": "Request fetched successfully",
+      "data": [
+        {
+          "id": "string",
+          "createdAt": "Timestamp",
+          "updatedAt": "Timestamp",
+          "status": "string",
+          "userId": "string",
+          "impersonatedUserId": "string",
+          "isImpersonationFinished": "boolean",
+          "createdBy": "string",
+          "createdFor": "string",
+          "startedAt": "Timestamp",
+          "endedAt": "Timestamp",
+          "reason": "string",
+          "message": "string"
+        },
+        {
+          "id": "string",
+          "createdAt": "Timestamp",
+          "updatedAt": "Timestamp",
+          "status": "string",
+          "userId": "string",
+          "impersonatedUserId": "string",
+          "isImpersonationFinished": "boolean",
+          "createdBy": "string",
+          "createdFor": "string",
+          "startedAt": "Timestamp",
+          "endedAt": "Timestamp",
+          "reason": "string",
+          "message": "string"
+        }
+      ],
+      "next": "string",
+      "prev": "string",
+      "count": "number"
+    }
+    ```
+
+- **Error Responses:**
+
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
+- **No Content Response:**
+
+  - **Code:** 204
+    - **Content:** No content
+
+
+#### Authentication and Authorization
+
+- Authentication is required for accessing this endpoint.
+
+#### Additional Notes
+
+
+- The provided response includes details of each request, such as its id, createdAt, updatedAt, startedAt, endedAt, createdBy, createdFor, reason, status, userId, impersonatedUserId, isImpersonationFinished and message.
+
+- Pagination functionality is implemented using `next` and `prev` parameters in the response.
+- Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, `id`, `size`.
+- The response includes a list of request objects with their respective properties.
+- Error handling is provided for internal server errors (status code 500).
+
+This API contract details the GET method for fetching impersonation requests, including all available query parameters, response structure, potential error responses, authentication, authorization requirements, and additional notes.
