@@ -118,7 +118,6 @@ Returns a list of impersonation requests with pagination and filtering options.
 
   - `dev`: Required boolean to fetch requests.
   - `id`: Optional string to fetch the request by its id.
-  - `page`: Optional integer to specify the page number.
   - `size`: Optional integer to specify the number of requests per page. Default is 5.
   - `createdBy`: Optional string to filter requests by username of super-user who created the request.
   - `createdFor`: Optional string to filter requests by username of user for whom the request is created.
@@ -155,7 +154,8 @@ Returns a list of impersonation requests with pagination and filtering options.
           "createdFor": "string",
           "startedAt": "Timestamp",
           "endedAt": "Timestamp",
-          "reason": "string"
+          "reason": "string",
+          "message": "string"
         },
         {
           "id": "string",
@@ -169,7 +169,8 @@ Returns a list of impersonation requests with pagination and filtering options.
           "createdFor": "string",
           "startedAt": "Timestamp",
           "endedAt": "Timestamp",
-          "reason": "string"
+          "reason": "string",
+          "message": "string",
         }
       ],
       "next": "string",
@@ -195,9 +196,9 @@ Returns a list of impersonation requests with pagination and filtering options.
 
 #### Additional Notes
 
-- The provided response includes details of each request, such as ID, timestamps, username, userId, reason, status, etc.
+- The provided response includes details of each request, such as its id, createdAT, updatedAt, startedAt, endedAt, createdBy, createdFor, reason, status, userId, impersonatedUserId, isImpersonationFinished and message.
 - Pagination functionality is implemented using `next` and `prev` parameters in the response.
-- Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, etc.
+- Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, `id`, `size`.
 - The response includes a list of request objects with their respective properties.
 - Error handling is provided for internal server errors (status code 500).
 
