@@ -172,7 +172,7 @@ Returns a list of impersonation requests with pagination and filtering options.
           "startedAt": "Timestamp",
           "endedAt": "Timestamp",
           "reason": "string",
-          "message": "string",
+          "message": "string"
         }
       ],
       "next": "string",
