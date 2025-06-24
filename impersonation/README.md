@@ -122,8 +122,10 @@ Returns a list of impersonation requests with pagination and filtering options.
   - `createdBy`: Optional string to filter requests by username of super-user who created the request.
   - `createdFor`: Optional string to filter requests by username of user for whom the request is created.
   - `status`: Optional string to filter requests by status (e.g., APPROVED, REJECTED, PENDING).
-  - `prev`: Optional string to filter requests by the prev cursor, used in cursor based pagination.
-  - `next`: Optional string to filter requests by the next cursor, used in cursor based pagination.
+
+  - `prev`: Optional string containing the pagination cursor for the previous page of results.
+  - `next`: Optional string containing the pagination cursor for the next page of results.
+
 
 - **Headers:**
 
