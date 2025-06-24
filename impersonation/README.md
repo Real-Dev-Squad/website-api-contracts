@@ -198,7 +198,9 @@ Returns a list of impersonation requests with pagination and filtering options.
 
 #### Additional Notes
 
-- The provided response includes details of each request, such as its id, createdAT, updatedAt, startedAt, endedAt, createdBy, createdFor, reason, status, userId, impersonatedUserId, isImpersonationFinished and message.
+
+- The provided response includes details of each request, such as its id, createdAt, updatedAt, startedAt, endedAt, createdBy, createdFor, reason, status, userId, impersonatedUserId, isImpersonationFinished and message.
+
 - Pagination functionality is implemented using `next` and `prev` parameters in the response.
 - Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, `id`, `size`.
 - The response includes a list of request objects with their respective properties.
