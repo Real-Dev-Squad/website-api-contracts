@@ -4,10 +4,10 @@ The Impersonation API provides endpoints for creating, fetching, and updating im
 
 |                         Route                                  |               Description                 |
 | :------------------------------------------------------------: | :---------------------------------------: |
-| [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request     |
+| [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request.     |
 | [GET /impersonation/requests](#get-impersonationrequests)      |    Returns a list of impersonation requests with pagination and filtering options.    |
-| [GET /impersonation/requests/:id](#get-impersonationrequestsid)    |    Returns a single impersonation request based on id    |
-| [PATCH /impersonation/requests/:id](#patch-impersonationrequestsid)      |  Updates the status of an impersonation request.    |
+| [GET /impersonation/requests/:id](#get-impersonationrequestsid) |    Returns a single impersonation request based on id.    |
+| [PATCH /impersonation/requests/:id](#patch-impersonationrequestsid)    |     Updates the status of an impersonation request.      |
 
 ## **POST /impersonation/requests**
 
@@ -35,8 +35,8 @@ Creates a new impersonation request.
 
   - Body Parameters:
 
-    - `impersonatedUserId`: **Required.** String. The userId of the user to be impersonated.
-    - `reason`: **Required.** String. The reason for requesting impersonation.
+    - `impersonatedUserId`: Required string to specify userId of the user to be impersonated.
+    - `reason`: Required string to specify reason for requesting impersonation.
 
     - Example Request Body:
 
@@ -104,6 +104,7 @@ Creates a new impersonation request.
 
 - The request body must contain the necessary details for creating a new request, which are the ID of the user to be impersonated and the reason for impersonation.
 - The status is set to "PENDING" by default.
+
 
 ## **GET /impersonation/requests**
 
@@ -303,15 +304,15 @@ Returns a single impersonation request identified by its `id`.
 
   - Body Parameters:
 
-    - `status`: **Required.** String. Allowed values: `"APPROVED"` or `"REJECTED"`. The new status for the impersonation request.
-    - `message`: **Optional.** String. An optional message or reason for approval or rejection.
+    - `status`: Required string to specify the status of the request, It can be either APPROVED or REJECTED.
+    - `message`: Optional string to specify the reason for the status.
 
     - Example Request Body:
 
       ```json
       {
-        "status": "APPROVED",
-        "message": "Approved by the user"
+        "status": "string", // status must be APPROVED or REJECTED 
+        "message": "string" // optional
       }
       ```
 
