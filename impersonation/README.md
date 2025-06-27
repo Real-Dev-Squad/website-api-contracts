@@ -333,8 +333,6 @@ Returns a single impersonation request identified by its `id`.
     ```
 
 - **Error Responses of Impersonation Request:**
-  - **Code:** 400
-    - **Content:** `{ "statusCode": 400, "error": "Bad Request", "message": "Invalid request type" }`
   - **Code:** 403
     - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "You are not allowed for this Operation at the moment" }`
   - **Code:** 401
