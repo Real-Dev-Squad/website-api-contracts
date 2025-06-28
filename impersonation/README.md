@@ -4,9 +4,10 @@ The Impersonation API provides endpoints for creating, fetching, and updating im
 
 |                         Route                                  |               Description                 |
 | :------------------------------------------------------------: | :---------------------------------------: |
-| [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request     |
+| [POST /impersonation/requests](#post-impersonationrequests)    |    Create a new impersonation request.     |
 | [GET /impersonation/requests](#get-impersonationrequests)      |    Returns a list of impersonation requests with pagination and filtering options.    |
-| [GET /impersonation/requests/:id](#get-impersonationrequestsid)    |    Returns a single impersonation request based on id    |
+| [GET /impersonation/requests/:id](#get-impersonationrequestsid) |    Returns a single impersonation request based on id.    |
+| [PATCH /impersonation/requests/:id](#patch-impersonationrequestsid)    |     Updates the status of an impersonation request.      |
 
 ## **POST /impersonation/requests**
 
@@ -276,3 +277,71 @@ Returns a single impersonation request identified by its `id`.
 
 - This endpoint returns the impersonation request matching the provided `id`.
 - It returns 404 not found if the request does not exist
+
+## **PATCH /impersonation/requests/:id**
+
+- **Description:**  
+  This endpoint updates the status of an impersonation request.
+
+- **URL:** `https://api.realdevsquad.com/impersonation/requests/:id`
+
+- **Method:** PATCH
+
+- **Path Parameters:**
+  - `id`: The unique identifier of the request to be updated.
+
+- **Query Parameters:**
+
+  - `dev`: Required boolean feature flag to update request status.
+
+- **Headers:**
+  - Content-Type: application/json
+
+- **Cookie:**
+  - rds-session: `<JWT>`
+
+- **Request Body:**
+
+  - Body Parameters:
+
+    - `status`: Required string to specify the status of the request, It can be either APPROVED or REJECTED.
+    - `message`: Optional string to specify the reason for the status.
+
+    - Example Request Body:
+
+      ```json
+      {
+        "status": "string", // status must be APPROVED or REJECTED 
+        "message": "string" // optional
+      }
+      ```
+
+- **Success Response of Impersonation Request:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "message": "Request approved/rejected successfully",
+      "data": {
+        "id": "string",
+        "lastModifiedBy": "string",
+        "message": "string",
+        "status": "string"
+      }
+    }
+    ```
+
+- **Error Responses of Impersonation Request:**
+  - **Code:** 403
+    - **Content:** `{ "statusCode": 403, "error": "Forbidden", "message": "You are not allowed for this Operation at the moment" }`
+  - **Code:** 401
+    - **Content:** `{ "statusCode": 401, "error": "Unauthorized", "message": "Unauthenticated User" }`
+  - **Code:** 404
+    - **Content:** `{ "statusCode": 404, "error": "Not Found", "message": "Request does not exist" }`
+  - **Code:** 500
+    - **Content:** `{ "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred" }`
+
+#### Authentication and Authorization
+
+- Authentication is required for accessing this endpoint.
