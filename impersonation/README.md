@@ -359,8 +359,8 @@ Start and Stop the impersonation session.
 
 - **Query Parameters:**
 
-  - `dev`: Required boolean feature flag to update request status.
-  - `action`: Required string to start or stop the impersonation session, It can be `START` or `STOP`.
+  - `dev`: Required boolean parameter that enables or disables the impersonation session..
+  - `action`: Required enum (START | STOP) to control the session. Case-sensitive.
 
 - **Method:** PATCH
 
@@ -372,7 +372,6 @@ Start and Stop the impersonation session.
 
   - rds-session: `<JWT>`
 
-
 - **Success Response for `action`:`START` :**
 
   - **Code:** 200
@@ -383,9 +382,9 @@ Start and Stop the impersonation session.
       "data": {
         "id": "string",
         "lastModifiedBy": "string",
-        "isImpersonationFinished": "boolean",
+        "isImpersonationFinished": boolean,
         "startedAt": "Timestamp",
-        "endedAt": "Timestamp",
+        "endedAt": "Timestamp"
       }
     }
     ```
@@ -401,7 +400,7 @@ Start and Stop the impersonation session.
         "id": "string",
         "lastModifiedBy": "string",
         "isImpersonationFinished": "boolean",
-        "endedAt": "Timestamp",
+        "endedAt": "Timestamp"
       }
     }
     ```
@@ -435,4 +434,4 @@ Start and Stop the impersonation session.
 #### Authentication and Authorization
 
 - Authentication is required to start and stop the impersonation session.
-- Only super-users can create START the impersonation session.
+- Only super-users can START the impersonation session.
