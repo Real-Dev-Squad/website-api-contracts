@@ -359,7 +359,7 @@ Start and Stop the impersonation session.
 
 - **Query Parameters:**
 
-  - `dev`: Required boolean parameter that enables or disables the impersonation session..
+  - `dev`: Required boolean parameter that enables or disables the impersonation session.
   - `action`: Required enum (START | STOP) to control the session. Case-sensitive.
 
 - **Method:** PATCH
