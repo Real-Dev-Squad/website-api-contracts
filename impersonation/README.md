@@ -345,3 +345,94 @@ Returns a single impersonation request identified by its `id`.
 #### Authentication and Authorization
 
 - Authentication is required for accessing this endpoint.
+
+## **PATCH /impersonation/:id**
+
+Start and Stop the impersonation session.
+
+- **Description:** Allows a super-user to start the impersonation session and stop it anytime within the specified period of 15min.
+
+- **URL:** `https://api.realdevsquad.com/impersonation/:id`
+
+- **Path Parameters:**
+  - `id`: The unique identifier of the request to be updated.
+
+- **Query Parameters:**
+
+  - `dev`: Required boolean feature flag to update request status.
+  - `action`: Required string to start or stop the impersonation session, It can be `START` or `STOP`.
+
+- **Method:** PATCH
+
+- **Headers:**
+
+  - Content-Type: application/json
+
+- **Cookie:**
+
+  - rds-session: `<JWT>`
+
+
+- **Success Response for `action`:`START` :**
+
+  - **Code:** 200
+
+    ```json
+    {
+      "message": "Impersonation session has started.",
+      "data": {
+        "id": "string",
+        "lastModifiedBy": "string",
+        "isImpersonationFinished": "boolean",
+        "startedAt": "Timestamp",
+        "endedAt": "Timestamp",
+      }
+    }
+    ```
+
+- **Success Response for `action`:`STOP` :**
+
+  - **Code:** 200
+
+    ```json
+    {
+      "message": "Impersonation session has stopped.",
+      "data": {
+        "id": "string",
+        "lastModifiedBy": "string",
+        "isImpersonationFinished": "boolean",
+        "endedAt": "Timestamp",
+      }
+    }
+    ```
+
+- **Error Responses of Impersonation Request:**
+
+  - **Code:** 403
+
+    ```json
+    { "statusCode": 403, "error": "Forbidden", "message": "You are not allowed for this Operation at the moment" }
+    ```
+
+  - **Code:** 500
+
+    ```json
+    { "statusCode": 500, "error": "Internal Server Error", "message": "An internal server error occurred." }
+    ```
+
+  - **Code:** 404
+
+    ```json
+    { "statusCode": 404, "error": "Not Found", "message": "Request does not exist." }
+    ```
+
+  - **Code:** 401
+
+    ```json
+    { "statusCode": 401, "error": "Unauthorized", "message": "You are not authorized for this action." }
+    ```
+
+#### Authentication and Authorization
+
+- Authentication is required to start and stop the impersonation session.
+- Only super-users can create START the impersonation session.
