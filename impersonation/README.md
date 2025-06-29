@@ -372,7 +372,7 @@ Start and Stop the impersonation session.
 
   - rds-session: `<JWT>`
 
-- **Success Response for `action`:`START` :**
+- **Success Response for `START` action:**
 
   - **Code:** 200
 
@@ -382,14 +382,14 @@ Start and Stop the impersonation session.
       "data": {
         "id": "string",
         "lastModifiedBy": "string",
-        "isImpersonationFinished": boolean,
+        "isImpersonationFinished": "boolean",
         "startedAt": "Timestamp",
         "endedAt": "Timestamp"
       }
     }
     ```
 
-- **Success Response for `action`:`STOP` :**
+- **Success Response for `STOP` action:**
 
   - **Code:** 200
 
