@@ -118,8 +118,8 @@ Returns a list of impersonation requests with pagination and filtering options.
 
   - `dev`: Required boolean to fetch requests.
   - `size`: Optional integer to specify the number of requests per page. Default is 5.
-  - `createdBy`: Optional string to filter requests by userId of super-user who created the request.
-  - `createdFor`: Optional string to filter requests by userId of user for whom the request is created.
+  - `createdBy`: Optional string to filter requests by the user ID of the super-user who created the request.
+  - `createdFor`: Optional string to filter requests by the user ID of the user for whom the request is created.
   - `status`: Optional string to filter requests by status (e.g., APPROVED, REJECTED, PENDING).
 
   - `prev`: Optional string containing the pagination cursor for the previous page of results.
