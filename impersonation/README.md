@@ -35,14 +35,14 @@ Creates a new impersonation request.
 
   - Body Parameters:
 
-    - `impersonatedUserId`: Required string to specify userId of the user to be impersonated.
+    - `createdFor`: Required string to specify userId of the user to be impersonated.
     - `reason`: Required string to specify reason for requesting impersonation.
 
     - Example Request Body:
 
       ```json
       {
-        "impersonatedUserId": "<id of user to impersonate>",
+        "createdFor": "<id of user to impersonate>",
         "reason": "<reason for impersonation>"
       }
       ```
@@ -59,11 +59,9 @@ Creates a new impersonation request.
         "createdAt": "Timestamp",
         "updatedAt": "Timestamp",
         "status": "string",
-        "userId": "string",
-        "impersonatedUserId": "string",
-        "isImpersonationFinished": "boolean",
         "createdBy": "string",
         "createdFor": "string",
+        "isImpersonationFinished": "boolean",
         "reason": "string"
       }
     }
@@ -120,8 +118,8 @@ Returns a list of impersonation requests with pagination and filtering options.
 
   - `dev`: Required boolean to fetch requests.
   - `size`: Optional integer to specify the number of requests per page. Default is 5.
-  - `createdBy`: Optional string to filter requests by username of super-user who created the request.
-  - `createdFor`: Optional string to filter requests by username of user for whom the request is created.
+  - `createdBy`: Optional string to filter requests by the user ID of the super-user who created the request.
+  - `createdFor`: Optional string to filter requests by the user ID of the user for whom the request is created.
   - `status`: Optional string to filter requests by status (e.g., APPROVED, REJECTED, PENDING).
 
   - `prev`: Optional string containing the pagination cursor for the previous page of results.
@@ -150,11 +148,9 @@ Returns a list of impersonation requests with pagination and filtering options.
           "createdAt": "Timestamp",
           "updatedAt": "Timestamp",
           "status": "string",
-          "userId": "string",
-          "impersonatedUserId": "string",
-          "isImpersonationFinished": "boolean",
           "createdBy": "string",
           "createdFor": "string",
+          "isImpersonationFinished": "boolean",
           "startedAt": "Timestamp",
           "endedAt": "Timestamp",
           "reason": "string",
@@ -165,11 +161,9 @@ Returns a list of impersonation requests with pagination and filtering options.
           "createdAt": "Timestamp",
           "updatedAt": "Timestamp",
           "status": "string",
-          "userId": "string",
-          "impersonatedUserId": "string",
-          "isImpersonationFinished": "boolean",
           "createdBy": "string",
           "createdFor": "string",
+          "isImpersonationFinished": "boolean",
           "startedAt": "Timestamp",
           "endedAt": "Timestamp",
           "reason": "string",
@@ -200,7 +194,7 @@ Returns a list of impersonation requests with pagination and filtering options.
 #### Additional Notes
 
 
-- The provided response includes details of each request, such as its id, createdAt, updatedAt, startedAt, endedAt, createdBy, createdFor, reason, status, userId, impersonatedUserId, isImpersonationFinished and message.
+- The provided response includes details of each request, such as its id, createdAt, updatedAt, startedAt, endedAt, reason, status, createdBy, createdFor, isImpersonationFinished and message.
 
 - Pagination functionality is implemented using `next` and `prev` parameters in the response.
 - Filtering options are available using parameters like `createdBy`, `createdFor`, `status`, `size`.
@@ -246,11 +240,9 @@ Returns a single impersonation request identified by its `id`.
           "createdAt": "Timestamp",
           "updatedAt": "Timestamp",
           "status": "string",
-          "userId": "string",
-          "impersonatedUserId": "string",
-          "isImpersonationFinished": "boolean",
           "createdBy": "string",
           "createdFor": "string",
+          "isImpersonationFinished": "boolean",
           "startedAt": "Timestamp",
           "endedAt": "Timestamp",
           "reason": "string",
