@@ -67,6 +67,7 @@
 |                     [GET /v1/health](#get-v1health)                      |       Health check endpoint        |
 |               [GET /v1/tasks/{taskId}](#get-v1taskstaskid)               | Retrieves a single task by its ID  |
 |            [DELETE /v1/tasks/{taskId}](#delete-v1taskstaskid)            |      Deletes a specific task       |
+|                     [GET /v1/labels](#get-v1labels)                      | Return all labels with pagination  |
 
 ## **GET /v1/tasks**
 
@@ -805,6 +806,76 @@ Retrieves a single task by its ID.
     ```json
     {
       "status": "internal_server_error",
+      "statusCode": 500,
+      "errorMessage": "An unexpected error occurred",
+      "errors": [
+        {
+          "detail": "Internal server error"
+        }
+      ]
+    }
+    ```
+
+## **GET /v1/labels**
+
+Return all labels with pagination support
+
+- **Params**  
+  None
+- **Query**
+
+  - Optional: `page=[integer]` (Page number for pagination, default: 1)
+  - Optional: `limit=[integer]` (Number of items per page, default: 10)
+  - Optional: `search=[string]` (Search query string; default: "")
+
+- **Success Response:**
+
+  - **Code:** 200
+  - **Content:**
+    ```json
+    {
+      "links": {
+        "next": "<string> | null",
+        "prev": "<string> | null"
+      },
+      "labels": [
+        {
+          "id": "<string>",
+          "name": "<string>",
+          "color": "<string>"
+        }
+      ],
+      "total": "number",
+      "page": "number",
+      "limit": "number"
+    }
+    ```
+
+- **Error Response:**
+
+  - **Code:** 400
+  - **Content:**
+
+    ```json
+    {
+      "statusCode": 400,
+      "message": "<string>",
+      "errors": [
+        {
+          "source": {
+            "parameter": "<string>"
+          },
+          "detail": "<string>"
+        }
+      ]
+    }
+    ```
+
+  - **Code:** 500
+  - **Content:**
+
+    ```json
+    {
       "statusCode": 500,
       "errorMessage": "An unexpected error occurred",
       "errors": [
