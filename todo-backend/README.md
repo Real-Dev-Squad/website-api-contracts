@@ -79,8 +79,10 @@ Return all tasks with pagination and sorting support
 
   - Optional: `page=[integer]` (Page number for pagination, default: 1)
   - Optional: `limit=[integer]` (Number of items per page, default: from Settings)
-  - Optional: `sort_by=[string]` (Field to sort by: "createdAt", "dueAt", "priority", "assignee", default: "createdAt")
-  - Optional: `order=[string]` (Sort order: "asc", "desc", default varies by field: createdAt: "desc", dueAt: "asc", priority: "desc", assignee: "asc")
+
+- Optional: `sort_by=[string]` (Field to sort by: "createdAt", "dueAt", "priority", "assignee.name"; default: "createdAt")
+
+- Optional: `order=[string]` (Sort order: "asc", "desc", default varies by field: createdAt: "desc", dueAt: "asc", priority: "desc", assignee: "asc")
 
 - **Success Response:**
 
