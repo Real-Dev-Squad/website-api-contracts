@@ -39,6 +39,7 @@
 | [PATCH /users/status/:userId](#patch-usersstatususerid) |   Creates or Updates a new User Status data with the given id   |
 |     [DELETE /users/self](#delete-usersstatususerid)     |   Deletes the User Status data of the User with the given id    |
 |  [PATCH /users/status/batch](#patch-usersstatusbatch)   |      Batch Update the UserIds of the passed users to Idle       |
+|  [PATCH /users/status/sync](#patch-usersstatussync)     |    runs user/status/update, user/status, user/status/batch      |
 
 ## **GET /users/status**
 
@@ -243,3 +244,45 @@ Deletes the User Status data of the User with the given id.
     - **Content:** `{ 'statusCode': 404, 'id': null ,'userId':'userId',"message": "User Status to delete not found." }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+```
+
+## **PATCH /users/status/sync**
+
+Runs PATCH /users/status/batch, GET /users/status, PATCH /users/status/batch internally and is getting used for cronjob trigger
+
+- **Headers**  
+  Content-Type: application/json  
+  Authorization: Bearer `<JWT>`
+
+- **Success Response:**
+  - **Code:** 200
+    - **Content:** 
+      ```
+      {
+        "message": "Users status updated successfully.",
+        "data": <updatedUserData>
+      }
+      ```
+
+- **Error Responses:**
+  - **Code:** 500
+    - **Content:** 
+      ```
+      {
+        "statusCode": 500,
+        "error": "Internal Server Error",
+        "message": "The server has encountered an unexpected error. Please contact the administrator for more information."
+      }
+      ```
+  - **Code:** 401
+    - **Content:** 
+      ```
+      {
+        "statusCode": 401,
+        "error": "Unauthorized",
+        "message": "Unauthenticated User"
+      }
+      ```
+
+
