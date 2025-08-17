@@ -7,6 +7,7 @@
 - [Challenges](/challenges)
 - [Contributions](/contributions)
 - [Crypto](/crypto)
+- [Learn](/learn)
 - [Login](/login)
 - [Members](/members)
 - [Notifications](/notifications)
