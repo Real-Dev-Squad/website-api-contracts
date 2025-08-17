@@ -46,8 +46,11 @@ Returns the users status of all the users in the system.
 
 - **Params**  
   None
-- **Query**  
-  state=[OOO | IDLE | ACTIVE]
+- **Query**
+
+  - state=[OOO | IDLE | ACTIVE]
+  - batch = boolean
+
 - **Body**  
   None
 - **Headers**  
@@ -196,21 +199,64 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
 - **Body**
 
   - Attributes:
-  - users[] (required) : Specifies the user list of User ids to be updated.
+    - users (required, array): An array of objects, each representing a user with the following properties:
+      - userId (required, string): Specifies the unique identifier for the user.
+      - expectedState (required, string): Specifies the user's state, which must be one of the following values: IDLE or ACTIVE.
+  - Example:
+
+```
+  {
+      "users": [
+          {
+              "userId": "4kAkRv9TBlOfR6WEUhoQ",
+              "expectedState": "IDLE"
+          },
+          {
+              "userId": "SooJK37gzjIZfFNH0tlL",
+              "expectedState": "ACTIVE"
+          }
+      ]
+  }
+```
 
 - **Success Response:**
 
-  - **Code** 200</br>
+  - **Code**
+    - 200</br>
   - **Content**</br>
-    ```json
+
+```
     {
       "message": "String",
       "data": {
         "totalUsers": "Number",
-        "usersWithStatusUpdated": "Number",
-        "usersOnboardingOrAlreadyIdle": "Number"
+        "totalUnprocessedUsers": "Number",
+        "totalOnboardingUsersAltered": "Number",
+        "totalOnboardingUsersUnAltered": "Number",
+        "totalActiveUsersAltered": "Number",
+        "totalActiveUsersUnAltered": "Number",
+        "totalIdleUsersAltered": "Number",
+        "totalIdleUsersUnAltered": "Number"
       }
     }
+```
+
+- **Example**
+
+```
+  {
+    "message": "users status updated successfully.",
+    "data": {
+        "totalUsers": 7,
+        "totalUnprocessedUsers": 1,
+        "totalOnboardingUsersAltered": 1,
+        "totalOnboardingUsersUnAltered": 1,
+        "totalActiveUsersAltered": 1,
+        "totalActiveUsersUnAltered": 1,
+        "totalIdleUsersAltered": 1,
+        "totalIdleUsersUnAltered": 1
+    }
+}
 ```
 
 - **Error Response:**
@@ -223,13 +269,13 @@ Batch Updates the UserIds of the passed user list to Idle if the user is not OOO
 
 Deletes the User Status data of the User with the given id.
 
-- **Params**  
+- **Params**
   _Required:_ `userId=[string]`
-- **Query**  
+- **Query**
   None
-- **Headers**  
+- **Headers**
   Content-Type: application/json
-- **Cookie**  
+- **Cookie**
   rds-session: `<JWT>`
 - **Body**
   None
@@ -243,3 +289,7 @@ Deletes the User Status data of the User with the given id.
     - **Content:** `{ 'statusCode': 404, 'id': null ,'userId':'userId',"message": "User Status to delete not found." }`
   - **Code:** 500
     - **Content:** `{ 'statusCode': 500, 'error': 'Internal Server Error', 'message': 'An internal server error occurred' }`
+
+```
+
+```
