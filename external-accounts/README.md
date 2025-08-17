@@ -17,7 +17,15 @@ Creates the data of external accounts for linking to Real Dev Squad accounts
   None
 - **Query**  
   None
-- **Body** Possible values for `type`: [discord]
+- **Body** 
+
+  - Possible values for `type`: [discord]
+  - Possible values for `attributes`: 
+    - `discordId` - number
+    - `username` - string
+    - `avatar` - string 
+    - `discriminator` - string
+    - `expiry` - timestamp
 
   ```json
   {
