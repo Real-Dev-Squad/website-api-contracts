@@ -20,6 +20,7 @@
   'twitter_id': string,
   'instagram_id': string,
   'website': string,
+  'role': string,
   'github_display_name': string,
   'isMember': boolean,
   'userType': string,
@@ -49,6 +50,7 @@ number and email address.
 |         [PATCH /users/self](#patch-usersself)          |         Updates data of the User         |
 | [PATCH /users/:id/temporary/data](#patch-usersidroles) |            Updates user roles            |
 |              [PATCH /users](#patch-users)              |     Archive users if not in discord      |
+| [PATCH /users/:userId](#patch-usersuserid)             | Allow users to update profile data and supers users to approve profile diff |
 
 ## **GET /users**
 
@@ -585,12 +587,13 @@ Creating a User Intro in DB if not available
 
 ## **PATCH /users/:userId**
 
-Allow SuperUser to approve the profilediff and Authenticated user to update their profile data.
+Allow SuperUser to approve the profilediff and any Authenticated user to update their own profile data.
 
 - **Params**
   - Optional: `userId=<userId>` 
 - **Query**
-  - Optional: `profile=["true"]` (if profile is set to true, it will allow Authenticated user to update the profile data.)
+  - Optional: `profile=["true"]` (if profile is set to true, it will allow Authenticated user to update their own profile data.)
+  - Optional: `dev=["true"]` (dev feature flag)
 
 - **Headers**
   Content-Type: application/json
@@ -598,8 +601,30 @@ Allow SuperUser to approve the profilediff and Authenticated user to update thei
   - rds-session: `<JWT>`
   - rds-session: `<SUPERUSER JWT>`
 - **Body** 
-  - `{ <user_object> }`
-  - ```
+  - request body for updating self profile data (all fields are optional)
+    ```
+     {
+         username: string,
+         phone: string,
+         email: string,
+         first_name: string,
+         last_name: string,
+         yoe: number,
+         company: string,
+         designation: string,
+         linkedin_id: string,
+         twitter_id: string,
+         instagram_id: string,
+         website: string,
+         discordId: string,
+         disabledRole: [string],
+         status: string,
+         img: string,
+         role: string,
+     }
+    ```
+  - request body for profilediff 
+    ```
     {
       id: `<profileDiffsId>,
       message: string 
@@ -627,6 +652,12 @@ Allow SuperUser to approve the profilediff and Authenticated user to update thei
     - **Content:**
       `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update username again'}`
       `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Developers can only update disabled_roles. Use profile service for updating other attributes.'}`
+      `{ 'statusCode': 403, 'error': 'Forbidden', 'message': 'Cannot update role again'}`
   - **Code:** 503
     - **Content:**
       `{ 'statusCode': 503, 'error': 'Service Unavailable', 'message': 'Something went wrong please contact admin' }`
+
+  - **Note:**
+     - When incompleteUserDetails field is true in userData, if dev="true" we need to send role field also along with firstName and lastName [updated flow] 
+     - role and username fields can only be set once
+     
