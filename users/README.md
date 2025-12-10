@@ -587,7 +587,7 @@ Creating a User Intro in DB if not available
 
 ## **PATCH /users/:userId**
 
-Allow SuperUser to approve the profilediff and any Authenticated user to update their own profile data.
+Allows SuperUser to approve the profilediff and any Authenticated user to update their own profile data.
 
 - **Params**
   - Optional: `userId=<userId>` 
