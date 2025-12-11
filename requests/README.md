@@ -70,7 +70,12 @@ Returns a list of requests with pagination and filtering options.
           "state": "string",
           "updatedAt": "number"
         }
-        // Additional request objects
+        /* Additional request objects
+        //NOTE : In case of dev=true the response would be send as above but in case of dev=false :
+        message --> reason,
+        state --> status,
+        reason --> comment
+        */
       ],
       "next": "string",
       "prev": "string"
@@ -133,8 +138,8 @@ Creates a new request.
   - `type`: Required string to specify the type of request (e.g., OOO,EXTENSION,TASK).
   - `from`: Required number to specify the start timestamp of the request.
   - `until`: Required number to specify the end timestamp of the request.
-  - `message`: Required string to specify the message for the request.
-  - `state`: Required string to specify the state of the request (e.g., PENDING).
+  - `reason`: Required string to specify the reason for the request.
+  - `status`: Required string to specify the status of the request (e.g., PENDING).
 
   - Example OOO Request:
     ```json
